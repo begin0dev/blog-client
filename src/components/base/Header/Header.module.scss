@@ -1,0 +1,65 @@
+@import 'utils';
+
+.header {
+  z-index: z-index('header');
+  background-color: #232323;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: $header-size;
+    max-width: 1440px;
+    padding: 0 30px;
+    @include media('>md') {
+      padding: 0 36px;
+      margin: 0 auto;
+    }
+
+    .left, .right {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      color: theme('fontColor');
+      font-size: 12px;
+      font-weight: 400;
+
+      .logo {
+        color: theme('secondary');
+        margin-right: 15px;
+        line-height: 0;
+      }
+    }
+    .right {
+      justify-content: flex-end;
+
+      button {
+        padding: 10px 10px;
+        font-size: 12px;
+        color: theme('fontColor');
+        background-color: transparent;
+        @include media('>md') {
+          padding: 10px 20px;
+        }
+        &:hover {
+          color: #ffffff;
+        }
+      }
+      .signup {
+        @include media('>md') {
+          text-transform: uppercase;
+          color: #ffffff;
+          background: linear-gradient(-180deg,#399dff 0%,#297dcf 98%);
+          border-radius: 4px;
+          &:hover {
+            background: #297dcf;
+          }
+        }
+      }
+    }
+  }
+}

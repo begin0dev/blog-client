@@ -1,0 +1,16 @@
+@import 'utils';
+
+.overlay {
+  z-index: z-index('overlay');
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(35,35,35,.66);
+  will-change: opacity;
+  &.visible {
+    display: block;
+  }
+}

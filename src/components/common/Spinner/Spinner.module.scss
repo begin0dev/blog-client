@@ -1,0 +1,93 @@
+@import 'utils';
+
+.fading-circle {
+  position: relative;
+  .circle {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    &:before {
+      content: '';
+      display: block;
+      margin: 0 auto;
+      width: 15%;
+      height: 15%;
+      background-color: theme('secondary');
+      border-radius: 100%;
+      animation: circleFadeDelay 1.2s infinite ease-in-out both;
+    }
+  }
+  .circle2 {
+    transform: rotate(30deg);
+    &:before {
+      animation-delay: -1.1s;
+    }
+  }
+  .circle3 {
+    transform: rotate(60deg);
+    &:before {
+      animation-delay: -1s;
+    }
+  }
+  .circle4 {
+    transform: rotate(90deg);
+    &:before {
+      animation-delay: -.9s;
+    }
+  }
+  .circle5 {
+    transform: rotate(120deg);
+    &:before {
+      animation-delay: -.8s;
+    }
+  }
+  .circle6 {
+    transform: rotate(150deg);
+    &:before {
+      animation-delay: -.7s;
+    }
+  }
+  .circle7 {
+    transform: rotate(180deg);
+    &:before {
+      animation-delay: -.6s;
+    }
+  }
+  .circle8 {
+    transform: rotate(210deg);
+    &:before {
+      animation-delay: -.5s;
+    }
+  }
+  .circle9 {
+    transform: rotate(240deg);
+    &:before {
+      animation-delay: -.4s;
+    }
+  }
+  .circle10 {
+    transform: rotate(270deg);
+    &:before {
+      animation-delay: -.3s;
+    }
+  }
+  .circle11 {
+    transform: rotate(300deg);
+    &:before {
+      animation-delay: -.2s;
+    }
+  }
+  .circle12 {
+    transform: rotate(330deg);
+    &:before {
+      animation-delay: -.1s;
+    }
+  }
+}
+
+@keyframes circleFadeDelay {
+  0%, 39%, 100% { opacity: 0; }
+  40% { opacity: 1; }
+}

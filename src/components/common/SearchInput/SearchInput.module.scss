@@ -1,0 +1,50 @@
+@import 'utils';
+
+.wrapper {
+  position: relative;
+  display: inline-flex;
+  font-size: 1rem;
+  font-weight: 400;
+  width: 100%;
+  color: theme('primary');
+  .input {
+    color: theme('primary');
+    opacity: .3;
+    flex: 1 0 auto;
+    margin: 0;
+    padding: 0.3rem 1rem;
+    outline: 0;
+    line-height: 1.3rem;
+    background-color: #ffffff;
+    -webkit-tap-highlight-color: #ffffff;
+    transition: border-color .1s ease;
+    border: 1px solid theme('primary');
+    border-radius: 3rem;
+      &.icon {
+        padding-right: 1.5rem;
+      }
+      &:focus {
+        opacity: 1;
+        border-color: theme('secondary');
+        &::placeholder {
+          color: inherit;
+        }
+        ~i.icon {
+          opacity: 1;
+        }
+      }
+  }
+  i.icon {
+    position: absolute;
+    top: calc(50% - .45rem);
+    right: 0.6rem;
+    opacity: .3;
+  }
+  .loading-wrap {
+    position: absolute;
+    top: 50%;
+    right: .8rem;
+    margin-top: -.4rem;
+    opacity: .3;
+  }
+}

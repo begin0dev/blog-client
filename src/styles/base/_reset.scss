@@ -1,0 +1,40 @@
+@import 'utils';
+
+body {
+  position: relative;
+  font-family: 'Quicksand', 'Nanum Square', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1;
+  height: 100%;
+  overflow: scroll;
+  color: $oc-gray-9;
+  background-color: theme('primary');
+}
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+a {
+  text-decoration: inherit;
+  color: inherit;
+}
+button {
+  user-select: none;
+  &:active, &:focus, &:hover {
+    outline:none;
+  }
+}
+ol, ul {
+  list-style: none;
+}
+div, article, main, header, footer, nav, section, ol, ul {
+  position: relative;
+  padding: 0;
+  border: 0;
+}
