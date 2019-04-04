@@ -1,8 +1,9 @@
 {
-  "name": "blog-front",
-  "version": "0.1.0",
+  "name": "blog-client",
+  "version": "1.0.0",
   "private": true,
-  "author": "Beginner",
+  "license": "MIT",
+  "author": "Begin0Dev",
   "description": "beginner blog frontend",
   "scripts": {
     "start": "react-scripts start",
