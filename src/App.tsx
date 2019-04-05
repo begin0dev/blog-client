@@ -55,7 +55,7 @@ const App: React.FunctionComponent<IProps> = ({
       <Switch>
         <Route exact path="/" component={MainPage} />
         <Route path="/profile" component={ProfilePage} />
-        <Route path="/develop/:name(all|node|javascript|etc)" component={CategoryPage} />
+        <Route path="/develop/:name(all|react|node|javascript|etc)" component={CategoryPage} />
         <Route path="/*" component={NotFoundPage} />
       </Switch>
     </PageTemplate>

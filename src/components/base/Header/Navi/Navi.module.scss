@@ -12,11 +12,6 @@ $sidebar-color: #2c2c2c;
   background-color: $sidebar-color;
   backface-visibility: hidden;
   transform: translate(100%);
-  //transition: all .2s ease-in-out;
-  &.active {
-    transform: translate(0%);
-  }
-
   @include media('>md') {
     position: relative;
     width: auto;
@@ -24,6 +19,10 @@ $sidebar-color: #2c2c2c;
     padding: 0;
     background-color: unset;
     transform: unset;
+  }
+
+  &.active {
+    transform: translate(0%);
   }
 
   .list {
@@ -37,13 +36,17 @@ $sidebar-color: #2c2c2c;
       align-items: center;
       padding: 21px 40px;
       cursor: pointer;
-      &:hover {
-        color: #ffffff;
-      }
       @include media('>md') {
         padding: 20px;
       }
-
+      &:hover {
+        color: #ffffff;
+      }
+      .icon {
+        font-size: 14px;
+        width: 15px;
+        margin-right: 10px;
+      }
       .expandIcon {
         font-size: 14px;
         margin-left: 5px;
