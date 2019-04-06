@@ -10,7 +10,7 @@ const TOGGLE_AUTH_FORM = 'TOGGLE_AUTH_FORM';
 const SET_AUTH_FORM_VALUE = 'SET_AUTH_FORM_VALUE';
 
 export const Actions = {
-  changeAuthForm: (formName: string) => createAction(CHANGE_AUTH_FORM, formName),
+  changeAuthForm: (formName: 'sign up' | 'log in') => createAction(CHANGE_AUTH_FORM, formName),
   initializeAuthFormData: () => createAction(INITIALIZE_AUTH_FORM_DATA),
   setAuthFormValue: (payload: { name: string; value: string }) => createAction(SET_AUTH_FORM_VALUE, payload),
   toggleAuthForm: (active: boolean) => createAction(TOGGLE_AUTH_FORM, active),
@@ -34,7 +34,7 @@ export interface IAuthState {
   formValue: IFormData;
   state: {
     active: boolean;
-    form: string;
+    form: 'sign up' | 'log in';
     isLoading: boolean;
   };
 }
@@ -45,7 +45,7 @@ export const defaultState: IAuthState = {
   },
   state: {
     active: false,
-    form: 'signin',
+    form: 'log in',
     isLoading: false,
   },
 };

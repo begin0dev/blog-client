@@ -43,7 +43,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   dispatchSetAuthFormValue(name: string, value: string) {
     return dispatch(authActions.setAuthFormValue({ name, value }));
   },
-  dispatchChangeAuthForm(formName: string) {
+  dispatchChangeAuthForm(formName: 'sign up' | 'log in') {
     return dispatch(authActions.changeAuthForm(formName));
   },
 });

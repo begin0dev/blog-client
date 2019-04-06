@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as classNames from 'classnames/bind';
 import { NavLink } from 'react-router-dom';
 import { MdArrowDropDown } from 'react-icons/md';
-import { FaReact, FaNodeJs, FaJs } from 'react-icons/fa';
+import { FaBook, FaJs, FaIdBadge, FaReact, FaNodeJs } from 'react-icons/fa';
 
 import styles from './Navi.module.scss';
 
@@ -23,6 +23,7 @@ const navi: INavi[] = [
     name: 'Development',
     hasChildren: true,
     url: '',
+    icon: <FaBook className={cx('icon')} />,
     children: [
       { name: 'All', url: '/develop/all' },
       { name: 'React', url: '/develop/React', icon: <FaReact className={cx('icon')} /> },
@@ -31,7 +32,7 @@ const navi: INavi[] = [
       { name: 'Etc', url: '/develop/etc' },
     ],
   },
-  { name: 'Profile', url: '/profile', hasChildren: false },
+  { name: 'Profile', url: '/profile', hasChildren: false, icon: <FaIdBadge className={cx('icon')} /> },
 ];
 
 interface IProps {
@@ -52,14 +53,15 @@ const Navi: React.FunctionComponent<IProps> = ({ isTablet, visible, toggleSideba
             key={link.name}
           >
             <div className={cx('type')}>
+              {isTablet && link.icon}
               {link.name}
               {!isTablet && <MdArrowDropDown className={cx('expandIcon')} />}
             </div>
             <div className={cx('dropdown')}>
               {link.children &&
                 link.children.map((child: INaviChild) => (
-                  <NavLink className={cx('type')} to={child.url} activeClassName={cx('current')} key={child.name}>
-                    {child.icon}
+                  <NavLink className={cx('type', 'sub')} to={child.url} activeClassName={cx('current')} key={child.name}>
+                    {isTablet ? null : child.icon}
                     {child.name}
                   </NavLink>
                 ))}
@@ -67,7 +69,7 @@ const Navi: React.FunctionComponent<IProps> = ({ isTablet, visible, toggleSideba
           </div>
         ) : (
           <NavLink className={cx('type')} to={link.url} activeClassName={cx('current')} key={link.name}>
-            {link.icon}
+            {isTablet && link.icon}
             {link.name}
           </NavLink>
         );
