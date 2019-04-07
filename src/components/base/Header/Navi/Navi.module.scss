@@ -36,18 +36,19 @@ $sidebar-color: #2c2c2c;
       display: flex;
       align-items: center;
       padding: 21px 40px;
+      user-select: none;
       @include media('>md') {
-        padding: 20px;
-      }
-      &:hover {
-        color: #ffffff;
+        padding: 20px 25px;
+        &:hover {
+          color: #ffffff;
+        }
       }
       &.sub {
         @include media('<=md') {
           font-size: 11px;
         }
       }
-      &.sub.current {
+      &.current {
         color: #ffffff;
         &:before {
           content: '';
@@ -59,10 +60,6 @@ $sidebar-color: #2c2c2c;
           background-color: #2f8be6;
         }
       }
-      .icon {
-        width: 15px;
-        margin-right: 10px;
-      }
       .expandIcon {
         font-size: 14px;
         margin-left: 5px;
@@ -70,6 +67,22 @@ $sidebar-color: #2c2c2c;
     }
 
     .wrapper {
+      @include media('<=md') {
+        .dropdown {
+          background-color: theme('primary');
+          &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 35px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 10px solid $sidebar-color;
+          }
+        }
+      }
       @include media('>md') {
         &:after {
           content: '';

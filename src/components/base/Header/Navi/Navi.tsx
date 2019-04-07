@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as classNames from 'classnames/bind';
 import { NavLink } from 'react-router-dom';
 import { MdArrowDropDown } from 'react-icons/md';
-import { FaBook, FaJs, FaIdBadge, FaReact, FaNodeJs } from 'react-icons/fa';
 
 import styles from './Navi.module.scss';
 
@@ -11,7 +10,6 @@ const cx = classNames.bind(styles);
 interface INaviChild {
   name: string;
   url: string;
-  icon?: React.SVGAttributes<SVGAElement>;
 }
 interface INavi extends INaviChild {
   hasChildren: boolean;
@@ -23,16 +21,15 @@ const navi: INavi[] = [
     name: 'Development',
     hasChildren: true,
     url: '',
-    icon: <FaBook className={cx('icon')} />,
     children: [
       { name: 'All', url: '/develop/all' },
-      { name: 'React', url: '/develop/React', icon: <FaReact className={cx('icon')} /> },
-      { name: 'Node', url: '/develop/node', icon: <FaNodeJs className={cx('icon')} /> },
-      { name: 'Javascript', url: '/develop/javascript', icon: <FaJs className={cx('icon')} /> },
+      { name: 'React', url: '/develop/React' },
+      { name: 'Node', url: '/develop/node' },
+      { name: 'Javascript', url: '/develop/javascript' },
       { name: 'Etc', url: '/develop/etc' },
     ],
   },
-  { name: 'Profile', url: '/profile', hasChildren: false, icon: <FaIdBadge className={cx('icon')} /> },
+  { name: 'Profile', url: '/profile', hasChildren: false },
 ];
 
 interface IProps {
@@ -53,7 +50,6 @@ const Navi: React.FunctionComponent<IProps> = ({ isTablet, visible, toggleSideba
             key={link.name}
           >
             <div className={cx('type')}>
-              {isTablet && link.icon}
               {link.name}
               {!isTablet && <MdArrowDropDown className={cx('expandIcon')} />}
             </div>
@@ -61,15 +57,13 @@ const Navi: React.FunctionComponent<IProps> = ({ isTablet, visible, toggleSideba
               {link.children &&
                 link.children.map((child: INaviChild) => (
                   <NavLink className={cx('type', 'sub')} to={child.url} activeClassName={cx('current')} key={child.name}>
-                    {isTablet ? null : child.icon}
                     {child.name}
                   </NavLink>
                 ))}
             </div>
           </div>
         ) : (
-          <NavLink className={cx('type')} to={link.url} activeClassName={cx('current')} key={link.name}>
-            {isTablet && link.icon}
+          <NavLink className={cx('type')} to={link.url} activeClassName={cx({'current': isTablet})} key={link.name}>
             {link.name}
           </NavLink>
         );
