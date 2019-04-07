@@ -67,6 +67,22 @@ $sidebar-color: #2c2c2c;
     }
 
     .wrapper {
+      @include media('<=md') {
+        .dropdown {
+          background-color: theme('primary');
+          &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 35px;
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 10px solid $sidebar-color;
+          }
+        }
+      }
       @include media('>md') {
         &:after {
           content: '';

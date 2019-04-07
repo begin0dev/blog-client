@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { NavLink } from 'react-router-dom';
 import * as classNames from 'classnames/bind';
 
 import { Logo } from 'assets/svgs';
@@ -18,9 +19,9 @@ const Header: React.FunctionComponent<IProps> = ({ isTablet, visible, toggleSide
   <header className={cx('header')}>
     <div className={cx('wrapper')}>
       <div className={cx('left')}>
-        <div className={cx('logo')}>
+        <NavLink to={'/'} className={cx('logo')}>
           <Logo />
-        </div>
+        </NavLink>
         {isTablet && <Overlay visible={visible} />}
         <Navi visible={visible} isTablet={isTablet} toggleSidebar={toggleSidebar} />
       </div>
