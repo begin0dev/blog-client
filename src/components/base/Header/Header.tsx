@@ -13,9 +13,10 @@ interface IProps {
   isTablet: boolean;
   visible: boolean;
   toggleSidebar(bool: boolean): void;
+  toggleAuthForm(formName: 'signUp' | 'logIn'): void;
 }
 
-const Header: React.FunctionComponent<IProps> = ({ isTablet, visible, toggleSidebar }) => (
+const Header: React.FunctionComponent<IProps> = ({ isTablet, visible, toggleAuthForm, toggleSidebar }) => (
   <header className={cx('header')}>
     <div className={cx('wrapper')}>
       <div className={cx('left')}>
@@ -26,10 +27,10 @@ const Header: React.FunctionComponent<IProps> = ({ isTablet, visible, toggleSide
         <Navi visible={visible} isTablet={isTablet} toggleSidebar={toggleSidebar} />
       </div>
       <div className={cx('right')}>
-        <button type="button" className={cx('login')}>
+        <button type="button" className={cx('log-in')} onClick={() => toggleAuthForm('logIn')}>
           Log In
         </button>
-        <button type="button" className={cx('signup')}>
+        <button type="button" className={cx('sign-up')} onClick={() => toggleAuthForm('signUp')}>
           Sign Up
         </button>
         {isTablet && <Hamburger visible={visible} toggleSidebar={toggleSidebar} />}
