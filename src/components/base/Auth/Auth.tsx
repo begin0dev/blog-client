@@ -12,7 +12,7 @@ const cx = classNames.bind(styles);
 
 interface IProps {
   authState: IAuthState;
-  setAuthFormValue(e: React.ChangeEvent<HTMLInputElement>): void;
+  setAuthFormValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Auth: React.FunctionComponent<IProps> = ({ authState, setAuthFormValue }) => (

@@ -9,9 +9,9 @@ import { Actions as authActions } from '../store/modules/auth';
 
 interface IProps {
   baseState: IBaseState;
-  dispatchChangeAuthForm(formName: 'signUp' | 'logIn'): void;
-  dispatchToggleAuthForm(bool: boolean): void;
-  dispatchToggleSidebar(bool: boolean): void;
+  dispatchChangeAuthForm: (formName: 'signUp' | 'logIn') => void;
+  dispatchToggleAuthForm: (bool: boolean) => void;
+  dispatchToggleSidebar: (bool: boolean) => void;
 }
 
 class BaseTemplateContainer extends React.Component<IProps> {
@@ -19,17 +19,17 @@ class BaseTemplateContainer extends React.Component<IProps> {
     const { dispatchToggleSidebar } = this.props;
     dispatchToggleSidebar(bool);
   };
-  toggleAuthForm = (formName: 'signUp' | 'logIn') => {
+  displayAuthForm = (formName: 'signUp' | 'logIn') => {
     const { dispatchChangeAuthForm, dispatchToggleAuthForm } = this.props;
     dispatchChangeAuthForm(formName);
     dispatchToggleAuthForm(true);
   };
 
   render() {
-    const { toggleAuthForm, toggleSidebar } = this;
+    const { displayAuthForm, toggleSidebar } = this;
     const { isTablet, sidebar } = this.props.baseState;
     return (
-      <Header visible={sidebar} isTablet={isTablet} toggleAuthForm={toggleAuthForm} toggleSidebar={toggleSidebar} />
+      <Header visible={sidebar} isTablet={isTablet} displayAuthForm={displayAuthForm} toggleSidebar={toggleSidebar} />
     );
   }
 }

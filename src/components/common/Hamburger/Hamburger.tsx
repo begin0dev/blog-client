@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 
 interface IProps {
   visible: boolean;
-  toggleSidebar(bool: boolean): void;
+  toggleSidebar: (bool: boolean) => void;
 }
 
 const Hamburger: React.FunctionComponent<IProps> = ({ visible, toggleSidebar }) => {
