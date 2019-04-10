@@ -16,6 +16,10 @@ interface IProps {
 }
 
 class AuthContainer extends React.Component<IProps> {
+  hideModal = (): void => {
+    const { dispatchToggleAuthForm } = this.props;
+    dispatchToggleAuthForm(false);
+  };
   setAuthFormValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
     const { dispatchSetAuthFormValue } = this.props;
@@ -27,9 +31,9 @@ class AuthContainer extends React.Component<IProps> {
       authState,
       baseState: { isMobile },
     } = this.props;
-    const { setAuthFormValue } = this;
+    const { setAuthFormValue, hideModal } = this;
     return (
-      <Modal active={authState.state.active} fullScreen={isMobile} size={{ width: '800px' }}>
+      <Modal active={authState.state.active} fullScreen={isMobile} size={{ width: '800px' }} hideModal={hideModal}>
         <Auth authState={authState} setAuthFormValue={setAuthFormValue} />
       </Modal>
     );
