@@ -33,7 +33,7 @@ class AuthContainer extends React.Component<IProps> {
     } = this.props;
     const { setAuthFormValue, hideModal } = this;
     return (
-      <Modal active={authState.state.active} fullScreen={isMobile} size={{ width: '800px' }} hideModal={hideModal}>
+      <Modal active={authState.state.active} fullScreen={isMobile} size={{ width: '400px' }} hideModal={hideModal}>
         <Auth authState={authState} setAuthFormValue={setAuthFormValue} />
       </Modal>
     );
