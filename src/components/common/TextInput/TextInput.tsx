@@ -12,7 +12,7 @@ interface IProps {
   label?: string;
   color?: string;
   placeholder?: string;
-  setValue(e: React.ChangeEvent<HTMLInputElement>): void;
+  setValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const TextInput: React.FunctionComponent<IProps> = ({ type, name, label, placeholder, value, color, setValue }) => {

@@ -12,6 +12,7 @@ interface IProps {
   fullScreen?: boolean;
   hideOverlay?: boolean;
   backgroundColor?: string;
+  hideModal?: (bool?: boolean) => void;
   children: React.ReactNode;
 }
 
@@ -22,13 +23,21 @@ const Modal: React.FunctionComponent<IProps> = ({
   hideOverlay,
   fullScreen,
   backgroundColor,
+  hideModal,
   children,
 }) => {
+  const modalEl = React.useRef<HTMLDivElement>(null);
+  const onClickEvent = (e: React.MouseEvent<HTMLElement>): void => {
+    if (fullScreen) return;
+    if (modalEl && modalEl.current && modalEl.current.contains(e.target as HTMLElement)) return;
+    if (hideModal) hideModal(false);
+  };
   return (
-    <div className={cx('modalOverlay', { hideOverlay }, { active })}>
+    <div className={cx('modalOverlay', { hideOverlay }, { active })} onClick={onClickEvent}>
       <div
         className={cx('modal', { fullScreen })}
         style={{ backgroundColor, ...style, ...(!fullScreen && size) }}
+        ref={modalEl}
       >
         {children}
       </div>

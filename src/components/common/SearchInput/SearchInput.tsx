@@ -11,7 +11,7 @@ interface IProps {
   loading?: boolean;
   placeholder?: string;
   value?: string;
-  setValue(e: React.ChangeEvent<HTMLInputElement>): void;
+  setValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const SearchInput: React.FunctionComponent<IProps> = ({ loading, placeholder, value, setValue }) => {

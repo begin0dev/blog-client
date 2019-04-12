@@ -10,11 +10,16 @@ import { Auth, Modal } from 'components';
 interface IProps {
   authState: IAuthState;
   baseState: IBaseState;
-  dispatchSetAuthFormValue(name: string, value: string): void;
-  dispatchChangeAuthForm(formName: string): void;
+  dispatchSetAuthFormValue: (name: string, value: string) => void;
+  dispatchChangeAuthForm: (formName: 'signUp' | 'logIn') => void;
+  dispatchToggleAuthForm: (bool: boolean) => void;
 }
 
 class AuthContainer extends React.Component<IProps> {
+  hideModal = (): void => {
+    const { dispatchToggleAuthForm } = this.props;
+    dispatchToggleAuthForm(false);
+  };
   setAuthFormValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target;
     const { dispatchSetAuthFormValue } = this.props;
@@ -26,9 +31,9 @@ class AuthContainer extends React.Component<IProps> {
       authState,
       baseState: { isMobile },
     } = this.props;
-    const { setAuthFormValue } = this;
+    const { setAuthFormValue, hideModal } = this;
     return (
-      <Modal active={authState.state.active} fullScreen={isMobile} backgroundColor='#f8f9fa' size={{ width: '800px' }}>
+      <Modal active={authState.state.active} fullScreen={isMobile} size={{ width: '400px' }} hideModal={hideModal}>
         <Auth authState={authState} setAuthFormValue={setAuthFormValue} />
       </Modal>
     );
@@ -43,8 +48,11 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   dispatchSetAuthFormValue(name: string, value: string) {
     return dispatch(authActions.setAuthFormValue({ name, value }));
   },
-  dispatchChangeAuthForm(formName: 'sign up' | 'log in') {
+  dispatchChangeAuthForm(formName: 'signUp' | 'logIn') {
     return dispatch(authActions.changeAuthForm(formName));
+  },
+  dispatchToggleAuthForm(bool: boolean) {
+    return dispatch(authActions.toggleAuthForm(bool));
   },
 });
 

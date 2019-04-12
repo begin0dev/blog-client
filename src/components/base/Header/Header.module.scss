@@ -2,7 +2,7 @@
 
 .header {
   z-index: z-index('header');
-  background-color: #232323;
+  background-color: theme('primary');
   position: fixed;
   left: 0;
   top: 0;
@@ -21,20 +21,18 @@
     }
 
     .left, .right {
+      color: theme('fontColor');
       display: flex;
       align-items: center;
       height: 100%;
-      color: theme('fontColor');
       font-size: 12px;
-      font-weight: 400;
+      font-weight: 500;
 
       .logo {
-        color: theme('secondary');
         margin-right: 15px;
         line-height: 0;
         svg {
           height: 38px;
-          fill: #ffffff;
         }
       }
     }
@@ -42,10 +40,11 @@
       justify-content: flex-end;
 
       button {
-        padding: 10px 10px;
-        font-size: 12px;
         color: theme('fontColor');
         background-color: transparent;
+        padding: 10px 10px;
+        font-size: 12px;
+        font-weight: 500;
         @include media('>md') {
           padding: 10px 20px;
         }
@@ -53,14 +52,14 @@
           color: #ffffff;
         }
       }
-      .signup {
+      .sign-up {
         @include media('>md') {
-          text-transform: uppercase;
+          background: linear-gradient(-180deg, #fed044 0%, theme('submitBtnColor') 98%);
           color: #ffffff;
-          background: linear-gradient(-180deg,#399dff 0%,#297dcf 98%);
+          text-transform: uppercase;
           border-radius: 4px;
           &:hover {
-            background: #297dcf;
+            background: theme('submitBtnColor');
           }
         }
       }

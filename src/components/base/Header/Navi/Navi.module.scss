@@ -1,5 +1,4 @@
 @import 'utils';
-$sidebar-color: #2c2c2c;
 
 .navi {
   z-index: z-index('sidebar');
@@ -9,7 +8,7 @@ $sidebar-color: #2c2c2c;
   width: 256px;
   height: 100vh;
   padding: #{$header-size} 0;
-  background-color: $sidebar-color;
+  background-color: theme('sidebarColor');
   backface-visibility: hidden;
   transform: translate(100%);
   @include media('>md') {
@@ -57,7 +56,7 @@ $sidebar-color: #2c2c2c;
           left: 0;
           height: 50%;
           width: 2px;
-          background-color: #2f8be6;
+          background-color: theme('submitBtnColor');
         }
       }
       .expandIcon {
@@ -67,22 +66,6 @@ $sidebar-color: #2c2c2c;
     }
 
     .wrapper {
-      @include media('<=md') {
-        .dropdown {
-          background-color: theme('primary');
-          &:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 35px;
-            width: 0;
-            height: 0;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
-            border-top: 10px solid $sidebar-color;
-          }
-        }
-      }
       @include media('>md') {
         &:after {
           content: '';
@@ -92,7 +75,7 @@ $sidebar-color: #2c2c2c;
           width: 1px;
           height: 38px;
           margin-top: -19px;
-          background: #424242;
+          background: theme('secondary');
         }
         .dropdown {
           position: absolute;
@@ -100,13 +83,13 @@ $sidebar-color: #2c2c2c;
           left: 0;
           display: none;
           width: 250px;
-          background-color: $sidebar-color;
+          background-color: theme('sidebarColor');
           border-radius: 0 8px 8px 8px;
           padding: 16px 0 20px;
         }
         &.active {
           border-radius: 8px 8px 0 0;
-          background-color: $sidebar-color;
+          background-color: theme('sidebarColor');
 
           &:before {
             content: '';
@@ -115,7 +98,7 @@ $sidebar-color: #2c2c2c;
             bottom: -10px;
             width: 100%;
             height: 10px;
-            background-color: $sidebar-color;
+            background-color: theme('sidebarColor');
           }
           &:after {
             content: '';
@@ -125,7 +108,7 @@ $sidebar-color: #2c2c2c;
             width: 16px;
             height: 16px;
             border-bottom-left-radius: 8px;
-            box-shadow: -6px 6px 0 $sidebar-color;
+            box-shadow: -6px 6px 0 theme('sidebarColor');
             background: 0 0;
           }
 
