@@ -54,7 +54,7 @@
       }
       .sign-up {
         @include media('>md') {
-          background: linear-gradient(-180deg, #{$oc-red-7} 0%, #{$oc-red-8} 98%);
+          background: linear-gradient(-180deg, #{$oc-red-6} 0%, #{$oc-red-8} 98%);
           color: #ffffff;
           text-transform: uppercase;
           border-radius: 4px;
