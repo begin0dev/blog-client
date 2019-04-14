@@ -6,7 +6,8 @@ body {
   font-size: 13px;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
-  color: $oc-gray-9;
+  color: theme('fontColor');
+  background-color: $oc-gray-9;
   line-height: 1;
 }
 * {
