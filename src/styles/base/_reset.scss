@@ -1,5 +1,8 @@
 @import 'utils';
 
+html, body, #react-root {
+ height: 100%;
+}
 body {
   position: relative;
   font-family: 'Quicksand', 'Nanum Square', sans-serif;
@@ -8,7 +11,7 @@ body {
   -webkit-font-smoothing: antialiased;
   color: theme('fontColor');
   background-color: $oc-gray-9;
-  line-height: 1;
+  overflow-x: hidden;
 }
 * {
   margin: 0;
@@ -26,13 +29,13 @@ a {
 button {
   user-select: none;
   &:active, &:focus, &:hover {
-    outline:none;
+    outline: none;
   }
 }
 ol, ul {
   list-style: none;
 }
-div, article, main, header, footer, nav, section, ol, ul {
+body, header, footer, main, nav, div, article, section, ol, ul {
   position: relative;
   padding: 0;
   border: 0;
