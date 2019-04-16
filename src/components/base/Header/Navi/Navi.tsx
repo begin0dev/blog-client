@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as classNames from 'classnames/bind';
 import { NavLink } from 'react-router-dom';
 import { MdArrowDropDown } from 'react-icons/md';
+import { FaUser } from 'react-icons/fa';
 
 import styles from './Navi.module.scss';
 
@@ -17,6 +18,7 @@ interface INavi extends INaviChild {
 }
 
 const navi: INavi[] = [
+  { name: 'Profile', url: '/profile', hasChildren: false },
   {
     name: 'Development',
     hasChildren: true,
@@ -29,7 +31,6 @@ const navi: INavi[] = [
       { name: 'Etc', url: '/develop/etc' },
     ],
   },
-  { name: 'Profile', url: '/profile', hasChildren: false },
 ];
 
 interface IProps {
@@ -51,19 +52,24 @@ const Navi: React.FunctionComponent<IProps> = ({ isTablet, visible, toggleSideba
           >
             <div className={cx('type')}>
               {link.name}
-              {!isTablet && <MdArrowDropDown className={cx('expandIcon')} />}
+              <MdArrowDropDown className={cx('expand-icon')} />
             </div>
             <div className={cx('dropdown')}>
               {link.children &&
                 link.children.map((child: INaviChild) => (
-                  <NavLink className={cx('type', 'sub')} to={child.url} activeClassName={cx('current')} key={child.name}>
+                  <NavLink
+                    className={cx('type', 'sub')}
+                    to={child.url}
+                    activeClassName={cx('current')}
+                    key={child.name}
+                  >
                     {child.name}
                   </NavLink>
                 ))}
             </div>
           </div>
         ) : (
-          <NavLink className={cx('type')} to={link.url} activeClassName={cx({'current': isTablet})} key={link.name}>
+          <NavLink className={cx('type')} to={link.url} activeClassName={cx({ current: isTablet })} key={link.name}>
             {link.name}
           </NavLink>
         );
