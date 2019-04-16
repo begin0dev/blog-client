@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as classNames from 'classnames/bind';
 import { NavLink } from 'react-router-dom';
 import { MdArrowDropDown } from 'react-icons/md';
-import { FaUser } from 'react-icons/fa';
 
 import styles from './Navi.module.scss';
 
@@ -36,20 +35,14 @@ const navi: INavi[] = [
 interface IProps {
   isTablet: boolean;
   visible: boolean;
-  toggleSidebar(bool: boolean): void;
 }
 
-const Navi: React.FunctionComponent<IProps> = ({ isTablet, visible, toggleSidebar }) => (
+const Navi: React.FunctionComponent<IProps> = ({ isTablet, visible }) => (
   <nav className={cx('navi', { active: isTablet && visible })}>
     <div className={cx('list')}>
       {navi.map((link: INavi) => {
         return link.hasChildren ? (
-          <div
-            className={cx('wrapper', { active: !isTablet && visible })}
-            onMouseEnter={() => !isTablet && toggleSidebar(true)}
-            onMouseLeave={() => !isTablet && toggleSidebar(false)}
-            key={link.name}
-          >
+          <div className={cx('wrapper')} key={link.name}>
             <div className={cx('type')}>
               {link.name}
               <MdArrowDropDown className={cx('expand-icon')} />
