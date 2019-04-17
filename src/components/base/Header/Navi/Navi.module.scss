@@ -24,9 +24,9 @@
   }
 
   .list {
-    @include media('>md') {
-      display: flex;
-      flex-flow: row wrap;
+    display: flex;
+    @include media('<=md') {
+      flex-flow: column wrap;
     }
 
     .type {
@@ -71,11 +71,10 @@
         &:after {
           content: '';
           position: absolute;
-          top: 50%;
+          top: 15%;
           left: 0;
           width: 1px;
-          height: 38px;
-          margin-top: -19px;
+          height: 70%;
           background: theme('secondary');
         }
         .dropdown {

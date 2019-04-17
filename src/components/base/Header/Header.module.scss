@@ -6,7 +6,7 @@
   position: fixed;
   left: 0;
   top: 0;
-  width: 100%;
+  width: 100vw;
 
   .wrapper {
     position: relative;
@@ -25,7 +25,6 @@
       color: theme('fontColor');
       display: flex;
       align-items: center;
-      height: 100%;
       font-size: 12px;
       font-weight: 500;
 
