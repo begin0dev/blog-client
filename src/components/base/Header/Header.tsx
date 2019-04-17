@@ -24,7 +24,7 @@ const Header: React.FunctionComponent<IProps> = ({ isTablet, visible, displayAut
           <Logo />
         </NavLink>
         {isTablet && <Overlay visible={visible} />}
-        <Navi visible={visible} isTablet={isTablet} toggleSidebar={toggleSidebar} />
+        <Navi visible={visible} isTablet={isTablet} />
       </div>
       <div className={cx('right')}>
         <button type="button" className={cx('log-in')} onClick={() => displayAuthForm('logIn')}>

@@ -11,6 +11,9 @@
   background-color: theme('sidebarColor');
   backface-visibility: hidden;
   transform: translate(100%);
+  &.active {
+    transform: translate(0%);
+  }
   @include media('>md') {
     position: relative;
     width: auto;
@@ -20,14 +23,10 @@
     transform: unset;
   }
 
-  &.active {
-    transform: translate(0%);
-  }
-
   .list {
-    @include media('>md') {
-      display: flex;
-      flex-flow: row wrap;
+    display: flex;
+    @include media('<=md') {
+      flex-flow: column wrap;
     }
 
     .type {
@@ -65,10 +64,6 @@
         font-size: 14px;
         margin-left: 5px;
       }
-      .type-icon {
-        font-size: 14px;
-        margin-right: 15px;
-      }
     }
 
     .wrapper {
@@ -76,11 +71,10 @@
         &:after {
           content: '';
           position: absolute;
-          top: 50%;
+          top: 15%;
           left: 0;
           width: 1px;
-          height: 38px;
-          margin-top: -19px;
+          height: 70%;
           background: theme('secondary');
         }
         .dropdown {
@@ -93,10 +87,12 @@
           border-radius: 0 8px 8px 8px;
           padding: 16px 0 20px;
         }
-        &.active {
+        &:hover {
           border-radius: 8px 8px 0 0;
           background-color: theme('sidebarColor');
-
+          .dropdown {
+            display: block;
+          }
           &:before {
             content: '';
             position: absolute;
@@ -117,10 +113,6 @@
             border-bottom-left-radius: 8px;
             box-shadow: -6px 6px 0 theme('sidebarColor');
             background: 0 0;
-          }
-
-          .dropdown {
-            display: block;
           }
         }
       }

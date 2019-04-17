@@ -13,8 +13,8 @@ interface IProps {
 const PageTemplate: React.FunctionComponent<IProps> = ({ children }) => (
   <>
     <BaseTemplateContainer />
-    <AuthContainer />
     <main className={cx('contents')}>{children}</main>
+    <AuthContainer />
   </>
 );
 
