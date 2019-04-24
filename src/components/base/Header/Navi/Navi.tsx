@@ -18,6 +18,7 @@ interface INavi extends INaviChild {
 
 const navi: INavi[] = [
   { name: 'Profile', url: '/profile', hasChildren: false },
+  { name: 'Log', url: '/log', hasChildren: false },
   {
     name: 'Development',
     hasChildren: true,
@@ -45,7 +46,7 @@ const Navi: React.FunctionComponent<IProps> = ({ isTablet, visible }) => (
           <div className={cx('wrapper')} key={link.name}>
             <div className={cx('type')}>
               {link.name}
-              <MdArrowDropDown className={cx('expand-icon')} />
+              {!isTablet && <MdArrowDropDown className={cx('expand-icon')} />}
             </div>
             <div className={cx('dropdown')}>
               {link.children &&

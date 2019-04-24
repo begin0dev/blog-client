@@ -27,11 +27,13 @@ const Modal: React.FunctionComponent<IProps> = ({
   children,
 }) => {
   const modalEl = React.useRef<HTMLDivElement>(null);
-  const onClickEvent = (e: React.MouseEvent<HTMLElement>): void => {
+
+  const onClickEvent = React.useCallback((e: React.MouseEvent<HTMLElement>): void => {
     if (fullScreen) return;
     if (modalEl && modalEl.current && modalEl.current.contains(e.target as HTMLElement)) return;
     if (hideModal) hideModal(false);
-  };
+  }, [fullScreen, hideModal, modalEl]);
+
   return (
     <div className={cx('modalOverlay', { hideOverlay }, { active })} onClick={onClickEvent}>
       <div

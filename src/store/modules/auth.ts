@@ -1,7 +1,7 @@
 import produce from 'immer';
 
-import { ActionsUnion } from 'utils/types';
-import { createAction } from 'utils/actionHelper';
+import { ActionsUnion } from 'lib/utils/types';
+import { createAction } from 'lib/utils/actionHelper';
 
 // actions
 const CHANGE_AUTH_FORM = 'CHANGE_AUTH_FORM';
@@ -15,7 +15,7 @@ export const Actions = {
   setAuthFormValue: (payload: { name: string; value: string }) => createAction(SET_AUTH_FORM_VALUE, payload),
   toggleAuthForm: (active: boolean) => createAction(TOGGLE_AUTH_FORM, active),
 };
-export type Actions = ActionsUnion<typeof Actions>;
+export type ActionTypes = ActionsUnion<typeof Actions>;
 
 // reducer
 interface IFormData {
@@ -50,7 +50,7 @@ export const defaultState: IAuthState = {
   },
 };
 
-export default (state = defaultState, action: Actions) => {
+export default (state = defaultState, action: ActionTypes) => {
   switch (action.type) {
     case CHANGE_AUTH_FORM:
       return produce(state, draft => {

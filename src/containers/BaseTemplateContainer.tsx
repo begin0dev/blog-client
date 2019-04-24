@@ -14,25 +14,31 @@ interface IProps {
   dispatchToggleSidebar: (bool: boolean) => void;
 }
 
-class BaseTemplateContainer extends React.Component<IProps> {
-  toggleSidebar = (bool: boolean) => {
-    const { dispatchToggleSidebar } = this.props;
-    dispatchToggleSidebar(bool);
-  };
-  displayAuthForm = (formName: 'signUp' | 'logIn') => {
-    const { dispatchChangeAuthForm, dispatchToggleAuthForm } = this.props;
-    dispatchChangeAuthForm(formName);
-    dispatchToggleAuthForm(true);
-  };
+const BaseTemplateContainer: React.FunctionComponent<IProps> = ({
+  baseState: { sidebar, isTablet },
+  dispatchChangeAuthForm,
+  dispatchToggleAuthForm,
+  dispatchToggleSidebar,
+}) => {
+  const toggleSidebar = React.useCallback(
+    (bool: boolean): void => {
+      dispatchToggleSidebar(bool);
+    },
+    [dispatchToggleSidebar],
+  );
 
-  render() {
-    const { displayAuthForm, toggleSidebar } = this;
-    const { isTablet, sidebar } = this.props.baseState;
-    return (
-      <Header visible={sidebar} isTablet={isTablet} displayAuthForm={displayAuthForm} toggleSidebar={toggleSidebar} />
-    );
-  }
-}
+  const displayAuthForm = React.useCallback(
+    (formName: 'signUp' | 'logIn'): void => {
+      dispatchChangeAuthForm(formName);
+      dispatchToggleAuthForm(true);
+    },
+    [dispatchChangeAuthForm, dispatchToggleAuthForm],
+  );
+
+  return (
+    <Header visible={sidebar} isTablet={isTablet} displayAuthForm={displayAuthForm} toggleSidebar={toggleSidebar} />
+  );
+};
 
 const mapStateToProps = (state: IStoreState) => ({
   baseState: state.base,

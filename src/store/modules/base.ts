@@ -1,7 +1,7 @@
 import produce from 'immer';
 
-import { ActionsUnion } from 'utils/types';
-import { createAction } from 'utils/actionHelper';
+import { ActionsUnion } from 'lib/utils/types';
+import { createAction } from 'lib/utils/actionHelper';
 
 // actions
 const SET_VIEW_TYPE = 'SET_VIEW_TYPE';
@@ -13,7 +13,7 @@ export const Actions = {
   toggleOverlay: (bool: boolean) => createAction(TOGGLE_OVERLAY, bool),
   toggleSidebar: (bool: boolean) => createAction(TOGGLE_SIDEBAR, bool),
 };
-export type Actions = ActionsUnion<typeof Actions>;
+export type ActionTypes = ActionsUnion<typeof Actions>;
 
 // reducer
 export interface IBaseState {
@@ -30,7 +30,7 @@ export const defaultState: IBaseState = {
   sidebar: false,
 };
 
-export default (state = defaultState, action: Actions) => {
+export default (state = defaultState, action: ActionTypes) => {
   switch (action.type) {
     case SET_VIEW_TYPE:
       return produce(state, draft => {

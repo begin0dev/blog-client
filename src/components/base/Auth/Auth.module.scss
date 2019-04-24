@@ -2,9 +2,10 @@
 
 .auth {
   position: relative;
+  display: flex;
+  flex: 1;
   font-size: 14px;
-  padding: 5.5rem 3rem;
-  color: theme('fontColor');
+  padding: 3rem;
 
 }
 

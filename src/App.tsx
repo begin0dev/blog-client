@@ -30,7 +30,8 @@ const App: React.FunctionComponent<IProps> = ({
     return () => {
       window.removeEventListener('resize', resizeEvent);
     };
-  }, []);
+  }, [setInnerWidth]);
+
   React.useEffect(() => {
     switch (true) {
       case innerWidth <= 450:
@@ -46,6 +47,7 @@ const App: React.FunctionComponent<IProps> = ({
         if (isTablet) dispatchSetViewType('isTablet', false);
     }
   }, [innerWidth]);
+
   React.useEffect(() => {
     dispatchToggleSidebar(false);
   }, [isTablet]);
@@ -55,6 +57,7 @@ const App: React.FunctionComponent<IProps> = ({
       <Switch>
         <Route exact path="/" component={MainPage} />
         <Route path="/profile" component={ProfilePage} />
+        <Route path="/log" component={ProfilePage} />
         <Route path="/develop/:name(all|react|node|javascript|etc)" component={CategoryPage} />
         <Route path="/*" component={NotFoundPage} />
       </Switch>

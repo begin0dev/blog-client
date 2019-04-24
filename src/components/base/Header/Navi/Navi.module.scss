@@ -30,12 +30,14 @@
     }
 
     .type {
+      font-size: 13px;
       position: relative;
       display: flex;
       align-items: center;
-      padding: 21px 40px;
+      padding: 20px 40px;
       user-select: none;
       @include media('>md') {
+        font-size: 12px;
         padding: 20px 25px;
         &:hover {
           color: #ffffff;
@@ -44,7 +46,8 @@
 
       &.sub {
         @include media('<=md') {
-          font-size: 11px;
+          font-size: 12px;
+          padding: 15px 40px;
         }
       }
       &.current {
@@ -64,6 +67,15 @@
         font-size: 14px;
         margin-left: 5px;
       }
+      .type-icon {
+        font-size: 16px;
+        margin-right: 20px;
+      }
+      @include media('>md') {
+        &+.wrapper {
+          margin-left: 10px;
+        }
+      }
     }
 
     .wrapper {
@@ -71,10 +83,10 @@
         &:after {
           content: '';
           position: absolute;
-          top: 15%;
+          top: 20%;
           left: 0;
           width: 1px;
-          height: 70%;
+          height: 60%;
           background: theme('secondary');
         }
         .dropdown {

@@ -1,8 +1,14 @@
-import { all } from 'redux-saga/effects';
+import { all, put } from 'redux-saga/effects';
+
+export function* errorHandler(err: { response: { data: { message: string } } }, type: string) {
+  const {
+    response: { data },
+  } = err;
+  yield put({ type, payload: data.message });
+}
 
 export default function* rootSaga() {
-  yield all([
-  ]);
+  yield all([]);
 }
 // foo.js
 // export function *fooSagas() {
