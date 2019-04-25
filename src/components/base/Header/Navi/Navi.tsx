@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as classNames from 'classnames/bind';
 import { NavLink } from 'react-router-dom';
 import { MdArrowDropDown } from 'react-icons/md';
+import { FaRegComment, FaRegAddressCard, FaRegFileCode } from 'react-icons/fa';
 
 import styles from './Navi.module.scss';
 
@@ -12,17 +13,19 @@ interface INaviChild {
   url: string;
 }
 interface INavi extends INaviChild {
+  icon: React.SVGAttributes<SVGAElement>;
   hasChildren: boolean;
   children?: INaviChild[];
 }
 
 const navi: INavi[] = [
-  { name: 'Profile', url: '/profile', hasChildren: false },
-  { name: 'Log', url: '/log', hasChildren: false },
+  { name: 'Profile', url: '/profile', hasChildren: false, icon: <FaRegAddressCard className={cx('type-icon')} /> },
+  { name: 'Log', url: '/log', hasChildren: false, icon: <FaRegComment className={cx('type-icon')} /> },
   {
     name: 'Development',
     hasChildren: true,
     url: '',
+    icon: <FaRegFileCode className={cx('type-icon')} />,
     children: [
       { name: 'All', url: '/develop/all' },
       { name: 'React', url: '/develop/React' },
@@ -45,6 +48,7 @@ const Navi: React.FunctionComponent<IProps> = ({ isTablet, visible }) => (
         return link.hasChildren ? (
           <div className={cx('wrapper')} key={link.name}>
             <div className={cx('type')}>
+              {isTablet && link.icon}
               {link.name}
               {!isTablet && <MdArrowDropDown className={cx('expand-icon')} />}
             </div>
@@ -64,6 +68,7 @@ const Navi: React.FunctionComponent<IProps> = ({ isTablet, visible }) => (
           </div>
         ) : (
           <NavLink className={cx('type')} to={link.url} activeClassName={cx({ current: isTablet })} key={link.name}>
+            {isTablet && link.icon}
             {link.name}
           </NavLink>
         );

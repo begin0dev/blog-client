@@ -30,11 +30,11 @@
     }
 
     .type {
-      font-size: 13px;
       position: relative;
       display: flex;
       align-items: center;
-      padding: 20px 40px;
+      font-size: 13px;
+      padding: 20px 55px;
       user-select: none;
       @include media('>md') {
         font-size: 12px;
@@ -43,20 +43,21 @@
           color: #ffffff;
         }
       }
-
-      &.sub {
-        @include media('<=md') {
+      @include media('<=md') {
+        &.sub {
           font-size: 12px;
-          padding: 15px 40px;
+          padding: 17px 55px;
+          color: #969696;
         }
       }
+
       &.current {
         color: #ffffff;
         &:before {
           content: '';
           position: absolute;
-          top: 25%;
           left: 0;
+          top: 25%;
           height: 50%;
           width: 3px;
           background-color: $oc-red-8;
@@ -64,23 +65,26 @@
       }
 
       .expand-icon {
-        font-size: 14px;
+        font-size: 15px;
         margin-left: 5px;
       }
       .type-icon {
-        font-size: 16px;
-        margin-right: 20px;
+        position: absolute;
+        top: 50%;
+        left: 25px;
+        transform: translateY(-50%);
+        font-size: 17px;
       }
       @include media('>md') {
-        &+.wrapper {
+        & + .wrapper {
           margin-left: 10px;
         }
       }
     }
 
-    .wrapper {
-      @include media('>md') {
-        &:after {
+    @include media('>md') {
+      .wrapper {
+        &:before {
           content: '';
           position: absolute;
           top: 20%;
@@ -102,12 +106,8 @@
         &:hover {
           border-radius: 8px 8px 0 0;
           background-color: theme('sidebarColor');
-          .dropdown {
-            display: block;
-          }
           &:before {
-            content: '';
-            position: absolute;
+            top: unset;
             left: 0;
             bottom: -10px;
             width: 100%;
@@ -116,8 +116,7 @@
           }
           &:after {
             content: '';
-            top: unset;
-            left: unset;
+            position: absolute;
             right: -16px;
             bottom: -9px;
             width: 16px;
@@ -125,6 +124,9 @@
             border-bottom-left-radius: 8px;
             box-shadow: -6px 6px 0 theme('sidebarColor');
             background: 0 0;
+          }
+          .dropdown {
+            display: block;
           }
         }
       }
