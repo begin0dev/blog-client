@@ -46,11 +46,11 @@ const App: React.FunctionComponent<IProps> = ({
         if (isMobile) dispatchSetViewType('isMobile', false);
         if (isTablet) dispatchSetViewType('isTablet', false);
     }
-  }, [innerWidth]);
+  }, [innerWidth, isMobile, isTablet, dispatchSetViewType]);
 
   React.useEffect(() => {
-    dispatchToggleSidebar(false);
-  }, [isTablet]);
+    if (isTablet) dispatchToggleSidebar(false);
+  }, [isTablet, dispatchToggleSidebar]);
 
   return (
     <PageTemplate>

@@ -1,8 +1,8 @@
 import * as React from 'react';
 import * as classNames from 'classnames/bind';
-import { FaArrowRight, FaFacebook as Facebook, FaGithub as Github, FaGooglePlusSquare as Google } from 'react-icons/fa';
+// import { FaArrowRight, FaFacebook as Facebook, FaGithub as Github, FaGooglePlusSquare as Google } from 'react-icons/fa';
 
-import { Kakao } from 'assets/svgs';
+// import { Kakao } from 'assets/svgs';
 import { IAuthState } from 'store/modules/auth';
 
 import styles from './Auth.module.scss';
