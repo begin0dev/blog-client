@@ -41,7 +41,7 @@ interface IProps {
   visible: boolean;
 }
 
-const Navi: React.FunctionComponent<IProps> = ({ isTablet, visible }) => (
+const Navi: React.FunctionComponent<IProps> = React.memo(({ isTablet, visible }) => (
   <nav className={cx('navi', { active: isTablet && visible })}>
     <div className={cx('list')}>
       {navi.map((link: INavi) => {
@@ -50,7 +50,7 @@ const Navi: React.FunctionComponent<IProps> = ({ isTablet, visible }) => (
             <div className={cx('type')}>
               {isTablet && link.icon}
               {link.name}
-              {!isTablet && <MdArrowDropDown className={cx('expand-icon')} />}
+              <MdArrowDropDown className={cx('expand-icon')} />
             </div>
             <div className={cx('dropdown')}>
               {link.children &&
@@ -75,6 +75,6 @@ const Navi: React.FunctionComponent<IProps> = ({ isTablet, visible }) => (
       })}
     </div>
   </nav>
-);
+));
 
 export default Navi;

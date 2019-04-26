@@ -14,7 +14,7 @@ interface IProps {
   dispatchToggleSidebar: (bool: boolean) => void;
 }
 
-const BaseTemplateContainer: React.FunctionComponent<IProps> = ({
+const BaseTemplateContainer: React.FunctionComponent<IProps> = React.memo(({
   baseState: { sidebar, isTablet },
   dispatchChangeAuthForm,
   dispatchToggleAuthForm,
@@ -38,7 +38,7 @@ const BaseTemplateContainer: React.FunctionComponent<IProps> = ({
   return (
     <Header visible={sidebar} isTablet={isTablet} displayAuthForm={displayAuthForm} toggleSidebar={toggleSidebar} />
   );
-};
+});
 
 const mapStateToProps = (state: IStoreState) => ({
   baseState: state.base,
