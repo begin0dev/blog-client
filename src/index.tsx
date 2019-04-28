@@ -1,5 +1,4 @@
 import 'react-app-polyfill/ie11';
-import './styles/main.scss';
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
@@ -10,11 +9,13 @@ import App from './App';
 import configureStore from './store/configureStore';
 import * as serviceWorker from './serviceWorker';
 
+import GlobalStyle from 'styles/GlobalStyle'
 
 const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
+    <GlobalStyle />
     <Router>
       <App />
     </Router>
