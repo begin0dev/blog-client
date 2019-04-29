@@ -19,14 +19,18 @@ const TextInput: React.FunctionComponent<IProps> = ({ type, name, label, placeho
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [focus, setFocus] = React.useState<boolean>(false);
 
-  const labelClick = (): void => {
-    if (inputRef.current && !focus) inputRef.current.focus();
-  };
+  const toggleInputFocus = React.useCallback(
+    (focusing: boolean) => (): void => {
+      setFocus(focusing);
+    },
+    [],
+  );
 
-  const toggleInputFocus = (focusing: boolean) => (): void => {
-    setFocus(focusing);
-  };
-  const labelPosition = (): object => {
+  const labelClick = React.useCallback((): void => {
+    if (inputRef.current && !focus) inputRef.current.focus();
+  }, [focus, inputRef]);
+
+  const labelPosition = React.useCallback((): object => {
     let position = {};
     if (focus || placeholder || (inputRef && inputRef.current && inputRef.current.value.length > 0)) {
       position = {
@@ -35,7 +39,7 @@ const TextInput: React.FunctionComponent<IProps> = ({ type, name, label, placeho
       };
     }
     return position;
-  };
+  }, [placeholder, focus, inputRef]);
 
   return (
     <div className={cx('wrapper')}>

@@ -1,13 +1,9 @@
 import * as React from 'react';
-import { NavLink } from 'react-router-dom';
-import * as classNames from 'classnames/bind';
 
-import { Logo } from 'assets/svgs';
 import Navi from './Navi';
+import { Logo } from 'assets/svgs';
 import { Overlay, Hamburger } from 'components';
-import styles from './Header.module.scss';
-
-const cx = classNames.bind(styles);
+import { HeaderBlock, Wrapper, Left, Right, LogoWrapper, Button } from './Header.styles';
 
 interface IProps {
   isTablet: boolean;
@@ -16,27 +12,27 @@ interface IProps {
   displayAuthForm: (formName: 'signUp' | 'logIn') => void;
 }
 
-const Header: React.FunctionComponent<IProps> = ({ isTablet, visible, displayAuthForm, toggleSidebar }) => (
-  <header className={cx('header')}>
-    <div className={cx('wrapper')}>
-      <div className={cx('left')}>
-        <NavLink to={'/'} className={cx('logo')}>
+const Header: React.FunctionComponent<IProps> = React.memo(({ isTablet, visible, displayAuthForm, toggleSidebar }) => (
+  <HeaderBlock>
+    <Wrapper>
+      <Left>
+        <LogoWrapper to='/'>
           <Logo />
-        </NavLink>
+        </LogoWrapper>
         {isTablet && <Overlay visible={visible} />}
         <Navi visible={visible} isTablet={isTablet} />
-      </div>
-      <div className={cx('right')}>
-        <button type="button" className={cx('log-in')} onClick={() => displayAuthForm('logIn')}>
+      </Left>
+      <Right>
+        <Button type="button" onClick={() => displayAuthForm('logIn')}>
           Log In
-        </button>
-        <button type="button" className={cx('sign-up')} onClick={() => displayAuthForm('signUp')}>
+        </Button>
+        <Button type="button" className="sign-up" onClick={() => displayAuthForm('signUp')}>
           Sign Up
-        </button>
+        </Button>
         {isTablet && <Hamburger visible={visible} toggleSidebar={toggleSidebar} />}
-      </div>
-    </div>
-  </header>
-);
+      </Right>
+    </Wrapper>
+  </HeaderBlock>
+));
 
 export default Header;

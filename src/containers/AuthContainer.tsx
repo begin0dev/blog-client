@@ -10,35 +10,36 @@ import { Auth, Modal } from 'components';
 interface IProps {
   authState: IAuthState;
   baseState: IBaseState;
-  dispatchSetAuthFormValue: (name: string, value: string) => void;
   dispatchChangeAuthForm: (formName: 'signUp' | 'logIn') => void;
+  dispatchSetAuthFormValue: (name: string, value: string) => void;
   dispatchToggleAuthForm: (bool: boolean) => void;
 }
 
-class AuthContainer extends React.Component<IProps> {
-  hideModal = (): void => {
-    const { dispatchToggleAuthForm } = this.props;
+const AuthContainer: React.FunctionComponent<IProps> = ({
+  authState,
+  baseState: { isMobile },
+  dispatchChangeAuthForm,
+  dispatchSetAuthFormValue,
+  dispatchToggleAuthForm,
+}) => {
+  const hideModal = React.useCallback((): void => {
     dispatchToggleAuthForm(false);
-  };
-  setAuthFormValue = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const { name, value } = e.target;
-    const { dispatchSetAuthFormValue } = this.props;
-    dispatchSetAuthFormValue(name, value);
-  };
+  }, [dispatchToggleAuthForm]);
 
-  render() {
-    const {
-      authState,
-      baseState: { isMobile },
-    } = this.props;
-    const { setAuthFormValue, hideModal } = this;
-    return (
-      <Modal active={authState.state.active} fullScreen={isMobile} size={{ width: '400px' }} hideModal={hideModal}>
-        <Auth authState={authState} setAuthFormValue={setAuthFormValue} />
-      </Modal>
-    );
-  }
-}
+  const setAuthFormValue = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>): void => {
+      const { name, value } = e.target;
+      dispatchSetAuthFormValue(name, value);
+    },
+    [dispatchSetAuthFormValue],
+  );
+
+  return (
+    <Modal active={authState.state.active} fullScreen={isMobile} size={{ width: '400px' }} hideModal={hideModal}>
+      <Auth authState={authState} setAuthFormValue={setAuthFormValue} />
+    </Modal>
+  );
+};
 
 const mapStateToProps = (state: IStoreState) => ({
   authState: state.auth,
