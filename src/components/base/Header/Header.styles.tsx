@@ -1,4 +1,6 @@
 import styled, { css } from 'styled-components';
+import { NavLink } from 'react-router-dom';
+
 import { zIndexes, sizes, themes, includeMaxMedia, includeMinMedia } from 'styles/utils';
 
 export const HeaderBlock = styled.header`
@@ -37,16 +39,19 @@ const leftAndRightCss = css`
 export const Left = styled.div`
   ${leftAndRightCss};
   justify-content: flex-start;
-  svg {
-    margin-right: 15px;
-    line-height: 0;
-    height: 36px;
-  }
 `;
 
 export const Right = styled.div`
   ${leftAndRightCss};
   justify-content: flex-end;
+`;
+
+export const LogoWrapper = styled(NavLink)`
+  line-height: 0;
+  svg {
+    margin-right: 15px;
+    height: 36px;
+  }
 `;
 
 export const Button = styled.button`

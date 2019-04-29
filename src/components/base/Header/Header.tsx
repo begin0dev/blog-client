@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { NavLink } from 'react-router-dom';
 
 import Navi from './Navi';
 import { Logo } from 'assets/svgs';
 import { Overlay, Hamburger } from 'components';
-import { HeaderBlock, Wrapper, Left, Right, Button } from './Header.styles';
+import { HeaderBlock, Wrapper, Left, Right, LogoWrapper, Button } from './Header.styles';
 
 interface IProps {
   isTablet: boolean;
@@ -17,9 +16,9 @@ const Header: React.FunctionComponent<IProps> = React.memo(({ isTablet, visible,
   <HeaderBlock>
     <Wrapper>
       <Left>
-        <NavLink to={'/'}>
+        <LogoWrapper to='/'>
           <Logo />
-        </NavLink>
+        </LogoWrapper>
         {isTablet && <Overlay visible={visible} />}
         <Navi visible={visible} isTablet={isTablet} />
       </Left>

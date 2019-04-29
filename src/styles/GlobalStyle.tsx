@@ -24,7 +24,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
   a {
-    text-decoration: inherit;
+    text-decoration: none;
     color: inherit;
   }
   button {
