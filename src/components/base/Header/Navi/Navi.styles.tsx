@@ -1,13 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-import { zIndexes, sizes, themes, includeMedia } from 'styles/utils';
+import { zIndexes, sizes, themes, includeMaxMedia } from 'styles/utils';
 
-export const Nav = styled.nav<{ active: boolean }>`
+export const NaviBlock = styled.nav<{ active: boolean }>`
   z-index: ${zIndexes.sidebar};
   position: relative;
   padding: 0;
 
-  ${includeMedia('md')} {
+  ${includeMaxMedia('md')} {
     position: fixed;
     top: 0;
     right: 0;
@@ -24,7 +24,7 @@ export const Nav = styled.nav<{ active: boolean }>`
 export const List = styled.div`
   display: flex;
 
-  ${includeMedia('md')} {
+  ${includeMaxMedia('md')} {
     flex-flow: column wrap;
   }
 `;
@@ -58,7 +58,7 @@ export const LinkWrapper = styled.div`
     }
   }
 
-  ${includeMedia('md')} {
+  ${includeMaxMedia('md')} {
     &:before,
     &:after {
       content: unset;
@@ -78,7 +78,7 @@ export const DropDown = styled.div`
     display: block;
   }
 
-  ${includeMedia('md')} {
+  ${includeMaxMedia('md')} {
     position: relative;
     display: block;
     padding: 0;
@@ -93,7 +93,7 @@ const defaultTypeCss = css`
   padding: 20px 25px;
   user-select: none;
 
-  ${includeMedia('md')} {
+  ${includeMaxMedia('md')} {
     font-size: 13px;
     padding: 20px 55px;
   }
@@ -134,7 +134,7 @@ export const LinkType = styled(NavLink)`
   & + ${LinkWrapper} {
     margin-left: 10px;
 
-    ${includeMedia('md')} {
+    ${includeMaxMedia('md')} {
       margin-left: unset;
     }
   }

@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { MdArrowDropDown } from 'react-icons/md';
 import { FaRegComment, FaRegAddressCard, FaRegFileCode } from 'react-icons/fa';
-import { Nav, List, LinkWrapper, DropDown, DivType, LinkType, ChildLinkType } from './Navi.styles';
+import { NaviBlock, List, LinkWrapper, DropDown, DivType, LinkType, ChildLinkType } from './Navi.styles';
 
 interface INaviChild {
   name: string;
@@ -38,7 +38,7 @@ interface IProps {
 }
 
 const Navi: React.FunctionComponent<IProps> = React.memo(({ isTablet, visible }) => (
-  <Nav active={isTablet && visible}>
+  <NaviBlock active={isTablet && visible}>
     <List>
       {navi.map((link: INavi) =>
         link.hasChildren ? (
@@ -65,7 +65,7 @@ const Navi: React.FunctionComponent<IProps> = React.memo(({ isTablet, visible })
         ),
       )}
     </List>
-  </Nav>
+  </NaviBlock>
 ));
 
 export default Navi;
