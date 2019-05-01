@@ -42,6 +42,7 @@ interface IThemes {
   fontColor: string;
   header: string;
   sidebar: string;
+  modal: string;
   backgroundColor: string;
 }
 export const themes: IThemes = {
@@ -50,5 +51,6 @@ export const themes: IThemes = {
   fontColor: '#adb7be',
   header: '#0b0b0b',
   sidebar: '#1b1b1b',
+  modal: '#0b0b0b',
   backgroundColor: '#212529',
 };

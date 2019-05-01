@@ -1,14 +1,10 @@
 import * as React from 'react';
-import * as classNames from 'classnames/bind';
-
-import styles from './Modal.module.scss';
-
-const cx = classNames.bind(styles);
+import { OverlayBlock, ModalBlock } from './Modal.styles';
 
 interface IProps {
+  active: boolean;
   size?: object;
   style?: object;
-  active?: boolean;
   fullScreen?: boolean;
   hideOverlay?: boolean;
   backgroundColor?: string;
@@ -28,23 +24,27 @@ const Modal: React.FunctionComponent<IProps> = ({
 }) => {
   const modalEl = React.useRef<HTMLDivElement>(null);
 
-  const onClickEvent = React.useCallback((e: React.MouseEvent<HTMLElement>): void => {
-    if (fullScreen) return;
-    if (modalEl && modalEl.current && modalEl.current.contains(e.target as HTMLElement)) return;
-    if (hideModal) hideModal(false);
-  }, [fullScreen, hideModal, modalEl]);
+  const onClickEvent = React.useCallback(
+    (e: React.MouseEvent<HTMLElement>): void => {
+      if (fullScreen) return;
+      if (modalEl && modalEl.current && modalEl.current.contains(e.target as HTMLElement)) return;
+      if (hideModal) hideModal(false);
+    },
+    [modalEl, fullScreen, hideModal],
+  );
 
   return (
-    <div className={cx('modalOverlay', { hideOverlay }, { active })} onClick={onClickEvent}>
-      <div
-        className={cx('modal', { fullScreen })}
-        style={{ backgroundColor, ...style, ...(!fullScreen && size) }}
+    <OverlayBlock active={active} hideOverlay={hideOverlay} onClick={onClickEvent}>
+      <ModalBlock
+        fullScreen={fullScreen}
+        backgroundColor={backgroundColor}
+        style={{ ...style, ...(!fullScreen && size) }}
         ref={modalEl}
       >
         {children}
-      </div>
-    </div>
+      </ModalBlock>
+    </OverlayBlock>
   );
 };
 
-export default Modal;
+export default React.memo(Modal);

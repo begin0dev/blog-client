@@ -23,7 +23,7 @@ export const Wrapper = styled.div`
   margin: 0 auto;
 
   ${includeMaxMedia('md')} {
-    padding: 0 30px;
+    padding: 0 20px 0 30px;
     margin: unset;
   }
 `;
