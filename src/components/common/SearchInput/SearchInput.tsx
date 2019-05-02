@@ -1,10 +1,11 @@
 import * as React from 'react';
-import * as classNames from 'classnames/bind';
 import { MdSearch } from 'react-icons/md';
+import { SearchInputBlock, Input } from './SearchInput.styles';
 
 import Spinner from '../Spinner';
-import styles from './SearchInput.module.scss';
 
+import * as classNames from 'classnames/bind';
+import styles from './SearchInput.module.scss';
 const cx = classNames.bind(styles);
 
 interface IProps {
@@ -16,8 +17,8 @@ interface IProps {
 
 const SearchInput: React.FunctionComponent<IProps> = ({ loading, placeholder, value, setValue }) => {
   return (
-    <div className={cx('wrapper')}>
-      <input type="text" className={cx('input', 'icon')} value={value} placeholder={placeholder} onChange={setValue} />
+    <SearchInputBlock>
+      <Input type="text" value={value} placeholder={placeholder} onChange={setValue} />
       {loading ? (
         <div className={cx('loading-wrap')}>
           <Spinner size=".8rem" />
@@ -27,7 +28,7 @@ const SearchInput: React.FunctionComponent<IProps> = ({ loading, placeholder, va
           <MdSearch />
         </i>
       )}
-    </div>
+    </SearchInputBlock>
   );
 };
 

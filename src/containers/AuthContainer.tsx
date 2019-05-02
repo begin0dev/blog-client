@@ -3,7 +3,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import { IStoreState } from 'store/modules';
-import { IBaseState } from '../store/modules/base';
+import { IBaseState } from 'store/modules/base';
 import { IAuthState, Actions as authActions } from 'store/modules/auth';
 import { Auth, Modal } from 'components';
 
