@@ -52,5 +52,5 @@ export const themes: IThemes = {
   header: '#0b0b0b',
   sidebar: '#1b1b1b',
   modal: '#0b0b0b',
-  backgroundColor: '#212529',
+  backgroundColor: '#3b4044',
 };
