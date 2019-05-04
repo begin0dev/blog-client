@@ -1,21 +1,28 @@
 import * as React from 'react';
-import * as classNames from 'classnames/bind';
 
-import styles from './TextInput.module.scss';
-
-const cx = classNames.bind(styles);
+import { TextInputBlock, InputSlot, Input, Label } from './TextInput.styles';
 
 interface IProps {
   type: string;
   name: string;
+  color: string;
+  defaultBorderColor: string;
   value?: string;
   label?: string;
-  color?: string;
   placeholder?: string;
   setValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const TextInput: React.FunctionComponent<IProps> = ({ type, name, label, placeholder, value, color, setValue }) => {
+const TextInput: React.FunctionComponent<IProps> = ({
+  type,
+  name,
+  label,
+  placeholder,
+  value,
+  color,
+  defaultBorderColor,
+  setValue,
+}) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [focus, setFocus] = React.useState<boolean>(false);
 
@@ -27,30 +34,29 @@ const TextInput: React.FunctionComponent<IProps> = ({ type, name, label, placeho
   );
 
   const labelClick = React.useCallback((): void => {
-    if (inputRef.current && !focus) inputRef.current.focus();
+    if (inputRef && inputRef.current && !focus) inputRef.current.focus();
   }, [focus, inputRef]);
 
-  const labelPosition = React.useCallback((): object => {
+  const labelPosition = React.useMemo((): object => {
     let position = {};
-    if (focus || placeholder || (inputRef && inputRef.current && inputRef.current.value.length > 0)) {
+    if (placeholder || focus || (inputRef && inputRef.current && inputRef.current.value.length > 0)) {
       position = {
-        transform: 'translateY(-1.2rem) scale(0.88)',
-        fontWeight: '400',
+        transform: 'translateY(-1.45rem) scale(0.9)',
+        fontWeight: '500',
       };
     }
     return position;
   }, [placeholder, focus, inputRef]);
 
   return (
-    <div className={cx('wrapper')}>
-      <div className={cx('input-slot', { 'input-focus': focus })} style={{ color }}>
+    <TextInputBlock>
+      <InputSlot focus={focus} color={color} defaultBorderColor={defaultBorderColor}>
         {label && (
-          <label className={cx('label')} aria-hidden="true" style={{ ...labelPosition() }} onClick={labelClick}>
+          <Label aria-hidden="true" style={{ ...labelPosition }} onClick={labelClick}>
             {label}
-          </label>
+          </Label>
         )}
-        <input
-          className={cx('input')}
+        <Input
           type={type}
           name={name}
           value={value}
@@ -60,9 +66,9 @@ const TextInput: React.FunctionComponent<IProps> = ({ type, name, label, placeho
           onChange={setValue}
           ref={inputRef}
         />
-      </div>
-    </div>
+      </InputSlot>
+    </TextInputBlock>
   );
 };
 
-export default TextInput;
+export default React.memo(TextInput);
