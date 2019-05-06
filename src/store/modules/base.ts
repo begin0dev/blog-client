@@ -1,7 +1,6 @@
 import produce from 'immer';
 
-import { ActionsUnion } from 'lib/utils/types';
-import { createAction } from 'lib/utils/actionHelper';
+import { ActionsUnion, actionCreator } from 'lib/utils/actionHelper';
 
 // actions
 const SET_VIEW_TYPE = 'SET_VIEW_TYPE';
@@ -9,9 +8,9 @@ const TOGGLE_OVERLAY = 'TOGGLE_OVERLAY';
 const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
 
 export const Actions = {
-  setViewType: (payload: { typeName: 'isMobile' | 'isTablet'; bool: boolean }) => createAction(SET_VIEW_TYPE, payload),
-  toggleOverlay: (bool: boolean) => createAction(TOGGLE_OVERLAY, bool),
-  toggleSidebar: (bool: boolean) => createAction(TOGGLE_SIDEBAR, bool),
+  setViewType: (payload: { typeName: 'isMobile' | 'isTablet'; bool: boolean }) => actionCreator(SET_VIEW_TYPE, payload),
+  toggleOverlay: (bool: boolean) => actionCreator(TOGGLE_OVERLAY, bool),
+  toggleSidebar: (bool: boolean) => actionCreator(TOGGLE_SIDEBAR, bool),
 };
 export type ActionTypes = ActionsUnion<typeof Actions>;
 

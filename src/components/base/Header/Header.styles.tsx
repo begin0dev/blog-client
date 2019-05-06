@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
+import { buttonColorMap } from 'styles/palette';
 import { zIndexes, sizes, themes, includeMaxMedia, includeMinMedia } from 'styles/utils';
 
 export const HeaderBlock = styled.header`
@@ -68,13 +69,9 @@ export const Button = styled.button`
   }
   ${includeMinMedia('md')} {
     &.sign-up {
-      background: linear-gradient(-180deg, #fa5252 0%, #e03131 98%);
-      color: #ffffff;
+      ${buttonColorMap.red};
       text-transform: uppercase;
       border-radius: 4px;
-      &:hover {
-        background: #e03131;
-      }
     }
   }
 `;

@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { hot } from 'react-hot-loader/root';
 import { Route, Switch } from 'react-router-dom';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { hot } from 'react-hot-loader/root';
 
 import { IStoreState } from 'store/modules';
 import { IBaseState, Actions as baseActions } from 'store/modules/base';

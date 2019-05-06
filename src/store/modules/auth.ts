@@ -1,19 +1,18 @@
 import produce from 'immer';
 
-import { ActionsUnion } from 'lib/utils/types';
-import { createAction } from 'lib/utils/actionHelper';
+import { ActionsUnion, actionCreator } from 'lib/utils/actionHelper';
 
 // actions
 const CHANGE_AUTH_FORM = 'CHANGE_AUTH_FORM';
+const SET_AUTH_FORM_VALUE = 'SET_AUTH_FORM_VALUE';
 const INITIALIZE_AUTH_FORM_DATA = 'INITIALIZE_AUTH_FORM_DATA';
 const TOGGLE_AUTH_FORM = 'TOGGLE_AUTH_FORM';
-const SET_AUTH_FORM_VALUE = 'SET_AUTH_FORM_VALUE';
 
 export const Actions = {
-  changeAuthForm: (formName: 'signUp' | 'logIn') => createAction(CHANGE_AUTH_FORM, formName),
-  initializeAuthFormData: () => createAction(INITIALIZE_AUTH_FORM_DATA),
-  setAuthFormValue: (payload: { name: string; value: string }) => createAction(SET_AUTH_FORM_VALUE, payload),
-  toggleAuthForm: (active: boolean) => createAction(TOGGLE_AUTH_FORM, active),
+  changeAuthForm: (formName: 'signUp' | 'logIn') => actionCreator(CHANGE_AUTH_FORM, formName),
+  setAuthFormValue: (payload: { name: string; value: string }) => actionCreator(SET_AUTH_FORM_VALUE, payload),
+  initializeAuthFormData: () => actionCreator(INITIALIZE_AUTH_FORM_DATA),
+  toggleAuthForm: (active: boolean) => actionCreator(TOGGLE_AUTH_FORM, active),
 };
 export type ActionTypes = ActionsUnion<typeof Actions>;
 
@@ -56,14 +55,14 @@ export default (state = defaultState, action: ActionTypes) => {
       return produce(state, draft => {
         draft.state.form = action.payload;
       });
-    case INITIALIZE_AUTH_FORM_DATA:
-      return produce(state, draft => {
-        draft.formValue = initFormValue;
-      });
     case SET_AUTH_FORM_VALUE:
       return produce(state, draft => {
         const { name, value } = action.payload;
         draft.formValue[name] = value;
+      });
+    case INITIALIZE_AUTH_FORM_DATA:
+      return produce(state, draft => {
+        draft.formValue = initFormValue;
       });
     case TOGGLE_AUTH_FORM:
       return produce(state, draft => {

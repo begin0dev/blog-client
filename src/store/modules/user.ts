@@ -1,7 +1,6 @@
 import produce from 'immer';
 
-import { ActionsUnion } from 'lib/utils/types';
-import { createAction } from 'lib/utils/actionHelper';
+import { ActionsUnion, actionCreator } from 'lib/utils/actionHelper';
 
 // actions
 const SET_USER = 'SET_USER';
@@ -17,8 +16,8 @@ export interface IUserState {
 }
 
 export const Actions = {
-  setUser: (payload: IUserState) => createAction(SET_USER, payload),
-  removeUser: () => createAction(REMOVE_USER),
+  setUser: (payload: IUserState) => actionCreator(SET_USER, payload),
+  removeUser: () => actionCreator(REMOVE_USER),
 };
 export type ActionTypes = ActionsUnion<typeof Actions>;
 

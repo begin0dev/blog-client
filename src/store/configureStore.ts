@@ -25,13 +25,5 @@ export default function configureStore() {
   const store = createStore(rootReducer, enhancer);
   sagaMiddleware.run(rootSaga);
 
-  if ((module as any).hot) {
-    // Enable Webpack hot module replacement for modules
-    (module as any).hot.accept('./modules', () => {
-      const nextReducer = require('./modules');
-      store.replaceReducer(nextReducer);
-    });
-  }
-
   return store;
 }

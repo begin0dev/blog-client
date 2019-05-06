@@ -1,3 +1,5 @@
+import {palette} from './palette';
+
 interface IBreakPoints {
   sm: number;
   md: number;
@@ -48,9 +50,9 @@ interface IThemes {
 export const themes: IThemes = {
   primary: '',
   secondary: '#424242',
-  fontColor: '#adb7be',
-  header: '#0b0b0b',
+  fontColor: palette.gray2,
+  header: palette.black,
   sidebar: '#1b1b1b',
-  modal: '#0b0b0b',
-  backgroundColor: '#3b4044',
+  modal: palette.black,
+  backgroundColor: palette.gray7,
 };
