@@ -2,19 +2,19 @@ import * as React from 'react';
 
 import { MdArrowDropDown } from 'react-icons/md';
 import { FaRegComment, FaRegAddressCard, FaRegFileCode } from 'react-icons/fa';
-import { NaviBlock, List, LinkWrapper, DropDown, DivType, LinkType, ChildLinkType } from './Navi.styles';
+import { NavBlock, List, LinkWrapper, DropDown, DivType, LinkType, ChildLinkType } from './Nav.styles';
 
-interface INaviChild {
+interface INavChild {
   name: string;
   url: string;
 }
-interface INavi extends INaviChild {
+interface INav extends INavChild {
   icon: React.SVGAttributes<SVGAElement>;
   hasChildren: boolean;
-  children?: INaviChild[];
+  children?: INavChild[];
 }
 
-const navi: INavi[] = [
+const navList: INav[] = [
   { name: 'Profile', url: '/profile', hasChildren: false, icon: <FaRegAddressCard className="type-icon" /> },
   { name: 'Log', url: '/log', hasChildren: false, icon: <FaRegComment className="type-icon" /> },
   {
@@ -37,10 +37,10 @@ interface IProps {
   visible: boolean;
 }
 
-const Navi: React.FunctionComponent<IProps> = ({ isTablet, visible }) => (
-  <NaviBlock active={isTablet && visible}>
+const Nav: React.FunctionComponent<IProps> = ({ isTablet, visible }) => (
+  <NavBlock active={isTablet && visible}>
     <List>
-      {navi.map((link: INavi) =>
+      {navList.map((link: INav) =>
         link.hasChildren ? (
           <LinkWrapper key={link.name}>
             <DivType>
@@ -50,8 +50,8 @@ const Navi: React.FunctionComponent<IProps> = ({ isTablet, visible }) => (
             </DivType>
             <DropDown>
               {link.children &&
-                link.children.map((child: INaviChild) => (
-                  <ChildLinkType to={child.url} activeClassName={'current'} key={child.name}>
+                link.children.map((child: INavChild) => (
+                  <ChildLinkType to={child.url} activeClassName="current" key={child.name}>
                     {child.name}
                   </ChildLinkType>
                 ))}
@@ -65,7 +65,7 @@ const Navi: React.FunctionComponent<IProps> = ({ isTablet, visible }) => (
         ),
       )}
     </List>
-  </NaviBlock>
+  </NavBlock>
 );
 
-export default React.memo(Navi);
+export default React.memo(Nav);

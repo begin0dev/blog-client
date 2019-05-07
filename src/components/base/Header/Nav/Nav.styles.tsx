@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import { zIndexes, sizes, themes, includeMaxMedia } from 'styles/utils';
 
-export const NaviBlock = styled.nav<{ active: boolean }>`
+export const NavBlock = styled.nav<{ active: boolean }>`
   z-index: ${zIndexes.sidebar};
   position: relative;
   padding: 0;

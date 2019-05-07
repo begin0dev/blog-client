@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import Navi from './Navi';
 import { Logo } from 'assets/svgs';
 import { Overlay, Hamburger } from 'components';
+import Nav from './Nav';
 import { HeaderBlock, Wrapper, Left, Right, LogoWrapper, Button } from './Header.styles';
 
 interface IProps {
@@ -16,11 +16,11 @@ const Header: React.FunctionComponent<IProps> = ({ isTablet, visible, displayAut
   <HeaderBlock>
     <Wrapper>
       <Left>
-        <LogoWrapper to='/'>
+        <LogoWrapper to="/">
           <Logo />
         </LogoWrapper>
         {isTablet && <Overlay visible={visible} />}
-        <Navi visible={visible} isTablet={isTablet} />
+        <Nav visible={visible} isTablet={isTablet} />
       </Left>
       <Right>
         <Button type="button" onClick={() => displayAuthForm('logIn')}>
