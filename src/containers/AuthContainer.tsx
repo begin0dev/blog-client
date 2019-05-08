@@ -3,52 +3,66 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import { IStoreState } from 'store/modules';
-import { IBaseState } from 'store/modules/base';
 import { IAuthState, Actions as authActions } from 'store/modules/auth';
 import { Auth, Modal } from 'components';
+import useForm from 'lib/hooks/useForm';
+
+export interface IAuthForm {
+  email: string;
+  password: string;
+  passwordCheck: string;
+  displayName: string;
+}
 
 interface IProps {
   authState: IAuthState;
-  baseState: IBaseState;
+  isMobile: boolean;
   dispatchChangeAuthForm: (formName: 'signUp' | 'logIn') => void;
-  dispatchSetAuthFormValue: (name: string, value: string) => void;
   dispatchToggleAuthForm: (bool: boolean) => void;
 }
 
 const AuthContainer: React.FunctionComponent<IProps> = ({
   authState,
-  baseState: { isMobile },
+  isMobile,
   dispatchChangeAuthForm,
-  dispatchSetAuthFormValue,
   dispatchToggleAuthForm,
 }) => {
+  const [authForm, authFormChange, authFormReset] = useForm<IAuthForm>({
+    email: '',
+    password: '',
+    passwordCheck: '',
+    displayName: '',
+  });
+
+  React.useEffect(() => {
+    return () => {
+      authFormReset();
+    };
+  }, [authFormReset]);
+
   const hideModal = React.useCallback((): void => {
     dispatchToggleAuthForm(false);
   }, [dispatchToggleAuthForm]);
 
   const setAuthFormValue = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement>): void => {
-      const { name, value } = e.target;
-      dispatchSetAuthFormValue(name, value);
+      authFormChange(e);
     },
-    [dispatchSetAuthFormValue],
+    [authFormChange],
   );
 
   return (
-    <Modal active={authState.state.active} fullScreen={isMobile} size={{ width: '400px' }} hideModal={hideModal}>
-      <Auth authState={authState} setAuthFormValue={setAuthFormValue} />
+    <Modal active={authState.active} fullScreen={isMobile} size={{ width: '400px' }} hideModal={hideModal}>
+      <Auth authState={authState} authForm={authForm} setAuthFormValue={setAuthFormValue} />
     </Modal>
   );
 };
 
 const mapStateToProps = (state: IStoreState) => ({
   authState: state.auth,
-  baseState: state.base,
+  isMobile: state.base.isMobile,
 });
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  dispatchSetAuthFormValue(name: string, value: string) {
-    return dispatch(authActions.setAuthFormValue({ name, value }));
-  },
   dispatchChangeAuthForm(formName: 'signUp' | 'logIn') {
     return dispatch(authActions.changeAuthForm(formName));
   },

@@ -1,4 +1,4 @@
-import Auth from './base/Auth';
+import Auth from './Auth';
 import Header from './base/Header';
 
 import Hamburger from './common/Hamburger';
