@@ -5,12 +5,12 @@ interface IOnChangeAction {
   name: string;
   value: string | boolean;
 }
-interface IOnResetAction {
+interface IOnResetAction<T>{
   type: 'onReset';
-  defaultValues: any; // TODO 미치도록 any 없애고 싶다!!! 방법이 뭐가있을까?
+  defaultValues: T;
 }
 
-function reducer<T>(state: T, action: IOnChangeAction | IOnResetAction) {
+function reducer<T>(state: T, action: IOnChangeAction | IOnResetAction<T>) {
   switch (action.type) {
     case 'onReset':
       return { ...action.defaultValues };
