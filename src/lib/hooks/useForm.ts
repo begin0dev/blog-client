@@ -1,16 +1,16 @@
 import * as React from 'react';
 
-interface IOnChangeAction {
+interface IOnChangeAction<T> {
   type: 'onChange';
-  name: string;
-  value: string | boolean;
+  name: keyof T;
+  value: string | number | boolean;
 }
-interface IOnResetAction<T>{
+interface IOnResetAction<T> {
   type: 'onReset';
   defaultValues: T;
 }
 
-function reducer<T>(state: T, action: IOnChangeAction | IOnResetAction<T>) {
+function reducer<T>(state: T, action: IOnChangeAction<T> | IOnResetAction<T>) {
   switch (action.type) {
     case 'onReset':
       return { ...action.defaultValues };
@@ -29,10 +29,13 @@ export default function useForm<T>(defaultValues: T) {
     dispatch({ type: 'onReset', defaultValues });
   }, [defaultValues]);
 
-  const onChange = React.useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    dispatch({ type: 'onChange', name, value });
-  }, []);
+  const onChange = React.useCallback(
+    (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
+      const { name, value } = e.target;
+      dispatch({ type: 'onChange', name, value });
+    },
+    [],
+  );
 
   return [state, onChange, onReset] as [T, typeof onChange, typeof onReset];
 }
