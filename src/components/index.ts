@@ -9,13 +9,4 @@ import TextInput from './common/TextInput';
 
 import PageTemplate from './templates/PageTemplate';
 
-export {
-	Auth,
-	Header,
-	Hamburger,
-	Modal,
-	Overlay,
-	Spinner,
-	TextInput,
-	PageTemplate,
-}
+export { Auth, Header, Hamburger, Modal, Overlay, Spinner, TextInput, PageTemplate };

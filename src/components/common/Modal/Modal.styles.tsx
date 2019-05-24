@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { zIndexes, themes } from 'styles/utils';
+import { zIndexes } from 'styles/utils';
 
 export const OverlayBlock = styled.div<{ active: boolean; hideOverlay?: boolean }>`
   z-index: ${zIndexes.modal};
@@ -21,7 +21,7 @@ export const ModalBlock = styled.div<{ fullScreen?: boolean; backgroundColor?: s
   align-items: center;
   margin: 1.5rem;
   border-radius: 0.5rem;
-  background-color: ${props => (props.backgroundColor ? props.backgroundColor : themes.modal)};
+  background-color: ${props => (props.backgroundColor ? props.backgroundColor : '#ffffff')};
   overflow: hidden;
   ${props =>
     props.fullScreen &&

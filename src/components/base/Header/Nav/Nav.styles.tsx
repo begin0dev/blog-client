@@ -1,13 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import styled, { css } from 'styled-components';
-import { zIndexes, sizes, themes, includeMaxMedia } from 'styles/utils';
+import { zIndexes, sizes, themes, includeMedia } from 'styles/utils';
 
 export const NavBlock = styled.nav<{ active: boolean }>`
   z-index: ${zIndexes.sidebar};
   position: relative;
   padding: 0;
 
-  ${includeMaxMedia('md')} {
+  ${includeMedia('<=md')} {
     position: fixed;
     top: 0;
     right: 0;
@@ -24,7 +24,7 @@ export const NavBlock = styled.nav<{ active: boolean }>`
 export const List = styled.div`
   display: flex;
 
-  ${includeMaxMedia('md')} {
+  ${includeMedia('<=md')} {
     flex-flow: column wrap;
   }
 `;
@@ -58,7 +58,7 @@ export const LinkWrapper = styled.div`
     }
   }
 
-  ${includeMaxMedia('md')} {
+  ${includeMedia('<=md')} {
     &:before,
     &:after {
       content: unset;
@@ -78,7 +78,7 @@ export const DropDown = styled.div`
     display: block;
   }
 
-  ${includeMaxMedia('md')} {
+  ${includeMedia('<=md')} {
     position: relative;
     display: block;
     padding: 0;
@@ -93,20 +93,13 @@ const defaultTypeCss = css`
   padding: 20px 25px;
   user-select: none;
 
-  ${includeMaxMedia('md')} {
+  ${includeMedia('<=md')} {
     font-size: 13px;
-    padding: 20px 55px;
+    padding: 20px 50px;
   }
   .expand-icon {
     font-size: 15px;
     margin-left: 5px;
-  }
-  .type-icon {
-    position: absolute;
-    top: 50%;
-    left: 25px;
-    transform: translateY(-50%);
-    font-size: 17px;
   }
 `;
 
@@ -134,7 +127,7 @@ export const LinkType = styled(NavLink)`
   & + ${LinkWrapper} {
     margin-left: 10px;
 
-    ${includeMaxMedia('md')} {
+    ${includeMedia('<=md')} {
       margin-left: unset;
     }
   }

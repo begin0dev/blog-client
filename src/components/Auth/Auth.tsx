@@ -1,8 +1,9 @@
 import * as React from 'react';
 
-import { IAuthForm } from 'containers/AuthContainer'
+import { Logo } from 'assets/svgs';
+import { IAuthForm } from 'containers/AuthContainer';
 import { IAuthState } from 'store/modules/auth';
-import { AuthBlock } from './Auth.styles'
+import { AuthBlock, Wrapper, LogoRow, LogoDiv } from './Auth.styles';
 
 interface IProps {
   authState: IAuthState;
@@ -10,6 +11,16 @@ interface IProps {
   setAuthFormValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Auth: React.FunctionComponent<IProps> = ({ authForm, authState, setAuthFormValue }) => <AuthBlock>temp</AuthBlock>;
+const Auth: React.FunctionComponent<IProps> = ({ authForm, authState, setAuthFormValue }) => (
+  <AuthBlock>
+    <Wrapper>
+      <LogoRow>
+        <LogoDiv>
+          <Logo />
+        </LogoDiv>
+      </LogoRow>
+    </Wrapper>
+  </AuthBlock>
+);
 
 export default React.memo(Auth);

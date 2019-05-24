@@ -1,4 +1,4 @@
-import {palette} from './palette';
+import { palette } from './palette';
 
 interface IBreakPoints {
   sm: number;
@@ -13,8 +13,25 @@ export const breakPoints: IBreakPoints = {
   hg: 1200,
 };
 
-export const includeMaxMedia = (breakPoint: 'sm'|'md'|'lg'|'hg') => `@media (max-width: ${breakPoints[breakPoint]}px)`;
-export const includeMinMedia = (breakPoint: 'sm'|'md'|'lg'|'hg') => `@media (min-width: ${breakPoints[breakPoint]}px)`;
+const changeToCondition = (condition: string): string => {
+  const breakPoint: string = condition.slice(condition.length - 2, condition.length);
+  const width: number = breakPoints[breakPoint as keyof IBreakPoints];
+  switch (true) {
+    case /^>=/.test(condition):
+      return `(min-width: ${width}px)`;
+    case /^>/.test(condition):
+      return `(min-width: ${width + 1}px)`;
+    case /^<=/.test(condition):
+      return `(max-width: ${width}px)`;
+    case /^</.test(condition):
+      return `(max-width: ${width - 1}px)`;
+    default:
+      return '';
+  }
+};
+
+export const includeMedia = (...conditions: string[]): string =>
+  `@media ${conditions.map(condition => changeToCondition(condition)).join(' and ')}`;
 
 interface IZIndexes {
   overlay: number;
@@ -44,7 +61,6 @@ interface IThemes {
   fontColor: string;
   header: string;
   sidebar: string;
-  modal: string;
   backgroundColor: string;
 }
 export const themes: IThemes = {
@@ -52,7 +68,6 @@ export const themes: IThemes = {
   secondary: '#424242',
   fontColor: palette.gray2,
   header: palette.black,
-  sidebar: '#1b1b1b',
-  modal: palette.black,
-  backgroundColor: palette.gray7,
+  sidebar: '#13141C',
+  backgroundColor: palette.gray1,
 };

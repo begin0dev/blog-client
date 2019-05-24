@@ -9,6 +9,7 @@ import { IStoreState } from 'store/modules';
 import { IBaseState, Actions as baseActions } from 'store/modules/base';
 import { PageTemplate } from 'components';
 import { MainPage, ProfilePage, CategoryPage, NotFoundPage } from 'pages';
+import {breakPoints} from 'styles/utils';
 
 interface IProps {
   baseState: IBaseState;
@@ -35,11 +36,11 @@ const App: React.FunctionComponent<IProps> = ({
 
   React.useEffect(() => {
     switch (true) {
-      case innerWidth <= 450:
+      case innerWidth <= breakPoints.sm:
         if (!isMobile) dispatchSetViewType('isMobile', true);
         if (!isTablet) dispatchSetViewType('isTablet', true);
         break;
-      case innerWidth <= 768:
+      case innerWidth <= breakPoints.md:
         if (isMobile) dispatchSetViewType('isMobile', false);
         if (!isTablet) dispatchSetViewType('isTablet', true);
         break;

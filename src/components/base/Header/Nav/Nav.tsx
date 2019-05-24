@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 import { MdArrowDropDown } from 'react-icons/md';
-import { FaRegComment, FaRegAddressCard, FaRegFileCode } from 'react-icons/fa';
 import { NavBlock, List, LinkWrapper, DropDown, DivType, LinkType, ChildLinkType } from './Nav.styles';
 
 interface INavChild {
@@ -9,19 +8,17 @@ interface INavChild {
   url: string;
 }
 interface INav extends INavChild {
-  icon: React.SVGAttributes<SVGAElement>;
   hasChildren: boolean;
   children?: INavChild[];
 }
 
 const navList: INav[] = [
-  { name: 'Profile', url: '/profile', hasChildren: false, icon: <FaRegAddressCard className="type-icon" /> },
-  { name: 'Log', url: '/log', hasChildren: false, icon: <FaRegComment className="type-icon" /> },
+  { name: 'Profile', url: '/profile', hasChildren: false },
+  { name: 'Log', url: '/log', hasChildren: false },
   {
     name: 'Development',
     hasChildren: true,
     url: '',
-    icon: <FaRegFileCode className="type-icon" />,
     children: [
       { name: 'All', url: '/develop/all' },
       { name: 'React', url: '/develop/React' },
@@ -44,7 +41,6 @@ const Nav: React.FunctionComponent<IProps> = ({ isTablet, visible }) => (
         link.hasChildren ? (
           <LinkWrapper key={link.name}>
             <DivType>
-              {isTablet && link.icon}
               {link.name}
               <MdArrowDropDown className="expand-icon" />
             </DivType>
@@ -59,7 +55,6 @@ const Nav: React.FunctionComponent<IProps> = ({ isTablet, visible }) => (
           </LinkWrapper>
         ) : (
           <LinkType to={link.url} activeClassName={isTablet ? 'current' : ''} key={link.name}>
-            {isTablet && link.icon}
             {link.name}
           </LinkType>
         ),

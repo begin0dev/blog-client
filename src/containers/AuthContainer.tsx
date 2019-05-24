@@ -52,7 +52,7 @@ const AuthContainer: React.FunctionComponent<IProps> = ({
   );
 
   return (
-    <Modal active={authState.active} fullScreen={isMobile} size={{ width: '400px' }} hideModal={hideModal}>
+    <Modal active={authState.active} fullScreen={isMobile} size={{ width: '380px' }} hideModal={hideModal}>
       <Auth authState={authState} authForm={authForm} setAuthFormValue={setAuthFormValue} />
     </Modal>
   );

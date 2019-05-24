@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 import { buttonColorMap } from 'styles/palette';
-import { zIndexes, sizes, themes, includeMaxMedia, includeMinMedia } from 'styles/utils';
+import { zIndexes, sizes, themes, includeMedia } from 'styles/utils';
 
 export const HeaderBlock = styled.header`
   z-index: ${zIndexes.header};
@@ -23,7 +23,7 @@ export const Wrapper = styled.div`
   padding: 0 36px;
   margin: 0 auto;
 
-  ${includeMaxMedia('md')} {
+  ${includeMedia('<=md')} {
     padding: 0 20px 0 30px;
     margin: unset;
   }
@@ -61,13 +61,14 @@ export const Button = styled.button`
   padding: 10px 20px;
   font-size: 12px;
   font-weight: 500;
+  cursor: pointer;
   &:hover {
     color: #ffffff;
   }
-  ${includeMaxMedia('md')} {
+  ${includeMedia('<=md')} {
     padding: 10px 10px;
   }
-  ${includeMinMedia('md')} {
+  ${includeMedia('>md')} {
     &.sign-up {
       ${buttonColorMap.red};
       text-transform: uppercase;
