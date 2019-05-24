@@ -9,7 +9,7 @@ import { IStoreState } from 'store/modules';
 import { IBaseState, Actions as baseActions } from 'store/modules/base';
 import { PageTemplate } from 'components';
 import { MainPage, ProfilePage, CategoryPage, NotFoundPage } from 'pages';
-import {breakPoints} from 'styles/utils';
+import { breakPoints } from 'styles/utils';
 
 interface IProps {
   baseState: IBaseState;
