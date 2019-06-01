@@ -5,8 +5,6 @@ interface IProps {
   visible?: boolean;
 }
 
-const Overlay: React.FunctionComponent<IProps> = ({ visible }) => {
-  return <OverlayBlock visible={visible} />;
-};
+const Overlay: React.FunctionComponent<IProps> = React.memo(({ visible }) => <OverlayBlock visible={visible} />);
 
-export default React.memo(Overlay);
+export default Overlay;

@@ -6,16 +6,14 @@ interface IProps {
   toggleSidebar: (bool: boolean) => void;
 }
 
-const Hamburger: React.FunctionComponent<IProps> = ({ visible, toggleSidebar }) => {
-  return (
-    <HamburgerBlock onClick={() => toggleSidebar(!visible)}>
-      <HamburgerWrapper active={visible}>
-        <Box>
-          <Inner />
-        </Box>
-      </HamburgerWrapper>
-    </HamburgerBlock>
-  );
-};
+const Hamburger: React.FunctionComponent<IProps> = React.memo(({ visible, toggleSidebar }) => (
+  <HamburgerBlock onClick={() => toggleSidebar(!visible)}>
+    <HamburgerWrapper active={visible}>
+      <Box>
+        <Inner />
+      </Box>
+    </HamburgerWrapper>
+  </HamburgerBlock>
+));
 
-export default React.memo(Hamburger);
+export default Hamburger;

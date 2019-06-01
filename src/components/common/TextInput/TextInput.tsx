@@ -13,7 +13,7 @@ interface IProps {
   setValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const TextInput: React.FunctionComponent<IProps> = ({
+const TextInput: React.FunctionComponent<IProps> = React.memo(({
   type,
   name,
   label,
@@ -69,6 +69,6 @@ const TextInput: React.FunctionComponent<IProps> = ({
       </InputSlot>
     </TextInputBlock>
   );
-};
+});
 
-export default React.memo(TextInput);
+export default TextInput;

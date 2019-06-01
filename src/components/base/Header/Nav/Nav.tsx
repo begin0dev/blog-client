@@ -34,7 +34,7 @@ interface IProps {
   visible: boolean;
 }
 
-const Nav: React.FunctionComponent<IProps> = ({ isTablet, visible }) => (
+const Nav: React.FunctionComponent<IProps> = React.memo(({ isTablet, visible }) => (
   <NavBlock active={isTablet && visible}>
     <List>
       {navList.map((link: INav) =>
@@ -61,6 +61,6 @@ const Nav: React.FunctionComponent<IProps> = ({ isTablet, visible }) => (
       )}
     </List>
   </NavBlock>
-);
+));
 
-export default React.memo(Nav);
+export default Nav;

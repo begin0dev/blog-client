@@ -12,7 +12,7 @@ interface IProps {
   displayAuthForm: (formName: 'signUp' | 'logIn') => void;
 }
 
-const Header: React.FunctionComponent<IProps> = ({ isTablet, visible, displayAuthForm, toggleSidebar }) => (
+const Header: React.FunctionComponent<IProps> = React.memo(({ isTablet, visible, displayAuthForm, toggleSidebar }) => (
   <HeaderBlock>
     <Wrapper>
       <Left>
@@ -33,6 +33,6 @@ const Header: React.FunctionComponent<IProps> = ({ isTablet, visible, displayAut
       </Right>
     </Wrapper>
   </HeaderBlock>
-);
+));
 
-export default React.memo(Header);
+export default Header;

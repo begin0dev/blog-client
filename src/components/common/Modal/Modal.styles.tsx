@@ -15,6 +15,14 @@ export const OverlayBlock = styled.div<{ active: boolean; hideOverlay?: boolean 
   overflow: auto;
 `;
 
+const fullScreenCss = css`
+  flex: 1;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
+`;
+
 export const ModalBlock = styled.div<{ fullScreen?: boolean; backgroundColor?: string }>`
   display: flex;
   justify-content: center;
@@ -23,13 +31,5 @@ export const ModalBlock = styled.div<{ fullScreen?: boolean; backgroundColor?: s
   border-radius: 0.5rem;
   background-color: ${props => (props.backgroundColor ? props.backgroundColor : '#ffffff')};
   overflow: hidden;
-  ${props =>
-    props.fullScreen &&
-    css`
-      padding: 0;
-      margin: 0;
-      border-radius: 0;
-      flex: 1;
-      height: 100vh;
-    `}
+  ${props => props.fullScreen && fullScreenCss}
 `;

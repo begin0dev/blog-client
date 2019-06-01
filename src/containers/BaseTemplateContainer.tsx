@@ -3,9 +3,9 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import { IStoreState } from 'store/modules';
-import { Header } from 'components';
 import { Actions as baseActions, IBaseState } from 'store/modules/base';
-import { Actions as authActions } from '../store/modules/auth';
+import { Actions as authActions } from 'store/modules/auth';
+import { Header } from 'components';
 
 interface IProps {
   baseState: IBaseState;
