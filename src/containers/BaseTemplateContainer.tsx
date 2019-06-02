@@ -9,46 +9,38 @@ import { Header } from 'components';
 
 interface IProps {
   baseState: IBaseState;
-  dispatchChangeAuthForm: (formName: 'signUp' | 'logIn') => void;
-  dispatchToggleAuthForm: (bool: boolean) => void;
+  dispatchToggleAuthForm: (formName: 'signUp' | 'logIn' | null) => void;
   dispatchToggleSidebar: (bool: boolean) => void;
 }
 
-const BaseTemplateContainer: React.FunctionComponent<IProps> = React.memo(({
-  baseState: { sidebar, isTablet },
-  dispatchChangeAuthForm,
-  dispatchToggleAuthForm,
-  dispatchToggleSidebar,
-}) => {
-  const toggleSidebar = React.useCallback(
-    (bool: boolean): void => {
-      dispatchToggleSidebar(bool);
-    },
-    [dispatchToggleSidebar],
-  );
+const BaseTemplateContainer: React.FunctionComponent<IProps> = React.memo(
+  ({ baseState: { sidebar, isTablet }, dispatchToggleAuthForm, dispatchToggleSidebar }) => {
+    const toggleSidebar = React.useCallback(
+      (bool: boolean): void => {
+        dispatchToggleSidebar(bool);
+      },
+      [dispatchToggleSidebar],
+    );
 
-  const displayAuthForm = React.useCallback(
-    (formName: 'signUp' | 'logIn'): void => {
-      dispatchChangeAuthForm(formName);
-      dispatchToggleAuthForm(true);
-    },
-    [dispatchChangeAuthForm, dispatchToggleAuthForm],
-  );
+    const displayAuthForm = React.useCallback(
+      (formName: 'signUp' | 'logIn' | null): void => {
+        dispatchToggleAuthForm(formName);
+      },
+      [dispatchToggleAuthForm],
+    );
 
-  return (
-    <Header visible={sidebar} isTablet={isTablet} displayAuthForm={displayAuthForm} toggleSidebar={toggleSidebar} />
-  );
-});
+    return (
+      <Header visible={sidebar} isTablet={isTablet} displayAuthForm={displayAuthForm} toggleSidebar={toggleSidebar} />
+    );
+  },
+);
 
 const mapStateToProps = (state: IStoreState) => ({
   baseState: state.base,
 });
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  dispatchChangeAuthForm(formName: 'signUp' | 'logIn') {
-    return dispatch(authActions.changeAuthForm(formName));
-  },
-  dispatchToggleAuthForm(bool: boolean) {
-    return dispatch(authActions.toggleAuthForm(bool));
+  dispatchToggleAuthForm(formName: 'signUp' | 'logIn' | null) {
+    return dispatch(authActions.toggleAuthForm(formName));
   },
   dispatchToggleSidebar(bool: boolean) {
     return dispatch(baseActions.toggleSidebar(bool));

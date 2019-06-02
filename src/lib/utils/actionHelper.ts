@@ -1,6 +1,4 @@
 // types
-import { Actions } from '../../store/modules/base';
-
 type StringMap<T> = {
   [key: string]: T;
 };
@@ -34,10 +32,10 @@ export function asyncTypeCreator(prefix: string): asyncTypes {
   ) as asyncTypes;
 }
 
-export function asyncActionCreator<P, D>(type: asyncTypes) {
+export function asyncActionCreator<P, D>(types: asyncTypes) {
   return {
-    request: (params: P) => actionCreator(type.REQUEST, params),
-    success: (data: D) => actionCreator(type.SUCCESS, data),
-    error: (message: string) => actionCreator(type.ERROR, message),
+    request: (params: P) => actionCreator(types.REQUEST, params),
+    success: (data: D) => actionCreator(types.SUCCESS, data),
+    error: (message: string) => actionCreator(types.ERROR, message),
   };
 }

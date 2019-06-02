@@ -19,7 +19,7 @@ export interface IUserState {
   commonProfile: {
     displayName: string;
   };
-  login: boolean;
+  isLogged: boolean;
 }
 const defaultState: IUserState = {
   _id: '',
@@ -27,7 +27,7 @@ const defaultState: IUserState = {
   commonProfile: {
     displayName: '',
   },
-  login: false,
+  isLogged: false,
 };
 
 export default (state = defaultState, action: ActionTypes) => {

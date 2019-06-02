@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const LOCAL_REGISTER_URL = '/api/v1.0/auth/local/register';
-const LOCAL_LOGIN_URL = '/api/v1.0/auth/local/login';
+const LOCAL_REGISTER_URL = '/services/v1.0/auth/local/register';
+const LOCAL_LOGIN_URL = '/services/v1.0/auth/local/login';
 
 export const localRegisterApi = (params: {
   email: string;

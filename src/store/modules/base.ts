@@ -12,6 +12,11 @@ export const Actions = {
   toggleOverlay: (bool: boolean) => actionCreator(TOGGLE_OVERLAY, bool),
   toggleSidebar: (bool: boolean) => actionCreator(TOGGLE_SIDEBAR, bool),
 };
+
+const setViewType = (payload: { typeName: 'isMobile' | 'isTablet'; bool: boolean }) => actionCreator(SET_VIEW_TYPE, payload);
+const toggleOverlay = (bool: boolean) => actionCreator(TOGGLE_OVERLAY, bool);
+const  toggleSidebar = (bool: boolean) => actionCreator(TOGGLE_SIDEBAR, bool)
+
 export type ActionTypes = ActionsUnion<typeof Actions>;
 
 // reducer
