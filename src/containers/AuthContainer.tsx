@@ -2,10 +2,10 @@ import * as React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
-import { IStoreState } from 'store/modules';
-import { IAuthState, Actions as authActions } from 'store/modules/auth';
-import { Auth, Modal } from 'components';
 import useForm from 'lib/hooks/useForm';
+import * as authStore from 'store/modules/auth';
+import { IStoreState } from 'store/modules';
+import { Auth, Modal } from 'components';
 
 export interface IAuthForm {
   email: string;
@@ -15,7 +15,7 @@ export interface IAuthForm {
 }
 
 interface IProps {
-  authState: IAuthState;
+  authState: authStore.IAuthState;
   isMobile: boolean;
   dispatchToggleAuthForm: (formName: 'signUp' | 'logIn' | null) => void;
 }
@@ -58,7 +58,7 @@ const mapStateToProps = (state: IStoreState) => ({
 });
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   dispatchToggleAuthForm(formName: 'signUp' | 'logIn' | null) {
-    return dispatch(authActions.toggleAuthForm(formName));
+    return dispatch(authStore.toggleAuthForm(formName));
   },
 });
 

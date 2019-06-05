@@ -3,12 +3,12 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import { IStoreState } from 'store/modules';
-import { Actions as baseActions, IBaseState } from 'store/modules/base';
-import { Actions as authActions } from 'store/modules/auth';
+import * as baseStore from 'store/modules/base';
+import * as authStore from 'store/modules/auth';
 import { Header } from 'components';
 
 interface IProps {
-  baseState: IBaseState;
+  baseState: baseStore.IBaseState;
   dispatchToggleAuthForm: (formName: 'signUp' | 'logIn' | null) => void;
   dispatchToggleSidebar: (bool: boolean) => void;
 }
@@ -40,10 +40,10 @@ const mapStateToProps = (state: IStoreState) => ({
 });
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   dispatchToggleAuthForm(formName: 'signUp' | 'logIn' | null) {
-    return dispatch(authActions.toggleAuthForm(formName));
+    return dispatch(authStore.toggleAuthForm(formName));
   },
   dispatchToggleSidebar(bool: boolean) {
-    return dispatch(baseActions.toggleSidebar(bool));
+    return dispatch(baseStore.toggleSidebar(bool));
   },
 });
 

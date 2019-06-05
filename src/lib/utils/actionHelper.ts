@@ -18,24 +18,3 @@ export function actionCreator<T extends string, P>(type: T, payload?: P): any {
   return payload === undefined ? { type } : { type, payload };
 }
 /* eslint-enable import/export */
-
-type asyncTypes = {
-  REQUEST: string;
-  SUCCESS: string;
-  ERROR: string;
-};
-
-export function asyncTypeCreator(prefix: string): asyncTypes {
-  return ['REQUEST', 'SUCCESS', 'ERROR'].reduce(
-    (acc, cur) => ({ ...acc, [cur]: `${prefix.toUpperCase()}_${cur}` }),
-    {},
-  ) as asyncTypes;
-}
-
-export function asyncActionCreator<P, D>(types: asyncTypes) {
-  return {
-    request: (params: P) => actionCreator(types.REQUEST, params),
-    success: (data: D) => actionCreator(types.SUCCESS, data),
-    error: (message: string) => actionCreator(types.ERROR, message),
-  };
-}

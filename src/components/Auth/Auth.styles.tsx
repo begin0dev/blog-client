@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { palette } from 'styles/palette';
 
 const flexCss = css`
   display: flex;

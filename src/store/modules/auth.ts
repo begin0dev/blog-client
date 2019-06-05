@@ -1,14 +1,13 @@
 import produce from 'immer';
 
-import { ActionsUnion, actionCreator } from 'lib/utils/actionHelper';
+import { actionCreator } from 'lib/utils/actionHelper';
 
 // actions
 const TOGGLE_AUTH_FORM = 'TOGGLE_AUTH_FORM';
 
-export const Actions = {
-  toggleAuthForm: (formName: 'signUp' | 'logIn' | null) => actionCreator(TOGGLE_AUTH_FORM, formName),
-};
-export type ActionTypes = ActionsUnion<typeof Actions>;
+export const toggleAuthForm = (formName: 'signUp' | 'logIn' | null) => actionCreator(TOGGLE_AUTH_FORM, formName);
+
+export type ActionTypes = ReturnType<typeof toggleAuthForm>
 
 // reducer
 export interface IAuthState {

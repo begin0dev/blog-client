@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { IAuthForm } from 'containers/AuthContainer';
 import { IAuthState } from 'store/modules/auth';
-import { AuthBlock, AuthRowBlock, AuthTitle, FormWrap } from './Auth.styles';
+import { AuthBlock, AuthRowBlock, AuthTitle } from './Auth.styles';
 import SignUpForm from './AuthForm/SignUpForm';
 
 interface IProps {

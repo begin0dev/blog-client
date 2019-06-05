@@ -6,13 +6,13 @@ import { Route, Switch } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
 
 import { IStoreState } from 'store/modules';
-import { IBaseState, Actions as baseActions } from 'store/modules/base';
+import * as baseStore from 'store/modules/base';
 import { PageTemplate } from 'components';
 import { MainPage, ProfilePage, CategoryPage, NotFoundPage } from 'pages';
 import { breakPoints } from 'styles/utils';
 
 interface IProps {
-  baseState: IBaseState;
+  baseState: baseStore.IBaseState;
   dispatchToggleSidebar(bool: boolean): void;
   dispatchSetViewType(typeName: 'isMobile' | 'isTablet', bool: boolean): void;
 }
@@ -72,10 +72,10 @@ const mapStateToProps = (state: IStoreState) => ({
 });
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   dispatchSetViewType(typeName: 'isMobile' | 'isTablet', bool: boolean) {
-    return dispatch(baseActions.setViewType({ typeName, bool }));
+    return dispatch(baseStore.setViewType({ typeName, bool }));
   },
   dispatchToggleSidebar(bool: boolean) {
-    return dispatch(baseActions.toggleSidebar(bool));
+    return dispatch(baseStore.toggleSidebar(bool));
   },
 });
 
