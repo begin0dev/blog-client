@@ -12,12 +12,10 @@ export type ActionTypes = ReturnType<typeof toggleAuthForm>
 // reducer
 export interface IAuthState {
   formName: 'signUp' | 'logIn' | null;
-  isLoading: boolean;
 }
 
 export const defaultState: IAuthState = {
   formName: null,
-  isLoading: false,
 };
 
 export default (state = defaultState, action: ActionTypes) => {

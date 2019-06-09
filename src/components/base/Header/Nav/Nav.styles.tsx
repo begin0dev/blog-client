@@ -11,7 +11,7 @@ export const NavBlock = styled.nav<{ active: boolean }>`
     position: fixed;
     top: 0;
     right: 0;
-    width: 256px;
+    width: 270px;
     height: 100vh;
     padding: ${sizes.header}px 0;
     background-color: ${themes.sidebar};
@@ -94,17 +94,12 @@ const defaultTypeCss = css`
   user-select: none;
 
   ${includeMedia('<=md')} {
-    font-size: 13px;
     padding: 20px 50px;
   }
   .expand-icon {
     font-size: 15px;
     margin-left: 5px;
   }
-`;
-
-export const DivType = styled.div`
-  ${defaultTypeCss};
 `;
 
 export const LinkType = styled(NavLink)`
@@ -124,13 +119,16 @@ export const LinkType = styled(NavLink)`
       background-color: #e03131;
     }
   }
-  & + ${LinkWrapper} {
-    margin-left: 10px;
 
-    ${includeMedia('<=md')} {
-      margin-left: unset;
+  ${includeMedia('>md')} {
+    & + ${LinkWrapper} {
+      margin-left: 10px;
     }
   }
+`;
+
+export const DivType = styled.div`
+  ${defaultTypeCss};
 `;
 
 export const ChildLinkType = styled(LinkType)`
@@ -138,4 +136,7 @@ export const ChildLinkType = styled(LinkType)`
   font-size: 12px;
   padding: 20px 25px;
   color: #969696;
+  ${includeMedia('<=md')} {
+    padding: 18px 50px;
+  }
 `;

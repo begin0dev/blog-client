@@ -7,17 +7,18 @@ import SignUpForm from './AuthForm/SignUpForm';
 
 interface IProps {
   authState: IAuthState;
-  authForm: IAuthForm;
+  authFormValues: IAuthForm;
   setAuthFormValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Auth: React.FunctionComponent<IProps> = React.memo(({ authForm, authState, setAuthFormValue }) => (
+const Auth: React.FunctionComponent<IProps> = React.memo(({ authFormValues, authState, setAuthFormValue }) => (
   <AuthBlock>
     <AuthRowBlock>
       <AuthTitle>SignUp</AuthTitle>
     </AuthRowBlock>
-    <SignUpForm authForm={authForm} setAuthFormValue={setAuthFormValue} />
-    <AuthRowBlock>test</AuthRowBlock>
+    <AuthRowBlock>
+      <SignUpForm authFormValues={authFormValues} setAuthFormValue={setAuthFormValue} />
+    </AuthRowBlock>
   </AuthBlock>
 ));
 

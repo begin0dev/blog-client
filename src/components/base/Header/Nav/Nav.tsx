@@ -13,10 +13,10 @@ interface INav extends INavChild {
 }
 
 const navList: INav[] = [
-  { name: 'Profile', url: '/profile', hasChildren: false },
-  { name: 'Log', url: '/log', hasChildren: false },
+  { name: 'PROFILE', url: '/profile', hasChildren: false },
+  { name: 'LOG', url: '/log', hasChildren: false },
   {
-    name: 'Development',
+    name: 'DEVELOP',
     hasChildren: true,
     url: '',
     children: [

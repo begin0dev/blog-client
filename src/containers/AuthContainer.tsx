@@ -3,6 +3,7 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 
 import useForm from 'lib/hooks/useForm';
+import { palette } from 'styles/palette';
 import * as authStore from 'store/modules/auth';
 import { IStoreState } from 'store/modules';
 import { Auth, Modal } from 'components';
@@ -10,7 +11,7 @@ import { Auth, Modal } from 'components';
 export interface IAuthForm {
   email: string;
   password: string;
-  passwordCheck: string;
+  passwordConfirm: string;
   displayName: string;
 }
 
@@ -21,33 +22,32 @@ interface IProps {
 }
 
 const AuthContainer: React.FunctionComponent<IProps> = ({ authState, isMobile, dispatchToggleAuthForm }) => {
-  const [authForm, authFormChange, authFormReset] = useForm<IAuthForm>({
+  const [authFormValues, setAuthFormValue, ResetAuthForm] = useForm<IAuthForm>({
     email: '',
     password: '',
-    passwordCheck: '',
+    passwordConfirm: '',
     displayName: '',
   });
 
   React.useEffect(() => {
     return () => {
-      authFormReset();
+      ResetAuthForm();
     };
-  }, [authFormReset]);
+  }, [ResetAuthForm]);
 
   const hideModal = React.useCallback((): void => {
     dispatchToggleAuthForm(null);
   }, [dispatchToggleAuthForm]);
 
-  const setAuthFormValue = React.useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>): void => {
-      authFormChange(e);
-    },
-    [authFormChange],
-  );
-
   return (
-    <Modal active={!!authState.formName} fullScreen={isMobile} size={{ width: '380px' }} hideModal={hideModal}>
-      <Auth authState={authState} authForm={authForm} setAuthFormValue={setAuthFormValue} />
+    <Modal
+      active={!!authState.formName}
+      fullScreen={isMobile}
+      size={{ width: '420px' }}
+      backgroundColor={palette.black}
+      hideModal={hideModal}
+    >
+      <Auth authState={authState} authFormValues={authFormValues} setAuthFormValue={setAuthFormValue} />
     </Modal>
   );
 };

@@ -71,9 +71,9 @@ export const Label = styled.label`
   top: 0.75rem;
   right: auto;
   font-size: inherit;
+  letter-spacing: 0.1px;
   color: ${themes.fontColor};
   text-overflow: ellipsis;
-  line-height: 1;
   transform-origin: top left;
   transition: 0.4s cubic-bezier(0.25, 0.8, 0.5, 1);
   overflow: hidden;
