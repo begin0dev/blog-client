@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
-import { includeMedia, themes } from '../../styles/utils';
-import { buttonColorMap } from '../../styles/palette';
+import { includeMedia, themes } from 'styles/utils';
+import { buttonColorMap } from 'styles/palette';
 
 const flexCss = css`
   display: flex;
@@ -14,6 +14,9 @@ export const AuthBlock = styled.div`
   padding: 4.5rem;
   overflow-x: hidden;
   overflow-y: auto;
+  ${includeMedia('<=md')} {
+    padding: 3rem;
+  }
 `;
 
 export const AuthRowBlock = styled.div`
@@ -31,10 +34,10 @@ export const ButtonBlock = styled(AuthColBlock)`
 
 export const AuthButton = styled.button`
   ${buttonColorMap.red};
-  font-size: 14px;
+  font-size: 13px;
   width: 100%;
   padding: 15px;
-  border-radius: 21px;
+  border-radius: 10px;
 `;
 
 export const AuthTitle = styled.span`

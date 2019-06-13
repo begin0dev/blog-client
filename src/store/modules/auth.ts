@@ -5,13 +5,15 @@ import { actionCreator } from 'lib/utils/actionHelper';
 // actions
 const TOGGLE_AUTH_FORM = 'TOGGLE_AUTH_FORM';
 
-export const toggleAuthForm = (formName: 'signUp' | 'logIn' | null) => actionCreator(TOGGLE_AUTH_FORM, formName);
+export type FormNameTypes = 'signUp' | 'logIn' | null;
 
-export type ActionTypes = ReturnType<typeof toggleAuthForm>
+export const toggleAuthForm = (formName: FormNameTypes) => actionCreator(TOGGLE_AUTH_FORM, formName);
+
+export type ActionTypes = ReturnType<typeof toggleAuthForm>;
 
 // reducer
 export interface IAuthState {
-  formName: 'signUp' | 'logIn' | null;
+  formName: FormNameTypes;
 }
 
 export const defaultState: IAuthState = {

@@ -6,7 +6,9 @@ import { actionCreator } from 'lib/utils/actionHelper';
 const SET_VIEW_TYPE = 'SET_VIEW_TYPE';
 const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
 
-export const setViewType = (payload: { typeName: 'isMobile' | 'isTablet'; bool: boolean }) =>
+export type ViewTypeName = 'isMobile' | 'isTablet';
+
+export const setViewType = (payload: { typeName: ViewTypeName; bool: boolean }) =>
   actionCreator(SET_VIEW_TYPE, payload);
 export const toggleSidebar = (bool: boolean) => actionCreator(TOGGLE_SIDEBAR, bool);
 

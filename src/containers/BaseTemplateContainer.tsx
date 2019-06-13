@@ -1,53 +1,34 @@
 import * as React from 'react';
-import { Dispatch } from 'redux';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { IStoreState } from 'store/modules';
-import * as baseStore from 'store/modules/base';
 import * as authStore from 'store/modules/auth';
+import * as baseStore from 'store/modules/base';
 import { Header } from 'components';
+import { FormNameTypes } from 'store/modules/auth';
 
-interface IProps {
-  baseState: baseStore.IBaseState;
-  dispatchToggleAuthForm: (formName: 'signUp' | 'logIn' | null) => void;
-  dispatchToggleSidebar: (bool: boolean) => void;
-}
+const BaseTemplateContainer: React.FunctionComponent = React.memo(() => {
+  const dispatch = useDispatch();
+  const sidebar = useSelector((state: IStoreState) => state.base.sidebar);
+  const isTablet = useSelector((state: IStoreState) => state.base.isTablet);
 
-const BaseTemplateContainer: React.FunctionComponent<IProps> = React.memo(
-  ({ baseState: { sidebar, isTablet }, dispatchToggleAuthForm, dispatchToggleSidebar }) => {
-    const toggleSidebar = React.useCallback(
-      (bool: boolean): void => {
-        dispatchToggleSidebar(bool);
-      },
-      [dispatchToggleSidebar],
-    );
+  const toggleSidebar = React.useCallback(
+    (bool: boolean): void => {
+      dispatch(baseStore.toggleSidebar(bool));
+    },
+    [dispatch],
+  );
 
-    const displayAuthForm = React.useCallback(
-      (formName: 'signUp' | 'logIn' | null): void => {
-        dispatchToggleAuthForm(formName);
-      },
-      [dispatchToggleAuthForm],
-    );
+  const displayAuthForm = React.useCallback(
+    (formName: authStore.FormNameTypes): void => {
+      dispatch(authStore.toggleAuthForm(formName));
+    },
+    [dispatch],
+  );
 
-    return (
-      <Header visible={sidebar} isTablet={isTablet} displayAuthForm={displayAuthForm} toggleSidebar={toggleSidebar} />
-    );
-  },
-);
-
-const mapStateToProps = (state: IStoreState) => ({
-  baseState: state.base,
-});
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  dispatchToggleAuthForm(formName: 'signUp' | 'logIn' | null) {
-    return dispatch(authStore.toggleAuthForm(formName));
-  },
-  dispatchToggleSidebar(bool: boolean) {
-    return dispatch(baseStore.toggleSidebar(bool));
-  },
+  return (
+    <Header visible={sidebar} isTablet={isTablet} displayAuthForm={displayAuthForm} toggleSidebar={toggleSidebar} />
+  );
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(BaseTemplateContainer);
+export default BaseTemplateContainer;

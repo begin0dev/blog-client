@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Dispatch } from 'redux';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { hot } from 'react-hot-loader/root';
@@ -11,17 +10,11 @@ import { PageTemplate } from 'components';
 import { MainPage, ProfilePage, CategoryPage, NotFoundPage } from 'pages';
 import { breakPoints } from 'styles/utils';
 
-interface IProps {
-  baseState: baseStore.IBaseState;
-  dispatchToggleSidebar(bool: boolean): void;
-  dispatchSetViewType(typeName: 'isMobile' | 'isTablet', bool: boolean): void;
-}
+const App: React.FunctionComponent = () => {
+  const dispatch = useDispatch();
+  const isMobile = useSelector((state: IStoreState) => state.base.isMobile);
+  const isTablet = useSelector((state: IStoreState) => state.base.isTablet);
 
-const App: React.FunctionComponent<IProps> = ({
-  baseState: { isMobile, isTablet },
-  dispatchSetViewType,
-  dispatchToggleSidebar,
-}) => {
   const [innerWidth, setInnerWidth] = React.useState(window.innerWidth);
 
   React.useEffect(() => {
@@ -35,6 +28,8 @@ const App: React.FunctionComponent<IProps> = ({
   }, [setInnerWidth]);
 
   React.useEffect(() => {
+    const dispatchSetViewType = (typeName: baseStore.ViewTypeName, bool: boolean) =>
+      dispatch(baseStore.setViewType({ typeName, bool }));
     switch (true) {
       case innerWidth <= breakPoints.sm:
         if (!isMobile) dispatchSetViewType('isMobile', true);
@@ -48,11 +43,11 @@ const App: React.FunctionComponent<IProps> = ({
         if (isMobile) dispatchSetViewType('isMobile', false);
         if (isTablet) dispatchSetViewType('isTablet', false);
     }
-  }, [dispatchSetViewType, innerWidth, isMobile, isTablet]);
+  }, [dispatch, innerWidth, isMobile, isTablet]);
 
   React.useEffect(() => {
-    if (isTablet) dispatchToggleSidebar(false);
-  }, [dispatchToggleSidebar, isTablet]);
+    if (isTablet) dispatch(baseStore.toggleSidebar(false));
+  }, [dispatch, isTablet]);
 
   return (
     <PageTemplate>
@@ -67,21 +62,4 @@ const App: React.FunctionComponent<IProps> = ({
   );
 };
 
-const mapStateToProps = (state: IStoreState) => ({
-  baseState: state.base,
-});
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  dispatchSetViewType(typeName: 'isMobile' | 'isTablet', bool: boolean) {
-    return dispatch(baseStore.setViewType({ typeName, bool }));
-  },
-  dispatchToggleSidebar(bool: boolean) {
-    return dispatch(baseStore.toggleSidebar(bool));
-  },
-});
-
-export default hot(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(App),
-);
+export default hot(App);

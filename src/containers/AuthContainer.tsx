@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Dispatch } from 'redux';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import useForm from 'lib/hooks/useForm';
 import { palette } from 'styles/palette';
@@ -15,13 +14,11 @@ export interface IAuthForm {
   displayName: string;
 }
 
-interface IProps {
-  authState: authStore.IAuthState;
-  isMobile: boolean;
-  dispatchToggleAuthForm: (formName: 'signUp' | 'logIn' | null) => void;
-}
+const AuthContainer: React.FunctionComponent = () => {
+  const dispatch = useDispatch();
+  const formName = useSelector((state: IStoreState) => state.auth.formName);
+  const isMobile = useSelector((state: IStoreState) => state.base.isMobile);
 
-const AuthContainer: React.FunctionComponent<IProps> = ({ authState, isMobile, dispatchToggleAuthForm }) => {
   const [authFormValues, setAuthFormValue, ResetAuthForm] = useForm<IAuthForm>({
     email: '',
     password: '',
@@ -36,33 +33,20 @@ const AuthContainer: React.FunctionComponent<IProps> = ({ authState, isMobile, d
   }, [ResetAuthForm]);
 
   const hideModal = React.useCallback((): void => {
-    dispatchToggleAuthForm(null);
-  }, [dispatchToggleAuthForm]);
+    dispatch(authStore.toggleAuthForm(null));
+  }, [dispatch]);
 
   return (
     <Modal
-      active={!!authState.formName}
+      active={!!formName}
       fullScreen={isMobile}
       size={{ width: '420px' }}
       backgroundColor={palette.black}
       hideModal={hideModal}
     >
-      <Auth authState={authState} authFormValues={authFormValues} setAuthFormValue={setAuthFormValue} />
+      <Auth formName={formName} authFormValues={authFormValues} setAuthFormValue={setAuthFormValue} />
     </Modal>
   );
 };
 
-const mapStateToProps = (state: IStoreState) => ({
-  authState: state.auth,
-  isMobile: state.base.isMobile,
-});
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  dispatchToggleAuthForm(formName: 'signUp' | 'logIn' | null) {
-    return dispatch(authStore.toggleAuthForm(formName));
-  },
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(AuthContainer);
+export default AuthContainer;
