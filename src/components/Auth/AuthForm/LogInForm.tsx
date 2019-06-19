@@ -1,11 +1,19 @@
 import * as React from 'react';
-import { FaArrowRight, FaFacebook as Facebook, FaGithub as Github, FaGooglePlusSquare as Google } from 'react-icons/fa';
+import { FaArrowRight, FaFacebook as Facebook, FaGithub as Github, FaGooglePlus as Google } from 'react-icons/fa';
 
 import { Kakao } from 'assets/svgs';
 import { palette } from 'styles/palette';
 import { IAuthForm } from 'containers/AuthContainer';
 import { TextInput } from 'components';
-import { AuthButton, AuthColBlock, SocialTitleBlock, SocialIconBlock, ButtonBlock, FormWrap } from '../Auth.styles';
+import {
+  AuthButton,
+  AuthColBlock,
+  SocialTitleBlock,
+  SocialIconBlock,
+  SocialButton,
+  ButtonBlock,
+  FormWrap,
+} from '../Auth.styles';
 
 interface IProps {
   authFormValues: IAuthForm;
@@ -38,10 +46,18 @@ const LoginForm: React.FunctionComponent<IProps> = ({ authFormValues, setAuthFor
     </AuthColBlock>
     <SocialTitleBlock>Sign in with</SocialTitleBlock>
     <SocialIconBlock>
-      <Facebook />
-      <Github />
-      <Google />
-      <Kakao />
+      <SocialButton type="button">
+        <Facebook />
+      </SocialButton>
+      <SocialButton type="button">
+        <Github />
+      </SocialButton>
+      <SocialButton type="button">
+        <Google />
+      </SocialButton>
+      <SocialButton type="button">
+        <Kakao />
+      </SocialButton>
     </SocialIconBlock>
     <ButtonBlock>
       <AuthButton type="button">
