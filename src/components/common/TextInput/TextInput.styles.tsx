@@ -51,7 +51,7 @@ export const Input = styled.input`
   font-size: inherit;
   flex: 1 1 auto;
   margin: 0;
-  padding: 0.65rem 0 0.7rem;
+  padding: 0.62rem 0 0.7rem;
   line-height: 1;
   background-color: transparent;
   -webkit-tap-highlight-color: transparent;
@@ -65,16 +65,21 @@ export const Input = styled.input`
   }
 `;
 
-export const Label = styled.label`
+export const Label = styled.label<{ existInputContent: boolean }>`
   position: absolute;
-  left: 0;
   top: 0.75rem;
+  left: 0;
   right: auto;
   font-size: inherit;
-  letter-spacing: 0.1px;
+  font-weight: 500;
   color: ${themes.fontColor};
   text-overflow: ellipsis;
   transform-origin: top left;
-  transition: 0.4s cubic-bezier(0.25, 0.8, 0.5, 1);
+  transition: 0.35s cubic-bezier(0.25, 0.8, 0.5, 1);
   overflow: hidden;
+  ${props =>
+    props.existInputContent &&
+    css`
+      transform: translateY(-1.55rem) scale(0.9);
+    `}
 `;

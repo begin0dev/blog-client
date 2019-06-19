@@ -29,22 +29,17 @@ const TextInput: React.FunctionComponent<IProps> = React.memo(
       if (inputRef && inputRef.current && !focus) inputRef.current.focus();
     }, [focus, inputRef]);
 
-    const labelPosition = React.useMemo((): object => {
-      let position = {};
-      if (placeholder || focus || (inputRef && inputRef.current && inputRef.current.value.length > 0)) {
-        position = {
-          transform: 'translateY(-1.55rem) scale(0.95)',
-          fontWeight: '500',
-        };
-      }
-      return position;
-    }, [placeholder, focus, inputRef]);
+    const existInputContent = React.useMemo(
+      (): boolean =>
+        !!placeholder || focus || !!(inputRef && inputRef.current && inputRef.current.value.length > 0) || !!(value && value.length > 0),
+      [placeholder, value, focus, inputRef],
+    );
 
     return (
       <TextInputBlock>
         <InputSlot focus={focus} color={color} defaultBorderColor={defaultBorderColor}>
           {label && (
-            <Label aria-hidden="true" style={{ ...labelPosition }} onClick={labelClick}>
+            <Label aria-hidden="true" existInputContent={existInputContent} onClick={labelClick}>
               {label}
             </Label>
           )}

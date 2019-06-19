@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { IStoreState } from 'store/modules';
 import * as authStore from 'store/modules/auth';
 import * as baseStore from 'store/modules/base';
+import { IStoreState } from 'store/modules';
 import { Header } from 'components';
-import { FormNameTypes } from 'store/modules/auth';
 
 const BaseTemplateContainer: React.FunctionComponent = React.memo(() => {
   const dispatch = useDispatch();
@@ -19,7 +18,7 @@ const BaseTemplateContainer: React.FunctionComponent = React.memo(() => {
     [dispatch],
   );
 
-  const displayAuthForm = React.useCallback(
+  const toggleAuthForm = React.useCallback(
     (formName: authStore.FormNameTypes): void => {
       dispatch(authStore.toggleAuthForm(formName));
     },
@@ -27,7 +26,7 @@ const BaseTemplateContainer: React.FunctionComponent = React.memo(() => {
   );
 
   return (
-    <Header visible={sidebar} isTablet={isTablet} displayAuthForm={displayAuthForm} toggleSidebar={toggleSidebar} />
+    <Header visible={sidebar} isTablet={isTablet} toggleAuthForm={toggleAuthForm} toggleSidebar={toggleSidebar} />
   );
 });
 

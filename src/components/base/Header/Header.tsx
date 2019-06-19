@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { Logo } from 'assets/svgs';
+import * as authStore from 'store/modules/auth';
 import { Overlay, Hamburger } from 'components';
 import Nav from './Nav';
 import { HeaderBlock, Wrapper, Left, Right, LogoWrapper, Button } from './Header.styles';
@@ -9,10 +10,10 @@ interface IProps {
   isTablet: boolean;
   visible: boolean;
   toggleSidebar: (bool: boolean) => void;
-  displayAuthForm: (formName: 'signUp' | 'logIn') => void;
+  toggleAuthForm: (formName: authStore.FormNameTypes) => void;
 }
 
-const Header: React.FunctionComponent<IProps> = React.memo(({ isTablet, visible, displayAuthForm, toggleSidebar }) => (
+const Header: React.FunctionComponent<IProps> = React.memo(({ isTablet, visible, toggleAuthForm, toggleSidebar }) => (
   <HeaderBlock>
     <Wrapper>
       <Left>
@@ -23,10 +24,10 @@ const Header: React.FunctionComponent<IProps> = React.memo(({ isTablet, visible,
         <Nav visible={visible} isTablet={isTablet} />
       </Left>
       <Right>
-        <Button type="button" onClick={() => displayAuthForm('logIn')}>
+        <Button type="button" onClick={() => toggleAuthForm('logIn')}>
           Log In
         </Button>
-        <Button type="button" className="sign-up" onClick={() => displayAuthForm('signUp')}>
+        <Button type="button" className="sign-up" onClick={() => toggleAuthForm('signUp')}>
           Sign Up
         </Button>
         {isTablet && <Hamburger visible={visible} toggleSidebar={toggleSidebar} />}

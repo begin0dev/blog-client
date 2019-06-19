@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
   }
   body {
-    font-family: 'Encode Sans Semi Expanded', 'Spoqa Han Sans', sans-serif;
+    font-family: 'Quicksand', 'Spoqa Han Sans', sans-serif;
     font-size: 13px;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;

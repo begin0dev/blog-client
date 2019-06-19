@@ -1,6 +1,5 @@
 import * as React from 'react';
-// import { FaArrowRight, FaFacebook as Facebook, FaGithub as Github, FaGooglePlusSquare as Google } from 'react-icons/fa';
-// import { Kakao } from 'assets/svgs';
+import { FaArrowRight } from 'react-icons/fa';
 
 import { palette } from 'styles/palette';
 import { TextInput } from 'components';
@@ -63,7 +62,10 @@ const SignUpForm: React.FunctionComponent<IProps> = React.memo(({ authFormValues
       />
     </AuthColBlock>
     <ButtonBlock>
-      <AuthButton type="button">CONTINUE</AuthButton>
+      <AuthButton type="button">
+        CONTINUE
+        <FaArrowRight />
+      </AuthButton>
     </ButtonBlock>
   </FormWrap>
 ));

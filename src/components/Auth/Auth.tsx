@@ -3,6 +3,7 @@ import * as React from 'react';
 import * as authStore from 'store/modules/auth';
 import { IAuthForm } from 'containers/AuthContainer';
 import SignUpForm from './AuthForm/SignUpForm';
+import LogInForm from './AuthForm/LogInForm';
 import { AuthBlock, AuthRowBlock, AuthTitle } from './Auth.styles';
 
 interface IProps {
@@ -11,13 +12,14 @@ interface IProps {
   setAuthFormValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Auth: React.FunctionComponent<IProps> = React.memo(({ authFormValues, formName, setAuthFormValue }) => (
+const Auth: React.FunctionComponent<IProps> = React.memo(({ formName, authFormValues, setAuthFormValue }) => (
   <AuthBlock>
     <AuthRowBlock>
-      <AuthTitle>SignUp</AuthTitle>
+      <AuthTitle>{formName}</AuthTitle>
     </AuthRowBlock>
     <AuthRowBlock>
-      <SignUpForm authFormValues={authFormValues} setAuthFormValue={setAuthFormValue} />
+      {formName === 'signUp' && <SignUpForm authFormValues={authFormValues} setAuthFormValue={setAuthFormValue} />}
+      {formName === 'logIn' && <LogInForm authFormValues={authFormValues} setAuthFormValue={setAuthFormValue} />}
     </AuthRowBlock>
   </AuthBlock>
 ));
