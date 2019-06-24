@@ -1,6 +1,6 @@
 import produce from 'immer';
 
-import { actionCreator } from 'lib/utils/actionHelper';
+import { ActionsUnion, actionCreator } from 'lib/utils/actionHelper';
 
 // actions
 const SET_VIEW_TYPE = 'SET_VIEW_TYPE';
@@ -12,7 +12,8 @@ export const setViewType = (payload: { typeName: ViewTypeName; bool: boolean }) 
   actionCreator(SET_VIEW_TYPE, payload);
 export const toggleSidebar = (bool: boolean) => actionCreator(TOGGLE_SIDEBAR, bool);
 
-export type ActionTypes = ReturnType<typeof setViewType> | ReturnType<typeof toggleSidebar>;
+const Actions = { setViewType, toggleSidebar };
+export type ActionTypes = ActionsUnion<typeof Actions>;
 
 // reducer
 export interface IBaseState {

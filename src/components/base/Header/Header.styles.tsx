@@ -69,6 +69,9 @@ export const Button = styled.button`
     padding: 10px 10px;
   }
   ${includeMedia('>md')} {
+    & + & {
+      margin-left: 15px;
+    }
     &.sign-up {
       ${buttonColorMap.red};
       text-transform: uppercase;

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { MdArrowDropDown } from 'react-icons/md';
+import { MdKeyboardArrowDown } from 'react-icons/md';
 import { NavBlock, List, LinkWrapper, DropDown, DivType, LinkType, ChildLinkType } from './Nav.styles';
 
 interface INavChild {
@@ -42,7 +42,7 @@ const Nav: React.FunctionComponent<IProps> = React.memo(({ isTablet, visible }) 
           <LinkWrapper key={link.name}>
             <DivType>
               {link.name}
-              <MdArrowDropDown className="expand-icon" />
+              <MdKeyboardArrowDown className="expand-icon" />
             </DivType>
             <DropDown>
               {link.children &&

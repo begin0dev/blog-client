@@ -94,7 +94,7 @@ export const AuthButton = styled.button`
   font-size: 13px;
   width: 100%;
   padding: 15px;
-  border-radius: 30px;
+  border-radius: 25px;
   svg {
     font-size: 12px;
     margin-left: 7px;

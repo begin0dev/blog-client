@@ -1,39 +1,43 @@
 import * as React from 'react';
+import produce from 'immer';
 
 interface IOnChangeAction<T> {
-  type: 'onChange';
-  name: keyof T;
-  value: string | number | boolean;
+  type: 'ON_CHANGE';
+  payload: {
+    name: keyof T;
+    value: any;
+  };
 }
 interface IOnResetAction<T> {
-  type: 'onReset';
-  defaultValues: T;
+  type: 'ON_RESET';
+  initState: T;
 }
 
 function reducer<T>(state: T, action: IOnChangeAction<T> | IOnResetAction<T>) {
   switch (action.type) {
-    case 'onReset':
-      return { ...action.defaultValues };
-    case 'onChange':
-      // TODO immer typescript error ??
-      return { ...state, [action.name]: action.value };
+    case 'ON_RESET':
+      return produce(state, () => action.initState);
+    case 'ON_CHANGE':
+      return produce(state, draft => {
+        draft[action.payload.name] = action.payload.value;
+      });
     default:
       return state;
   }
 }
 
 export default function useForm<T>(defaultState: T) {
-  const defaultValues = React.useRef(defaultState);
+  const initState = React.useRef(defaultState);
   const [state, dispatch] = React.useReducer(reducer, defaultState);
 
   const onReset = React.useCallback(() => {
-    dispatch({ type: 'onReset', defaultValues: defaultValues.current });
-  }, [defaultValues]);
+    dispatch({ type: 'ON_RESET', initState: initState.current });
+  }, [initState]);
 
   const onChange = React.useCallback(
     (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
       const { name, value } = e.target;
-      dispatch({ type: 'onChange', name, value });
+      dispatch({ type: 'ON_CHANGE', payload: { name, value } });
     },
     [],
   );

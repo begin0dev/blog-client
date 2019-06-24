@@ -94,7 +94,7 @@ const defaultTypeCss = css`
   user-select: none;
 
   ${includeMedia('<=md')} {
-    padding: 20px 50px;
+    padding: 20px 40px;
   }
   .expand-icon {
     font-size: 15px;
@@ -129,6 +129,8 @@ export const LinkType = styled(NavLink)`
 
 export const DivType = styled.div`
   ${defaultTypeCss};
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const ChildLinkType = styled(LinkType)`
@@ -137,6 +139,6 @@ export const ChildLinkType = styled(LinkType)`
   padding: 20px 25px;
   color: #969696;
   ${includeMedia('<=md')} {
-    padding: 18px 50px;
+    padding: 18px 40px;
   }
 `;

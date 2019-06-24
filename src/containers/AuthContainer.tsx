@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import * as authStore from 'store/modules/auth';
 import useForm from 'lib/hooks/useForm';
 import { palette } from 'styles/palette';
-import * as authStore from 'store/modules/auth';
 import { IStoreState } from 'store/modules';
 import { Auth, Modal } from 'components';
 
@@ -36,11 +36,13 @@ const AuthContainer: React.FunctionComponent = () => {
     dispatch(authStore.toggleAuthForm(null));
   }, [dispatch]);
 
+  const modalSize = React.useMemo(() => ({ width: '420px' }), []);
+
   return (
     <Modal
       active={!!formName}
       fullScreen={isMobile}
-      size={{ width: '420px' }}
+      size={modalSize}
       backgroundColor={palette.black}
       hideModal={hideModal}
     >
