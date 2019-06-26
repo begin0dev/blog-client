@@ -44,37 +44,6 @@
     "redux-devtools-extension": "^2.13.8",
     "typescript": "^3.5.2"
   },
-  "eslintConfig": {
-    "extends": [
-      "airbnb",
-      "react-app",
-      "prettier"
-    ],
-    "settings": {
-      "import/resolver": {
-        "node": {
-          "paths": [
-            "src"
-          ],
-          "extensions": [
-            ".js",
-            ".jsx",
-            ".ts",
-            ".tsx"
-          ]
-        }
-      }
-    },
-    "rules": {
-      "react/prop-types": 0,
-      "react/prefer-stateless-function": 0,
-      "react/jsx-filename-extension": 0,
-      "react/jsx-one-expression-per-line": 0,
-      "react/no-array-index-key": 0,
-      "import/prefer-default-export": 0,
-      "no-param-reassign": 1
-    }
-  },
   "browserslist": [
     ">0.2%",
     "not dead",

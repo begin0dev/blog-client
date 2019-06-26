@@ -25,9 +25,7 @@ const BaseTemplateContainer: React.FunctionComponent = React.memo(() => {
     [dispatch],
   );
 
-  return (
-    <Header visible={sidebar} isTablet={isTablet} toggleAuthForm={toggleAuthForm} toggleSidebar={toggleSidebar} />
-  );
+  return <Header visible={sidebar} isTablet={isTablet} toggleAuthForm={toggleAuthForm} toggleSidebar={toggleSidebar} />;
 });
 
 export default BaseTemplateContainer;
