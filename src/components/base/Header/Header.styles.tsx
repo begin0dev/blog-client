@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-import { buttonColorMap } from 'styles/palette';
+import { buttonColorMap, palette } from 'styles/palette';
 import { zIndexes, sizes, themes, includeMedia } from 'styles/utils';
 
 export const HeaderBlock = styled.header`
@@ -30,7 +30,7 @@ export const Wrapper = styled.div`
 `;
 
 const leftAndRightCss = css`
-  color: ${themes.fontColor};
+  color: ${palette.gray2};
   display: flex;
   align-items: center;
   font-size: 12px;
@@ -56,7 +56,7 @@ export const LogoWrapper = styled(NavLink)`
 `;
 
 export const Button = styled.button`
-  color: ${themes.fontColor};
+  color: ${palette.gray2};
   background-color: transparent;
   padding: 10px 20px;
   font-size: 12px;

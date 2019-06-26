@@ -4,7 +4,7 @@ import { FaArrowRight } from 'react-icons/fa';
 import { palette } from 'styles/palette';
 import { TextInput } from 'components';
 import { IAuthForm } from 'containers/AuthContainer';
-import { FormWrap, AuthColBlock, ButtonBlock, AuthButton } from '../Auth.styles';
+import { FormWrap, AuthColBlock, ButtonBlock, AuthButton, ChangeFormBlock } from '../Auth.styles';
 
 interface IProps {
   authFormValues: IAuthForm;
@@ -67,6 +67,9 @@ const SignUpForm: React.FunctionComponent<IProps> = React.memo(({ authFormValues
         <FaArrowRight />
       </AuthButton>
     </ButtonBlock>
+    <ChangeFormBlock>
+      Already have an account?<span>Log in</span>
+    </ChangeFormBlock>
   </FormWrap>
 ));
 

@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 import { themes } from './utils';
+import { palette } from './palette';
 
 const GlobalStyle = createGlobalStyle`
   html, body, #react-root {
@@ -10,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
     font-size: 13px;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
-    color: ${themes.fontColor};
+    color: ${palette.black};
     background-color: ${themes.backgroundColor};
     overflow-x: hidden;
   }

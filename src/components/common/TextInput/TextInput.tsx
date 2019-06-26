@@ -29,9 +29,12 @@ const TextInput: React.FunctionComponent<IProps> = React.memo(
       if (inputRef && inputRef.current && !focus) inputRef.current.focus();
     }, [focus, inputRef]);
 
-    const existInputContent = React.useMemo(
+    const existContent = React.useMemo(
       (): boolean =>
-        !!placeholder || focus || !!(inputRef && inputRef.current && inputRef.current.value.length > 0) || !!(value && value.length > 0),
+        focus ||
+        !!placeholder ||
+        !!(inputRef && inputRef.current && inputRef.current.value.length > 0) ||
+        !!(value && value.length > 0),
       [placeholder, value, focus, inputRef],
     );
 
@@ -39,7 +42,7 @@ const TextInput: React.FunctionComponent<IProps> = React.memo(
       <TextInputBlock>
         <InputSlot focus={focus} color={color} defaultBorderColor={defaultBorderColor}>
           {label && (
-            <Label aria-hidden="true" existInputContent={existInputContent} onClick={labelClick}>
+            <Label aria-hidden="true" existContent={existContent} onClick={labelClick}>
               {label}
             </Label>
           )}

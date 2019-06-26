@@ -36,7 +36,7 @@ const AuthContainer: React.FunctionComponent = () => {
     dispatch(authStore.toggleAuthForm(null));
   }, [dispatch]);
 
-  const modalSize = React.useMemo(() => ({ width: '420px' }), []);
+  const modalSize = React.useMemo(() => ({ width: '390px' }), []);
 
   return (
     <Modal

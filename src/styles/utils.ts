@@ -52,13 +52,12 @@ interface ISizes {
   header: number;
 }
 export const sizes: ISizes = {
-  header: 73,
+  header: 63,
 };
 
 interface IThemes {
   primary: string;
   secondary: string;
-  fontColor: string;
   header: string;
   sidebar: string;
   backgroundColor: string;
@@ -66,7 +65,6 @@ interface IThemes {
 export const themes: IThemes = {
   primary: '',
   secondary: '#424242',
-  fontColor: palette.gray2,
   header: palette.black,
   sidebar: '#13141C',
   backgroundColor: palette.gray1,

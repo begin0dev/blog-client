@@ -12,6 +12,7 @@ export const AuthBlock = styled.div`
   position: relative;
   flex-flow: column wrap;
   padding: 4.5rem;
+  color: ${palette.gray2};
   overflow-x: hidden;
   overflow-y: auto;
   ${includeMedia('<=md')} {
@@ -46,7 +47,7 @@ export const SocialTitleBlock = styled(AuthColBlock)`
   flex-flow: row wrap;
   font-weight: 500;
   color: ${palette.gray5};
-  padding: 15px 0 20px;
+  padding: 15px 0;
 `;
 
 export const SocialIconBlock = styled(AuthColBlock)`
@@ -57,8 +58,8 @@ export const SocialIconBlock = styled(AuthColBlock)`
 `;
 
 const pulseKeyframes = keyframes`
-  0% { box-shadow: 0 0 0 0 ${palette.gray6}; }
-  100% { box-shadow: 0 0 5px 3px ${palette.gray6}; }
+  0% { box-shadow: 0 0 0 0 ${palette.gray8}; }
+  100% { box-shadow: 0 0 8px 3px ${palette.gray8}; }
 `;
 
 export const SocialButton = styled.button`
@@ -69,9 +70,14 @@ export const SocialButton = styled.button`
   align-items: center;
   border-radius: 100%;
   background-color: transparent;
-  color: ${palette.gray0};
+  color: ${palette.gray2};
   &:active {
     animation: ${pulseKeyframes} 0.3s;
+  }
+  &:hover,
+  &:focus,
+  &:active {
+    color: ${palette.white};
   }
   & + & {
     margin-left: 18px;
@@ -86,7 +92,7 @@ export const ButtonBlock = styled(AuthColBlock)`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px 0;
+  padding: 20px 0 25px;
 `;
 
 export const AuthButton = styled.button`
@@ -102,5 +108,17 @@ export const AuthButton = styled.button`
   }
   &:active {
     animation: ${pulseKeyframes} 0.3s;
+  }
+`;
+
+export const ChangeFormBlock = styled(AuthColBlock)`
+  justify-content: center;
+  color: ${palette.gray4};
+  span {
+    color: ${palette.red8};
+    font-weight: 500;
+    margin-left: 10px;
+    cursor: pointer;
+    user-select: none;
   }
 `;

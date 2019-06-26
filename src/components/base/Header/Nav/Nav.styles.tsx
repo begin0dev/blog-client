@@ -90,7 +90,7 @@ const defaultTypeCss = css`
   display: flex;
   align-items: center;
   font-size: 12px;
-  padding: 20px 25px;
+  padding: 18px 25px;
   user-select: none;
 
   ${includeMedia('<=md')} {

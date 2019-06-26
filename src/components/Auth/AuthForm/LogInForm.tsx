@@ -13,6 +13,7 @@ import {
   SocialButton,
   ButtonBlock,
   FormWrap,
+  ChangeFormBlock,
 } from '../Auth.styles';
 
 interface IProps {
@@ -65,6 +66,10 @@ const LoginForm: React.FunctionComponent<IProps> = ({ authFormValues, setAuthFor
         <FaArrowRight />
       </AuthButton>
     </ButtonBlock>
+    <ChangeFormBlock>
+      {`Don't have an account?`}
+      <span>Sign up</span>
+    </ChangeFormBlock>
   </FormWrap>
 );
 

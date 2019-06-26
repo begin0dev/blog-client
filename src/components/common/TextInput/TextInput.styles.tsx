@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { themes } from 'styles/utils';
 
 export const TextInputBlock = styled.div`
   display: flex;
@@ -47,38 +46,38 @@ export const InputSlot = styled.div<{ color: string; focus: boolean; defaultBord
 
 export const Input = styled.input`
   display: inline-flex;
-  color: ${themes.fontColor};
+  color: inherit;
   font-size: inherit;
   flex: 1 1 auto;
   margin: 0;
   padding: 0.62rem 0 0.7rem;
   line-height: 1;
-  background-color: transparent;
-  -webkit-tap-highlight-color: transparent;
+  background-color: inherit;
+  -webkit-tap-highlight-color: inherit;
   border-style: none;
   outline: none;
   &::placeholder {
-    color: ${themes.fontColor};
+    color: inherit;
     font-size: inherit;
     line-height: 1rem;
     opacity: 0.4;
   }
 `;
 
-export const Label = styled.label<{ existInputContent: boolean }>`
+export const Label = styled.label<{ existContent: boolean }>`
   position: absolute;
   top: 0.75rem;
   left: 0;
   right: auto;
+  color: inherit;
   font-size: inherit;
   font-weight: 500;
-  color: ${themes.fontColor};
   text-overflow: ellipsis;
   transform-origin: top left;
   transition: 0.35s cubic-bezier(0.25, 0.8, 0.5, 1);
   overflow: hidden;
   ${props =>
-    props.existInputContent &&
+    props.existContent &&
     css`
       transform: translateY(-1.55rem) scale(0.9);
     `}
