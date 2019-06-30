@@ -9,8 +9,8 @@ import { HeaderBlock, Wrapper, Left, Right, LogoWrapper, Button } from './Header
 interface IProps {
   isTablet: boolean;
   visible: boolean;
-  toggleSidebar: (bool: boolean) => void;
-  toggleAuthForm: (formName: authStore.FormNameTypes) => void;
+  toggleSidebar: (bool: boolean) => () => void;
+  toggleAuthForm: (formName: authStore.FormNameTypes) => () => void;
 }
 
 const Header: React.FunctionComponent<IProps> = React.memo(({ isTablet, visible, toggleAuthForm, toggleSidebar }) => (
@@ -24,10 +24,10 @@ const Header: React.FunctionComponent<IProps> = React.memo(({ isTablet, visible,
         <Nav visible={visible} isTablet={isTablet} />
       </Left>
       <Right>
-        <Button type="button" onClick={() => toggleAuthForm('logIn')}>
+        <Button type="button" onClick={toggleAuthForm('logIn')}>
           Log In
         </Button>
-        <Button type="button" className="sign-up" onClick={() => toggleAuthForm('signUp')}>
+        <Button type="button" className="sign-up" onClick={toggleAuthForm('signUp')}>
           Sign Up
         </Button>
         {isTablet && <Hamburger visible={visible} toggleSidebar={toggleSidebar} />}

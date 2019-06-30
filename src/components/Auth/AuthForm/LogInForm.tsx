@@ -1,76 +1,59 @@
 import * as React from 'react';
-import { FaArrowRight, FaFacebook as Facebook, FaGithub as Github, FaGooglePlus as Google } from 'react-icons/fa';
+import { FaArrowRight } from 'react-icons/fa';
 
-import { Kakao } from 'assets/svgs';
 import { palette } from 'styles/palette';
 import { IAuthForm } from 'containers/AuthContainer';
 import { TextInput } from 'components';
-import {
-  AuthButton,
-  AuthColBlock,
-  SocialTitleBlock,
-  SocialIconBlock,
-  SocialButton,
-  ButtonBlock,
-  FormWrap,
-  ChangeFormBlock,
-} from '../Auth.styles';
+import { AuthButton, AuthColBlock, ButtonBlock, ChangeFormBlock, SocialTitleBlock } from '../Auth.styles';
+import SocialButtons from './SocialButtons';
+import * as authStore from '../../../store/modules/auth';
 
 interface IProps {
   authFormValues: IAuthForm;
+  authFormSubmit: (e: React.MouseEvent<HTMLButtonElement>) => void;
   setAuthFormValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  toggleAuthForm: (formName: authStore.FormNameTypes) => () => void;
 }
 
-const LoginForm: React.FunctionComponent<IProps> = ({ authFormValues, setAuthFormValue }) => (
-  <FormWrap>
-    <AuthColBlock>
-      <TextInput
-        type="text"
-        name="email"
-        label="Email"
-        value={authFormValues.email}
-        color={palette.white}
-        defaultBorderColor={palette.white}
-        setValue={setAuthFormValue}
-      />
-    </AuthColBlock>
-    <AuthColBlock>
-      <TextInput
-        type="password"
-        name="password"
-        label="Password"
-        value={authFormValues.password}
-        color={palette.white}
-        defaultBorderColor={palette.white}
-        setValue={setAuthFormValue}
-      />
-    </AuthColBlock>
-    <SocialTitleBlock>Sign in with</SocialTitleBlock>
-    <SocialIconBlock>
-      <SocialButton type="button">
-        <Facebook />
-      </SocialButton>
-      <SocialButton type="button">
-        <Github />
-      </SocialButton>
-      <SocialButton type="button">
-        <Google />
-      </SocialButton>
-      <SocialButton type="button">
-        <Kakao />
-      </SocialButton>
-    </SocialIconBlock>
-    <ButtonBlock>
-      <AuthButton type="button">
-        CONTINUE
-        <FaArrowRight />
-      </AuthButton>
-    </ButtonBlock>
-    <ChangeFormBlock>
-      {`Don't have an account?`}
-      <span>Sign up</span>
-    </ChangeFormBlock>
-  </FormWrap>
+const LoginForm: React.FunctionComponent<IProps> = React.memo(
+  ({ authFormValues, authFormSubmit, setAuthFormValue, toggleAuthForm }) => (
+    <>
+      <AuthColBlock>
+        <TextInput
+          type="text"
+          name="email"
+          label="Email"
+          value={authFormValues.email}
+          color={palette.white}
+          defaultBorderColor={palette.white}
+          setValue={setAuthFormValue}
+        />
+      </AuthColBlock>
+      <AuthColBlock>
+        <TextInput
+          type="password"
+          name="password"
+          label="Password"
+          value={authFormValues.password}
+          color={palette.white}
+          defaultBorderColor={palette.white}
+          setValue={setAuthFormValue}
+        />
+      </AuthColBlock>
+      <SocialTitleBlock>Sign in with</SocialTitleBlock>
+      <SocialButtons />
+      <ButtonBlock>
+        <AuthButton type="submit" onClick={authFormSubmit}>
+          CONTINUE
+          <FaArrowRight />
+        </AuthButton>
+      </ButtonBlock>
+      <ChangeFormBlock>
+        {`Don't have an account?`}
+        <span onClick={toggleAuthForm('signUp')}>Sign Up</span>
+      </ChangeFormBlock>
+    </>
+  ),
 );
 
 export default LoginForm;

@@ -19,23 +19,26 @@ const TextInput: React.FunctionComponent<IProps> = React.memo(
     const [focus, setFocus] = React.useState<boolean>(false);
 
     const toggleInputFocus = React.useCallback(
-      (focusing: boolean) => (): void => {
+      (focusing: boolean) => () => {
         setFocus(focusing);
       },
       [],
     );
 
-    const labelClick = React.useCallback((): void => {
-      if (inputRef && inputRef.current && !focus) inputRef.current.focus();
-    }, [focus, inputRef]);
+    const labelClick = React.useCallback(() => {
+      if (!inputRef.current) return;
+      if (!focus) inputRef.current.focus();
+    }, [focus]);
 
-    const existContent = React.useMemo(
-      (): boolean =>
-        focus ||
-        !!placeholder ||
-        !!(inputRef && inputRef.current && inputRef.current.value.length > 0) ||
-        !!(value && value.length > 0),
-      [placeholder, value, focus, inputRef],
+    const existContent: boolean = React.useMemo(
+      () =>
+        !!(
+          focus ||
+          placeholder ||
+          (inputRef.current && inputRef.current.value.length > 0) ||
+          (value && value.length > 0)
+        ),
+      [placeholder, value, focus],
     );
 
     return (

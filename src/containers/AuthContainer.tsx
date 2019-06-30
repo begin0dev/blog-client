@@ -19,6 +19,7 @@ const AuthContainer: React.FunctionComponent = () => {
   const formName = useSelector((state: IStoreState) => state.auth.formName);
   const isMobile = useSelector((state: IStoreState) => state.base.isMobile);
 
+  const modalSize = React.useRef<{ width: string }>({ width: '390px' });
   const [authFormValues, setAuthFormValue, ResetAuthForm] = useForm<IAuthForm>({
     email: '',
     password: '',
@@ -26,27 +27,39 @@ const AuthContainer: React.FunctionComponent = () => {
     displayName: '',
   });
 
-  React.useEffect(() => {
-    return () => {
-      ResetAuthForm();
-    };
-  }, [ResetAuthForm]);
-
-  const hideModal = React.useCallback((): void => {
+  const hideModal = React.useCallback(() => {
     dispatch(authStore.toggleAuthForm(null));
   }, [dispatch]);
 
-  const modalSize = React.useMemo(() => ({ width: '390px' }), []);
+  const toggleAuthForm = React.useCallback(
+    (form: authStore.FormNameTypes) => () => dispatch(authStore.toggleAuthForm(form)),
+    [dispatch],
+  );
+
+  const authFormSubmit = React.useCallback(e => {
+    e.preventDefault();
+    console.log('test');
+  }, []);
+
+  React.useEffect(() => {
+    return () => ResetAuthForm();
+  }, [ResetAuthForm]);
 
   return (
     <Modal
       active={!!formName}
       fullScreen={isMobile}
-      size={modalSize}
+      size={modalSize.current}
       backgroundColor={palette.black}
       hideModal={hideModal}
     >
-      <Auth formName={formName} authFormValues={authFormValues} setAuthFormValue={setAuthFormValue} />
+      <Auth
+        formName={formName}
+        authFormValues={authFormValues}
+        authFormSubmit={authFormSubmit}
+        setAuthFormValue={setAuthFormValue}
+        toggleAuthForm={toggleAuthForm}
+      />
     </Modal>
   );
 };

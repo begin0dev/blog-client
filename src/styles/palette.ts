@@ -4,8 +4,8 @@ interface IPalette {
   white: '#ffffff',
   black: '#0b0b0b',
 
-  gray1: '#f1f3f5',
   gray0: '#f8f9fa',
+  gray1: '#f1f3f5',
   gray2: '#e9ecef',
   gray3: '#dee2e6',
   gray4: '#ced4da',

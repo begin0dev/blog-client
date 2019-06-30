@@ -12,16 +12,12 @@ const BaseTemplateContainer: React.FunctionComponent = React.memo(() => {
   const isTablet = useSelector((state: IStoreState) => state.base.isTablet);
 
   const toggleSidebar = React.useCallback(
-    (bool: boolean): void => {
-      dispatch(baseStore.toggleSidebar(bool));
-    },
+    (bool: boolean) => () => dispatch(baseStore.toggleSidebar(bool)),
     [dispatch],
   );
 
   const toggleAuthForm = React.useCallback(
-    (formName: authStore.FormNameTypes): void => {
-      dispatch(authStore.toggleAuthForm(formName));
-    },
+    (formName: authStore.FormNameTypes) => () => dispatch(authStore.toggleAuthForm(formName)),
     [dispatch],
   );
 

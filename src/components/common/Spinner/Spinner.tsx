@@ -7,14 +7,12 @@ interface IProps {
   color?: string;
 }
 
-const Spinner: React.FunctionComponent<IProps> = ({ size, color }) => {
-  return (
-    <SpinnerBlock size={size}>
-      {new Array(12).fill(0).map((arr, i) => (
-        <Circle color={color} index={i} key={`circle${i}`} />
-      ))}
-    </SpinnerBlock>
-  );
-};
+const Spinner: React.FunctionComponent<IProps> = React.memo(({ size, color }) => (
+  <SpinnerBlock size={size}>
+    {new Array(12).fill(0).map((arr, i) => (
+      <Circle color={color} index={i} key={`circle${i}`} />
+    ))}
+  </SpinnerBlock>
+));
 
 export default Spinner;

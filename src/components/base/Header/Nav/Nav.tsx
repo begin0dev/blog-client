@@ -3,13 +3,13 @@ import * as React from 'react';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { NavBlock, List, LinkWrapper, DropDown, DivType, LinkType, ChildLinkType } from './Nav.styles';
 
-interface INavChild {
+interface INavBase {
   name: string;
   url: string;
 }
-interface INav extends INavChild {
+interface INav extends INavBase {
   hasChildren: boolean;
-  children?: INavChild[];
+  children?: INavBase[];
 }
 
 const navList: INav[] = [
@@ -46,7 +46,7 @@ const Nav: React.FunctionComponent<IProps> = React.memo(({ isTablet, visible }) 
             </DivType>
             <DropDown>
               {link.children &&
-                link.children.map((child: INavChild) => (
+                link.children.map((child: INavBase) => (
                   <ChildLinkType to={child.url} activeClassName="current" key={child.name}>
                     {child.name}
                   </ChildLinkType>
