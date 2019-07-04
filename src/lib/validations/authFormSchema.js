@@ -1,24 +1,30 @@
 import Joi from '@hapi/joi';
 
 export const authFormSchema = {
-    email: Joi.email()
-      .trim()
-      .required()
-      .options({
-        language: {
-          any: { empty: '!!이메일은 필수 입력사항입니다.' },
-        },
-      }),
-    password: Joi.string()
-      .trim()
-      .required()
-      .min(6)
-      .max(20)
-      .options({
-        language: {
-          any: { empty: '!!비밀번호는 필수 입력사항입니다.' },
-        },
-      }),
+  email: Joi.string()
+    .email()
+    .trim()
+    .required()
+    .options({
+      language: {
+        any: { empty: '!!이메일은 필수 입력사항입니다.' },
+        string: { email: '!!이메일 형식이 올바르지 않습니다.' },
+      },
+    }),
+  password: Joi.string()
+    .trim()
+    .required()
+    .min(6)
+    .max(20)
+    .options({
+      language: {
+        any: { empty: '!!비밀번호는 필수 입력사항입니다.' },
+        string: {
+          min: '!!비밀번호는 최소 6자 입니다.',
+          max: '!!비밀번호는 최대 20자 입니다.'
+        }
+      },
+    }),
   passwordConfirm: Joi.string()
     .trim()
     .required()

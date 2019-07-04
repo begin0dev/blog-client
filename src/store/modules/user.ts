@@ -1,18 +1,25 @@
 import produce from 'immer';
 
-import { ActionsUnion, actionCreator } from 'lib/utils/actionHelper';
+import { ActionsUnion, actionCreator, asyncActionCreator } from 'lib/utils/actionHelper';
 
 // actions
-const SET_USER = 'SET_USER';
-const SET_LOGGED = 'SET_LOGGED';
-const REMOVE_USER = 'REMOVE_USER';
+export const REMOVE_USER = 'REMOVE_USER';
+export enum CHECK_USER {
+  REQUEST = 'CHECK_USER_REQUEST',
+  SUCCESS = 'CHECK_USER_SUCCESS',
+  FAILURE = 'CHECK_USER_FAILURE',
+}
 
-export const setUser = (payload: IUser) => actionCreator(SET_USER, payload);
-export const setLogged = (payload: boolean) => actionCreator(SET_LOGGED, payload);
-export const removeUser = () => actionCreator(REMOVE_USER);
-
-const Actions = { setUser, setLogged, removeUser };
-export type ActionTypes = ActionsUnion<typeof Actions>;
+export const UserActions = {
+  removeUser: () => actionCreator(REMOVE_USER),
+};
+export const checkUserActions = {
+  request: () => actionCreator(CHECK_USER.REQUEST),
+  success: (payload: IUser) => actionCreator(CHECK_USER.SUCCESS, payload),
+  failure: () => actionCreator(CHECK_USER.FAILURE),
+};
+const checkUserTest = asyncActionCreator<undefined, IUser, undefined>(CHECK_USER);
+export type ActionTypes = ActionsUnion<typeof UserActions> | ActionsUnion<typeof checkUserActions>;
 
 // reducer
 export interface IUser {
@@ -24,6 +31,7 @@ export interface IUser {
 }
 export interface IUserState extends IUser {
   isLogged: boolean;
+  isLoading: boolean;
 }
 
 const defaultState: IUserState = {
@@ -33,12 +41,26 @@ const defaultState: IUserState = {
     displayName: '',
   },
   isLogged: false,
+  isLoading: false,
 };
 
 export default (state = defaultState, action: ActionTypes) => {
   switch (action.type) {
-    case SET_USER:
-      return { ...state, ...action.payload };
+    case CHECK_USER.REQUEST:
+      return produce(state, draft => {
+        draft.isLogged = false;
+        draft.isLoading = true;
+      });
+    case CHECK_USER.SUCCESS:
+      return produce(state, () => ({
+        ...action.payload,
+        isLogged: true,
+        isLoading: false,
+      }));
+    case CHECK_USER.FAILURE:
+      return produce(state, draft => {
+        draft.isLoading = false;
+      });
     case REMOVE_USER:
       return produce(state, () => defaultState);
     default:

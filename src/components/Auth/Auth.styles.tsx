@@ -115,7 +115,7 @@ export const ChangeFormBlock = styled(AuthColBlock)`
   justify-content: center;
   color: ${palette.gray4};
   span {
-    color: ${palette.red8};
+    color: ${palette.red7};
     font-weight: 500;
     margin-left: 10px;
     cursor: pointer;

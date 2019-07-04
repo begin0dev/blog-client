@@ -35,12 +35,15 @@ export default function useForm<T>(defaultState: T) {
   }, [initState]);
 
   const onChange = React.useCallback(
-    (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
-      const { name, value } = e.target;
+    ({ target: { name, value } }: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
       dispatch({ type: 'ON_CHANGE', payload: { name, value } });
     },
     [],
   );
 
-  return [state, onChange, onReset] as [T, typeof onChange, typeof onReset];
+  const setValue = React.useCallback(({ name, value }: { name: keyof T; value: any }) => {
+    dispatch({ type: 'ON_CHANGE', payload: { name, value } });
+  }, []);
+
+  return [state, onChange, setValue, onReset] as [T, typeof onChange, typeof setValue, typeof onReset];
 }

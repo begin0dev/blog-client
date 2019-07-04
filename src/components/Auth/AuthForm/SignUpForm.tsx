@@ -1,32 +1,46 @@
 import * as React from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 
+import { FormNameTypes } from 'store/modules/auth';
 import { palette } from 'styles/palette';
 import { TextInput } from 'components';
-import { IAuthForm } from 'containers/AuthContainer';
+import { IAuthForm, IFormError } from 'containers/AuthContainer';
 import { AuthColBlock, AuthButton, ButtonBlock, ChangeFormBlock } from '../Auth.styles';
-import * as authStore from '../../../store/modules/auth';
 
 interface IProps {
-  authFormValues: IAuthForm;
+  authFormValue: IAuthForm;
+  authFormError: IFormError;
+  submitError: string | null;
   authFormSubmit: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  setAuthFormValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  toggleAuthForm: (formName: authStore.FormNameTypes) => () => void;
+  onBlurEvent: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onChangeEvent: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  toggleAuthForm: (formName: FormNameTypes) => () => void;
 }
 
 const SignUpForm: React.FunctionComponent<IProps> = React.memo(
-  ({ authFormValues, authFormSubmit, setAuthFormValue, toggleAuthForm }) => (
+  ({
+    authFormValue,
+    authFormError,
+    authFormSubmit,
+    onChangeEvent,
+    onBlurEvent,
+    submitError,
+    toggleAuthForm,
+  }) => (
     <>
       <AuthColBlock>
         <TextInput
           type="text"
           name="displayName"
           label="Display Name"
-          value={authFormValues.displayName}
+          value={authFormValue.displayName}
+          error={!!authFormError.displayName}
+          message={authFormError.displayName}
           placeholder="닉네임으로 사용됩니다 (한글가능)"
           color={palette.white}
           defaultBorderColor={palette.white}
-          setValue={setAuthFormValue}
+          onBlur={onBlurEvent}
+          onChange={onChangeEvent}
         />
       </AuthColBlock>
       <AuthColBlock>
@@ -34,11 +48,14 @@ const SignUpForm: React.FunctionComponent<IProps> = React.memo(
           type="text"
           name="email"
           label="Email"
-          value={authFormValues.email}
+          value={authFormValue.email}
+          error={!!authFormError.email}
+          message={authFormError.email}
           placeholder="이메일을 입력해주세요 (아이디로 사용됩니다)"
           color={palette.white}
           defaultBorderColor={palette.white}
-          setValue={setAuthFormValue}
+          onBlur={onBlurEvent}
+          onChange={onChangeEvent}
         />
       </AuthColBlock>
       <AuthColBlock>
@@ -46,11 +63,14 @@ const SignUpForm: React.FunctionComponent<IProps> = React.memo(
           type="password"
           name="password"
           label="Password"
-          value={authFormValues.password}
+          value={authFormValue.password}
+          error={!!authFormError.password}
+          message={authFormError.password}
           placeholder="비밀번호를 입력해주세요 (영어+숫자 조합)"
           color={palette.white}
           defaultBorderColor={palette.white}
-          setValue={setAuthFormValue}
+          onBlur={onBlurEvent}
+          onChange={onChangeEvent}
         />
       </AuthColBlock>
       <AuthColBlock>
@@ -58,21 +78,25 @@ const SignUpForm: React.FunctionComponent<IProps> = React.memo(
           type="password"
           name="passwordConfirm"
           label="Password Confirm"
-          value={authFormValues.passwordConfirm}
+          value={authFormValue.passwordConfirm}
+          error={!!authFormError.passwordConfirm || !!submitError}
+          message={submitError || authFormError.passwordConfirm}
           placeholder="비밀번호를 한번 더 입력해주세요"
           color={palette.white}
           defaultBorderColor={palette.white}
-          setValue={setAuthFormValue}
+          onBlur={onBlurEvent}
+          onChange={onChangeEvent}
         />
       </AuthColBlock>
       <ButtonBlock>
-        <AuthButton type="submit" onClick={authFormSubmit}>
+        <AuthButton type="submit" onClick={authFormSubmit} disabled>
           CONTINUE
           <FaArrowRight />
         </AuthButton>
       </ButtonBlock>
       <ChangeFormBlock>
-        Already have an account?<span onClick={toggleAuthForm('logIn')}>Log In</span>
+        Already have an account?
+        <span onClick={toggleAuthForm('logIn')}>Log In</span>
       </ChangeFormBlock>
     </>
   ),

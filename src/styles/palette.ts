@@ -285,5 +285,10 @@ export const buttonColorMap: IButtonColorMap = {
     &:hover {
       background: ${palette.red8};
     }
+    &:disabled {
+      cursor: not-allowed;
+      pointer-events: none;
+      opacity: 0.6;
+    }
   `,
 };

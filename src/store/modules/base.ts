@@ -8,12 +8,11 @@ const TOGGLE_SIDEBAR = 'TOGGLE_SIDEBAR';
 
 export type ViewTypeName = 'isMobile' | 'isTablet';
 
-export const setViewType = (payload: { typeName: ViewTypeName; bool: boolean }) =>
-  actionCreator(SET_VIEW_TYPE, payload);
-export const toggleSidebar = (bool: boolean) => actionCreator(TOGGLE_SIDEBAR, bool);
-
-const Actions = { setViewType, toggleSidebar };
-export type ActionTypes = ActionsUnion<typeof Actions>;
+export const BaseActions = {
+  setViewType: (payload: { typeName: ViewTypeName; bool: boolean }) => actionCreator(SET_VIEW_TYPE, payload),
+  toggleSidebar: (bool: boolean) => actionCreator(TOGGLE_SIDEBAR, bool),
+};
+export type ActionTypes = ActionsUnion<typeof BaseActions>;
 
 // reducer
 export interface IBaseState {

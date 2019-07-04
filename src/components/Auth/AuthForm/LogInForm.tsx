@@ -1,32 +1,46 @@
 import * as React from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 
+import { FormNameTypes } from 'store/modules/auth';
 import { palette } from 'styles/palette';
-import { IAuthForm } from 'containers/AuthContainer';
+import { IAuthForm, IFormError } from 'containers/AuthContainer';
 import { TextInput } from 'components';
 import { AuthButton, AuthColBlock, ButtonBlock, ChangeFormBlock, SocialTitleBlock } from '../Auth.styles';
 import SocialButtons from './SocialButtons';
-import * as authStore from '../../../store/modules/auth';
 
 interface IProps {
-  authFormValues: IAuthForm;
+  authFormValue: IAuthForm;
+  authFormError: IFormError;
+  submitError: string | null;
   authFormSubmit: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  setAuthFormValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  toggleAuthForm: (formName: authStore.FormNameTypes) => () => void;
+  onBlurEvent: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onChangeEvent: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  toggleAuthForm: (formName: FormNameTypes) => () => void;
 }
 
 const LoginForm: React.FunctionComponent<IProps> = React.memo(
-  ({ authFormValues, authFormSubmit, setAuthFormValue, toggleAuthForm }) => (
+  ({
+    authFormValue,
+    authFormError,
+    authFormSubmit,
+    onChangeEvent,
+    onBlurEvent,
+    submitError,
+    toggleAuthForm,
+  }) => (
     <>
       <AuthColBlock>
         <TextInput
           type="text"
           name="email"
           label="Email"
-          value={authFormValues.email}
+          value={authFormValue.email}
+          error={!!authFormError.email}
+          message={authFormError.email}
           color={palette.white}
           defaultBorderColor={palette.white}
-          setValue={setAuthFormValue}
+          onBlur={onBlurEvent}
+          onChange={onChangeEvent}
         />
       </AuthColBlock>
       <AuthColBlock>
@@ -34,16 +48,19 @@ const LoginForm: React.FunctionComponent<IProps> = React.memo(
           type="password"
           name="password"
           label="Password"
-          value={authFormValues.password}
+          value={authFormValue.password}
+          error={!!authFormError.password || !!submitError}
+          message={submitError || authFormError.password}
           color={palette.white}
           defaultBorderColor={palette.white}
-          setValue={setAuthFormValue}
+          onBlur={onBlurEvent}
+          onChange={onChangeEvent}
         />
       </AuthColBlock>
       <SocialTitleBlock>Sign in with</SocialTitleBlock>
       <SocialButtons />
       <ButtonBlock>
-        <AuthButton type="submit" onClick={authFormSubmit}>
+        <AuthButton type="submit" onClick={authFormSubmit} disabled>
           CONTINUE
           <FaArrowRight />
         </AuthButton>

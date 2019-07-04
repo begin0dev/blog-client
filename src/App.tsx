@@ -5,7 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import { hot } from 'react-hot-loader/root';
 
 import { IStoreState } from 'store/modules';
-import * as baseStore from 'store/modules/base';
+import { ViewTypeName, BaseActions } from 'store/modules/base';
 import { PageTemplate } from 'components';
 import { MainPage, ProfilePage, CategoryPage, NotFoundPage } from 'pages';
 import { breakPoints } from 'styles/utils';
@@ -18,18 +18,8 @@ const App: React.FunctionComponent = () => {
   const [innerWidth, setInnerWidth] = React.useState(window.innerWidth);
 
   React.useEffect(() => {
-    const resizeEvent = () => {
-      setInnerWidth(window.innerWidth);
-    };
-    window.addEventListener('resize', resizeEvent);
-    return () => {
-      window.removeEventListener('resize', resizeEvent);
-    };
-  }, [setInnerWidth]);
-
-  React.useEffect(() => {
-    const dispatchSetViewType = (typeName: baseStore.ViewTypeName, bool: boolean) =>
-      dispatch(baseStore.setViewType({ typeName, bool }));
+    const dispatchSetViewType = (typeName: ViewTypeName, bool: boolean) =>
+      dispatch(BaseActions.setViewType({ typeName, bool }));
     switch (true) {
       case innerWidth <= breakPoints.sm:
         if (!isMobile) dispatchSetViewType('isMobile', true);
@@ -46,7 +36,17 @@ const App: React.FunctionComponent = () => {
   }, [dispatch, innerWidth, isMobile, isTablet]);
 
   React.useEffect(() => {
-    if (isTablet) dispatch(baseStore.toggleSidebar(false));
+    const resizeEvent = () => {
+      setInnerWidth(window.innerWidth);
+    };
+    window.addEventListener('resize', resizeEvent);
+    return () => {
+      window.removeEventListener('resize', resizeEvent);
+    };
+  }, [setInnerWidth]);
+
+  React.useEffect(() => {
+    if (isTablet) dispatch(BaseActions.toggleSidebar(false));
   }, [dispatch, isTablet]);
 
   return (

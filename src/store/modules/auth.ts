@@ -7,10 +7,10 @@ const TOGGLE_AUTH_FORM = 'TOGGLE_AUTH_FORM';
 
 export type FormNameTypes = 'signUp' | 'logIn' | null;
 
-export const toggleAuthForm = (formName: FormNameTypes) => actionCreator(TOGGLE_AUTH_FORM, formName);
-
-const Actions = { toggleAuthForm };
-export type ActionTypes = ActionsUnion<typeof Actions>;
+export const AuthActions = {
+  toggleAuthForm: (formName: FormNameTypes) => actionCreator(TOGGLE_AUTH_FORM, formName),
+};
+export type ActionTypes = ActionsUnion<typeof AuthActions>;
 
 // reducer
 export interface IAuthState {

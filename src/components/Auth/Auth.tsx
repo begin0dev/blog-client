@@ -1,21 +1,33 @@
 import * as React from 'react';
 
-import * as authStore from 'store/modules/auth';
-import { IAuthForm } from 'containers/AuthContainer';
+import { FormNameTypes } from 'store/modules/auth';
+import { IAuthForm, IFormError } from 'containers/AuthContainer';
 import SignUpForm from './AuthForm/SignUpForm';
 import LogInForm from './AuthForm/LogInForm';
 import { AuthBlock, AuthRowBlock, AuthTitle, FormWrap } from './Auth.styles';
 
 interface IProps {
-  authFormValues: IAuthForm;
-  formName: authStore.FormNameTypes;
+  authFormValue: IAuthForm;
+  authFormError: IFormError;
+  submitError: string | null;
+  formName: FormNameTypes;
   authFormSubmit: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  setAuthFormValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  toggleAuthForm: (formName: authStore.FormNameTypes) => () => void;
+  onChangeEvent: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlurEvent: (e: React.FocusEvent<HTMLInputElement>) => void;
+  toggleAuthForm: (formName: FormNameTypes) => () => void;
 }
 
 const Auth: React.FunctionComponent<IProps> = React.memo(
-  ({ formName, authFormValues, authFormSubmit, setAuthFormValue, toggleAuthForm }) => (
+  ({
+    formName,
+    authFormError,
+    authFormValue,
+    authFormSubmit,
+    onChangeEvent,
+    onBlurEvent,
+    submitError,
+    toggleAuthForm,
+  }) => (
     <AuthBlock>
       <AuthRowBlock>
         <AuthTitle>{formName}</AuthTitle>
@@ -23,17 +35,23 @@ const Auth: React.FunctionComponent<IProps> = React.memo(
       <FormWrap>
         {formName === 'signUp' && (
           <SignUpForm
-            authFormValues={authFormValues}
+            authFormValue={authFormValue}
+            authFormError={authFormError}
             authFormSubmit={authFormSubmit}
-            setAuthFormValue={setAuthFormValue}
+            onBlurEvent={onBlurEvent}
+            onChangeEvent={onChangeEvent}
+            submitError={submitError}
             toggleAuthForm={toggleAuthForm}
           />
         )}
         {formName === 'logIn' && (
           <LogInForm
-            authFormValues={authFormValues}
+            authFormValue={authFormValue}
+            authFormError={authFormError}
             authFormSubmit={authFormSubmit}
-            setAuthFormValue={setAuthFormValue}
+            onBlurEvent={onBlurEvent}
+            onChangeEvent={onChangeEvent}
+            submitError={submitError}
             toggleAuthForm={toggleAuthForm}
           />
         )}

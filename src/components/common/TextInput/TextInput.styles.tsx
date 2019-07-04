@@ -1,13 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const TextInputBlock = styled.div`
-  display: flex;
-  flex: 1 1 auto;
-  margin: 0.9rem 0 1.3rem;
-  text-align: left;
-`;
-
-export const InputSlot = styled.div<{ color: string; focus: boolean; defaultBorderColor: string }>`
+export const InputSlot = styled.div<{ color: string; focus: boolean }>`
   display: flex;
   flex: 1;
   align-items: center;
@@ -19,7 +12,6 @@ export const InputSlot = styled.div<{ color: string; focus: boolean; defaultBord
     left: 0;
     bottom: -1px;
     width: 100%;
-    border-bottom: 1px solid ${props => props.defaultBorderColor};
   }
   &:after {
     position: absolute;
@@ -27,7 +19,6 @@ export const InputSlot = styled.div<{ color: string; focus: boolean; defaultBord
     left: 0;
     bottom: -1px;
     width: 100%;
-    border: 1px solid currentColor;
     transition: 0.4s cubic-bezier(0.25, 0.8, 0.5, 1);
     transform: scaleX(0);
   }
@@ -42,26 +33,6 @@ export const InputSlot = styled.div<{ color: string; focus: boolean; defaultBord
         color: currentColor;
       }
     `}
-`;
-
-export const Input = styled.input`
-  display: inline-flex;
-  color: inherit;
-  font-size: inherit;
-  flex: 1 1 auto;
-  margin: 0;
-  padding: 0.62rem 0 0.7rem;
-  line-height: 1;
-  background-color: inherit;
-  -webkit-tap-highlight-color: inherit;
-  border-style: none;
-  outline: none;
-  &::placeholder {
-    color: inherit;
-    font-size: inherit;
-    line-height: 1rem;
-    opacity: 0.4;
-  }
 `;
 
 export const Label = styled.label<{ existContent: boolean }>`
@@ -81,4 +52,54 @@ export const Label = styled.label<{ existContent: boolean }>`
     css`
       transform: translateY(-1.55rem) scale(0.9);
     `}
+`;
+
+export const Input = styled.input`
+  display: flex;
+  color: inherit;
+  font-size: inherit;
+  flex: 1;
+  margin: 0;
+  padding: 0.7rem 0;
+  line-height: 1;
+  background-color: inherit;
+  -webkit-tap-highlight-color: inherit;
+  border-style: none;
+  outline: none;
+  &::placeholder {
+    color: inherit;
+    font-size: inherit;
+    line-height: 1rem;
+    opacity: 0.4;
+  }
+`;
+
+export const FormExplainBlock = styled.div`
+  position: absolute;
+  bottom: -18px;
+  left: 0;
+  right: 0;
+  font-size: 12px;
+  transition: color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+`;
+
+export const TextInputBlock = styled.div<{ defaultBorderColor: string; errorBorderColor: string; error: boolean }>`
+  display: flex;
+  flex-flow: column wrap;
+  flex: 1 1 auto;
+  margin: 15px 0 22px;
+  text-align: left;
+
+  ${InputSlot} {
+    &:before {
+      border-bottom: 1px solid ${props => (props.error ? props.errorBorderColor : props.defaultBorderColor)};
+    }
+    &:after {
+      border: 1px solid ${props => (props.error ? props.errorBorderColor : props.defaultBorderColor)};
+    }
+  }
+  ${FormExplainBlock} {
+    display: ${props => (props.error ? 'block' : 'none')};
+    color: ${props => (props.error ? props.errorBorderColor : props.defaultBorderColor)};
+  }
 `;
