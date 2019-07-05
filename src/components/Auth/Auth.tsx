@@ -10,6 +10,7 @@ interface IProps {
   authFormValue: IAuthForm;
   authFormError: IFormError;
   submitError: string | null;
+  isSubmitLoading: boolean;
   formName: FormNameTypes;
   authFormSubmit: (e: React.MouseEvent<HTMLButtonElement>) => void;
   onChangeEvent: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -26,6 +27,7 @@ const Auth: React.FunctionComponent<IProps> = React.memo(
     onChangeEvent,
     onBlurEvent,
     submitError,
+    isSubmitLoading,
     toggleAuthForm,
   }) => (
     <AuthBlock>
@@ -41,6 +43,7 @@ const Auth: React.FunctionComponent<IProps> = React.memo(
             onBlurEvent={onBlurEvent}
             onChangeEvent={onChangeEvent}
             submitError={submitError}
+            isSubmitLoading={isSubmitLoading}
             toggleAuthForm={toggleAuthForm}
           />
         )}
@@ -52,6 +55,7 @@ const Auth: React.FunctionComponent<IProps> = React.memo(
             onBlurEvent={onBlurEvent}
             onChangeEvent={onChangeEvent}
             submitError={submitError}
+            isSubmitLoading={isSubmitLoading}
             toggleAuthForm={toggleAuthForm}
           />
         )}

@@ -1,11 +1,16 @@
 export const errorHandler = (err: any): string => {
+  if (process.env.NODE_ENV !== 'production') console.error(err);
   let message = '';
+
   switch (typeof err) {
     case 'string':
       message = err;
       break;
     case 'object': {
-      if (process.env.NODE_ENV !== 'production') console.error(err.response);
+      if (!err.response){
+        ({message} = err);
+        break;
+      }
       const {
         response: { data, statusText },
       } = err;

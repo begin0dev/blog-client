@@ -31,10 +31,13 @@ export const AuthColBlock = styled.div`
 
 export const AuthTitle = styled.span`
   font-size: 2rem;
-  font-weight: 600;
+  font-weight: 400;
   margin-bottom: 3rem;
   letter-spacing: 3px;
   text-transform: uppercase;
+  &:first-letter {
+    color: ${palette.red7}
+  }
 `;
 
 export const FormWrap = styled.form`
@@ -63,8 +66,8 @@ const pulseKeyframes = keyframes`
 `;
 
 export const SocialButton = styled.button`
-  width: 32px;
-  height: 32px;
+  width: 30px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;

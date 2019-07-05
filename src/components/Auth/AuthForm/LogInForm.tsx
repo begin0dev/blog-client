@@ -12,6 +12,7 @@ interface IProps {
   authFormValue: IAuthForm;
   authFormError: IFormError;
   submitError: string | null;
+  isSubmitLoading: boolean;
   authFormSubmit: (e: React.MouseEvent<HTMLButtonElement>) => void;
   onBlurEvent: (e: React.FocusEvent<HTMLInputElement>) => void;
   onChangeEvent: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -26,6 +27,7 @@ const LoginForm: React.FunctionComponent<IProps> = React.memo(
     onChangeEvent,
     onBlurEvent,
     submitError,
+    isSubmitLoading,
     toggleAuthForm,
   }) => (
     <>
@@ -60,7 +62,7 @@ const LoginForm: React.FunctionComponent<IProps> = React.memo(
       <SocialTitleBlock>Sign in with</SocialTitleBlock>
       <SocialButtons />
       <ButtonBlock>
-        <AuthButton type="submit" onClick={authFormSubmit} disabled>
+        <AuthButton type="submit" onClick={authFormSubmit} disabled={isSubmitLoading}>
           CONTINUE
           <FaArrowRight />
         </AuthButton>

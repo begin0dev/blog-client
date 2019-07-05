@@ -132,6 +132,7 @@ const AuthContainer: React.FunctionComponent = () => {
         onBlurEvent={onBlurEvent}
         onChangeEvent={onChangeEvent}
         submitError={submitError}
+        isSubmitLoading={isSubmitLoading}
         toggleAuthForm={toggleAuthForm}
       />
     </Modal>
