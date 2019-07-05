@@ -13,12 +13,8 @@ export enum CHECK_USER {
 export const UserActions = {
   removeUser: () => actionCreator(REMOVE_USER),
 };
-export const checkUserActions = {
-  request: () => actionCreator(CHECK_USER.REQUEST),
-  success: (payload: IUser) => actionCreator(CHECK_USER.SUCCESS, payload),
-  failure: () => actionCreator(CHECK_USER.FAILURE),
-};
-const checkUserTest = asyncActionCreator<undefined, IUser, undefined>(CHECK_USER);
+export const checkUserActions = asyncActionCreator<typeof CHECK_USER, IUser>(CHECK_USER, ['success']);
+
 export type ActionTypes = ActionsUnion<typeof UserActions> | ActionsUnion<typeof checkUserActions>;
 
 // reducer

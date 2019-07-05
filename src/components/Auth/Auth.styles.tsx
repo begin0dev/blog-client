@@ -31,7 +31,7 @@ export const AuthColBlock = styled.div`
 
 export const AuthTitle = styled.span`
   font-size: 2rem;
-  font-weight: 500;
+  font-weight: 600;
   margin-bottom: 3rem;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -45,7 +45,7 @@ export const FormWrap = styled.form`
 export const SocialTitleBlock = styled(AuthColBlock)`
   ${flexCss};
   flex-flow: row wrap;
-  font-weight: 500;
+  font-weight: 600;
   color: ${palette.gray5};
   padding: 15px 0;
 `;
@@ -116,7 +116,7 @@ export const ChangeFormBlock = styled(AuthColBlock)`
   color: ${palette.gray4};
   span {
     color: ${palette.red7};
-    font-weight: 500;
+    font-weight: 600;
     margin-left: 10px;
     cursor: pointer;
     user-select: none;

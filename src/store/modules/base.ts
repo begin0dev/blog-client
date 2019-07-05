@@ -12,6 +12,7 @@ export const BaseActions = {
   setViewType: (payload: { typeName: ViewTypeName; bool: boolean }) => actionCreator(SET_VIEW_TYPE, payload),
   toggleSidebar: (bool: boolean) => actionCreator(TOGGLE_SIDEBAR, bool),
 };
+
 export type ActionTypes = ActionsUnion<typeof BaseActions>;
 
 // reducer

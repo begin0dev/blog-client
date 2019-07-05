@@ -34,7 +34,7 @@ const leftAndRightCss = css`
   display: flex;
   align-items: center;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
 `;
 
 export const Left = styled.div`
@@ -60,7 +60,7 @@ export const Button = styled.button`
   background-color: transparent;
   padding: 10px 20px;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   &:hover {
     color: #ffffff;

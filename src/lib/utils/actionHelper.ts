@@ -8,6 +8,11 @@ type Action<T extends string = string, P = void> = P extends void
   ? Readonly<{ type: T }>
   : Readonly<{ type: T; payload: P }>;
 
+type AsyncTypes = {
+  REQUEST: string;
+  SUCCESS: string;
+  FAILURE: string;
+};
 export type ActionsUnion<A extends StringMap<AnyFunction>> = ReturnType<A[keyof A]>;
 
 // action helper
@@ -17,16 +22,89 @@ export function actionCreator<T extends string, P>(type: T, payload: P): Action<
 export function actionCreator<T extends string, P>(type: T, payload?: P): any {
   return payload === undefined ? { type } : { type, payload };
 }
-/* eslint-enable import/export */
 
-type AsyncTypes = {
-  REQUEST: string;
-  SUCCESS: string;
-  FAILURE: string;
+export function asyncActionCreator<T extends AsyncTypes>(
+  types: T,
+  isExistPayload: [],
+): {
+  request: () => Action<T['REQUEST']>;
+  success: () => Action<T['SUCCESS']>;
+  failure: () => Action<T['FAILURE']>;
+};
+export function asyncActionCreator<T extends AsyncTypes, P>(
+  types: T,
+  isExistPayload: ['request'],
+): {
+  request: (payload: P) => Action<T['REQUEST'], P>;
+  success: () => Action<T['SUCCESS']>;
+  failure: () => Action<T['FAILURE']>;
+};
+export function asyncActionCreator<T extends AsyncTypes, P>(
+  types: T,
+  isExistPayload: ['success'],
+): {
+  request: () => Action<T['REQUEST']>;
+  success: (payload: P) => Action<T['SUCCESS'], P>;
+  failure: () => Action<T['FAILURE']>;
+};
+export function asyncActionCreator<T extends AsyncTypes, P>(
+  types: T,
+  isExistPayload: ['failure'],
+): {
+  request: () => Action<T['REQUEST']>;
+  success: () => Action<T['SUCCESS']>;
+  failure: (payload: P) => Action<T['FAILURE'], P>;
+};
+export function asyncActionCreator<T extends AsyncTypes, P, D>(
+  types: T,
+  isExistPayload: ['request' | 'success'],
+): {
+  request: (payload: P) => Action<T['REQUEST'], P>;
+  success: (payload: D) => Action<T['SUCCESS'], D>;
+  failure: () => Action<T['FAILURE']>;
+};
+export function asyncActionCreator<T extends AsyncTypes, P, D>(
+  types: T,
+  isExistPayload: ['request' | 'failure'],
+): {
+  request: (payload: P) => Action<T['REQUEST'], P>;
+  success: () => Action<T['SUCCESS']>;
+  failure: (payload: D) => Action<T['FAILURE'], D>;
+};
+export function asyncActionCreator<T extends AsyncTypes, P, D>(
+  types: T,
+  isExistPayload: ['success' | 'failure'],
+): {
+  request: () => Action<T['REQUEST']>;
+  success: (payload: P) => Action<T['SUCCESS'], P>;
+  failure: (payload: D) => Action<T['FAILURE'], D>;
+};
+export function asyncActionCreator<T extends AsyncTypes, P, D, E>(
+  types: T,
+  isExistPayload: ['request' | 'success' | 'failure'],
+): {
+  request: (payload: P) => Action<T['REQUEST'], P>;
+  success: (payload: D) => Action<T['SUCCESS'], D>;
+  failure: (payload: E) => Action<T['FAILURE'], E>;
 };
 
-export const asyncActionCreator = <P = undefined, D = undefined, E = undefined>(types: AsyncTypes) => ({
-  request: (payload: P) => (payload ? actionCreator(types.REQUEST, payload) : actionCreator(types.REQUEST)),
-  success: (payload: D) => (payload ? actionCreator(types.SUCCESS, payload) : actionCreator(types.SUCCESS)),
-  failure: (payload: E) => (payload ? actionCreator(types.FAILURE, payload) : actionCreator(types.FAILURE)),
-});
+export function asyncActionCreator<T extends AsyncTypes, P, D, E>(types: T, isExistPayload: any[]): any {
+  return {
+    request() {
+      if (isExistPayload.includes('request'))
+        return (payload: P) => actionCreator(types.REQUEST as T['REQUEST'], payload);
+      return () => actionCreator(types.REQUEST as T['REQUEST']);
+    },
+    success() {
+      if (isExistPayload.includes('success'))
+        return (payload: P) => actionCreator(types.SUCCESS as T['SUCCESS'], payload);
+      return () => actionCreator(types.SUCCESS as T['SUCCESS']);
+    },
+    failure() {
+      if (isExistPayload.includes('failure'))
+        return (payload: P) => actionCreator(types.FAILURE as T['FAILURE'], payload);
+      return () => actionCreator(types.FAILURE as T['FAILURE']);
+    },
+  };
+}
+/* eslint-enable import/export */

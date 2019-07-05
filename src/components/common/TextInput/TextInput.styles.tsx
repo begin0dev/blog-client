@@ -42,7 +42,7 @@ export const Label = styled.label<{ existContent: boolean }>`
   right: auto;
   color: inherit;
   font-size: inherit;
-  font-weight: 500;
+  font-weight: 600;
   text-overflow: ellipsis;
   transform-origin: top left;
   transition: 0.35s cubic-bezier(0.25, 0.8, 0.5, 1);
