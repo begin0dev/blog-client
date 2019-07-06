@@ -2,7 +2,7 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import { checkUserAPiResponse, checkUserApi } from 'lib/services/auth';
 import { errorHandler } from 'lib/utils/errorHandler';
-import { IUser, CHECK_USER, checkUserActions } from 'store/modules/user';
+import { CHECK_USER, checkUserActions } from 'store/modules/user';
 
 function* checkUser() {
   try {
