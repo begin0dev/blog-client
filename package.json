@@ -24,6 +24,7 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "redux": "^4.0.1",
+    "redux-devtools-extension": "^2.13.8",
     "redux-saga": "^1.0.4",
     "styled-components": "^4.3.2"
   },
@@ -41,7 +42,6 @@
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^6.0.0",
     "react-hot-loader": "^4.11.1",
-    "redux-devtools-extension": "^2.13.8",
     "typescript": "^3.5.2"
   },
   "browserslist": [

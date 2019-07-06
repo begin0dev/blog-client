@@ -57,7 +57,7 @@ export function asyncActionCreator<T extends AsyncTypes, P>(
 };
 export function asyncActionCreator<T extends AsyncTypes, P, D>(
   types: T,
-  isExistPayload: ['request' | 'success'],
+  isExistPayload: ['request', 'success'],
 ): {
   request: (payload: P) => Action<T['REQUEST'], P>;
   success: (payload: D) => Action<T['SUCCESS'], D>;
@@ -65,7 +65,7 @@ export function asyncActionCreator<T extends AsyncTypes, P, D>(
 };
 export function asyncActionCreator<T extends AsyncTypes, P, D>(
   types: T,
-  isExistPayload: ['request' | 'failure'],
+  isExistPayload: ['request', 'failure'],
 ): {
   request: (payload: P) => Action<T['REQUEST'], P>;
   success: () => Action<T['SUCCESS']>;
@@ -73,7 +73,7 @@ export function asyncActionCreator<T extends AsyncTypes, P, D>(
 };
 export function asyncActionCreator<T extends AsyncTypes, P, D>(
   types: T,
-  isExistPayload: ['success' | 'failure'],
+  isExistPayload: ['success', 'failure'],
 ): {
   request: () => Action<T['REQUEST']>;
   success: (payload: P) => Action<T['SUCCESS'], P>;
@@ -81,7 +81,7 @@ export function asyncActionCreator<T extends AsyncTypes, P, D>(
 };
 export function asyncActionCreator<T extends AsyncTypes, P, D, E>(
   types: T,
-  isExistPayload: ['request' | 'success' | 'failure'],
+  isExistPayload: ['request', 'success', 'failure'],
 ): {
   request: (payload: P) => Action<T['REQUEST'], P>;
   success: (payload: D) => Action<T['SUCCESS'], D>;
@@ -90,21 +90,15 @@ export function asyncActionCreator<T extends AsyncTypes, P, D, E>(
 
 export function asyncActionCreator<T extends AsyncTypes, P, D, E>(types: T, isExistPayload: any[]): any {
   return {
-    request() {
-      if (isExistPayload.includes('request'))
-        return (payload: P) => actionCreator(types.REQUEST as T['REQUEST'], payload);
-      return () => actionCreator(types.REQUEST as T['REQUEST']);
-    },
-    success() {
-      if (isExistPayload.includes('success'))
-        return (payload: P) => actionCreator(types.SUCCESS as T['SUCCESS'], payload);
-      return () => actionCreator(types.SUCCESS as T['SUCCESS']);
-    },
-    failure() {
-      if (isExistPayload.includes('failure'))
-        return (payload: P) => actionCreator(types.FAILURE as T['FAILURE'], payload);
-      return () => actionCreator(types.FAILURE as T['FAILURE']);
-    },
+    request: isExistPayload.includes('request')
+      ? (payload: P) => actionCreator(types.REQUEST as T['REQUEST'], payload)
+      : () => actionCreator(types.REQUEST as T['REQUEST']),
+    success: isExistPayload.includes('success')
+      ? (payload: D) => actionCreator(types.SUCCESS as T['SUCCESS'], payload)
+      : () => actionCreator(types.SUCCESS as T['SUCCESS']),
+    failure: isExistPayload.includes('failure')
+      ? (payload: D) => actionCreator(types.FAILURE as T['FAILURE'], payload)
+      : () => actionCreator(types.FAILURE as T['FAILURE']),
   };
 }
 /* eslint-enable import/export */
