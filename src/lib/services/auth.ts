@@ -8,7 +8,9 @@ const CHECK_USER_URL: string = '/api/v1.0/auth/local/check';
 const LOCAL_LOGIN_URL: string = '/api/v1.0/auth/local/login';
 const LOCAL_REGISTER_URL: string = '/api/v1.0/auth/local/register';
 
-export const checkUserApi = (): Promise<AxiosResponse<baseResponse<IUser>>> => apiClient.get(CHECK_USER_URL);
+export type checkUserAPiResponse = AxiosResponse<baseResponse<{ user: IUser }>>
+export const checkUserApi = (): Promise<checkUserAPiResponse> =>
+  apiClient.get(CHECK_USER_URL);
 
 export const localLoginApi = (params: {
   email: string;

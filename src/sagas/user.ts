@@ -1,18 +1,23 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
-import { checkUserApi } from 'lib/services/auth';
+import { checkUserAPiResponse, checkUserApi } from 'lib/services/auth';
 import { errorHandler } from 'lib/utils/errorHandler';
 import { IUser, CHECK_USER, checkUserActions } from 'store/modules/user';
 
 function* checkUser() {
   try {
-    const { data: user }: { data: IUser } = yield call(checkUserApi);
+    const {
+      data: {
+        data: { user },
+      },
+    }: checkUserAPiResponse = yield call(checkUserApi);
+    yield put(checkUserActions.success(user));
   } catch (err) {
-    const message = call(errorHandler, err);
+    call(errorHandler, err);
     yield put(checkUserActions.failure());
   }
 }
 
-export default function* user() {
+export default function* userSaga() {
   yield all([takeLatest(CHECK_USER.REQUEST, checkUser)]);
 }

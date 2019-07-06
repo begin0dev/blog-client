@@ -8,6 +8,7 @@ export const baseURL: string = NODE_ENV === 'production' ? PRODUCTION_BASE_URL :
 
 const apiClient: AxiosInstance = axios.create({
   baseURL,
+  withCredentials: true,
   timeout: 3000,
 });
 

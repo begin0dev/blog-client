@@ -3,8 +3,9 @@ import _ from 'lodash';
 import Joi from '@hapi/joi';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { FormNameTypes, AuthActions } from 'store/modules/auth';
 import useForm from 'lib/hooks/useForm';
+import { FormNameTypes, AuthActions } from 'store/modules/auth';
+import { checkUserActions } from 'store/modules/user';
 import { validationHelper } from 'lib/utils/validationHelper';
 import { errorHandler } from 'lib/utils/errorHandler';
 import { authFormSchema } from 'lib/validations/authFormSchema';
@@ -102,6 +103,7 @@ const AuthContainer: React.FunctionComponent = () => {
         } else {
           await localRegisterApi(value);
         }
+        dispatch(checkUserActions.request());
       } catch (err) {
         const message = errorHandler(err);
         setSubmitError(message);
@@ -109,7 +111,7 @@ const AuthContainer: React.FunctionComponent = () => {
         setSubmitLoading(false);
       }
     },
-    [formName, authFormValue, setError],
+    [formName, authFormValue, setError, dispatch],
   );
 
   React.useEffect(() => {

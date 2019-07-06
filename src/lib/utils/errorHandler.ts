@@ -7,17 +7,13 @@ export const errorHandler = (err: any): string => {
       message = err;
       break;
     case 'object': {
-      if (!err.response){
-        ({message} = err);
-        break;
-      }
-      const {
-        response: { data, statusText },
-      } = err;
-      if (typeof data === 'object') {
-        ({ message } = data);
+      const { response } = err;
+      if (!response) {
+        ({ message } = err);
+      } else if (typeof response.data === 'object') {
+        ({ message } = response.data);
       } else {
-        message = statusText;
+        message = response.statusText;
       }
       break;
     }
