@@ -31,8 +31,8 @@ const Header: React.FunctionComponent<IProps> = React.memo(
           <Button type="button" className="sign-up" onClick={toggleAuthForm('signUp')}>
             Sign Up
           </Button>
-          {isTablet && <Hamburger visible={visible} toggleSidebar={toggleSidebar} />}
         </Right>
+        {isTablet && <Hamburger visible={visible} toggleSidebar={toggleSidebar} />}
       </Wrapper>
     </HeaderBlock>
   ),

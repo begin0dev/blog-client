@@ -1,24 +1,12 @@
 import * as React from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 
-import { FormNameTypes } from 'store/modules/auth';
 import { palette } from 'styles/palette';
 import { TextInput } from 'components';
-import { IAuthForm, IFormError } from 'containers/AuthContainer';
+import { IPropsBase } from '../Auth';
 import { AuthColBlock, AuthButton, ButtonBlock, ChangeFormBlock } from '../Auth.styles';
 
-interface IProps {
-  authFormValue: IAuthForm;
-  authFormError: IFormError;
-  submitError: string | null;
-  isSubmitLoading: boolean;
-  authFormSubmit: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  onBlurEvent: (e: React.FocusEvent<HTMLInputElement>) => void;
-  onChangeEvent: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  toggleAuthForm: (formName: FormNameTypes) => () => void;
-}
-
-const SignUpForm: React.FunctionComponent<IProps> = React.memo(
+const SignUpForm: React.FunctionComponent<IPropsBase> = React.memo(
   ({
     authFormValue,
     authFormError,

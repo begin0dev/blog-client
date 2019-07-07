@@ -31,8 +31,10 @@ const AuthContainer: React.FunctionComponent = () => {
   const dispatch = useDispatch();
   const formName = useSelector((state: IStoreState) => state.auth.formName);
   const isMobile = useSelector((state: IStoreState) => state.base.isMobile);
+  const isLogged = useSelector((state: IStoreState) => state.user.isLogged);
 
   const modalSize = React.useRef<{ width: string }>({ width: '370px' });
+
   const [isSubmitLoading, setSubmitLoading] = React.useState<boolean>(false);
   const [submitError, setSubmitError] = React.useState<string | null>(null);
   const [authFormValue, setAuthFormValue, , resetAuthForm] = useForm<IAuthForm>({
@@ -84,6 +86,7 @@ const AuthContainer: React.FunctionComponent = () => {
     async e => {
       e.preventDefault();
       if (!formName) return;
+      if (submitError) return;
       const { error, value } = validationHelper(authFormValue, authFormSchema);
       let errs = error;
       if (formName === 'logIn')
@@ -104,6 +107,7 @@ const AuthContainer: React.FunctionComponent = () => {
           await localRegisterApi(value);
         }
         dispatch(checkUserActions.request());
+        resetAuthForm();
       } catch (err) {
         const message = errorHandler(err);
         setSubmitError(message);
@@ -111,14 +115,18 @@ const AuthContainer: React.FunctionComponent = () => {
         setSubmitLoading(false);
       }
     },
-    [formName, authFormValue, setError, dispatch],
+    [formName, submitError, authFormValue, setError, resetAuthForm, dispatch],
   );
+
+  React.useEffect(() => {
+    if (!isLogged) dispatch(checkUserActions.request());
+  }, [dispatch, isLogged]);
 
   React.useEffect(() => {
     return () => resetAuthForm();
   }, [resetAuthForm]);
 
-  return (
+  return isLogged ? null : (
     <Modal
       active={!!formName}
       fullScreen={isMobile}

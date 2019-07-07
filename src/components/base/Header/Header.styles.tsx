@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-import { buttonColorMap, palette } from 'styles/palette';
+import { buttonColorMap } from 'styles/baseCss';
+import { palette } from 'styles/palette';
 import { zIndexes, sizes, themes, includeMedia } from 'styles/utils';
 
 export const HeaderBlock = styled.header`
@@ -45,13 +46,14 @@ export const Left = styled.div`
 export const Right = styled.div`
   ${leftAndRightCss};
   justify-content: flex-end;
+  flex: 1;
 `;
 
 export const LogoWrapper = styled(NavLink)`
   line-height: 0;
   svg {
+    font-size: 36px;
     margin-right: 15px;
-    height: 36px;
   }
 `;
 

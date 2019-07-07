@@ -1,21 +1,25 @@
 import * as React from 'react';
+import { MdClose } from 'react-icons/md';
 
 import { FormNameTypes } from 'store/modules/auth';
 import { IAuthForm, IFormError } from 'containers/AuthContainer';
 import SignUpForm from './AuthForm/SignUpForm';
 import LogInForm from './AuthForm/LogInForm';
-import { AuthBlock, AuthRowBlock, AuthTitle, FormWrap } from './Auth.styles';
+import { AuthBlock, AuthRowBlock, AuthTitle, FormWrap, CloseButton } from './Auth.styles';
 
-interface IProps {
+export interface IPropsBase {
   authFormValue: IAuthForm;
   authFormError: IFormError;
   submitError: string | null;
   isSubmitLoading: boolean;
-  formName: FormNameTypes;
   authFormSubmit: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  onChangeEvent: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlurEvent: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onChangeEvent: (e: React.ChangeEvent<HTMLInputElement>) => void;
   toggleAuthForm: (formName: FormNameTypes) => () => void;
+}
+
+interface IProps extends IPropsBase {
+  formName: FormNameTypes;
 }
 
 const Auth: React.FunctionComponent<IProps> = React.memo(
@@ -33,6 +37,9 @@ const Auth: React.FunctionComponent<IProps> = React.memo(
     <AuthBlock>
       <AuthRowBlock>
         <AuthTitle>{formName}</AuthTitle>
+        <CloseButton type="button">
+          <MdClose />
+        </CloseButton>
       </AuthRowBlock>
       <FormWrap>
         {formName === 'signUp' && (

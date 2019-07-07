@@ -1,6 +1,7 @@
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { includeMedia } from 'styles/utils';
-import { buttonColorMap, palette } from 'styles/palette';
+import { buttonColorMap, pulseKeyframes } from 'styles/baseCss';
+import { palette } from 'styles/palette';
 
 const flexCss = css`
   display: flex;
@@ -22,6 +23,9 @@ export const AuthBlock = styled.div`
 
 export const AuthRowBlock = styled.div`
   ${flexCss};
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
 `;
 
 export const AuthColBlock = styled.div`
@@ -32,11 +36,10 @@ export const AuthColBlock = styled.div`
 export const AuthTitle = styled.span`
   font-size: 2rem;
   font-weight: 400;
-  margin-bottom: 3rem;
   letter-spacing: 3px;
   text-transform: uppercase;
   &:first-letter {
-    color: ${palette.red7}
+    color: ${palette.red7};
   }
 `;
 
@@ -60,20 +63,12 @@ export const SocialIconBlock = styled(AuthColBlock)`
   padding-bottom: 15px;
 `;
 
-const pulseKeyframes = keyframes`
-  0% { box-shadow: 0 0 0 0 ${palette.gray8}; }
-  100% { box-shadow: 0 0 8px 3px ${palette.gray8}; }
-`;
-
-export const SocialButton = styled.button`
-  width: 30px;
-  height: 30px;
+const baseBtnCss = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 100%;
   background-color: transparent;
-  color: ${palette.gray2};
+  border-radius: 100%;
   &:active {
     animation: ${pulseKeyframes} 0.3s;
   }
@@ -82,12 +77,32 @@ export const SocialButton = styled.button`
   &:active {
     color: ${palette.white};
   }
+`;
+
+export const CloseButton = styled.button`
+  ${baseBtnCss};
+  width: 22px;
+  height: 22px;
+  color: ${palette.gray2};
+  margin-right: -9px;
+  &:hover {
+    opacity: 0.8;
+  }
+  svg {
+    font-size: 18px;
+  }
+`;
+
+export const SocialButton = styled.button`
+  ${baseBtnCss};
+  width: 30px;
+  height: 30px;
+  color: ${palette.gray2};
   & + & {
     margin-left: 18px;
   }
   svg {
-    width: 26px;
-    height: 26px;
+    font-size: 24px;
   }
 `;
 

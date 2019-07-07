@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { MainBlock } from './PageTemplate.styles';
 import { BaseTemplateContainer, AuthContainer } from 'containers';
+import { MainBlock } from './PageTemplate.styles';
 
 interface IProps {
   children: React.ReactNode;

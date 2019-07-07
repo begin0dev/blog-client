@@ -9,7 +9,7 @@ interface IProps {
 
 const Spinner: React.FunctionComponent<IProps> = React.memo(({ size, color }) => (
   <SpinnerBlock size={size}>
-    {new Array(12).fill(0).map((arr, i) => (
+    {Array.from({ length: 12 }, (arr, i) => (
       <Circle color={color} index={i} key={`circle${i}`} />
     ))}
   </SpinnerBlock>

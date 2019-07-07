@@ -1,6 +1,6 @@
 import { all, call, put, takeLatest } from 'redux-saga/effects';
 
-import { checkUserAPiResponse, checkUserApi } from 'lib/services/auth';
+import { checkUserAPiResponse, checkUserApi } from 'lib/services/user';
 import { errorHandler } from 'lib/utils/errorHandler';
 import { CHECK_USER, checkUserActions } from 'store/modules/user';
 
