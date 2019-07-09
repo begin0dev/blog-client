@@ -10,6 +10,7 @@ const BaseTemplateContainer: React.FunctionComponent = React.memo(() => {
   const dispatch = useDispatch();
   const sidebar = useSelector((state: IStoreState) => state.base.sidebar);
   const isTablet = useSelector((state: IStoreState) => state.base.isTablet);
+  const userState = useSelector((state: IStoreState) => state.user);
 
   const toggleSidebar = React.useCallback(
     (bool: boolean) => () => dispatch(BaseActions.toggleSidebar(bool)),
@@ -25,6 +26,7 @@ const BaseTemplateContainer: React.FunctionComponent = React.memo(() => {
     <Header
       visible={sidebar}
       isTablet={isTablet}
+      userState={userState}
       toggleAuthForm={toggleAuthForm}
       toggleSidebar={toggleSidebar}
     />

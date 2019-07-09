@@ -37,7 +37,7 @@ const Auth: React.FunctionComponent<IProps> = React.memo(
     <AuthBlock>
       <AuthRowBlock>
         <AuthTitle>{formName}</AuthTitle>
-        <CloseButton type="button">
+        <CloseButton type="button" onClick={toggleAuthForm(null)}>
           <MdClose />
         </CloseButton>
       </AuthRowBlock>

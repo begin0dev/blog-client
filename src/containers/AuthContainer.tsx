@@ -86,7 +86,7 @@ const AuthContainer: React.FunctionComponent = () => {
     async e => {
       e.preventDefault();
       if (!formName) return;
-      if (submitError) return;
+      if (isSubmitLoading) return;
       const { error, value } = validationHelper(authFormValue, authFormSchema);
       let errs = error;
       if (formName === 'logIn')
@@ -115,7 +115,7 @@ const AuthContainer: React.FunctionComponent = () => {
         setSubmitLoading(false);
       }
     },
-    [formName, submitError, authFormValue, setError, resetAuthForm, dispatch],
+    [formName, isSubmitLoading, authFormValue, setError, resetAuthForm, dispatch],
   );
 
   React.useEffect(() => {

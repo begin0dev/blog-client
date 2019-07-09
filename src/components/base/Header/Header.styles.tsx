@@ -52,7 +52,7 @@ export const Right = styled.div`
 export const LogoWrapper = styled(NavLink)`
   line-height: 0;
   svg {
-    font-size: 36px;
+    font-size: 38px;
     margin-right: 15px;
   }
 `;
@@ -81,3 +81,28 @@ export const Button = styled.button`
     }
   }
 `;
+
+const circleBtnCss = css`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  color: ${palette.gray2};
+`;
+
+export const NotiButton = styled.button`
+ ${circleBtnCss};
+  svg {
+    font-size: 22px;
+  }
+`;
+
+export const LogOutButton = styled.button`
+ ${circleBtnCss};
+  svg {
+    font-size: 20px;
+  }
+`;
+

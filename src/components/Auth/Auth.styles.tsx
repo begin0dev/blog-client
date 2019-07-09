@@ -63,7 +63,28 @@ export const SocialIconBlock = styled(AuthColBlock)`
   padding-bottom: 15px;
 `;
 
-const baseBtnCss = css`
+export const CloseButton = styled.button`
+  width: 22px;
+  height: 22px;
+  color: ${palette.gray2};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 100%;
+  margin-right: -5px;
+  &:hover {
+    opacity: 0.8;
+  }
+  svg {
+    font-size: 18px;
+  }
+`;
+
+export const SocialButton = styled.button`
+  width: 30px;
+  height: 30px;
+  color: ${palette.gray2};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,27 +98,6 @@ const baseBtnCss = css`
   &:active {
     color: ${palette.white};
   }
-`;
-
-export const CloseButton = styled.button`
-  ${baseBtnCss};
-  width: 22px;
-  height: 22px;
-  color: ${palette.gray2};
-  margin-right: -9px;
-  &:hover {
-    opacity: 0.8;
-  }
-  svg {
-    font-size: 18px;
-  }
-`;
-
-export const SocialButton = styled.button`
-  ${baseBtnCss};
-  width: 30px;
-  height: 30px;
-  color: ${palette.gray2};
   & + & {
     margin-left: 18px;
   }
