@@ -1,6 +1,8 @@
 import { NavLink } from 'react-router-dom';
 import styled, { css } from 'styled-components';
+
 import { zIndexes, sizes, themes, includeMedia } from 'styles/utils';
+import { palette } from 'styles/palette';
 
 export const NavBlock = styled.nav<{ active: boolean }>`
   z-index: ${zIndexes.sidebar};
@@ -37,7 +39,7 @@ export const LinkWrapper = styled.div`
     left: 0;
     width: 1px;
     height: 60%;
-    background: ${themes.secondary};
+    background: ${palette.gray8};
   }
   &:hover {
     border-radius: 8px 8px 0 0;
@@ -105,10 +107,10 @@ const defaultTypeCss = css`
 export const LinkType = styled(NavLink)`
   ${defaultTypeCss};
   &:hover {
-    color: #ffffff;
+    color: ${palette.white};
   }
   &.current {
-    color: #ffffff;
+    color: ${palette.white};
     &:before {
       content: '';
       position: absolute;
@@ -116,7 +118,8 @@ export const LinkType = styled(NavLink)`
       top: 25%;
       height: 50%;
       width: 3px;
-      background-color: #e03131;
+      background-color: ${palette.red7};
+      border-radius: 10px;
     }
   }
 
@@ -137,7 +140,7 @@ export const ChildLinkType = styled(LinkType)`
   ${defaultTypeCss};
   font-size: 12px;
   padding: 20px 25px;
-  color: #969696;
+  color: ${palette.gray6};
   ${includeMedia('<=md')} {
     padding: 18px 40px;
   }

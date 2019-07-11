@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-import { buttonColorMap } from 'styles/baseCss';
+import { buttonColorMap, pulseKeyframes } from 'styles/baseCss';
 import { palette } from 'styles/palette';
 import { zIndexes, sizes, themes, includeMedia } from 'styles/utils';
 
@@ -90,19 +90,33 @@ const circleBtnCss = css`
   height: 30px;
   background-color: transparent;
   color: ${palette.gray2};
+  border-radius: 100%;
+  margin-left: 10px;
+  &:active {
+    opacity: 0.8;
+    animation: ${pulseKeyframes} 0.3s;
+  }
+  ${includeMedia('>md')} {
+    margin-left: 25px;
+  }
 `;
 
 export const NotiButton = styled.button`
- ${circleBtnCss};
+  ${circleBtnCss};
+  &:after {
+    content: '';
+    width: 1px;
+    height: 1px;
+    position: absolute;
+  }
   svg {
     font-size: 22px;
   }
 `;
 
 export const LogOutButton = styled.button`
- ${circleBtnCss};
+  ${circleBtnCss};
   svg {
     font-size: 20px;
   }
 `;
-
