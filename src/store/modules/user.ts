@@ -1,47 +1,64 @@
 import produce from 'immer';
 
-import { ActionsUnion } from 'lib/utils/types';
-import { createAction } from 'lib/utils/actionHelper';
+import { ActionsUnion, actionCreator, asyncActionCreator } from 'lib/utils/actionHelper';
 
 // actions
-const SET_USER = 'SET_USER';
-const REMOVE_USER = 'REMOVE_USER';
+export const REMOVE_USER = 'REMOVE_USER';
+export enum CHECK_USER {
+  REQUEST = 'CHECK_USER_REQUEST',
+  SUCCESS = 'CHECK_USER_SUCCESS',
+  FAILURE = 'CHECK_USER_FAILURE',
+}
 
-export interface IUserState {
+export const UserActions = {
+  removeUser: () => actionCreator(REMOVE_USER),
+};
+export const checkUserActions = asyncActionCreator<typeof CHECK_USER, IUser>(CHECK_USER, ['success']);
+
+export type ActionTypes = ActionsUnion<typeof UserActions> | ActionsUnion<typeof checkUserActions>;
+
+// reducer
+export interface IUser {
   _id: string;
   email: string;
   commonProfile: {
     displayName: string;
   };
-  login: boolean;
+}
+export interface IUserState extends IUser {
+  isLogged: boolean;
+  isLoading: boolean;
 }
 
-export const Actions = {
-  setUser: (payload: IUserState) => createAction(SET_USER, payload),
-  removeUser: () => createAction(REMOVE_USER),
-};
-export type ActionTypes = ActionsUnion<typeof Actions>;
-
-// reducer
 const defaultState: IUserState = {
   _id: '',
   email: '',
   commonProfile: {
     displayName: '',
   },
-  login: false,
+  isLogged: false,
+  isLoading: false,
 };
 
 export default (state = defaultState, action: ActionTypes) => {
   switch (action.type) {
-    case SET_USER:
+    case CHECK_USER.REQUEST:
       return produce(state, draft => {
-        draft = action.payload;
+        draft.isLogged = false;
+        draft.isLoading = true;
+      });
+    case CHECK_USER.SUCCESS:
+      return produce(state, () => ({
+        ...action.payload,
+        isLogged: true,
+        isLoading: false,
+      }));
+    case CHECK_USER.FAILURE:
+      return produce(state, draft => {
+        draft.isLoading = false;
       });
     case REMOVE_USER:
-      return produce(state, draft => {
-        draft = defaultState;
-      });
+      return produce(state, () => defaultState);
     default:
       return state;
   }

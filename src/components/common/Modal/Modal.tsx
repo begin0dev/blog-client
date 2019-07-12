@@ -1,14 +1,10 @@
 import * as React from 'react';
-import * as classNames from 'classnames/bind';
-
-import styles from './Modal.module.scss';
-
-const cx = classNames.bind(styles);
+import { OverlayBlock, ModalBlock } from './Modal.styles';
 
 interface IProps {
+  active: boolean;
   size?: object;
   style?: object;
-  active?: boolean;
   fullScreen?: boolean;
   hideOverlay?: boolean;
   backgroundColor?: string;
@@ -16,35 +12,32 @@ interface IProps {
   children: React.ReactNode;
 }
 
-const Modal: React.FunctionComponent<IProps> = ({
-  active,
-  size,
-  style,
-  hideOverlay,
-  fullScreen,
-  backgroundColor,
-  hideModal,
-  children,
-}) => {
-  const modalEl = React.useRef<HTMLDivElement>(null);
+const Modal: React.FunctionComponent<IProps> = React.memo(
+  ({ active, size, style, hideOverlay, fullScreen, backgroundColor, hideModal, children }) => {
+    const modalEl = React.useRef<HTMLDivElement>(null);
 
-  const onClickEvent = React.useCallback((e: React.MouseEvent<HTMLElement>): void => {
-    if (fullScreen) return;
-    if (modalEl && modalEl.current && modalEl.current.contains(e.target as HTMLElement)) return;
-    if (hideModal) hideModal(false);
-  }, [fullScreen, hideModal, modalEl]);
+    const onClickOutSideEvent = React.useCallback(
+      (e: React.MouseEvent<HTMLElement>): void => {
+        if (fullScreen) return;
+        if (modalEl.current && modalEl.current.contains(e.target as HTMLElement)) return;
+        if (hideModal) hideModal(false);
+      },
+      [fullScreen, hideModal],
+    );
 
-  return (
-    <div className={cx('modalOverlay', { hideOverlay }, { active })} onClick={onClickEvent}>
-      <div
-        className={cx('modal', { fullScreen })}
-        style={{ backgroundColor, ...style, ...(!fullScreen && size) }}
-        ref={modalEl}
-      >
-        {children}
-      </div>
-    </div>
-  );
-};
+    return (
+      <OverlayBlock active={active} hideOverlay={hideOverlay} onClick={onClickOutSideEvent}>
+        <ModalBlock
+          fullScreen={fullScreen}
+          backgroundColor={backgroundColor}
+          style={{ ...style, ...(!fullScreen && size) }}
+          ref={modalEl}
+        >
+          {children}
+        </ModalBlock>
+      </OverlayBlock>
+    );
+  },
+);
 
 export default Modal;

@@ -1,61 +1,36 @@
 import * as React from 'react';
-import { Dispatch } from 'redux';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { FormNameTypes, AuthActions } from 'store/modules/auth';
+import { BaseActions } from 'store/modules/base';
 import { IStoreState } from 'store/modules';
 import { Header } from 'components';
-import { Actions as baseActions, IBaseState } from 'store/modules/base';
-import { Actions as authActions } from '../store/modules/auth';
 
-interface IProps {
-  baseState: IBaseState;
-  dispatchChangeAuthForm: (formName: 'signUp' | 'logIn') => void;
-  dispatchToggleAuthForm: (bool: boolean) => void;
-  dispatchToggleSidebar: (bool: boolean) => void;
-}
+const BaseTemplateContainer: React.FunctionComponent = React.memo(() => {
+  const dispatch = useDispatch();
+  const sidebar = useSelector((state: IStoreState) => state.base.sidebar);
+  const isTablet = useSelector((state: IStoreState) => state.base.isTablet);
+  const userState = useSelector((state: IStoreState) => state.user);
 
-const BaseTemplateContainer: React.FunctionComponent<IProps> = React.memo(({
-  baseState: { sidebar, isTablet },
-  dispatchChangeAuthForm,
-  dispatchToggleAuthForm,
-  dispatchToggleSidebar,
-}) => {
   const toggleSidebar = React.useCallback(
-    (bool: boolean): void => {
-      dispatchToggleSidebar(bool);
-    },
-    [dispatchToggleSidebar],
+    (bool: boolean) => () => dispatch(BaseActions.toggleSidebar(bool)),
+    [dispatch],
   );
 
-  const displayAuthForm = React.useCallback(
-    (formName: 'signUp' | 'logIn'): void => {
-      dispatchChangeAuthForm(formName);
-      dispatchToggleAuthForm(true);
-    },
-    [dispatchChangeAuthForm, dispatchToggleAuthForm],
+  const toggleAuthForm = React.useCallback(
+    (formName: FormNameTypes) => () => dispatch(AuthActions.toggleAuthForm(formName)),
+    [dispatch],
   );
 
   return (
-    <Header visible={sidebar} isTablet={isTablet} displayAuthForm={displayAuthForm} toggleSidebar={toggleSidebar} />
+    <Header
+      visible={sidebar}
+      isTablet={isTablet}
+      userState={userState}
+      toggleAuthForm={toggleAuthForm}
+      toggleSidebar={toggleSidebar}
+    />
   );
 });
 
-const mapStateToProps = (state: IStoreState) => ({
-  baseState: state.base,
-});
-const mapDispatchToProps = (dispatch: Dispatch) => ({
-  dispatchChangeAuthForm(formName: 'signUp' | 'logIn') {
-    return dispatch(authActions.changeAuthForm(formName));
-  },
-  dispatchToggleAuthForm(bool: boolean) {
-    return dispatch(authActions.toggleAuthForm(bool));
-  },
-  dispatchToggleSidebar(bool: boolean) {
-    return dispatch(baseActions.toggleSidebar(bool));
-  },
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(BaseTemplateContainer);
+export default BaseTemplateContainer;
