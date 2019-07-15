@@ -6,15 +6,16 @@ import { Right, NotiButton, LogOutButton } from '../Header.styles';
 
 interface IProps {
   userState: IUserState;
+  logOut: () => void;
 }
 
-const AfterLogin: React.FunctionComponent<IProps> = React.memo(({ userState }) => (
+const AfterLogin: React.FunctionComponent<IProps> = React.memo(({ userState, logOut }) => (
   <Right>
     <div>{userState.commonProfile.displayName}</div>
     <NotiButton>
       <IoMdNotificationsOutline />
     </NotiButton>
-    <LogOutButton>
+    <LogOutButton onClick={logOut}>
       <IoMdLogOut />
     </LogOutButton>
   </Right>

@@ -1,9 +1,12 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { FormNameTypes, AuthActions } from 'store/modules/auth';
+import { logoutUserApi } from 'lib/services/user';
+import { errorHandler } from 'lib/utils/errorHandler';
 import { BaseActions } from 'store/modules/base';
+import { UserActions } from 'store/modules/user';
 import { IStoreState } from 'store/modules';
+import { FormNameTypes, AuthActions } from 'store/modules/auth';
 import { Header } from 'components';
 
 const BaseTemplateContainer: React.FunctionComponent = React.memo(() => {
@@ -22,11 +25,22 @@ const BaseTemplateContainer: React.FunctionComponent = React.memo(() => {
     [dispatch],
   );
 
+  const logOut = React.useCallback(async () => {
+    try {
+      await logoutUserApi();
+      dispatch(UserActions.removeUser());
+    } catch(err) {
+      const message = errorHandler(err);
+      alert(message);
+    }
+  }, [dispatch]);
+
   return (
     <Header
       visible={sidebar}
       isTablet={isTablet}
       userState={userState}
+      logOut={logOut}
       toggleAuthForm={toggleAuthForm}
       toggleSidebar={toggleSidebar}
     />

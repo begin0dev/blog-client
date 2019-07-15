@@ -57,10 +57,10 @@ const AuthContainer: React.FunctionComponent = () => {
 
   const toggleAuthForm = React.useCallback(
     (form: FormNameTypes) => () => {
-      resetError();
+      setSubmitError(null);
       dispatch(AuthActions.toggleAuthForm(form));
     },
-    [dispatch, resetError],
+    [dispatch],
   );
 
   const onChangeEvent = React.useCallback(
@@ -108,6 +108,7 @@ const AuthContainer: React.FunctionComponent = () => {
         }
         dispatch(checkUserActions.request());
         resetAuthForm();
+        hideModal();
       } catch (err) {
         const message = errorHandler(err);
         setSubmitError(message);
@@ -115,16 +116,12 @@ const AuthContainer: React.FunctionComponent = () => {
         setSubmitLoading(false);
       }
     },
-    [formName, isSubmitLoading, authFormValue, setError, resetAuthForm, dispatch],
+    [dispatch, formName, isSubmitLoading, authFormValue, setError, resetAuthForm, hideModal],
   );
 
   React.useEffect(() => {
-    if (!isLogged) dispatch(checkUserActions.request());
-  }, [dispatch, isLogged]);
-
-  React.useEffect(() => {
-    return () => resetAuthForm();
-  }, [resetAuthForm]);
+    dispatch(checkUserActions.request());
+  }, [dispatch]);
 
   return isLogged ? null : (
     <Modal

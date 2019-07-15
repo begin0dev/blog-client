@@ -83,6 +83,7 @@ export const Button = styled.button`
 `;
 
 const circleBtnCss = css`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -105,9 +106,13 @@ export const NotiButton = styled.button`
   ${circleBtnCss};
   &:after {
     content: '';
-    width: 1px;
-    height: 1px;
+    width: 3px;
+    height: 3px;
     position: absolute;
+    right: 4px;
+    top: 4px;
+    background-color: ${palette.red7};
+    border-radius: 100%;
   }
   svg {
     font-size: 22px;

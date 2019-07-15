@@ -13,12 +13,13 @@ interface IProps {
   isTablet: boolean;
   visible: boolean;
   userState: IUserState;
+  logOut: () => void;
   toggleSidebar: (bool: boolean) => () => void;
   toggleAuthForm: (formName: FormNameTypes) => () => void;
 }
 
 const Header: React.FunctionComponent<IProps> = React.memo(
-  ({ isTablet, visible, userState, toggleAuthForm, toggleSidebar }) => (
+  ({ isTablet, visible, userState, logOut, toggleAuthForm, toggleSidebar }) => (
     <HeaderBlock>
       <Wrapper>
         <Left>
@@ -28,7 +29,7 @@ const Header: React.FunctionComponent<IProps> = React.memo(
           {isTablet && <Overlay visible={visible} />}
           <Nav visible={visible} isTablet={isTablet} />
         </Left>
-        {userState.isLogged ? <AfterLogin userState={userState} /> : <BeforeLogin toggleAuthForm={toggleAuthForm} />}
+        {userState.isLogged ? <AfterLogin userState={userState} logOut={logOut} /> : <BeforeLogin toggleAuthForm={toggleAuthForm} />}
         {isTablet && <Hamburger visible={visible} toggleSidebar={toggleSidebar} />}
       </Wrapper>
     </HeaderBlock>
