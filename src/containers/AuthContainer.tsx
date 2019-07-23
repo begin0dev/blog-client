@@ -1,17 +1,21 @@
 import * as React from 'react';
+import qs from 'qs';
 import _ from 'lodash';
 import Joi from '@hapi/joi';
+import produce from 'immer';
 import { useDispatch, useSelector } from 'react-redux';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 import useForm from 'lib/hooks/useForm';
 import { FormNameTypes, AuthActions } from 'store/modules/auth';
 import { checkUserActions } from 'store/modules/user';
+import { IStoreState } from 'store/modules';
+import { baseURL } from 'lib/services/apiClient';
 import { validationHelper } from 'lib/utils/validationHelper';
 import { errorHandler } from 'lib/utils/errorHandler';
 import { authFormSchema } from 'lib/validations/authFormSchema';
-import { localLoginApi, localRegisterApi } from 'lib/services/auth';
+import { localLoginApi, localRegisterApi, SOCIAL_URL } from 'lib/services/auth';
 import { palette } from 'styles/palette';
-import { IStoreState } from 'store/modules';
 import { Auth, Modal } from 'components';
 
 export interface IAuthForm {
@@ -27,7 +31,7 @@ export interface IFormError {
   displayName: string | null;
 }
 
-const AuthContainer: React.FunctionComponent = () => {
+const AuthContainer: React.FunctionComponent<RouteComponentProps> = ({ history, location: { pathname, search } }) => {
   const dispatch = useDispatch();
   const formName = useSelector((state: IStoreState) => state.auth.formName);
   const isMobile = useSelector((state: IStoreState) => state.base.isMobile);
@@ -72,6 +76,10 @@ const AuthContainer: React.FunctionComponent = () => {
     },
     [setAuthFormValue, setError],
   );
+
+  const socialRedirect = React.useCallback((provider: 'facebook' | 'kakao') => {
+    window.location.href = `${baseURL}${SOCIAL_URL}/${provider}`;
+  }, []);
 
   const onBlurEvent = React.useCallback(
     ({ target: { name } }: React.FocusEvent<HTMLInputElement>) => {
@@ -120,6 +128,23 @@ const AuthContainer: React.FunctionComponent = () => {
   );
 
   React.useEffect(() => {
+    if (search) {
+      const queryString = qs.parse(search, { ignoreQueryPrefix: true });
+      if (queryString.form) dispatch(AuthActions.toggleAuthForm(queryString.form));
+      if (queryString.form || queryString.message) {
+        const replaceQs = qs.stringify(
+          produce(queryString, (draft: any) => {
+            delete draft.form;
+            delete draft.message;
+          }),
+        );
+        const path: string = `${pathname}?${replaceQs}`;
+        history.replace(path);
+      }
+    }
+  }, [dispatch, pathname, search]);
+
+  React.useEffect(() => {
     dispatch(checkUserActions.request());
   }, [dispatch]);
 
@@ -139,6 +164,7 @@ const AuthContainer: React.FunctionComponent = () => {
         onBlurEvent={onBlurEvent}
         onChangeEvent={onChangeEvent}
         submitError={submitError}
+        socialRedirect={socialRedirect}
         isSubmitLoading={isSubmitLoading}
         toggleAuthForm={toggleAuthForm}
       />
@@ -146,4 +172,4 @@ const AuthContainer: React.FunctionComponent = () => {
   );
 };
 
-export default AuthContainer;
+export default withRouter(AuthContainer);

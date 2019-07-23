@@ -15,7 +15,7 @@ export const UserActions = {
 };
 export const checkUserActions = asyncActionCreator<typeof CHECK_USER, IUser>(CHECK_USER, ['success']);
 
-export type ActionTypes = ActionsUnion<typeof UserActions> | ActionsUnion<typeof checkUserActions>;
+export type UserActionTypes = ActionsUnion<typeof UserActions> | ActionsUnion<typeof checkUserActions>;
 
 // reducer
 export interface IUser {
@@ -40,26 +40,26 @@ const defaultState: IUserState = {
   isLoading: false,
 };
 
-export default (state = defaultState, action: ActionTypes) => {
-  switch (action.type) {
-    case CHECK_USER.REQUEST:
-      return produce(state, draft => {
+export default (state = defaultState, action: UserActionTypes) =>
+  produce(state, draft => {
+    switch (action.type) {
+      case CHECK_USER.REQUEST:
         draft.isLogged = false;
         draft.isLoading = true;
-      });
-    case CHECK_USER.SUCCESS:
-      return produce(state, () => ({
-        ...action.payload,
-        isLogged: true,
-        isLoading: false,
-      }));
-    case CHECK_USER.FAILURE:
-      return produce(state, draft => {
+        return draft;
+      case CHECK_USER.SUCCESS: {
+        return {
+          ...action.payload,
+          isLogged: true,
+          isLoading: false,
+        };
+      }
+      case CHECK_USER.FAILURE:
         draft.isLoading = false;
-      });
-    case REMOVE_USER:
-      return produce(state, () => defaultState);
-    default:
-      return state;
-  }
-};
+        return draft;
+      case REMOVE_USER:
+        return defaultState;
+      default:
+        return state;
+    }
+  });

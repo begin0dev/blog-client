@@ -52,7 +52,7 @@ export const SocialTitleBlock = styled(AuthColBlock)`
   ${flexCss};
   flex-flow: row wrap;
   font-weight: 600;
-  color: ${palette.gray5};
+  color: ${palette.gray6};
   padding: 15px 0;
 `;
 
@@ -102,7 +102,7 @@ export const SocialButton = styled.button`
     margin-left: 18px;
   }
   svg {
-    font-size: 24px;
+    font-size: 25px;
   }
 `;
 

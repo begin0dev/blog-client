@@ -13,7 +13,7 @@ export const BaseActions = {
   toggleSidebar: (bool: boolean) => actionCreator(TOGGLE_SIDEBAR, bool),
 };
 
-export type ActionTypes = ActionsUnion<typeof BaseActions>;
+export type BaseActionTypes = ActionsUnion<typeof BaseActions>;
 
 // reducer
 export interface IBaseState {
@@ -28,18 +28,18 @@ export const defaultState: IBaseState = {
   sidebar: false,
 };
 
-export default (state = defaultState, action: ActionTypes) => {
-  switch (action.type) {
-    case SET_VIEW_TYPE:
-      return produce(state, draft => {
+export default (state = defaultState, action: BaseActionTypes) =>
+  produce(state, draft => {
+    switch (action.type) {
+      case SET_VIEW_TYPE: {
         const { typeName, bool } = action.payload;
         draft[typeName] = bool;
-      });
-    case TOGGLE_SIDEBAR:
-      return produce(state, draft => {
+        return draft;
+      }
+      case TOGGLE_SIDEBAR:
         draft.sidebar = action.payload;
-      });
-    default:
-      return state;
-  }
-};
+        return draft;
+      default:
+        return state;
+    }
+  });

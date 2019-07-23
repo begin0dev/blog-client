@@ -20,6 +20,7 @@ export interface IPropsBase {
 
 interface IProps extends IPropsBase {
   formName: FormNameTypes;
+  socialRedirect: (provider: 'kakao' | 'facebook') => void;
 }
 
 const Auth: React.FunctionComponent<IProps> = React.memo(
@@ -31,6 +32,7 @@ const Auth: React.FunctionComponent<IProps> = React.memo(
     onChangeEvent,
     onBlurEvent,
     submitError,
+    socialRedirect,
     isSubmitLoading,
     toggleAuthForm,
   }) => (
@@ -62,6 +64,7 @@ const Auth: React.FunctionComponent<IProps> = React.memo(
             onBlurEvent={onBlurEvent}
             onChangeEvent={onChangeEvent}
             submitError={submitError}
+            socialRedirect={socialRedirect}
             isSubmitLoading={isSubmitLoading}
             toggleAuthForm={toggleAuthForm}
           />

@@ -98,7 +98,7 @@ const circleBtnCss = css`
     animation: ${pulseKeyframes} 0.3s;
   }
   ${includeMedia('>md')} {
-    margin-left: 25px;
+    margin-left: 23px;
   }
 `;
 
@@ -106,11 +106,11 @@ export const NotiButton = styled.button`
   ${circleBtnCss};
   &:after {
     content: '';
-    width: 3px;
-    height: 3px;
+    width: 8px;
+    height: 8px;
     position: absolute;
-    right: 4px;
-    top: 4px;
+    right: 5px;
+    top: 5px;
     background-color: ${palette.red7};
     border-radius: 100%;
   }

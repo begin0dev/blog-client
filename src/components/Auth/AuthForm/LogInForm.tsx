@@ -7,7 +7,11 @@ import { IPropsBase } from '../Auth';
 import { AuthButton, AuthColBlock, ButtonBlock, ChangeFormBlock, SocialTitleBlock } from '../Auth.styles';
 import SocialButtons from './SocialButtons';
 
-const LoginForm: React.FunctionComponent<IPropsBase> = React.memo(
+interface IProps extends IPropsBase {
+  socialRedirect: (provider: 'kakao' | 'facebook') => void;
+}
+
+const LoginForm: React.FunctionComponent<IProps> = React.memo(
   ({
     authFormValue,
     authFormError,
@@ -16,6 +20,7 @@ const LoginForm: React.FunctionComponent<IPropsBase> = React.memo(
     onBlurEvent,
     submitError,
     isSubmitLoading,
+    socialRedirect,
     toggleAuthForm,
   }) => (
     <>
@@ -48,7 +53,7 @@ const LoginForm: React.FunctionComponent<IPropsBase> = React.memo(
         />
       </AuthColBlock>
       <SocialTitleBlock>Sign in with</SocialTitleBlock>
-      <SocialButtons />
+      <SocialButtons socialRedirect={socialRedirect} />
       <ButtonBlock>
         <AuthButton type="submit" onClick={authFormSubmit} disabled={isSubmitLoading}>
           CONTINUE

@@ -3,8 +3,9 @@ import { AxiosResponse } from 'axios';
 import { BaseResponse } from 'lib/types';
 import apiClient from './apiClient';
 
-const LOCAL_LOGIN_URL: string = '/api/v1.0/auth/local/login';
-const LOCAL_REGISTER_URL: string = '/api/v1.0/auth/local/register';
+export const LOCAL_LOGIN_URL: string = '/api/v1.0/auth/local/login';
+export const LOCAL_REGISTER_URL: string = '/api/v1.0/auth/local/register';
+export const SOCIAL_URL: string = '/api/v1.0/auth/social';
 
 export const localLoginApi = (params: {
   email: string;
