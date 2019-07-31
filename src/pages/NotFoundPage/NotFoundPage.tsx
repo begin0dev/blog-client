@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Lottie from 'react-lottie';
 
-import lottieJson from 'assets/lotties/404page.json';
-import { NotFoundPageBlock } from './NotFoundPage.styles';
+import lottieJson from 'assets/lotties/not-found.json';
+import { NotFoundPageBlock, NotFoundCenterBlock } from './NotFoundPage.styles';
 
 const NotFoundPage = React.memo(() => {
   const defaultOptions = React.useRef({
@@ -16,7 +16,9 @@ const NotFoundPage = React.memo(() => {
 
   return (
     <NotFoundPageBlock>
-      <Lottie options={defaultOptions.current} />
+      <NotFoundCenterBlock>
+        <Lottie options={defaultOptions.current} />
+      </NotFoundCenterBlock>
     </NotFoundPageBlock>
   );
 });

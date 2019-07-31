@@ -31,7 +31,10 @@ export interface IFormError {
   displayName: string | null;
 }
 
-const AuthContainer: React.FunctionComponent<RouteComponentProps> = ({ history, location: { pathname, search } }) => {
+const AuthContainer: React.FunctionComponent<RouteComponentProps> = ({
+  history,
+  location: { pathname, search },
+}) => {
   const dispatch = useDispatch();
   const formName = useSelector((state: IStoreState) => state.auth.formName);
   const isMobile = useSelector((state: IStoreState) => state.base.isMobile);
@@ -142,7 +145,7 @@ const AuthContainer: React.FunctionComponent<RouteComponentProps> = ({ history, 
         history.replace(path);
       }
     }
-  }, [dispatch, pathname, search]);
+  }, [dispatch, history, pathname, search]);
 
   React.useEffect(() => {
     dispatch(checkUserActions.request());

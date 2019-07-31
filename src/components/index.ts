@@ -6,7 +6,8 @@ import Modal from './common/Modal';
 import Overlay from './common/Overlay';
 import Spinner from './common/Spinner';
 import TextInput from './common/TextInput';
+import Loading from './common/Loading';
 
 import PageTemplate from './templates/PageTemplate';
 
-export { Auth, Header, Hamburger, Modal, Overlay, Spinner, TextInput, PageTemplate };
+export { Auth, Header, Hamburger, Modal, Overlay, Spinner, TextInput, Loading, PageTemplate };

@@ -5,8 +5,8 @@ export function validationHelper<T>(
   form: T,
   schemaObject: Joi.SchemaMap,
 ): { error: Joi.ValidationErrorItem[]; value: T } {
-  const schema = Joi.object().keys(schemaObject);
-  const { error, value } = Joi.validate(form, schema, { abortEarly: false });
+  const schema: Joi.ObjectSchema = Joi.object(schemaObject);
+  const { error, value }: Joi.ValidationResult<T> = schema.validate(form, { abortEarly: false });
   return {
     error: error
       ? _.chain(error.details)
