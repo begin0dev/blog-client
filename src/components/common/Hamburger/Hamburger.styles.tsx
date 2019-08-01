@@ -82,7 +82,8 @@ export const HamburgerWrapper = styled.div<{ active: boolean }>`
         &::after {
           background-color: ${hamburgerVariable.activeColor};
         }
-        transform: translate3d(0, calc(${hamburgerVariable.spacing} + ${hamburgerVariable.height}), 0) rotate(-45deg);
+        transform: translate3d(0, calc(${hamburgerVariable.spacing} + ${hamburgerVariable.height}), 0)
+          rotate(-45deg);
 
         &::before {
           transform: rotate(45deg)
@@ -91,7 +92,11 @@ export const HamburgerWrapper = styled.div<{ active: boolean }>`
         }
 
         &::after {
-          transform: translate3d(0, calc((${hamburgerVariable.spacing} + ${hamburgerVariable.height}) * -2), 0)
+          transform: translate3d(
+              0,
+              calc((${hamburgerVariable.spacing} + ${hamburgerVariable.height}) * -2),
+              0
+            )
             rotate(90deg);
         }
       `}

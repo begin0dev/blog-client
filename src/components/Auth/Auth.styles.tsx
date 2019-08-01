@@ -38,6 +38,7 @@ export const AuthTitle = styled.span`
   font-weight: 400;
   letter-spacing: 3px;
   text-transform: uppercase;
+  user-select: none;
   &:first-letter {
     color: ${palette.red7};
   }

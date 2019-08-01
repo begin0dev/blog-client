@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { OverlayBlock, ModalBlock } from './Modal.styles';
+
+import { HideScrollbar } from 'components';
+import { ModalWrapper, OverlayBlock, ModalBlock } from './Modal.styles';
 
 interface IProps {
   active: boolean;
@@ -26,16 +28,19 @@ const Modal: React.FunctionComponent<IProps> = React.memo(
     );
 
     return (
-      <OverlayBlock active={active} hideOverlay={hideOverlay} onClick={onClickOutSideEvent}>
-        <ModalBlock
-          fullScreen={fullScreen}
-          backgroundColor={backgroundColor}
-          style={{ ...style, ...(!fullScreen && size) }}
-          ref={modalEl}
-        >
-          {children}
-        </ModalBlock>
-      </OverlayBlock>
+      <ModalWrapper>
+        <OverlayBlock active={active} hideOverlay={hideOverlay} onClick={onClickOutSideEvent}>
+          {active && <HideScrollbar />}
+          <ModalBlock
+            fullScreen={fullScreen}
+            backgroundColor={backgroundColor}
+            style={{ ...style, ...(!fullScreen && size) }}
+            ref={modalEl}
+          >
+            {children}
+          </ModalBlock>
+        </OverlayBlock>
+      </ModalWrapper>
     );
   },
 );

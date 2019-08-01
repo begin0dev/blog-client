@@ -2,6 +2,7 @@ import * as React from 'react';
 import Lottie from 'react-lottie';
 
 import lottieJson from 'assets/lotties/loading.json';
+import { HideScrollbar } from 'components';
 import { LoadingBlock, LoadingWrap } from './Loading.styles';
 
 interface IProps {
@@ -20,6 +21,7 @@ const Loading: React.FunctionComponent<IProps> = React.memo(({ visible }) => {
 
   return (
     <LoadingBlock visible={visible}>
+      {visible && <HideScrollbar />}
       <LoadingWrap>
         <Lottie options={defaultOptions.current} />
       </LoadingWrap>
