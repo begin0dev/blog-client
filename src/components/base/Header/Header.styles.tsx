@@ -7,11 +7,11 @@ import { zIndexes, sizes, themes, includeMedia } from 'styles/utils';
 
 export const HeaderBlock = styled.header`
   z-index: ${zIndexes.header};
-  background-color: ${themes.header};
   position: fixed;
   left: 0;
   top: 0;
-  width: 100vw;
+  width: 100%;
+  background-color: ${themes.header};
 `;
 
 export const Wrapper = styled.div`

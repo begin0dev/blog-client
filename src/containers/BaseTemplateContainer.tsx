@@ -29,7 +29,7 @@ const BaseTemplateContainer: React.FunctionComponent = React.memo(() => {
     try {
       await logoutUserApi();
       dispatch(UserActions.removeUser());
-    } catch(err) {
+    } catch (err) {
       const message = errorHandler(err);
       alert(message);
     }

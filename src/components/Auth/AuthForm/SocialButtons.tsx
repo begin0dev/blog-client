@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { FaFacebook as Facebook, FaGithub as Github, FaGooglePlus as Google } from 'react-icons/fa';
 
 import { Kakao } from 'assets/svgs';

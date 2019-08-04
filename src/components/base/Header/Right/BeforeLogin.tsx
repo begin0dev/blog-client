@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 
 import { FormNameTypes } from 'store/modules/auth';
 import { Button, Right } from '../Header.styles';

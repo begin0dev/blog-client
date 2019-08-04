@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { IoMdLogOut, IoMdNotificationsOutline } from 'react-icons/io';
 
 import { IUserState } from 'store/modules/user';

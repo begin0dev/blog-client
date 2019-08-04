@@ -39,6 +39,7 @@ interface IZIndexes {
   modal: number;
   header: number;
   hamburger: number;
+  progress: number;
 }
 export const zIndexes: IZIndexes = {
   overlay: 200,
@@ -46,13 +47,14 @@ export const zIndexes: IZIndexes = {
   modal: 300,
   header: 100,
   hamburger: 500,
+  progress: 1000,
 };
 
 interface ISizes {
   header: number;
 }
 export const sizes: ISizes = {
-  header: 63,
+  header: 65,
 };
 
 interface IThemes {

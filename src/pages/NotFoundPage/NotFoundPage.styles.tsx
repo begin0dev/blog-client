@@ -11,6 +11,6 @@ export const NotFoundPageBlock = styled.div`
 `;
 
 export const NotFoundCenterBlock = styled.div`
-  width: calc(100vw / 1.5);
+  width: calc(100% / 1.5);
   max-width: 600px;
 `;

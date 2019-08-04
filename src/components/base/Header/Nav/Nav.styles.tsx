@@ -14,7 +14,7 @@ export const NavBlock = styled.nav<{ active: boolean }>`
     top: 0;
     right: 0;
     width: 270px;
-    height: 100vh;
+    height: 100%;
     padding: ${sizes.header}px 0;
     background-color: ${themes.sidebar};
     backface-visibility: hidden;

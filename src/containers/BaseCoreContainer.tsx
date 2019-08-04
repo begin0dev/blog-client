@@ -1,9 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { breakPoints } from 'styles/utils';
 import { IStoreState } from 'store/modules';
 import { BaseActions, ViewTypeName } from 'store/modules/base';
-import { breakPoints } from 'styles/utils';
+import { Progressbar } from 'components';
 
 const BaseCoreContainer: React.FunctionComponent = React.memo(() => {
   const dispatch = useDispatch();
@@ -44,7 +45,7 @@ const BaseCoreContainer: React.FunctionComponent = React.memo(() => {
     if (isTablet) dispatch(BaseActions.toggleSidebar(false));
   }, [dispatch, isTablet]);
 
-  return null;
+  return <Progressbar percent={0} />;
 });
 
 export default BaseCoreContainer;
