@@ -10,6 +10,7 @@ const BaseCoreContainer: React.FunctionComponent = React.memo(() => {
   const dispatch = useDispatch();
   const isMobile = useSelector((state: IStoreState) => state.base.isMobile);
   const isTablet = useSelector((state: IStoreState) => state.base.isTablet);
+  const loadingPercent = useSelector((state: IStoreState) => state.base.loadingPercent);
 
   const [innerWidth, setInnerWidth] = React.useState(window.innerWidth);
 
@@ -45,7 +46,7 @@ const BaseCoreContainer: React.FunctionComponent = React.memo(() => {
     if (isTablet) dispatch(BaseActions.toggleSidebar(false));
   }, [dispatch, isTablet]);
 
-  return <Progressbar percent={0} />;
+  return <Progressbar percent={loadingPercent} />;
 });
 
 export default BaseCoreContainer;

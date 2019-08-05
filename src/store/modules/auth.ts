@@ -3,7 +3,7 @@ import produce from 'immer';
 import { ActionsUnion, actionCreator } from 'lib/utils/actionHelper';
 
 // actions
-const TOGGLE_AUTH_FORM = 'TOGGLE_AUTH_FORM';
+export const TOGGLE_AUTH_FORM = 'TOGGLE_AUTH_FORM';
 
 export const AuthActions = {
   toggleAuthForm: (formName: FormNameTypes) => actionCreator(TOGGLE_AUTH_FORM, formName),

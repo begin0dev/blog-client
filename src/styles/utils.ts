@@ -54,7 +54,7 @@ interface ISizes {
   header: number;
 }
 export const sizes: ISizes = {
-  header: 65,
+  header: 63,
 };
 
 interface IThemes {
