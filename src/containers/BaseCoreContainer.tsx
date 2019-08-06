@@ -12,7 +12,7 @@ const BaseCoreContainer: React.FunctionComponent = React.memo(() => {
   const isTablet = useSelector((state: IStoreState) => state.base.isTablet);
   const loadingPercent = useSelector((state: IStoreState) => state.base.loadingPercent);
 
-  const [innerWidth, setInnerWidth] = React.useState(window.innerWidth);
+  const [innerWidth, setInnerWidth] = React.useState<number>(window.innerWidth);
 
   React.useEffect(() => {
     const dispatchSetViewType = (typeName: ViewTypeName, bool: boolean) =>

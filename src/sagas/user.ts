@@ -1,4 +1,4 @@
-import { all, call, delay, put, takeLatest } from 'redux-saga/effects';
+import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import { CheckUserAPiResponse, checkUserApi } from 'lib/services/user';
 import { errorHandler } from 'lib/utils/errorHandler';
