@@ -50,7 +50,7 @@ export const Label = styled.label<{ existContent: boolean }>`
   ${props =>
     props.existContent &&
     css`
-      transform: translateY(-1.55rem) scale(0.9);
+      transform: translateY(-1.60rem);
     `}
 `;
 
@@ -60,7 +60,7 @@ export const Input = styled.input`
   font-size: inherit;
   flex: 1;
   margin: 0;
-  padding: 0.7rem 0;
+  padding: 0.68rem 0 0.7rem;
   line-height: 1;
   background-color: inherit;
   -webkit-tap-highlight-color: inherit;
@@ -87,9 +87,8 @@ export const TextInputBlock = styled.div<{ defaultBorderColor: string; errorBord
   display: flex;
   flex-flow: column wrap;
   flex: 1 1 auto;
-  margin: 15px 0 22px;
+  margin: 17px 0 23px;
   text-align: left;
-
   ${InputSlot} {
     &:before {
       border-bottom: 1px solid ${props => (props.error ? props.errorBorderColor : props.defaultBorderColor)};

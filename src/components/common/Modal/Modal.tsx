@@ -16,7 +16,7 @@ interface IProps {
 
 const Modal: React.FunctionComponent<IProps> = React.memo(
   ({ active, size, style, hideOverlay, fullScreen, backgroundColor, hideModal, children }) => {
-    const modalEl = React.useRef<HTMLDivElement>(null);
+    const modalEl = React.useRef<HTMLDivElement | null>(null);
 
     const onClickOutSideEvent = React.useCallback(
       (e: React.MouseEvent<HTMLElement>): void => {

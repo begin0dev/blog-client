@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { logoutUserApi } from 'lib/services/user';
 import { errorHandler } from 'lib/utils/errorHandler';
+import { IStoreState } from 'store/modules';
 import { BaseActions } from 'store/modules/base';
 import { UserActions } from 'store/modules/user';
-import { IStoreState } from 'store/modules';
 import { FormNameTypes, AuthActions } from 'store/modules/auth';
 import { Header } from 'components';
 
@@ -16,9 +16,16 @@ const BaseTemplateContainer: React.FunctionComponent = React.memo(() => {
   const userState = useSelector((state: IStoreState) => state.user);
 
   const toggleSidebar = React.useCallback(
-    (bool: boolean) => () => dispatch(BaseActions.toggleSidebar(bool)),
+    (bool: boolean) => () => {
+      dispatch(BaseActions.toggleSidebar(bool));
+    },
     [dispatch],
   );
+
+  const closeSidebar = React.useCallback(() => {
+    if (!isTablet) return;
+    dispatch(BaseActions.toggleSidebar(false));
+  }, [dispatch, isTablet]);
 
   const toggleAuthForm = React.useCallback(
     (formName: FormNameTypes) => () => dispatch(AuthActions.toggleAuthForm(formName)),
@@ -43,6 +50,7 @@ const BaseTemplateContainer: React.FunctionComponent = React.memo(() => {
       logOut={logOut}
       toggleAuthForm={toggleAuthForm}
       toggleSidebar={toggleSidebar}
+      closeSidebar={closeSidebar}
     />
   );
 });

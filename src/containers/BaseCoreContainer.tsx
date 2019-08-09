@@ -33,9 +33,7 @@ const BaseCoreContainer: React.FunctionComponent = React.memo(() => {
   }, [dispatch, innerWidth, isMobile, isTablet]);
 
   React.useEffect(() => {
-    const resizeEvent = () => {
-      setInnerWidth(window.innerWidth);
-    };
+    const resizeEvent = () => setInnerWidth(window.innerWidth);
     window.addEventListener('resize', resizeEvent);
     return () => {
       window.removeEventListener('resize', resizeEvent);

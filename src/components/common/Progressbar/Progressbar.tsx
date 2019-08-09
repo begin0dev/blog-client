@@ -20,7 +20,7 @@ const Progressbar: React.FunctionComponent<IProps> = ({ percent }) => {
       setTimeout(() => {
         setVisible(false);
         setIsZero(true);
-      }, 400);
+      }, 500);
     }
     if (percent !== 100) {
       timeOut = setTimeout(() => {
