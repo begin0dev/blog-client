@@ -7,8 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 
 import useForm from 'lib/hooks/useForm';
-import { FormNameTypes, AuthActions } from 'store/modules/auth';
+import { BaseActions } from 'store/modules/base';
 import { checkUserActions } from 'store/modules/user';
+import { FormNameTypes, AuthActions } from 'store/modules/auth';
 import { IStoreState } from 'store/modules';
 import { baseURL } from 'lib/services/apiClient';
 import { validationHelper } from 'lib/utils/validationHelper';
@@ -81,8 +82,11 @@ const AuthContainer: React.FunctionComponent<RouteComponentProps> = ({
   );
 
   const socialRedirect = React.useCallback((provider: 'facebook' | 'kakao') => {
+    dispatch(BaseActions.setLoadingPercent(0));
+    setTimeout(() => dispatch(BaseActions.setLoadingPercent(100)), 500);
+    hideModal();
     window.location.href = `${baseURL}${SOCIAL_URL}/${provider}`;
-  }, []);
+  }, [dispatch, hideModal]);
 
   const onBlurEvent = React.useCallback(
     ({ target: { name } }: React.FocusEvent<HTMLInputElement>) => {

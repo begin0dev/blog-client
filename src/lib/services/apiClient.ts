@@ -12,10 +12,8 @@ const apiClient: AxiosInstance = axios.create({
   timeout: 3000,
 });
 
-apiClient.interceptors.request.use(config => {
-  // const token = sessionStorage.getItem('token');
-  // if (token) config.headers.Authorization = `Token token=${token}`;
-  return config;
-});
+// apiClient.interceptors.request.use(config => {
+//   return config;
+// });
 
 export default apiClient;
