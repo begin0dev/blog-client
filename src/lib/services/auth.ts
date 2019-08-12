@@ -1,4 +1,4 @@
-import { BaseJsendResponse } from 'lib/types';
+import { BaseJsendResponse } from 'types';
 import apiClient from './apiClient';
 
 export const LOCAL_LOGIN_URL: string = '/api/v1.0/auth/local/login';

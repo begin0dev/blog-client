@@ -81,20 +81,23 @@ const AuthContainer: React.FunctionComponent<RouteComponentProps> = ({
     [setAuthFormValue, setError],
   );
 
-  const socialRedirect = React.useCallback((provider: 'facebook' | 'kakao') => {
-    dispatch(BaseActions.setLoadingPercent(0));
-    setTimeout(() => dispatch(BaseActions.setLoadingPercent(100)), 500);
-    hideModal();
-    window.location.href = `${baseURL}${SOCIAL_URL}/${provider}`;
-  }, [dispatch, hideModal]);
+  const socialRedirect = React.useCallback(
+    (provider: 'facebook' | 'kakao') => {
+      dispatch(BaseActions.setLoadingPercent(0));
+      setTimeout(() => dispatch(BaseActions.setLoadingPercent(100)), 800);
+      hideModal();
+      window.location.href = `${baseURL}${SOCIAL_URL}/${provider}`;
+    },
+    [dispatch, hideModal],
+  );
 
   const onBlurEvent = React.useCallback(
-    ({ target: { name } }: React.FocusEvent<HTMLInputElement>) => {
-      const { error } = validationHelper(authFormValue, authFormSchema);
+    ({ target: { name, value } }: React.FocusEvent<HTMLInputElement>) => {
+      const { error } = validationHelper({ [name]: value }, authFormSchema);
       const err = error.find((o: Joi.ValidationErrorItem) => o.context && o.context.label === name);
       setError({ name: name as keyof IAuthForm, value: err ? err.message : null });
     },
-    [authFormValue, setError],
+    [setError],
   );
 
   const authFormSubmit = React.useCallback(

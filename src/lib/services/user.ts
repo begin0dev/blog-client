@@ -1,4 +1,4 @@
-import { BaseJsendResponse } from 'lib/types';
+import { BaseJsendResponse } from 'types';
 import { IUser } from 'store/modules/user';
 import apiClient from './apiClient';
 

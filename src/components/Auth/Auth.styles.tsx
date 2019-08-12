@@ -111,14 +111,14 @@ export const ButtonBlock = styled(AuthColBlock)`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px 0 25px;
+  padding: 22px 0 25px;
 `;
 
 export const AuthButton = styled.button`
   ${buttonColorMap.red};
   font-size: 13px;
   width: 100%;
-  padding: 15px;
+  padding: 17px;
   border-radius: 25px;
   svg {
     font-size: 12px;

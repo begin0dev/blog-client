@@ -1,11 +1,13 @@
 import * as React from 'react';
 
 import { MdKeyboardArrowDown } from 'react-icons/md';
-import { NavBlock, List, LinkWrapper, DropDown, DivType, LinkType, ChildLinkType } from './Nav.styles';
+import { palette } from 'styles/palette';
+import { NavBlock, List, LinkWrapper, DropDown, DivType, LinkType, ChildLinkType, TagSpan } from './Nav.styles';
 
 interface INavBase {
   name: string;
   url: string;
+  color?: string;
 }
 interface INav extends INavBase {
   hasChildren: boolean;
@@ -20,11 +22,11 @@ const navList: INav[] = [
     hasChildren: true,
     url: '',
     children: [
-      { name: 'All', url: '/develop/all' },
-      { name: 'React', url: '/develop/React' },
-      { name: 'Node', url: '/develop/node' },
-      { name: 'Javascript', url: '/develop/javascript' },
-      { name: 'Etc', url: '/develop/etc' },
+      { name: 'all', url: '/develop/all', color: palette.red4 },
+      { name: 'react', url: '/develop/React', color: palette.grape4 },
+      { name: 'node', url: '/develop/node', color: palette.violet4 },
+      { name: 'javascript', url: '/develop/javascript', color: palette.indigo4 },
+      { name: 'etc', url: '/develop/etc', color: palette.cyan4 },
     ],
   },
 ];
@@ -47,7 +49,13 @@ const Nav: React.FunctionComponent<IProps> = React.memo(({ isTablet, visible }) 
             <DropDown>
               {link.children &&
                 link.children.map((child: INavBase) => (
-                  <ChildLinkType to={child.url} activeClassName="current" key={child.name}>
+                  <ChildLinkType
+                    to={child.url}
+                    activeClassName="current"
+                    color={child.color}
+                    key={child.name}
+                  >
+                    <TagSpan>#</TagSpan>
                     {child.name}
                   </ChildLinkType>
                 ))}

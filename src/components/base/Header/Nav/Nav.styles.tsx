@@ -91,9 +91,11 @@ const defaultTypeCss = css`
   position: relative;
   display: flex;
   align-items: center;
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 600;
   padding: 18px 25px;
   user-select: none;
+  color: ${palette.gray4};
 
   ${includeMedia('<=md')} {
     padding: 20px 40px;
@@ -107,10 +109,10 @@ const defaultTypeCss = css`
 export const LinkType = styled(NavLink)`
   ${defaultTypeCss};
   &:hover {
-    color: ${palette.white};
+    color: ${palette.gray2};
   }
   &.current {
-    color: ${palette.white};
+    color: ${palette.gray2};
     &:before {
       content: '';
       position: absolute;
@@ -136,12 +138,19 @@ export const DivType = styled.div`
   justify-content: space-between;
 `;
 
-export const ChildLinkType = styled(LinkType)`
-  ${defaultTypeCss};
-  font-size: 12px;
+export const ChildLinkType = styled(LinkType)<{ color?: string }>`
   padding: 20px 25px;
-  color: ${palette.gray6};
+  color: ${props => (props.color ? props.color : palette.gray6)};
+  transition: color 0.3s ease;
   ${includeMedia('<=md')} {
     padding: 18px 40px;
   }
+`;
+
+export const TagSpan = styled.span`
+  font-size: 14px;
+  font-weight: 700;
+  opacity: 0.6;
+  margin-right: 2px;
+  transform: translateY(-1px);
 `;

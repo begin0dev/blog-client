@@ -60,10 +60,11 @@ export const LogoWrapper = styled(NavLink)`
 export const Button = styled.button`
   color: ${palette.gray2};
   background-color: transparent;
-  padding: 10px 20px;
+  padding: 11px 20px;
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
+  text-transform: uppercase;
   &:hover {
     color: #ffffff;
   }
@@ -76,7 +77,6 @@ export const Button = styled.button`
     }
     &.sign-up {
       ${buttonColorMap.red};
-      text-transform: uppercase;
       border-radius: 4px;
     }
   }

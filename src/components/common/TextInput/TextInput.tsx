@@ -38,6 +38,12 @@ const TextInput: React.FunctionComponent<IProps> = React.memo(
     const inputRef = React.useRef<HTMLInputElement>(null);
     const [focus, setFocus] = React.useState<boolean>(false);
 
+    const before = React.useRef(onBlur);
+    React.useEffect(() => {
+      console.log(name);
+      console.log(before, onBlur);
+    }, [before, name, onBlur]);
+
     const onFocusEvent = React.useCallback(
       (e: React.FocusEvent<HTMLInputElement>) => {
         setFocus(true);
@@ -71,7 +77,11 @@ const TextInput: React.FunctionComponent<IProps> = React.memo(
     );
 
     return (
-      <TextInputBlock defaultBorderColor={defaultBorderColor} errorBorderColor={errorBorderColor} error={error}>
+      <TextInputBlock
+        defaultBorderColor={defaultBorderColor}
+        errorBorderColor={errorBorderColor}
+        error={error}
+      >
         <InputSlot focus={focus} color={color}>
           {label && (
             <Label aria-hidden="true" existContent={existContent} onClick={labelClick}>
