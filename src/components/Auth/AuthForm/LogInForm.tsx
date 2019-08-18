@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { FaArrowRight } from 'react-icons/fa';
 
 import { palette } from 'styles/palette';
 import { TextInput } from 'components';
+import { ArrowRight } from 'assets/svgs';
 import { IPropsBase } from '../Auth';
 import { AuthButton, AuthColBlock, ButtonBlock, ChangeFormBlock, SocialTitleBlock } from '../Auth.styles';
 import SocialButtons from './SocialButtons';
@@ -57,7 +57,7 @@ const LoginForm: React.FunctionComponent<IProps> = React.memo(
       <ButtonBlock>
         <AuthButton type="submit" onClick={authFormSubmit} disabled={isSubmitLoading}>
           CONTINUE
-          <FaArrowRight />
+          <ArrowRight />
         </AuthButton>
       </ButtonBlock>
       <ChangeFormBlock>

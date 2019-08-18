@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { MdClose } from 'react-icons/md';
 
+import { Close } from 'assets/svgs'
 import { FormNameTypes } from 'store/modules/auth';
 import { IAuthForm, IFormError } from 'containers/AuthContainer';
 import SignUpForm from './AuthForm/SignUpForm';
@@ -40,7 +40,7 @@ const Auth: React.FunctionComponent<IProps> = React.memo(
       <AuthRowBlock>
         <AuthTitle>{formName}</AuthTitle>
         <CloseButton type="button" onClick={toggleAuthForm(null)}>
-          <MdClose />
+          <Close />
         </CloseButton>
       </AuthRowBlock>
       <FormWrap>

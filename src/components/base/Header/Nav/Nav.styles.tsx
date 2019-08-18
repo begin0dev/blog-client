@@ -98,11 +98,11 @@ const defaultTypeCss = css`
   color: ${palette.gray4};
 
   ${includeMedia('<=md')} {
-    padding: 20px 40px;
+    padding: 16px 40px;
   }
   .expand-icon {
-    font-size: 15px;
-    margin-left: 5px;
+    font-size: 10px;
+    margin-left: 8px;
   }
 `;
 

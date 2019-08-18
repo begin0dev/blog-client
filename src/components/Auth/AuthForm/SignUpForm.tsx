@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { FaArrowRight } from 'react-icons/fa';
 
+import { ArrowRight } from 'assets/svgs';
 import { palette } from 'styles/palette';
 import { TextInput } from 'components';
 import { IPropsBase } from '../Auth';
@@ -81,7 +81,7 @@ const SignUpForm: React.FunctionComponent<IPropsBase> = React.memo(
       <ButtonBlock>
         <AuthButton type="submit" onClick={authFormSubmit} disabled={isSubmitLoading}>
           CONTINUE
-          <FaArrowRight />
+          <ArrowRight />
         </AuthButton>
       </ButtonBlock>
       <ChangeFormBlock>

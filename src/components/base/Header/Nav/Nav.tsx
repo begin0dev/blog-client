@@ -1,8 +1,17 @@
 import * as React from 'react';
 
-import { MdKeyboardArrowDown } from 'react-icons/md';
+import { ChevronDown } from 'assets/svgs';
 import { palette } from 'styles/palette';
-import { NavBlock, List, LinkWrapper, DropDown, DivType, LinkType, ChildLinkType, TagSpan } from './Nav.styles';
+import {
+  NavBlock,
+  List,
+  LinkWrapper,
+  DropDown,
+  DivType,
+  LinkType,
+  ChildLinkType,
+  TagSpan,
+} from './Nav.styles';
 
 interface INavBase {
   name: string;
@@ -12,6 +21,10 @@ interface INavBase {
 interface INav extends INavBase {
   hasChildren: boolean;
   children?: INavBase[];
+}
+interface IProps {
+  isTablet: boolean;
+  visible: boolean;
 }
 
 const navList: INav[] = [
@@ -23,18 +36,13 @@ const navList: INav[] = [
     url: '',
     children: [
       { name: 'all', url: '/develop/all', color: palette.red4 },
-      { name: 'react', url: '/develop/React', color: palette.grape4 },
+      { name: 'react', url: '/develop/react', color: palette.grape4 },
       { name: 'node', url: '/develop/node', color: palette.violet4 },
       { name: 'javascript', url: '/develop/javascript', color: palette.indigo4 },
       { name: 'etc', url: '/develop/etc', color: palette.cyan4 },
     ],
   },
 ];
-
-interface IProps {
-  isTablet: boolean;
-  visible: boolean;
-}
 
 const Nav: React.FunctionComponent<IProps> = React.memo(({ isTablet, visible }) => (
   <NavBlock active={isTablet && visible}>
@@ -44,7 +52,7 @@ const Nav: React.FunctionComponent<IProps> = React.memo(({ isTablet, visible }) 
           <LinkWrapper key={link.name}>
             <DivType>
               {link.name}
-              <MdKeyboardArrowDown className="expand-icon" />
+              <ChevronDown className="expand-icon" />
             </DivType>
             <DropDown>
               {link.children &&

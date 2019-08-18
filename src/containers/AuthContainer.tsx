@@ -41,7 +41,7 @@ const AuthContainer: React.FunctionComponent<RouteComponentProps> = ({
   const isMobile = useSelector((state: IStoreState) => state.base.isMobile);
   const isLogged = useSelector((state: IStoreState) => state.user.isLogged);
 
-  const modalSize = React.useRef<{ width: string }>({ width: '370px' });
+  const modalSize = React.useRef<{ width: string }>({ width: '390px' });
 
   const [isSubmitLoading, setSubmitLoading] = React.useState<boolean>(false);
   const [submitError, setSubmitError] = React.useState<string | null>(null);

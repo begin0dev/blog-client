@@ -12,7 +12,7 @@ export const AuthActions = {
 export type AuthActionTypes = ActionsUnion<typeof AuthActions>;
 
 // reducer
-export type FormNameTypes = 'signUp' | 'logIn' | null;
+export type FormNameTypes = 'signUp' | 'socialSignUp' | 'logIn' | null;
 export interface IAuthState {
   formName: FormNameTypes;
 }

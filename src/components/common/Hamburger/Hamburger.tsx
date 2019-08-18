@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { HamburgerBlock, HamburgerWrapper, Box, Inner } from './Hamburger.styles';
 
 interface IProps {

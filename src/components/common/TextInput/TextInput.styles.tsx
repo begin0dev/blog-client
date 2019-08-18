@@ -29,9 +29,6 @@ export const InputSlot = styled.div<{ color: string; focus: boolean }>`
       &:after {
         transform: scaleX(1);
       }
-      ${Label} {
-        color: currentColor;
-      }
     `}
 `;
 
@@ -42,15 +39,16 @@ export const Label = styled.label<{ existContent: boolean }>`
   right: auto;
   color: inherit;
   font-size: inherit;
-  font-weight: 600;
+  font-weight: 500;
   text-overflow: ellipsis;
-  transform-origin: top left;
-  transition: 0.35s cubic-bezier(0.25, 0.8, 0.5, 1);
+  transform-origin: top;
+  transition: all 0.35s;
   overflow: hidden;
   ${props =>
     props.existContent &&
     css`
-      transform: translateY(-1.60rem);
+      top: -0.78rem;
+      //transform: translateY(-1.6rem);
     `}
 `;
 

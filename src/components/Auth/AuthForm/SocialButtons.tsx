@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { FaFacebook as Facebook, FaGithub as Github, FaGooglePlus as Google } from 'react-icons/fa';
 
-import { Kakao } from 'assets/svgs';
+import { Kakao, Facebook, Github, Google } from 'assets/svgs';
 import { SocialButton, SocialIconBlock } from '../Auth.styles';
 
 interface IProps {

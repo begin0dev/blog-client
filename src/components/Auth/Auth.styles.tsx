@@ -12,7 +12,7 @@ export const AuthBlock = styled.div`
   ${flexCss};
   position: relative;
   flex-flow: column wrap;
-  padding: 4.5rem;
+  padding: 4.5rem 4rem;
   color: ${palette.gray2};
   overflow-x: hidden;
   overflow-y: auto;
@@ -78,7 +78,7 @@ export const CloseButton = styled.button`
     opacity: 0.8;
   }
   svg {
-    font-size: 18px;
+    font-size: 16px;
   }
 `;
 

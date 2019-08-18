@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-import { buttonColorMap, pulseKeyframes } from 'styles/baseCss';
+import { buttonColorMap } from 'styles/baseCss';
 import { palette } from 'styles/palette';
 import { zIndexes, sizes, themes, includeMedia } from 'styles/utils';
 
@@ -52,7 +52,7 @@ export const Right = styled.div`
 export const LogoWrapper = styled(NavLink)`
   line-height: 0;
   svg {
-    font-size: 38px;
+    font-size: 40px;
     margin-right: 15px;
   }
 `;
@@ -79,49 +79,5 @@ export const Button = styled.button`
       ${buttonColorMap.red};
       border-radius: 4px;
     }
-  }
-`;
-
-const circleBtnCss = css`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 30px;
-  height: 30px;
-  background-color: transparent;
-  color: ${palette.gray2};
-  border-radius: 100%;
-  margin-left: 10px;
-  &:active {
-    opacity: 0.8;
-    animation: ${pulseKeyframes} 0.3s;
-  }
-  ${includeMedia('>md')} {
-    margin-left: 23px;
-  }
-`;
-
-export const NotiButton = styled.button`
-  ${circleBtnCss};
-  &:after {
-    content: '';
-    width: 8px;
-    height: 8px;
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    background-color: ${palette.red7};
-    border-radius: 100%;
-  }
-  svg {
-    font-size: 22px;
-  }
-`;
-
-export const LogOutButton = styled.button`
-  ${circleBtnCss};
-  svg {
-    font-size: 20px;
   }
 `;
