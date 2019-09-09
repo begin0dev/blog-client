@@ -7,6 +7,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import GlobalStyle from 'styles/GlobalStyle';
 
+import './components/common/Message/MessageApi';
 import App from './App';
 import configureStore from './store/configureStore';
 import * as serviceWorker from './serviceWorker';
@@ -20,7 +21,7 @@ ReactDOM.render(
       <App />
     </Router>
   </Provider>,
-  document.getElementById('react-root'),
+  document.getElementById('root'),
 );
 
 serviceWorker.unregister();

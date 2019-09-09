@@ -40,6 +40,7 @@ interface IZIndexes {
   header: number;
   hamburger: number;
   progress: number;
+  message: number;
 }
 export const zIndexes: IZIndexes = {
   overlay: 200,
@@ -48,6 +49,7 @@ export const zIndexes: IZIndexes = {
   header: 100,
   hamburger: 500,
   progress: 1000,
+  message: 2000,
 };
 
 interface ISizes {
