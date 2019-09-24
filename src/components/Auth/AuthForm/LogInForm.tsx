@@ -28,7 +28,7 @@ const LoginForm: React.FunctionComponent<IProps> = React.memo(
         <TextInput
           type="text"
           name="email"
-          label="Email"
+          label="이메일"
           value={authFormValue.email}
           error={!!authFormError.email}
           message={authFormError.email}
@@ -42,7 +42,7 @@ const LoginForm: React.FunctionComponent<IProps> = React.memo(
         <TextInput
           type="password"
           name="password"
-          label="Password"
+          label="비밀번호"
           value={authFormValue.password}
           error={!!authFormError.password || !!submitError}
           message={submitError || authFormError.password}
@@ -52,17 +52,17 @@ const LoginForm: React.FunctionComponent<IProps> = React.memo(
           onChange={onChangeEvent}
         />
       </AuthColBlock>
-      <SocialTitleBlock>Sign in with</SocialTitleBlock>
+      <SocialTitleBlock>소셜 계정으로 로그인하기</SocialTitleBlock>
       <SocialButtons socialRedirect={socialRedirect} />
       <ButtonBlock>
         <AuthButton type="submit" onClick={authFormSubmit} disabled={isSubmitLoading}>
-          CONTINUE
+          계속하기
           <ArrowRight />
         </AuthButton>
       </ButtonBlock>
       <ChangeFormBlock>
-        {`Don't have an account?`}
-        <span onClick={toggleAuthForm('signUp')}>Sign Up</span>
+        계정이 없으신가요?
+        <span onClick={toggleAuthForm('signUp')}>회원가입</span>
       </ChangeFormBlock>
     </>
   ),

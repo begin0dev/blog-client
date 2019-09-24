@@ -65,10 +65,11 @@ const AuthContainer: React.FunctionComponent<RouteComponentProps> = ({
 
   const toggleAuthForm = React.useCallback(
     (form: FormNameTypes) => () => {
+      resetError();
       setSubmitError(null);
       dispatch(AuthActions.toggleAuthForm(form));
     },
-    [dispatch],
+    [dispatch, resetError],
   );
 
   const onChangeEvent = React.useCallback(
@@ -82,9 +83,9 @@ const AuthContainer: React.FunctionComponent<RouteComponentProps> = ({
   );
 
   const socialRedirect = React.useCallback(
-    (provider: 'facebook' | 'kakao') => {
+    (provider: 'kakao' | 'facebook' | 'github' | 'google') => {
       dispatch(BaseActions.setLoadingPercent(0));
-      setTimeout(() => dispatch(BaseActions.setLoadingPercent(100)), 800);
+      setTimeout(() => dispatch(BaseActions.setLoadingPercent(100)), 1000);
       hideModal();
       window.location.href = `${baseURL}${SOCIAL_URL}/${provider}`;
     },
@@ -103,8 +104,7 @@ const AuthContainer: React.FunctionComponent<RouteComponentProps> = ({
   const authFormSubmit = React.useCallback(
     async e => {
       e.preventDefault();
-      if (!formName) return;
-      if (isSubmitLoading) return;
+      if (!formName || isSubmitLoading) return;
       const { error, value } = validationHelper(authFormValue, authFormSchema);
       let errs = error;
       if (formName === 'logIn')
@@ -158,7 +158,8 @@ const AuthContainer: React.FunctionComponent<RouteComponentProps> = ({
     dispatch(checkUserActions.request());
   }, [dispatch]);
 
-  return isLogged ? null : (
+  if (isLogged) return null;
+  return (
     <Modal
       active={!!formName}
       fullScreen={isMobile}

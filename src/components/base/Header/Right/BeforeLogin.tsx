@@ -10,10 +10,10 @@ interface IProps {
 const BeforeLogin: React.FunctionComponent<IProps> = React.memo(({ toggleAuthForm }) => (
   <Right>
     <Button type="button" onClick={toggleAuthForm('logIn')}>
-      Log In
+      로그인
     </Button>
     <Button type="button" className="sign-up" onClick={toggleAuthForm('signUp')}>
-      Sign Up
+      회원가입
     </Button>
   </Right>
 ));

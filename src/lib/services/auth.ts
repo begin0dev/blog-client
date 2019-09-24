@@ -1,9 +1,9 @@
 import { BaseJsendResponse } from 'types';
 import apiClient from './apiClient';
 
-export const LOCAL_LOGIN_URL: string = '/api/v1.0/auth/local/login';
-export const LOCAL_REGISTER_URL: string = '/api/v1.0/auth/local/register';
-export const SOCIAL_URL: string = '/api/v1.0/auth/social';
+export const LOCAL_LOGIN_URL: string = '/api/v1/auth/local/login';
+export const LOCAL_REGISTER_URL: string = '/api/v1/auth/local/register';
+export const SOCIAL_URL: string = '/api/v1/auth/social';
 
 export const localLoginApi = (params: {
   email: string;

@@ -7,7 +7,6 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import GlobalStyle from 'styles/GlobalStyle';
 
-import './components/common/Message/MessageApi';
 import App from './App';
 import configureStore from './store/configureStore';
 import * as serviceWorker from './serviceWorker';

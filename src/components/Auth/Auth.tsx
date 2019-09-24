@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Close } from 'assets/svgs'
+import { Close } from 'assets/svgs';
 import { FormNameTypes } from 'store/modules/auth';
 import { IAuthForm, IFormError } from 'containers/AuthContainer';
 import SignUpForm from './AuthForm/SignUpForm';
@@ -20,7 +20,7 @@ export interface IPropsBase {
 
 interface IProps extends IPropsBase {
   formName: FormNameTypes;
-  socialRedirect: (provider: 'kakao' | 'facebook') => void;
+  socialRedirect: (provider: 'kakao' | 'facebook' | 'github' | 'google') => void;
 }
 
 const Auth: React.FunctionComponent<IProps> = React.memo(
@@ -38,7 +38,10 @@ const Auth: React.FunctionComponent<IProps> = React.memo(
   }) => (
     <AuthBlock>
       <AuthRowBlock>
-        <AuthTitle>{formName}</AuthTitle>
+        <AuthTitle>
+          {formName === 'logIn' && '로그인'}
+          {formName === 'signUp' && '회원가입'}
+        </AuthTitle>
         <CloseButton type="button" onClick={toggleAuthForm(null)}>
           <Close />
         </CloseButton>

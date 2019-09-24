@@ -60,8 +60,8 @@ export const LogoWrapper = styled(NavLink)`
 export const Button = styled.button`
   color: ${palette.gray2};
   background-color: transparent;
-  padding: 11px 20px;
-  font-size: 12px;
+  padding: 10px 20px;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
   text-transform: uppercase;
@@ -69,6 +69,7 @@ export const Button = styled.button`
     color: #ffffff;
   }
   ${includeMedia('<=md')} {
+    font-size: 12px;
     padding: 10px 10px;
   }
   ${includeMedia('>md')} {

@@ -93,7 +93,7 @@ const TextInput: React.FunctionComponent<IProps> = React.memo(
             ref={inputRef}
           />
         </InputSlot>
-        <FormExplainBlock>{message}</FormExplainBlock>
+        {message && <FormExplainBlock>{message}</FormExplainBlock>}
       </TextInputBlock>
     );
   },

@@ -34,14 +34,11 @@ export const AuthColBlock = styled.div`
 `;
 
 export const AuthTitle = styled.span`
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 400;
   letter-spacing: 3px;
   text-transform: uppercase;
   user-select: none;
-  &:first-letter {
-    color: ${palette.red7};
-  }
 `;
 
 export const FormWrap = styled.form`
@@ -52,7 +49,6 @@ export const FormWrap = styled.form`
 export const SocialTitleBlock = styled(AuthColBlock)`
   ${flexCss};
   flex-flow: row wrap;
-  font-weight: 600;
   color: ${palette.gray6};
   padding: 18px 0 15px;
 `;
@@ -78,7 +74,7 @@ export const CloseButton = styled.button`
     opacity: 0.8;
   }
   svg {
-    font-size: 16px;
+    font-size: 15px;
   }
 `;
 
@@ -116,9 +112,10 @@ export const ButtonBlock = styled(AuthColBlock)`
 
 export const AuthButton = styled.button`
   ${buttonColorMap.red};
-  font-size: 13px;
+  font-size: 15px;
+  letter-spacing: 0.1rem;
   width: 100%;
-  padding: 17px;
+  padding: 16px;
   border-radius: 25px;
   svg {
     font-size: 12px;
@@ -135,7 +132,6 @@ export const ChangeFormBlock = styled(AuthColBlock)`
   color: ${palette.gray4};
   span {
     color: ${palette.red7};
-    font-weight: 600;
     margin-left: 10px;
     cursor: pointer;
     user-select: none;

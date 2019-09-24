@@ -3,9 +3,8 @@ import Joi from '@hapi/joi';
 
 export function validationHelper<T>(
   form: T,
-  schemaObject: Joi.SchemaMap,
+  schema: Joi.ObjectSchema,
 ): { error: Joi.ValidationErrorItem[]; value: T } {
-  const schema: Joi.ObjectSchema = Joi.object(schemaObject);
   const { error, value }: Joi.ValidationResult<T> = schema.validate(form, { abortEarly: false });
   return {
     error: error

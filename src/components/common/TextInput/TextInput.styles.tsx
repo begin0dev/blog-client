@@ -19,7 +19,7 @@ export const InputSlot = styled.div<{ color: string; focus: boolean }>`
     left: 0;
     bottom: -1px;
     width: 100%;
-    transition: 0.4s cubic-bezier(0.25, 0.8, 0.5, 1);
+    transition: 0.4s ease-in;
     transform: scaleX(0);
   }
 
@@ -47,8 +47,7 @@ export const Label = styled.label<{ existContent: boolean }>`
   ${props =>
     props.existContent &&
     css`
-      top: -0.78rem;
-      //transform: translateY(-1.6rem);
+      top: -0.9rem;
     `}
 `;
 
@@ -74,11 +73,11 @@ export const Input = styled.input`
 
 export const FormExplainBlock = styled.div`
   position: absolute;
-  bottom: -18px;
+  bottom: -19px;
   left: 0;
   right: 0;
   font-size: 12px;
-  transition: color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: all 0.3s ease-in;
 `;
 
 export const TextInputBlock = styled.div<{ defaultBorderColor: string; errorBorderColor: string; error: boolean }>`

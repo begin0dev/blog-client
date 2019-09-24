@@ -21,8 +21,8 @@ interface IHamburgerVariable {
 const hamburgerVariable: IHamburgerVariable = {
   paddingX: '3px',
   paddingY: '3px',
-  width: '17px',
-  height: '2px',
+  width: '15px',
+  height: '1px',
   spacing: '4px',
   color: '#ffffff',
   activeColor: '#ffffff',
@@ -78,21 +78,19 @@ export const HamburgerWrapper = styled.div<{ active: boolean }>`
     ${props =>
       props.active &&
       css`
-        &,
-        &::before,
-        &::after {
-          background-color: ${hamburgerVariable.activeColor};
-        }
         transform: translate3d(0, calc(${hamburgerVariable.spacing} + ${hamburgerVariable.height}), 0)
           rotate(-45deg);
-
-        &::before {
+        &,
+        &:before,
+        &:after {
+          background-color: ${hamburgerVariable.activeColor};
+        }
+        &:before {
           transform: rotate(45deg)
             translate3d(calc(${hamburgerVariable.width} / 7), calc(${hamburgerVariable.spacing} * -1), 0);
           opacity: 0;
         }
-
-        &::after {
+        &:after {
           transform: translate3d(
               0,
               calc((${hamburgerVariable.spacing} + ${hamburgerVariable.height}) * -2),
@@ -117,8 +115,8 @@ export const Inner = styled.span`
   margin-top: calc(${hamburgerVariable.height} / -2);
 
   &,
-  &::before,
-  &::after {
+  &:before,
+  &:after {
     width: ${hamburgerVariable.width};
     height: ${hamburgerVariable.height};
     background-color: ${hamburgerVariable.color};
@@ -127,20 +125,18 @@ export const Inner = styled.span`
     transition-duration: 0.15s;
     transition-timing-function: ease;
   }
-
-  &::before,
-  &::after {
+  &:before,
+  &:after {
     content: '';
     display: block;
   }
-
-  &::before {
+  &:before {
     top: calc((${hamburgerVariable.spacing} + ${hamburgerVariable.height}));
     transition-property: transform, opacity;
     transition-timing-function: ease;
     transition-duration: 0.15s;
   }
-  &::after {
+  &:after {
     top: calc(${hamburgerVariable.height} * 2 + ${hamburgerVariable.spacing} * 2);
   }
 `;

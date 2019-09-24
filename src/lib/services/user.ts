@@ -2,8 +2,8 @@ import { BaseJsendResponse } from 'types';
 import { IUser } from 'store/modules/user';
 import apiClient from './apiClient';
 
-export const CHECK_USER_URL: string = '/api/v1.0/users/check';
-export const LOGOUT_USER_URL: string = '/api/v1.0/users/logout';
+export const CHECK_USER_URL: string = '/api/v1/users/check';
+export const LOGOUT_USER_URL: string = '/api/v1/users/logout';
 
 export type CheckUserAPiResponse = BaseJsendResponse<{ user: IUser }>;
 

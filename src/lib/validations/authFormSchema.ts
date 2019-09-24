@@ -1,6 +1,6 @@
 import Joi from '@hapi/joi';
 
-export const authFormSchema = {
+export const authFormSchema: Joi.ObjectSchema = Joi.object({
   email: Joi.string()
     .email()
     .trim()
@@ -48,4 +48,4 @@ export const authFormSchema = {
         },
       },
     }),
-};
+});

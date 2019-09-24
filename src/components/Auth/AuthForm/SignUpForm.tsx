@@ -22,7 +22,7 @@ const SignUpForm: React.FunctionComponent<IPropsBase> = React.memo(
         <TextInput
           type="text"
           name="displayName"
-          label="Display Name"
+          label="닉네임"
           value={authFormValue.displayName}
           error={!!authFormError.displayName}
           message={authFormError.displayName}
@@ -37,7 +37,7 @@ const SignUpForm: React.FunctionComponent<IPropsBase> = React.memo(
         <TextInput
           type="text"
           name="email"
-          label="Email"
+          label="이메일"
           value={authFormValue.email}
           error={!!authFormError.email}
           message={authFormError.email}
@@ -52,7 +52,7 @@ const SignUpForm: React.FunctionComponent<IPropsBase> = React.memo(
         <TextInput
           type="password"
           name="password"
-          label="Password"
+          label="비밀번호"
           value={authFormValue.password}
           error={!!authFormError.password}
           message={authFormError.password}
@@ -67,7 +67,7 @@ const SignUpForm: React.FunctionComponent<IPropsBase> = React.memo(
         <TextInput
           type="password"
           name="passwordConfirm"
-          label="Password Confirm"
+          label="비밀번호 재확인"
           value={authFormValue.passwordConfirm}
           error={!!authFormError.passwordConfirm || !!submitError}
           message={submitError || authFormError.passwordConfirm}
@@ -80,13 +80,13 @@ const SignUpForm: React.FunctionComponent<IPropsBase> = React.memo(
       </AuthColBlock>
       <ButtonBlock>
         <AuthButton type="submit" onClick={authFormSubmit} disabled={isSubmitLoading}>
-          CONTINUE
+          계속하기
           <ArrowRight />
         </AuthButton>
       </ButtonBlock>
       <ChangeFormBlock>
-        Already have an account?
-        <span onClick={toggleAuthForm('logIn')}>Log In</span>
+        계정이 존재합니까?
+        <span onClick={toggleAuthForm('logIn')}>로그인</span>
       </ChangeFormBlock>
     </>
   ),

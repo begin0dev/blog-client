@@ -36,6 +36,6 @@ export default function useRequest<R = any>(request: PromiseCreator<R>) {
     R | null,
     string | null,
     typeof onRequest,
-    typeof onReset
+    typeof onReset,
   ];
 }
