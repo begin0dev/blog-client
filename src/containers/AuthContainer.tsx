@@ -6,6 +6,7 @@ import produce from 'immer';
 import { useDispatch, useSelector } from 'react-redux';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 
+import { MessageContext } from 'lib/Message';
 import useForm from 'lib/hooks/useForm';
 import { BaseActions } from 'store/modules/base';
 import { checkUserActions } from 'store/modules/user';
@@ -40,6 +41,8 @@ const AuthContainer: React.FunctionComponent<RouteComponentProps> = ({
   const formName = useSelector((state: IStoreState) => state.auth.formName);
   const isMobile = useSelector((state: IStoreState) => state.base.isMobile);
   const isLogged = useSelector((state: IStoreState) => state.user.isLogged);
+
+  const { addMessage } = React.useContext(MessageContext);
 
   const modalSize = React.useRef<{ width: string }>({ width: '390px' });
 
@@ -149,9 +152,10 @@ const AuthContainer: React.FunctionComponent<RouteComponentProps> = ({
         }),
       );
       const path: string = `${pathname}?${replaceQs}`;
+      addMessage(queryString.message);
       history.replace(path);
     }
-  }, [dispatch, history, pathname, search]);
+  }, [addMessage, dispatch, history, pathname, search]);
 
   React.useEffect(() => {
     dispatch(checkUserActions.request());

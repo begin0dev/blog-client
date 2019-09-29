@@ -16,9 +16,9 @@ export const MessageContext = React.createContext<MessageContextValue>({
 });
 
 export const MessageProvider: React.FunctionComponent<IMessageProviderProps> = React.memo(
-  ({ children, maxCount = 4, duration = 1200, ...props }) => {
+  ({ children, maxCount = 4, duration = 2400, ...props }) => {
     const messageLimit = React.useRef<number>(maxCount);
-    const animationTime = React.useRef<number>(300);
+    const animationTime = React.useRef<number>(600);
     const removeTime = React.useRef<number>(duration - animationTime.current);
 
     const [messages, setMessage] = React.useState<messagesType[]>([]);
@@ -41,7 +41,7 @@ export const MessageProvider: React.FunctionComponent<IMessageProviderProps> = R
             message.id === id ? { ...message, visible: false } : message,
           ),
         );
-        setTimeout(clearMessage(id), animationTime.current);
+        setTimeout(() => clearMessage(id), animationTime.current);
       },
       [clearMessage, messages],
     );
@@ -56,15 +56,15 @@ export const MessageProvider: React.FunctionComponent<IMessageProviderProps> = R
           0,
         );
         setMessage([...messages, { id, message, visible: true }]);
-        setTimeout(removeMessage(id), removeTime.current);
+        setTimeout(() => removeMessage(id), removeTime.current);
       },
       [messages, removeMessage],
     );
 
     return (
       <MessageContext.Provider value={{ messages, addMessage, destroy }}>
-        {children}
         <Message messages={messages} {...props} />
+        {children}
       </MessageContext.Provider>
     );
   },
