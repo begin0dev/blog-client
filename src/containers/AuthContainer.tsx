@@ -138,19 +138,18 @@ const AuthContainer: React.FunctionComponent<RouteComponentProps> = ({
   );
 
   React.useEffect(() => {
-    if (search) {
-      const queryString = qs.parse(search, { ignoreQueryPrefix: true });
-      if (queryString.form) dispatch(AuthActions.toggleAuthForm(queryString.form));
-      if (queryString.form || queryString.message) {
-        const replaceQs = qs.stringify(
-          produce(queryString, (draft: any) => {
-            delete draft.form;
-            delete draft.message;
-          }),
-        );
-        const path: string = `${pathname}?${replaceQs}`;
-        history.replace(path);
-      }
+    if (!search) return;
+    const queryString = qs.parse(search, { ignoreQueryPrefix: true });
+    if (queryString.form) dispatch(AuthActions.toggleAuthForm(queryString.form));
+    if (queryString.form || queryString.message) {
+      const replaceQs = qs.stringify(
+        produce(queryString, (draft: any) => {
+          delete draft.form;
+          delete draft.message;
+        }),
+      );
+      const path: string = `${pathname}?${replaceQs}`;
+      history.replace(path);
     }
   }, [dispatch, history, pathname, search]);
 

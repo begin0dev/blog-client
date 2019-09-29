@@ -60,7 +60,7 @@ export const LogoWrapper = styled(NavLink)`
 export const Button = styled.button`
   color: ${palette.gray2};
   background-color: transparent;
-  padding: 10px 20px;
+  padding: 10px 25px;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;

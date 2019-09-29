@@ -107,7 +107,7 @@ export const ButtonBlock = styled(AuthColBlock)`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 22px 0 25px;
+  padding: 25px 0;
 `;
 
 export const AuthButton = styled.button`
