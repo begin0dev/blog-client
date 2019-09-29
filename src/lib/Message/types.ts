@@ -7,5 +7,13 @@ export interface Options {
   position?: positionType;
   zIndex?: number;
   margin?: number;
+}
+
+export interface IMessageProviderProps extends Options {
+  maxCount?: number;
   duration?: number;
+}
+
+export interface IMessageProps extends Options {
+  messages: messagesType[];
 }
