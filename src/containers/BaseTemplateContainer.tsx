@@ -19,9 +19,10 @@ const BaseTemplateContainer: React.FunctionComponent = React.memo(() => {
     [dispatch],
   );
 
-  const dispatchToggleSidebar = React.useCallback((bool: boolean) => () => dispatch(toggleSidebar(bool)), [
-    dispatch,
-  ]);
+  const dispatchToggleSidebar = React.useCallback(
+    (bool: boolean) => () => dispatch(toggleSidebar(bool)),
+    [dispatch],
+  );
 
   const closeSidebar = React.useCallback(() => {
     if (!isMobile) dispatch(toggleSidebar(false));
@@ -36,7 +37,7 @@ const BaseTemplateContainer: React.FunctionComponent = React.memo(() => {
       alert(message);
     }
   }, [dispatch]);
-  console.log(isShowSidebar)
+
   return (
     <Header
       visible={isShowSidebar}
