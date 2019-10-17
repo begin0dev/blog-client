@@ -23,7 +23,7 @@ interface INav extends INavBase {
   children?: INavBase[];
 }
 interface IProps {
-  isTablet: boolean;
+  isMobile: boolean;
   visible: boolean;
 }
 
@@ -44,8 +44,8 @@ const navList: INav[] = [
   },
 ];
 
-const Nav: React.FunctionComponent<IProps> = React.memo(({ isTablet, visible }) => (
-  <NavBlock active={isTablet && visible}>
+const Nav: React.FunctionComponent<IProps> = React.memo(({ isMobile, visible }) => (
+  <NavBlock active={visible && isMobile}>
     <List>
       {navList.map((link: INav) =>
         link.hasChildren ? (
@@ -70,7 +70,7 @@ const Nav: React.FunctionComponent<IProps> = React.memo(({ isTablet, visible }) 
             </DropDown>
           </LinkWrapper>
         ) : (
-          <LinkType to={link.url} activeClassName={isTablet ? 'current' : ''} key={link.name}>
+          <LinkType to={link.url} activeClassName={isMobile ? '' : 'current'} key={link.name}>
             {link.name}
           </LinkType>
         ),

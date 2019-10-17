@@ -1,19 +1,15 @@
 import * as React from 'react';
 
-import { FormNameTypes } from 'store/modules/auth';
 import { Button, Right } from '../Header.styles';
 
 interface IProps {
-  toggleAuthForm: (formName: FormNameTypes) => () => void;
+  dispatchToggleAuthModal: (bool: boolean) => () => void;
 }
 
-const BeforeLogin: React.FunctionComponent<IProps> = React.memo(({ toggleAuthForm }) => (
+const BeforeLogin: React.FunctionComponent<IProps> = React.memo(({ dispatchToggleAuthModal }) => (
   <Right>
-    <Button type="button" onClick={toggleAuthForm('logIn')}>
+    <Button type="button" onClick={dispatchToggleAuthModal(true)}>
       로그인
-    </Button>
-    <Button type="button" className="sign-up" onClick={toggleAuthForm('signUp')}>
-      회원가입
     </Button>
   </Right>
 ));

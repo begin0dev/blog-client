@@ -1,4 +1,3 @@
-import Auth from './Auth';
 import Header from './base/Header';
 
 import Modal from './common/Modal';
@@ -12,7 +11,6 @@ import HideScrollbar from './common/HideScrollbar';
 import PageTemplate from './templates/PageTemplate';
 
 export {
-  Auth,
   Header,
   Hamburger,
   Modal,

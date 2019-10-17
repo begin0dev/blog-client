@@ -3,50 +3,49 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { logoutUserApi } from 'lib/services/user';
 import { errorHandler } from 'lib/utils/errorHandler';
-import { IStoreState } from 'store/modules';
-import { BaseActions } from 'store/modules/base';
-import { UserActions } from 'store/modules/user';
-import { FormNameTypes, AuthActions } from 'store/modules/auth';
+import { RootState } from 'store/modules';
+import { toggleSidebar, toggleAuthModal } from 'store/modules/base';
+import { removeUser } from 'store/modules/auth';
 import { Header } from 'components';
 
 const BaseTemplateContainer: React.FunctionComponent = React.memo(() => {
   const dispatch = useDispatch();
-  const sidebar = useSelector((state: IStoreState) => state.base.sidebar);
-  const isTablet = useSelector((state: IStoreState) => state.base.isTablet);
-  const userState = useSelector((state: IStoreState) => state.user);
+  const isShowSidebar = useSelector((state: RootState) => state.base.isShowSidebar);
+  const isMobile = useSelector((state: RootState) => state.base.isMobile);
+  const { user, isLogged } = useSelector((state: RootState) => state.auth);
 
-  const toggleSidebar = React.useCallback(
-    (bool: boolean) => () => dispatch(BaseActions.toggleSidebar(bool)),
+  const dispatchToggleAuthModal = React.useCallback(
+    (bool: boolean) => () => dispatch(toggleAuthModal(bool)),
     [dispatch],
   );
+
+  const dispatchToggleSidebar = React.useCallback((bool: boolean) => () => dispatch(toggleSidebar(bool)), [
+    dispatch,
+  ]);
 
   const closeSidebar = React.useCallback(() => {
-    if (isTablet) dispatch(BaseActions.toggleSidebar(false));
-  }, [dispatch, isTablet]);
-
-  const toggleAuthForm = React.useCallback(
-    (formName: FormNameTypes) => () => dispatch(AuthActions.toggleAuthForm(formName)),
-    [dispatch],
-  );
+    if (!isMobile) dispatch(toggleSidebar(false));
+  }, [dispatch, isMobile]);
 
   const logOut = React.useCallback(async () => {
     try {
       await logoutUserApi();
-      dispatch(UserActions.removeUser());
+      dispatch(removeUser());
     } catch (err) {
       const message = errorHandler(err);
       alert(message);
     }
   }, [dispatch]);
-
+  console.log(isShowSidebar)
   return (
     <Header
-      visible={sidebar}
-      isTablet={isTablet}
-      userState={userState}
+      visible={isShowSidebar}
+      isMobile={isMobile}
+      user={user}
+      isLogged={isLogged}
       logOut={logOut}
-      toggleAuthForm={toggleAuthForm}
-      toggleSidebar={toggleSidebar}
+      dispatchToggleAuthModal={dispatchToggleAuthModal}
+      dispatchToggleSidebar={dispatchToggleSidebar}
       closeSidebar={closeSidebar}
     />
   );

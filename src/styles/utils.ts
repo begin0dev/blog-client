@@ -62,10 +62,8 @@ export const sizes: ISizes = {
 interface IThemes {
   header: string;
   sidebar: string;
-  backgroundColor: string;
 }
 export const themes: IThemes = {
   header: palette.black,
   sidebar: '#13141C',
-  backgroundColor: palette.gray1,
 };

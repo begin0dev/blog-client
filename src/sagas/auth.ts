@@ -2,23 +2,23 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 
 import { CheckUserAPiResponse, checkUserApi } from 'lib/services/user';
 import { errorHandler } from 'lib/utils/errorHandler';
-import { BaseActions } from 'store/modules/base';
-import { CHECK_USER, checkUserActions } from 'store/modules/user';
+import { setLoadingPercent } from 'store/modules/base';
+import { CHECK_USER, checkUserAsync } from 'store/modules/auth';
 
 function* checkUser() {
   try {
-    yield put(BaseActions.setLoadingPercent(0));
+    yield put(setLoadingPercent(0));
     const {
       data: {
         data: { user },
       },
     }: CheckUserAPiResponse = yield call(checkUserApi);
-    yield put(checkUserActions.success(user));
+    yield put(checkUserAsync.success(user));
   } catch (err) {
     call(errorHandler, err);
-    yield put(checkUserActions.failure());
+    yield put(checkUserAsync.failure());
   } finally {
-    yield put(BaseActions.setLoadingPercent(100));
+    yield put(setLoadingPercent(100));
   }
 }
 

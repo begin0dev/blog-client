@@ -1,14 +1,14 @@
 import * as React from 'react';
 
-import { IUserState } from 'store/modules/user';
+import { User } from 'store/modules/auth';
 import { Right } from '../Header.styles';
 
 interface IProps {
-  userState: IUserState;
+  user: User | null;
   logOut: () => void;
 }
 
-const AfterLogin: React.FunctionComponent<IProps> = React.memo(({ userState, logOut }) => (
+const AfterLogin: React.FunctionComponent<IProps> = React.memo(({ user, logOut }) => (
   <Right>
     <button type="button" onClick={logOut}>
       로그아웃

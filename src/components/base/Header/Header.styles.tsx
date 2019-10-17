@@ -52,7 +52,7 @@ export const Right = styled.div`
 export const LogoWrapper = styled(NavLink)`
   line-height: 0;
   svg {
-    font-size: 40px;
+    font-size: 44px;
     margin-right: 15px;
   }
 `;

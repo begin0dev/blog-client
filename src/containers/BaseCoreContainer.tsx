@@ -2,35 +2,25 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { breakPoints } from 'styles/utils';
-import { IStoreState } from 'store/modules';
-import { BaseActions, ViewTypeName } from 'store/modules/base';
+import { RootState } from 'store/modules';
+import { setIsMobile } from 'store/modules/base';
 import { Progressbar } from 'components';
 
 const BaseCoreContainer: React.FunctionComponent = React.memo(() => {
   const dispatch = useDispatch();
-  const isMobile = useSelector((state: IStoreState) => state.base.isMobile);
-  const isTablet = useSelector((state: IStoreState) => state.base.isTablet);
-  const loadingPercent = useSelector((state: IStoreState) => state.base.loadingPercent);
+  const { isMobile, loadingPercent } = useSelector((state: RootState) => state.base);
 
   const [innerWidth, setInnerWidth] = React.useState<number>(window.innerWidth);
 
+  const dispatchSetIsMobile = React.useCallback((bool: boolean) => dispatch(setIsMobile(bool)), [dispatch]);
+
   React.useEffect(() => {
-    const dispatchSetViewType = (typeName: ViewTypeName, bool: boolean) =>
-      dispatch(BaseActions.setViewType({ typeName, bool }));
-    switch (true) {
-      case innerWidth <= breakPoints.sm:
-        if (!isMobile) dispatchSetViewType('isMobile', true);
-        if (!isTablet) dispatchSetViewType('isTablet', true);
-        break;
-      case innerWidth <= breakPoints.md:
-        if (isMobile) dispatchSetViewType('isMobile', false);
-        if (!isTablet) dispatchSetViewType('isTablet', true);
-        break;
-      default:
-        if (isMobile) dispatchSetViewType('isMobile', false);
-        if (isTablet) dispatchSetViewType('isTablet', false);
+    if (!isMobile && innerWidth <= breakPoints.sm) {
+      dispatchSetIsMobile(true);
+    } else if (isMobile && innerWidth > breakPoints.sm) {
+      dispatchSetIsMobile(false);
     }
-  }, [dispatch, innerWidth, isMobile, isTablet]);
+  }, [dispatch, dispatchSetIsMobile, innerWidth, isMobile]);
 
   React.useEffect(() => {
     const resizeEvent = () => setInnerWidth(window.innerWidth);
@@ -39,10 +29,6 @@ const BaseCoreContainer: React.FunctionComponent = React.memo(() => {
       window.removeEventListener('resize', resizeEvent);
     };
   }, [setInnerWidth]);
-
-  React.useEffect(() => {
-    if (isTablet) dispatch(BaseActions.toggleSidebar(false));
-  }, [dispatch, isTablet]);
 
   return <Progressbar percent={loadingPercent} />;
 });

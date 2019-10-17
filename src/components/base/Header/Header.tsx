@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 import { Logo } from 'assets/svgs';
-import { FormNameTypes } from 'store/modules/auth';
-import { IUserState } from 'store/modules/user';
+import { User } from 'store/modules/auth';
+
 import { Overlay, Hamburger } from 'components';
 import Nav from './Nav';
 import BeforeLogin from './Right/BeforeLogin';
@@ -10,28 +10,33 @@ import AfterLogin from './Right/AfterLogin';
 import { HeaderBlock, Wrapper, Left, LogoWrapper } from './Header.styles';
 
 interface IProps {
-  isTablet: boolean;
+  isMobile: boolean;
   visible: boolean;
-  userState: IUserState;
+  user: User | null;
+  isLogged: boolean;
   logOut: () => void;
   closeSidebar: () => void;
-  toggleSidebar: (bool: boolean) => () => void;
-  toggleAuthForm: (formName: FormNameTypes) => () => void;
+  dispatchToggleAuthModal: (bool: boolean) => () => void;
+  dispatchToggleSidebar: (bool: boolean) => () => void;
 }
 
 const Header: React.FunctionComponent<IProps> = React.memo(
-  ({ isTablet, visible, userState, logOut, closeSidebar, toggleAuthForm, toggleSidebar }) => (
+  ({ isMobile, visible, user, isLogged, logOut, closeSidebar, dispatchToggleAuthModal, dispatchToggleSidebar }) => (
     <HeaderBlock>
       <Wrapper>
         <Left>
           <LogoWrapper to="/">
             <Logo />
           </LogoWrapper>
-          {isTablet && <Overlay visible={visible} onClick={closeSidebar} />}
-          <Nav visible={visible} isTablet={isTablet} />
+          {isMobile && <Overlay visible={visible} onClick={closeSidebar} />}
+          <Nav visible={visible} isMobile={isMobile} />
         </Left>
-        {userState.isLogged ? <AfterLogin userState={userState} logOut={logOut} /> : <BeforeLogin toggleAuthForm={toggleAuthForm} />}
-        {isTablet && <Hamburger visible={visible} toggleSidebar={toggleSidebar} />}
+        {isLogged ? (
+          <AfterLogin user={user} logOut={logOut} />
+        ) : (
+          <BeforeLogin dispatchToggleAuthModal={dispatchToggleAuthModal} />
+        )}
+        {isMobile && <Hamburger visible={visible} dispatchToggleSidebar={dispatchToggleSidebar} />}
       </Wrapper>
     </HeaderBlock>
   ),

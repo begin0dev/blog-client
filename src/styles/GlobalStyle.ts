@@ -1,19 +1,19 @@
 import { createGlobalStyle } from 'styled-components';
-import { themes } from './utils';
 import { palette } from './palette';
 
 const GlobalStyle = createGlobalStyle`
-  html, body, #react-root {
+  html, body, #root {
     height: 100%;
   }
   body {
-    font-family: 'Nunito', 'Spoqa Han Sans', sans-serif;
+    font-family: 'Apple SD Gothic Neo', AppleSDGothicNeo, 'Nunito', 'Spoqa Han Sans', sans-serif;
     font-size: 13px;
     font-weight: 400;
-    -webkit-font-smoothing: antialiased;
     color: ${palette.black};
-    background-color: ${themes.backgroundColor};
+    background-color: ${palette.gray0};
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   * {
     margin: 0;
@@ -24,23 +24,25 @@ const GlobalStyle = createGlobalStyle`
   *, *:before, *:after {
     box-sizing: border-box;
   }
+  body, header, footer, main, nav, div, article, section, ol, ul {
+    position: relative;
+    padding: 0;
+    border: 0;
+  }
   a {
     text-decoration: none;
     color: inherit;
   }
+  input, button, textarea {
+    font-family: inherit;
+  }
   button {
-    user-select: none;
     &:active, &:focus, &:hover {
       outline: none;
     }
   }
   ol, ul {
     list-style: none;
-  }
-  body, header, footer, main, nav, div, article, section, ol, ul {
-    position: relative;
-    padding: 0;
-    border: 0;
   }
 `;
 

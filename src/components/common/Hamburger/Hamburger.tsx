@@ -4,11 +4,11 @@ import { HamburgerBlock, HamburgerWrapper, Box, Inner } from './Hamburger.styles
 
 interface IProps {
   visible: boolean;
-  toggleSidebar: (bool: boolean) => () => void;
+  dispatchToggleSidebar: (bool: boolean) => () => void;
 }
 
-const Hamburger: React.FunctionComponent<IProps> = React.memo(({ visible, toggleSidebar }) => (
-  <HamburgerBlock onClick={toggleSidebar(!visible)}>
+const Hamburger: React.FunctionComponent<IProps> = React.memo(({ visible, dispatchToggleSidebar }) => (
+  <HamburgerBlock onClick={dispatchToggleSidebar(!visible)}>
     <HamburgerWrapper active={visible}>
       <Box>
         <Inner />
