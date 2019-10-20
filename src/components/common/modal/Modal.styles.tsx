@@ -37,7 +37,7 @@ export const ModalBlock = styled.div<{ fullScreen?: boolean; backgroundColor?: s
   border-radius: 0.5rem;
   background-color: ${props => (props.backgroundColor ? props.backgroundColor : '#ffffff')};
   overflow: hidden;
-  transform-origin: top;
+  transform-origin: center;
   ${props =>
     props.fullScreen &&
     css`
@@ -61,7 +61,7 @@ export const OverlayBlock = styled.div<{ active: boolean; hideOverlay?: boolean 
   background-color: ${props => (props.hideOverlay ? `rgba(0,0,0,0)` : `rgba(0,0,0,.4)`)};
   overflow: auto;
   ${ModalBlock} {
-    animation: ${props => (props.active ? modalAppear : modalDisappear)} .15s ease-in-out;
+    animation: ${props => (props.active ? modalAppear : modalDisappear)} .2s ease-in-out;
     animation-fill-mode: forwards;
   }:
 `;

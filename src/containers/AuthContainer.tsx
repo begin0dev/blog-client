@@ -4,15 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'store/modules';
 import { toggleAuthModal, setLoadingPercent } from 'store/modules/base';
 import { checkUserAsync } from 'store/modules/auth';
-import { MessageContext } from 'lib/Message';
 import { baseURL } from 'lib/services/apiClient';
 import { SOCIAL_URL } from 'lib/services/auth';
 import { palette } from 'styles/palette';
-import { Modal } from 'components';
+import { Auth, Modal } from 'components';
 
 const AuthContainer: React.FunctionComponent = () => {
-  const { addMessage } = React.useContext(MessageContext);
-
   const dispatch = useDispatch();
   const authModal = useSelector((state: RootState) => state.base.authModal);
   const isMobile = useSelector((state: RootState) => state.base.isMobile);
@@ -20,21 +17,18 @@ const AuthContainer: React.FunctionComponent = () => {
 
   const modalSize = React.useRef<{ width: string }>({ width: '390px' });
 
-  const dispatchToggleAuthModal = React.useCallback(
-    (bool: boolean) => () => {
-      dispatch(toggleAuthModal(bool));
-    },
-    [dispatch],
-  );
+  const hideModal = React.useCallback(() => {
+    dispatch(toggleAuthModal(false));
+  }, [dispatch]);
 
   const socialRedirect = React.useCallback(
     (provider: 'kakao' | 'facebook' | 'github' | 'google') => {
       dispatch(setLoadingPercent(0));
       setTimeout(() => dispatch(setLoadingPercent(100)), 1000);
-      dispatchToggleAuthModal(false);
+      hideModal();
       window.location.href = `${baseURL}${SOCIAL_URL}/${provider}`;
     },
-    [dispatch, dispatchToggleAuthModal],
+    [dispatch, hideModal],
   );
 
   React.useEffect(() => {
@@ -47,10 +41,10 @@ const AuthContainer: React.FunctionComponent = () => {
       active={authModal}
       fullScreen={isMobile}
       size={modalSize.current}
-      backgroundColor={palette.black}
-      hideModal={dispatchToggleAuthModal(false)}
+      backgroundColor={palette.gray1}
+      hideModal={hideModal}
     >
-      test
+      <Auth socialRedirect={socialRedirect} hideModal={hideModal} />
     </Modal>
   );
 };

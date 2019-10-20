@@ -65,5 +65,5 @@ interface IThemes {
 }
 export const themes: IThemes = {
   header: palette.black,
-  sidebar: '#13141C',
+  sidebar: '#14151c',
 };

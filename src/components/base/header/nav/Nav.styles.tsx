@@ -9,7 +9,7 @@ export const NavBlock = styled.nav<{ active: boolean }>`
   position: relative;
   padding: 0;
 
-  ${includeMedia('<=md')} {
+  ${includeMedia('<=sm')} {
     position: fixed;
     top: 0;
     right: 0;
@@ -26,7 +26,7 @@ export const NavBlock = styled.nav<{ active: boolean }>`
 export const List = styled.div`
   display: flex;
 
-  ${includeMedia('<=md')} {
+  ${includeMedia('<=sm')} {
     flex-flow: column wrap;
   }
 `;
@@ -60,7 +60,7 @@ export const LinkWrapper = styled.div`
     }
   }
 
-  ${includeMedia('<=md')} {
+  ${includeMedia('<=sm')} {
     &:before,
     &:after {
       content: unset;
@@ -80,7 +80,7 @@ export const DropDown = styled.div`
     display: block;
   }
 
-  ${includeMedia('<=md')} {
+  ${includeMedia('<=sm')} {
     position: relative;
     display: block;
     padding: 0;
@@ -97,7 +97,7 @@ const defaultTypeCss = css`
   user-select: none;
   color: ${palette.gray4};
 
-  ${includeMedia('<=md')} {
+  ${includeMedia('<=sm')} {
     padding: 16px 40px;
   }
   .expand-icon {
@@ -125,7 +125,7 @@ export const LinkType = styled(NavLink)`
     }
   }
 
-  ${includeMedia('>md')} {
+  ${includeMedia('>sm')} {
     & + ${LinkWrapper} {
       margin-left: 10px;
     }
@@ -142,7 +142,7 @@ export const ChildLinkType = styled(LinkType)<{ color?: string }>`
   padding: 20px 25px;
   color: ${props => (props.color ? props.color : palette.gray6)};
   transition: color 0.3s ease;
-  ${includeMedia('<=md')} {
+  ${includeMedia('<=sm')} {
     padding: 18px 40px;
   }
 `;

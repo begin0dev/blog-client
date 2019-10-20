@@ -4,9 +4,9 @@ import { Logo } from 'assets/svgs';
 import { User } from 'store/modules/auth';
 
 import { Overlay, Hamburger } from 'components';
-import Nav from './Nav';
-import BeforeLogin from './Right/BeforeLogin';
-import AfterLogin from './Right/AfterLogin';
+import Nav from './nav';
+import BeforeLogin from './right/BeforeLogin';
+import AfterLogin from './right/AfterLogin';
 import { HeaderBlock, Wrapper, Left, LogoWrapper } from './Header.styles';
 
 interface IProps {

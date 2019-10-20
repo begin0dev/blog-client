@@ -1,4 +1,4 @@
-export { ReactComponent as ArrowRight } from 'assets/svgs/arrow-right.svg';
+export { ReactComponent as ArrowLeft } from 'assets/svgs/arrow-left.svg';
 export { ReactComponent as ChevronDown } from 'assets/svgs/chevron-down.svg';
 export { ReactComponent as Close } from 'assets/svgs/close.svg';
 export { ReactComponent as Facebook } from 'assets/svgs/facebook-icon.svg';
