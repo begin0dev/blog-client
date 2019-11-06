@@ -24,7 +24,7 @@ export const Wrapper = styled.div`
   padding: 0 36px;
   margin: 0 auto;
 
-  ${includeMedia('<=md')} {
+  ${includeMedia('<=sm')} {
     padding: 0 20px 0 30px;
     margin: unset;
   }
@@ -68,17 +68,14 @@ export const Button = styled.button`
   &:hover {
     color: #ffffff;
   }
-  ${includeMedia('<=md')} {
-    font-size: 12px;
-    padding: 10px 10px;
+  ${includeMedia('<=sm')} {
+    padding: 11px 10px 10px;
   }
-  ${includeMedia('>md')} {
+  ${includeMedia('>sm')} {
+    ${buttonColorMap.red};
+    border-radius: 4px;
     & + & {
       margin-left: 15px;
-    }
-    &.sign-up {
-      ${buttonColorMap.red};
-      border-radius: 4px;
     }
   }
 `;

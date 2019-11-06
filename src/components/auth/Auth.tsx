@@ -14,7 +14,7 @@ import SocialButtons from './SocialButtons';
 
 interface IProps {
   hideModal: () => void;
-  socialRedirect: (provider: 'kakao' | 'facebook' | 'github' | 'google') => void;
+  socialRedirect(provider: 'kakao' | 'facebook' | 'github' | 'google'): () => void;
 }
 
 const Auth: React.FunctionComponent<IProps> = React.memo(({ hideModal, socialRedirect }) => (

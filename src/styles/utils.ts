@@ -1,5 +1,3 @@
-import { palette } from './palette';
-
 interface IBreakPoints {
   sm: number;
   md: number;
@@ -56,7 +54,7 @@ interface ISizes {
   header: number;
 }
 export const sizes: ISizes = {
-  header: 68,
+  header: 62,
 };
 
 interface IThemes {
@@ -64,6 +62,6 @@ interface IThemes {
   sidebar: string;
 }
 export const themes: IThemes = {
-  header: palette.black,
+  header: '#1F1F1F',
   sidebar: '#14151c',
 };

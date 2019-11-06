@@ -29,5 +29,6 @@ export default createReducer<AuthState, AuthAction>(initialState, {
   [REMOVE_USER]: state =>
     produce(state, draft => {
       draft.user = null;
+      draft.isLogged = false;
     }),
 });

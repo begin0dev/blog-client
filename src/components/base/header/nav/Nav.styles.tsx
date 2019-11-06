@@ -139,7 +139,6 @@ export const DivType = styled.div`
 `;
 
 export const ChildLinkType = styled(LinkType)<{ color?: string }>`
-  padding: 20px 25px;
   color: ${props => (props.color ? props.color : palette.gray6)};
   transition: color 0.3s ease;
   ${includeMedia('<=sm')} {

@@ -22,7 +22,7 @@ const AuthContainer: React.FunctionComponent = () => {
   }, [dispatch]);
 
   const socialRedirect = React.useCallback(
-    (provider: 'kakao' | 'facebook' | 'github' | 'google') => {
+    (provider: 'kakao' | 'facebook' | 'github' | 'google') => () => {
       dispatch(setLoadingPercent(0));
       setTimeout(() => dispatch(setLoadingPercent(100)), 1000);
       hideModal();
