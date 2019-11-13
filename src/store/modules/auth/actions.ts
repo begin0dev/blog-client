@@ -1,4 +1,4 @@
-import { createAsyncAction, createStandardAction } from 'typesafe-actions';
+import { createAsyncAction, createAction } from 'typesafe-actions';
 
 import { User } from './types';
 
@@ -9,7 +9,7 @@ export enum CHECK_USER {
   FAILURE = 'CHECK_USER_FAILURE',
 }
 
-export const removeUser = createStandardAction(REMOVE_USER)();
+export const removeUser = createAction(REMOVE_USER)();
 export const checkUserAsync = createAsyncAction(CHECK_USER.REQUEST, CHECK_USER.SUCCESS, CHECK_USER.FAILURE)<
   undefined,
   User,

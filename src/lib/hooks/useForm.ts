@@ -1,11 +1,10 @@
 import * as React from 'react';
-import produce from 'immer';
 
-interface IOnChangeAction<T> {
+interface IOnChangeAction {
   type: 'ON_CHANGE';
   payload: {
-    name: keyof T;
-    value: string | boolean;
+    name: string;
+    value: string | number | boolean;
   };
 }
 interface IOnResetAction<T> {
@@ -13,14 +12,15 @@ interface IOnResetAction<T> {
   initState: T;
 }
 
-function reducer<T>(state: T, action: IOnChangeAction<T> | IOnResetAction<T>) {
+function reducer<T>(state: T, action: IOnChangeAction | IOnResetAction<T>) {
   switch (action.type) {
     case 'ON_RESET':
-      return produce(state, () => action.initState);
+      return { ...action.initState };
     case 'ON_CHANGE':
-      return produce(state, draft => {
-        // draft[action.payload.name] = action.payload.value;
-      });
+      return {
+        ...state,
+        [action.payload.name]: action.payload.value,
+      };
     default:
       return state;
   }
@@ -38,14 +38,17 @@ export default function useForm<T>(defaultState: T) {
     ({
       target: { name, value },
     }: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
-      // dispatch({ type: 'ON_CHANGE', payload: { name, value } });
+      dispatch({ type: 'ON_CHANGE', payload: { name, value } });
     },
     [],
   );
 
-  const setValue = React.useCallback(({ name, value }: { name: keyof T; value: boolean }) => {
-    // dispatch({ type: 'ON_CHANGE', payload: { name, value } });
-  }, []);
+  const setValue = React.useCallback(
+    ({ name, value }: { name: string; value: string | number | boolean }) => {
+      dispatch({ type: 'ON_CHANGE', payload: { name, value } });
+    },
+    [],
+  );
 
   return [state, onChange, setValue, onReset] as [
     T,
