@@ -10,7 +10,7 @@ import TextInput from './common/textInput';
 import Hamburger from './common/hamburger';
 import HideScrollbar from './common/hideScrollbar';
 
-import PageTemplate from './templates/PageTemplate';
+import PageTemplate from './templates/pageTemplate';
 
 export {
   Auth,
