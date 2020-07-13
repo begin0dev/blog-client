@@ -6,11 +6,10 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
   }
   body {
-    font-family: 'Apple SD Gothic Neo', AppleSDGothicNeo, 'Nunito', 'Spoqa Han Sans', sans-serif;
+    font-family: 'Nunito', 'Noto Sans KR', sans-serif;
     font-size: 13px;
     font-weight: 400;
-    color: ${palette.black};
-    background-color: ${palette.gray0};
+    color: ${palette.gray9};
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

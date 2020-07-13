@@ -9,11 +9,11 @@ import { SOCIAL_URL } from 'lib/services/auth';
 import { palette } from 'styles/palette';
 import { Auth, Modal } from 'components';
 
-const AuthContainer: React.FunctionComponent = () => {
+function AuthContainer(): JSX.Element | null {
   const dispatch = useDispatch();
   const authModal = useSelector((state: RootState) => state.base.authModal);
   const isMobile = useSelector((state: RootState) => state.base.isMobile);
-  const isLogged = useSelector((state: RootState) => state.auth.isLogged);
+  const isLogIn = useSelector((state: RootState) => state.auth.isLogIn);
 
   const modalSize = React.useRef<{ width: string }>({ width: '390px' });
 
@@ -35,7 +35,7 @@ const AuthContainer: React.FunctionComponent = () => {
     dispatch(checkUserAsync.request());
   }, [dispatch]);
 
-  if (isLogged) return null;
+  if (isLogIn) return null;
   return (
     <Modal
       active={authModal}
@@ -47,6 +47,6 @@ const AuthContainer: React.FunctionComponent = () => {
       <Auth socialRedirect={socialRedirect} hideModal={hideModal} />
     </Modal>
   );
-};
+}
 
 export default AuthContainer;

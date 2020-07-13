@@ -6,13 +6,15 @@ import { RootState } from 'store/modules';
 import { setIsMobile } from 'store/modules/base';
 import { Progressbar } from 'components';
 
-const BaseCoreContainer: React.FunctionComponent = React.memo(() => {
+function BaseCoreContainer(): JSX.Element {
   const dispatch = useDispatch();
   const { isMobile, loadingPercent } = useSelector((state: RootState) => state.base);
 
   const [innerWidth, setInnerWidth] = React.useState<number>(window.innerWidth);
 
-  const dispatchSetIsMobile = React.useCallback((bool: boolean) => dispatch(setIsMobile(bool)), [dispatch]);
+  const dispatchSetIsMobile = React.useCallback((bool: boolean) => dispatch(setIsMobile(bool)), [
+    dispatch,
+  ]);
 
   React.useEffect(() => {
     if (!isMobile && innerWidth <= breakPoints.sm) {
@@ -31,6 +33,6 @@ const BaseCoreContainer: React.FunctionComponent = React.memo(() => {
   }, [setInnerWidth]);
 
   return <Progressbar percent={loadingPercent} />;
-});
+}
 
 export default BaseCoreContainer;

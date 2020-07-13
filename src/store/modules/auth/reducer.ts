@@ -6,20 +6,20 @@ import { CHECK_USER, REMOVE_USER } from './actions';
 
 const initialState: AuthState = {
   user: null,
-  isLogged: false,
+  isLogIn: false,
   isLoading: false,
 };
 
 export default createReducer<AuthState, AuthAction>(initialState, {
   [CHECK_USER.REQUEST]: state =>
     produce(state, draft => {
-      draft.isLogged = false;
+      draft.isLogIn = false;
       draft.isLoading = true;
     }),
   [CHECK_USER.SUCCESS]: (state, { payload }) =>
     produce(state, () => ({
       user: payload,
-      isLogged: true,
+      isLogIn: true,
       isLoading: false,
     })),
   [CHECK_USER.FAILURE]: state =>
@@ -29,6 +29,6 @@ export default createReducer<AuthState, AuthAction>(initialState, {
   [REMOVE_USER]: state =>
     produce(state, draft => {
       draft.user = null;
-      draft.isLogged = false;
+      draft.isLogIn = false;
     }),
 });

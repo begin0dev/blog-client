@@ -14,7 +14,6 @@ export const AuthBlock = styled.div`
   position: relative;
   flex-flow: column wrap;
   justify-content: space-between;
-  color: ${palette.gray9};
   padding: 75px 35px;
   overflow-x: hidden;
   overflow-y: auto;
@@ -43,16 +42,14 @@ export const BackButton = styled.button`
   align-items: center;
   background-color: transparent;
   border-radius: 100%;
-  overflow: hidden;
-  margin-bottom: 45px;
+  margin-bottom: 55px;
   margin-left: -3px;
-  &:hover {
-    svg {
+  svg {
+    color: ${palette.gray6};
+    font-size: 26px;
+    &:hover {
       opacity: 0.8;
     }
-  }
-  svg {
-    font-size: 26px;
   }
 `;
 
@@ -60,33 +57,41 @@ export const WelcomeBlock = styled.div`
   ${flexCss};
   flex-flow: column wrap;
   font-size: 20px;
-  font-weight: 500;
-  color: ${palette.gray7};
-  span {
-    color: ${palette.gray9};
-    margin-right: 8px;
-  }
+  font-weight: 400;
+  color: #333;
+  letter-spacing: -0.01em;
   div + div {
-    margin-top: 10px;
+    margin-top: 5px;
+  }
+`;
+
+export const LogoWrapper = styled.span`
+  line-height: 0;
+  margin-right: 7px;
+
+  svg {
+    height: 30px;
+    margin-top: -5px;
+    margin-bottom: -3px;
   }
 `;
 
 export const StartHeader = styled.h2`
-  font-size: 21px;
-  margin-bottom: 10px;
+  font-size: 18px;
+  margin-bottom: 3px;
 `;
 
 export const SocialDescBlock = styled.div`
-  font-size: 12px;
+  font-size: 13px;
   color: ${palette.gray7};
-  margin-bottom: 12px;
+  margin-bottom: 20px;
 `;
 
 export const SocialBlock = styled.div`
   display: flex;
   flex-flow: row wrap;
   button + button {
-    margin-left: 16px;
+    margin-left: 20px;
   }
 `;
 
@@ -100,21 +105,21 @@ export const SocialButton = styled.button`
   overflow: hidden;
   &.facebook {
     background-color: #4267b2;
-    color: #FFFFFF;
+    color: #ffffff;
     svg {
       font-size: 20px;
     }
   }
   &.google {
-    background-color: #EA4334;
-    color: #FFFFFF;
+    background-color: #ea4334;
+    color: #ffffff;
     svg {
       font-size: 20px;
     }
   }
   &.kakao {
-    background-color: #F7E600;
-    color: #3C1E1E;
+    background-color: #f7e600;
+    color: #3c1e1e;
     svg {
       font-size: 28px;
     }

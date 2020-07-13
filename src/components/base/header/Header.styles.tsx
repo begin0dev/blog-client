@@ -1,81 +1,84 @@
 import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-import { buttonColorMap } from 'styles/baseCss';
 import { palette } from 'styles/palette';
-import { zIndexes, sizes, themes, includeMedia } from 'styles/utils';
+import { zIndexes, themes, includeMedia } from 'styles/utils';
 
 export const HeaderBlock = styled.header`
   z-index: ${zIndexes.header};
-  position: fixed;
-  left: 0;
-  top: 0;
+  position: relative;
   width: 100%;
   background-color: ${themes.header};
 `;
 
 export const Wrapper = styled.div`
-  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: ${sizes.header}px;
-  max-width: 1440px;
-  padding: 0 36px;
-  margin: 0 auto;
+  padding: 0 33px;
+  height: 98px;
 
-  ${includeMedia('<=sm')} {
-    padding: 0 20px 0 30px;
-    margin: unset;
+  ${includeMedia('>sm')} {
+    padding: 0 60px;
+    height: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 `;
 
-const leftAndRightCss = css`
-  color: ${palette.gray2};
-  display: flex;
-  align-items: center;
-  font-size: 12px;
-  font-weight: 600;
-`;
-
-export const Left = styled.div`
-  ${leftAndRightCss};
-  justify-content: flex-start;
-`;
-
-export const Right = styled.div`
-  ${leftAndRightCss};
-  justify-content: flex-end;
-  flex: 1;
-`;
-
-export const LogoWrapper = styled(NavLink)`
+export const LogoBlock = styled(NavLink)`
   line-height: 0;
   svg {
-    font-size: 44px;
-    margin-right: 15px;
+    height: 36px;
+    margin-top: -10px;
   }
 `;
 
-export const Button = styled.button`
-  color: ${palette.gray2};
-  background-color: transparent;
-  padding: 10px 25px;
+export const LoginBtn = styled.button`
   font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  text-transform: uppercase;
-  &:hover {
-    color: #ffffff;
-  }
-  ${includeMedia('<=sm')} {
-    padding: 11px 10px 10px;
-  }
+  background-color: ${palette.green9};
+  color: ${palette.gray0};
+  padding: 7px 18px;
+  border-radius: 4px;
+`;
+
+export const NavWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  padding: 0 33px;
+  justify-content: space-between;
+
   ${includeMedia('>sm')} {
-    ${buttonColorMap.red};
-    border-radius: 4px;
-    & + & {
-      margin-left: 15px;
+    max-width: 420px;
+    padding: 0 45px;
+    align-items: center;
+  }
+`;
+
+export const NavBtn = styled(NavLink)`
+  position: relative;
+  font-size: 15px;
+  font-weight: 600;
+  color: ${palette.gray6};
+  padding: 0 0 6px;
+  margin: 0 2px;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    background-color: ${palette.green9};
+    transition: width 0.2s ease-in;
+  }
+
+  &.current {
+    color: ${palette.green9};
+    &::after {
+      width: 100%;
     }
   }
 `;

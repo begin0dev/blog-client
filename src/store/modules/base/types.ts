@@ -5,7 +5,6 @@ import * as actions from './actions';
 export type BaseState = {
   isMobile: boolean;
   authModal: boolean
-  isShowSidebar: boolean;
   loadingPercent: number;
 }
 

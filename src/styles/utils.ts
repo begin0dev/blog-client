@@ -1,3 +1,5 @@
+import { palette } from './palette';
+
 interface IBreakPoints {
   sm: number;
   md: number;
@@ -5,7 +7,7 @@ interface IBreakPoints {
   hg: number;
 }
 export const breakPoints: IBreakPoints = {
-  sm: 450,
+  sm: 530,
   md: 768,
   lg: 1024,
   hg: 1200,
@@ -29,7 +31,7 @@ const changeToCondition = (condition: string): string => {
 };
 
 export const includeMedia = (...conditions: string[]): string =>
-  `@media ${conditions.map(condition => changeToCondition(condition)).join(' and ')}`;
+  `@media ${conditions.map((condition) => changeToCondition(condition)).join(' and ')}`;
 
 interface IZIndexes {
   overlay: number;
@@ -50,18 +52,9 @@ export const zIndexes: IZIndexes = {
   message: 2000,
 };
 
-interface ISizes {
-  header: number;
-}
-export const sizes: ISizes = {
-  header: 62,
-};
-
 interface IThemes {
   header: string;
-  sidebar: string;
 }
 export const themes: IThemes = {
-  header: '#1F1F1F',
-  sidebar: '#14151c',
+  header: palette.gray0,
 };
