@@ -1,7 +1,7 @@
 import MainPage from './MainPage';
-import ProfilePage from './profilePage';
-import CategoryPage from './categoryPage';
-import NotFoundPage from './notFoundPage';
+import ProfilePage from './ProfilePage';
+import CategoryPage from './CategoryPage';
+import NotFoundPage from './NotFoundPage';
 
 export {
   MainPage,
