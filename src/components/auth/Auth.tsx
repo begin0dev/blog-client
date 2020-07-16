@@ -33,7 +33,7 @@ function Auth({ hideModal, socialRedirect }: IProps) {
             </LogoWrapper>
             블로그에
           </div>
-          <div>오신것을 환영합니다!</div>
+          <div>오신 것을 환영합니다!</div>
         </WelcomeBlock>
       </SectionTopBlock>
       <SectionBottomBlock>

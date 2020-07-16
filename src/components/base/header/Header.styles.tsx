@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled  from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 import { palette } from 'styles/palette';
