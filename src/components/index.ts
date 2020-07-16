@@ -1,12 +1,26 @@
-import Auth from './Auth';
-import Header from './base/Header';
+import Auth from './auth';
 
-import Hamburger from './common/Hamburger';
-import Modal from './common/Modal';
-import Overlay from './common/Overlay';
-import Spinner from './common/Spinner';
-import TextInput from './common/TextInput';
+import Header from './base/header';
 
-import PageTemplate from './templates/PageTemplate';
+import Modal from './common/modal';
+import Overlay from './common/overlay';
+import Spinner from './common/spinner';
+import Progressbar from './common/progressbar';
+import TextInput from './common/textInput';
+import Hamburger from './common/hamburger';
+import HideScrollbar from './common/hideScrollbar';
 
-export { Auth, Header, Hamburger, Modal, Overlay, Spinner, TextInput, PageTemplate };
+import PageTemplate from './templates/pageTemplate';
+
+export {
+  Auth,
+  Header,
+  Hamburger,
+  Modal,
+  Overlay,
+  Spinner,
+  Progressbar,
+  TextInput,
+  HideScrollbar,
+  PageTemplate,
+};

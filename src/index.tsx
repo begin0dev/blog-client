@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import GlobalStyle from 'styles/GlobalStyle';
+import { MessageProvider } from 'lib/Message';
 
 import App from './App';
 import configureStore from './store/configureStore';
@@ -16,11 +17,13 @@ const store = configureStore();
 ReactDOM.render(
   <Provider store={store}>
     <GlobalStyle />
-    <Router>
-      <App />
-    </Router>
+    <MessageProvider>
+      <Router>
+        <App />
+      </Router>
+    </MessageProvider>
   </Provider>,
-  document.getElementById('react-root'),
+  document.getElementById('root'),
 );
 
 serviceWorker.unregister();

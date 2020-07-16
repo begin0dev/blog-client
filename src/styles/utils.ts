@@ -7,7 +7,7 @@ interface IBreakPoints {
   hg: number;
 }
 export const breakPoints: IBreakPoints = {
-  sm: 450,
+  sm: 530,
   md: 768,
   lg: 1024,
   hg: 1200,
@@ -31,7 +31,7 @@ const changeToCondition = (condition: string): string => {
 };
 
 export const includeMedia = (...conditions: string[]): string =>
-  `@media ${conditions.map(condition => changeToCondition(condition)).join(' and ')}`;
+  `@media ${conditions.map((condition) => changeToCondition(condition)).join(' and ')}`;
 
 interface IZIndexes {
   overlay: number;
@@ -39,6 +39,8 @@ interface IZIndexes {
   modal: number;
   header: number;
   hamburger: number;
+  progress: number;
+  message: number;
 }
 export const zIndexes: IZIndexes = {
   overlay: 200,
@@ -46,22 +48,13 @@ export const zIndexes: IZIndexes = {
   modal: 300,
   header: 100,
   hamburger: 500,
-};
-
-interface ISizes {
-  header: number;
-}
-export const sizes: ISizes = {
-  header: 63,
+  progress: 1000,
+  message: 2000,
 };
 
 interface IThemes {
   header: string;
-  sidebar: string;
-  backgroundColor: string;
 }
 export const themes: IThemes = {
-  header: palette.black,
-  sidebar: '#13141C',
-  backgroundColor: palette.gray1,
+  header: palette.gray0,
 };

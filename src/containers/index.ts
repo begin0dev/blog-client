@@ -1,9 +1,9 @@
 import AuthContainer from './AuthContainer';
 import BaseCoreContainer from './BaseCoreContainer';
-import BaseTemplateContainer from './BaseTemplateContainer';
+import HeaderContainer from './HeaderContainer';
 
 export {
   AuthContainer,
   BaseCoreContainer,
-  BaseTemplateContainer,
+  HeaderContainer,
 };

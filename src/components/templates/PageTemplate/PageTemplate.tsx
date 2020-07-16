@@ -1,7 +1,6 @@
 import * as React from 'react';
 
-import { BaseTemplateContainer, AuthContainer } from 'containers';
-import { MainBlock } from './PageTemplate.styles';
+import { HeaderContainer, AuthContainer } from 'containers';
 
 interface IProps {
   children: React.ReactNode;
@@ -9,8 +8,8 @@ interface IProps {
 
 const PageTemplate: React.FunctionComponent<IProps> = ({ children }) => (
   <>
-    <BaseTemplateContainer />
-    <MainBlock>{children}</MainBlock>
+    <HeaderContainer />
+    <div>{children}</div>
     <AuthContainer />
   </>
 );

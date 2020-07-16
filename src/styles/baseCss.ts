@@ -3,9 +3,9 @@ import { css, keyframes, CSSProp } from 'styled-components';
 import { palette } from './palette';
 
 export const pulseKeyframes = keyframes`
-  0% { box-shadow: 0 0 3px 0 ${palette.gray7}; }
-  50% { box-shadow: 0 0 8px 3px ${palette.gray7}; }
-  100% { box-shadow: 0 0 3px 0 ${palette.gray7}; }
+  0% { box-shadow: 0 0 3px 0 ${palette.gray5}; }
+  50% { box-shadow: 0 0 8px 3px ${palette.gray5}; }
+  100% { box-shadow: 0 0 3px 0 ${palette.gray5}; }
 `;
 
 interface IButtonColorMap {
