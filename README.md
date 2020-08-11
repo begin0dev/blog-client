@@ -5,4 +5,4 @@ This project was created react and typescript.
  - typescript
  - react
  - redux-saga
- - scss
+ - styled-component
