@@ -1,4 +1,4 @@
-import styled  from 'styled-components';
+import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 import { palette } from 'styles/palette';
@@ -21,7 +21,7 @@ export const Wrapper = styled.div`
   ${includeMedia('>sm')} {
     padding: 0 60px;
     height: 80px;
-    max-width: 1200px;
+    max-width: 1280px;
     margin: 0 auto;
   }
 `;
@@ -74,11 +74,40 @@ export const NavBtn = styled(NavLink)`
     background-color: ${palette.green9};
     transition: width 0.2s ease-in;
   }
-
   &.current {
     color: ${palette.green9};
     &::after {
       width: 100%;
     }
   }
+`;
+
+export const ProfileBtn = styled.button`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  border: 1px solid ${palette.green9};
+`;
+
+export const ProfileImgWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  line-height: 0;
+  overflow: hidden;
+  img {
+    width: 100%;
+  }
+`;
+
+export const LoginMenu = styled.div`
+  position: absolute;
+  bottom: -405px;
+  right: -5px;
+  width: 250px;
+  height: 390px;
 `;
