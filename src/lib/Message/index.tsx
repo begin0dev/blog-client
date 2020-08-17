@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, useRef, useState, useCallback, memo } from 'react';
 
 import { messagesType, IMessageProviderProps } from './types';
 import Message from './Message';
@@ -9,57 +9,45 @@ interface MessageContextValue {
   destroy: () => void;
 }
 
-export const MessageContext = React.createContext<MessageContextValue>({
+export const MessageContext = createContext<MessageContextValue>({
   messages: [],
-  addMessage: message => {},
+  addMessage: (message) => {},
   destroy: () => {},
 });
 
-export const MessageProvider: React.FunctionComponent<IMessageProviderProps> = React.memo(
+export const MessageProvider: React.FunctionComponent<IMessageProviderProps> = memo(
   ({ children, maxCount = 4, duration = 2400, ...props }) => {
-    const messageLimit = React.useRef<number>(maxCount);
-    const animationTime = React.useRef<number>(600);
-    const removeTime = React.useRef<number>(duration - animationTime.current);
+    const animationTime = useRef<number>(600);
+    const removeTime = useRef<number>(duration - animationTime.current);
 
-    const [messages, setMessage] = React.useState<messagesType[]>([]);
+    const [messages, setMessage] = useState<messagesType[]>([]);
 
-    const destroy = React.useCallback(() => {
+    const destroy = useCallback(() => {
       setMessage([]);
     }, []);
 
-    const clearMessage = React.useCallback(
-      (id: number) => {
-        setMessage(messages.filter((message: messagesType) => message.id !== id));
-      },
-      [messages],
-    );
+    const clearMessage = (id: number) => {
+      setMessage(messages.filter((message: messagesType) => message.id !== id));
+    };
 
-    const removeMessage = React.useCallback(
-      (id: number) => {
-        setMessage(
-          messages.map((message: messagesType) =>
-            message.id === id ? { ...message, visible: false } : message,
-          ),
-        );
-        setTimeout(() => clearMessage(id), animationTime.current);
-      },
-      [clearMessage, messages],
-    );
+    const removeMessage = (id: number) => {
+      setMessage(
+        messages.map((message: messagesType) =>
+          message.id === id ? { ...message, visible: false } : message,
+        ),
+      );
+      setTimeout(() => clearMessage(id), animationTime.current);
+    };
 
-    const addMessage = React.useCallback(
-      (message: string) => {
-        if (messageLimit.current >= messages.length) {
-          setMessage([...messages.slice(1, messageLimit.current)]);
-        }
-        const id: number = messages.reduce(
-          (acc: number, msg: messagesType) => (msg.id > acc ? msg.id + 1 : acc),
-          0,
-        );
-        setMessage([...messages, { id, message, visible: true }]);
-        setTimeout(() => removeMessage(id), removeTime.current);
-      },
-      [messages, removeMessage],
-    );
+    const addMessage = (message: string) => {
+      if (maxCount >= messages.length) setMessage([...messages.slice(1, maxCount)]);
+      const id: number = messages.reduce(
+        (acc: number, msg: messagesType) => (msg.id > acc ? msg.id + 1 : acc),
+        0,
+      );
+      setMessage([...messages, { id, message, visible: true }]);
+      setTimeout(() => removeMessage(id), removeTime.current);
+    };
 
     return (
       <MessageContext.Provider value={{ messages, addMessage, destroy }}>

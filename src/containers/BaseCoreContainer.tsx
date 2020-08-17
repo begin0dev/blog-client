@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { breakPoints } from 'styles/utils';
@@ -10,13 +10,13 @@ function BaseCoreContainer(): JSX.Element {
   const dispatch = useDispatch();
   const { isMobile, loadingPercent } = useSelector((state: RootState) => state.base);
 
-  const [innerWidth, setInnerWidth] = React.useState<number>(window.innerWidth);
+  const [innerWidth, setInnerWidth] = useState<number>(window.innerWidth);
 
-  const dispatchSetIsMobile = React.useCallback((bool: boolean) => dispatch(setIsMobile(bool)), [
+  const dispatchSetIsMobile = useCallback((bool: boolean) => dispatch(setIsMobile(bool)), [
     dispatch,
   ]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!isMobile && innerWidth <= breakPoints.sm) {
       dispatchSetIsMobile(true);
     } else if (isMobile && innerWidth > breakPoints.sm) {
@@ -24,7 +24,7 @@ function BaseCoreContainer(): JSX.Element {
     }
   }, [dispatch, dispatchSetIsMobile, innerWidth, isMobile]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const resizeEvent = () => setInnerWidth(window.innerWidth);
     window.addEventListener('resize', resizeEvent);
     return () => {

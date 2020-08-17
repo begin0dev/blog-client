@@ -12,6 +12,7 @@ export interface Options {
 export interface IMessageProviderProps extends Options {
   maxCount?: number;
   duration?: number;
+  children: JSX.Element;
 }
 
 export interface IMessageProps extends Options {

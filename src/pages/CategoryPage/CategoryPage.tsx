@@ -1,7 +1,7 @@
-import * as React from "react";
+import React from 'react';
 
-const CategoryPage = () => {
+function CategoryPage(): JSX.Element {
   return <div>category</div>;
-};
+}
 
 export default CategoryPage;
