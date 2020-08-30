@@ -69,15 +69,18 @@ export const NavBtn = styled(NavLink)`
     position: absolute;
     bottom: 0;
     left: 0;
+    right: 0;
     height: 2px;
     width: 0;
+    margin: 0 auto;
+    border-radius: 2px;
     background-color: ${palette.green9};
-    transition: width 0.2s ease-in;
+    transition: width 0.2s ease-in-out;
   }
   &.current {
     color: ${palette.green9};
     &::after {
-      width: 100%;
+      width: 90%;
     }
   }
 `;

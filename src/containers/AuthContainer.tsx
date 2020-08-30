@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { parse } from 'qs';
@@ -37,7 +37,6 @@ function AuthContainer(): JSX.Element | null {
 
   useEffect(() => {
     const referer = sessionStorage.getItem('referer');
-
     if (referer) {
       const queryString = parse(history.location.search, { ignoreQueryPrefix: true });
       if (history.location.pathname !== referer) {

@@ -4,13 +4,11 @@ import { messagesType, IMessageProviderProps } from './types';
 import Message from './Message';
 
 interface MessageContextValue {
-  messages: messagesType[];
   addMessage: (message: string) => void;
   destroy: () => void;
 }
 
 export const MessageContext = createContext<MessageContextValue>({
-  messages: [],
   addMessage: (message: string) => {},
   destroy: () => {},
 });
@@ -26,16 +24,16 @@ export const MessageProvider: React.FunctionComponent<IMessageProviderProps> = m
       setMessage([]);
     }, []);
 
-    const clearMessage = (id: number) =>
-      setMessage(messages.filter((message: messagesType) => message.id !== id));
-
     const removeMessage = (id: number) => {
       setMessage(
         messages.map((message: messagesType) =>
           message.id === id ? { ...message, visible: false } : message,
         ),
       );
-      setTimeout(() => clearMessage(id), animationTime.current);
+      setTimeout(
+        () => setMessage(messages.filter((message: messagesType) => message.id !== id)),
+        animationTime.current,
+      );
     };
 
     const addMessage = (message: string) => {
@@ -49,7 +47,7 @@ export const MessageProvider: React.FunctionComponent<IMessageProviderProps> = m
     };
 
     return (
-      <MessageContext.Provider value={{ messages, addMessage, destroy }}>
+      <MessageContext.Provider value={{ addMessage, destroy }}>
         <Message messages={messages} {...props} />
         {children}
       </MessageContext.Provider>
