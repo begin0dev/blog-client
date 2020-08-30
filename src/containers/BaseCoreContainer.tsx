@@ -16,6 +16,8 @@ function BaseCoreContainer(): JSX.Element {
     dispatch,
   ]);
 
+  const resizeEvent = () => setInnerWidth(window.innerWidth);
+
   useEffect(() => {
     if (!isMobile && innerWidth <= breakPoints.sm) {
       dispatchSetIsMobile(true);
@@ -25,7 +27,6 @@ function BaseCoreContainer(): JSX.Element {
   }, [dispatch, dispatchSetIsMobile, innerWidth, isMobile]);
 
   useEffect(() => {
-    const resizeEvent = () => setInnerWidth(window.innerWidth);
     window.addEventListener('resize', resizeEvent);
     return () => {
       window.removeEventListener('resize', resizeEvent);

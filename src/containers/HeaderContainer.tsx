@@ -13,10 +13,7 @@ function HeaderContainer(): JSX.Element {
   const isMobile = useSelector((state: RootState) => state.base.isMobile);
   const { user, isLogIn } = useSelector((state: RootState) => state.auth);
 
-  const dispatchToggleAuthModal = React.useCallback(
-    (bool: boolean) => () => dispatch(toggleAuthModal(bool)),
-    [dispatch],
-  );
+  const dispatchToggleAuthModal = (bool: boolean) => () => dispatch(toggleAuthModal(bool));
 
   const logOut = React.useCallback(async () => {
     try {

@@ -26,9 +26,8 @@ export const MessageProvider: React.FunctionComponent<IMessageProviderProps> = m
       setMessage([]);
     }, []);
 
-    const clearMessage = (id: number) => {
+    const clearMessage = (id: number) =>
       setMessage(messages.filter((message: messagesType) => message.id !== id));
-    };
 
     const removeMessage = (id: number) => {
       setMessage(

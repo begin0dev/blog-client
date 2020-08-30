@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from 'store/modules';
@@ -11,36 +11,33 @@ import { Auth, Modal } from 'components';
 
 function AuthContainer(): JSX.Element | null {
   const dispatch = useDispatch();
+
   const authModal = useSelector((state: RootState) => state.base.authModal);
   const isMobile = useSelector((state: RootState) => state.base.isMobile);
   const isLogIn = useSelector((state: RootState) => state.auth.isLogIn);
 
-  const modalSize = React.useRef<{ width: string }>({ width: '390px' });
+  const hideModal = () => dispatch(toggleAuthModal(false));
 
-  const hideModal = React.useCallback(() => {
-    dispatch(toggleAuthModal(false));
-  }, [dispatch]);
-
-  const socialRedirect = React.useCallback(
+  const socialRedirect = useCallback(
     (provider: 'kakao' | 'facebook' | 'github' | 'google') => () => {
       dispatch(setLoadingPercent(0));
       setTimeout(() => dispatch(setLoadingPercent(100)), 1000);
-      hideModal();
       window.location.href = `${baseURL}${SOCIAL_URL}/${provider}`;
     },
-    [dispatch, hideModal],
+    [dispatch],
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     dispatch(checkUserAsync.request());
   }, [dispatch]);
 
   if (isLogIn) return null;
+
   return (
     <Modal
       active={authModal}
       fullScreen={isMobile}
-      size={modalSize.current}
+      size={{ width: '390px' }}
       backgroundColor={palette.gray1}
       hideModal={hideModal}
     >

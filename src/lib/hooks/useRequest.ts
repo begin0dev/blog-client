@@ -5,9 +5,11 @@ import { errorHandler } from 'lib/utils/errorHandler';
 
 const { useRef, useState, useCallback } = React;
 
-type PromiseCreator<R> = (...params: any[]) => AxiosPromise<R>;
+type RequestParametersType<P> = [P, any?] | [number, P, any?];
 
-export default function useRequest<R = any>(request: PromiseCreator<R>) {
+type PromiseCreator<P, R> = (...params: RequestParametersType<P>) => AxiosPromise<R>;
+
+function useRequest<P, R>(request: PromiseCreator<RequestParametersType<P>, R>) {
   const fetch = useRef(request);
 
   const [loading, setLoading] = useState<boolean>(false);
@@ -19,22 +21,19 @@ export default function useRequest<R = any>(request: PromiseCreator<R>) {
     setError(null);
   }, []);
 
-  const onRequest = useCallback(
-    async (params) => {
-      try {
-        onReset();
-        setLoading(true);
-        const { data } = await fetch.current(params);
-        setPayload(data);
-      } catch (err) {
-        const message = errorHandler(err);
-        setError(message);
-      } finally {
-        setLoading(false);
-      }
-    },
-    [onReset],
-  );
+  const onRequest = async (...params: RequestParametersType<P>) => {
+    try {
+      onReset();
+      setLoading(true);
+      const { data } = await fetch.current(params);
+      setPayload(data);
+    } catch (err) {
+      const message = errorHandler(err);
+      setError(message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return [loading, payload, error, onRequest, onReset] as [
     boolean,
@@ -44,3 +43,5 @@ export default function useRequest<R = any>(request: PromiseCreator<R>) {
     typeof onReset,
   ];
 }
+
+export default useRequest;
