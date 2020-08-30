@@ -11,7 +11,7 @@ interface MessageContextValue {
 
 export const MessageContext = createContext<MessageContextValue>({
   messages: [],
-  addMessage: (message) => {},
+  addMessage: (message: string) => {},
   destroy: () => {},
 });
 

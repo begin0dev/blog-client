@@ -16,7 +16,7 @@ function LogIn({ user, isLogIn, logOut, dispatchToggleAuthModal }: IProps): JSX.
       <ProfileBtn>
         <ProfileImgWrapper>
           <img
-            src="https://s.gravatar.com/avatar/6d0bbbddcac79e229b32706694b86afe?s=33&d=retro"
+            src="https://s.gravatar.com/avatar/6d0bbbddcac79e229b32706694b86afe?s=35&d=retro"
             alt="profile_image"
           />
         </ProfileImgWrapper>
