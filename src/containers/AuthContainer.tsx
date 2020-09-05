@@ -18,8 +18,8 @@ function AuthContainer(): JSX.Element | null {
 
   const { addMessage } = useContext(MessageContext);
 
-  const { authModal, isMobile } = useSelector((state: RootState) => state.base, shallowEqual);
   const isLogIn = useSelector((state: RootState) => state.auth.isLogIn);
+  const { authModal, isMobile } = useSelector((state: RootState) => state.base, shallowEqual);
 
   const hideModal = () => dispatch(toggleAuthModal(false));
 

@@ -15,11 +15,11 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 33px;
+  padding: 0 35px;
   height: 98px;
 
-  ${includeMedia('>sm')} {
-    padding: 0 60px;
+  ${includeMedia('>md')} {
+    padding: 0 45px;
     height: 80px;
     max-width: 1280px;
     margin: 0 auto;
@@ -48,7 +48,7 @@ export const NavWrapper = styled.div`
   padding: 0 33px;
   justify-content: space-between;
 
-  ${includeMedia('>sm')} {
+  ${includeMedia('>md')} {
     max-width: 420px;
     padding: 0 45px;
     align-items: center;
@@ -61,7 +61,7 @@ export const NavBtn = styled(NavLink)`
   font-weight: 600;
   color: ${palette.gray6};
   padding: 0 0 6px;
-  margin: 0 2px;
+  margin: 0 5px;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   &::after {
@@ -91,6 +91,7 @@ export const ProfileBtn = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
+  min-width: 35px;
   width: 35px;
   height: 35px;
   border: 1px solid ${palette.green9};

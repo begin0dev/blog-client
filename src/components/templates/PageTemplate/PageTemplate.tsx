@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { HeaderContainer } from 'containers';
+import Header from 'components/base/Header'
 
 interface IProps {
   children: React.ReactNode;
@@ -9,7 +9,7 @@ interface IProps {
 function PageTemplate({ children }: IProps): JSX.Element {
   return (
     <>
-      <HeaderContainer />
+      <Header />
       <div>{children}</div>
     </>
   );

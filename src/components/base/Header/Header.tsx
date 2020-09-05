@@ -1,21 +1,15 @@
-import * as React from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
+import { RootState } from 'store/modules';
 import { Logo } from 'assets/svgs';
-import { User } from 'store/modules/auth';
-
-import { HeaderBlock, Wrapper, LogoBlock } from './Header.styles';
-import LogIn from './LogIn';
+import { LoginHeaderContainer } from 'containers';
+import { HeaderBlock, LogoBlock, Wrapper } from './Header.styles';
 import Nav from './Nav';
 
-interface IProps {
-  isMobile: boolean;
-  user: User | null;
-  isLogIn: boolean;
-  logOut: () => void;
-  dispatchToggleAuthModal: (bool: boolean) => () => void;
-}
+function Header(): JSX.Element {
+  const isMobile = useSelector((state: RootState) => state.base.isMobile);
 
-function Header({ isMobile, user, isLogIn, logOut, dispatchToggleAuthModal }: IProps): JSX.Element {
   return (
     <HeaderBlock>
       <Wrapper>
@@ -23,16 +17,11 @@ function Header({ isMobile, user, isLogIn, logOut, dispatchToggleAuthModal }: IP
           <Logo />
         </LogoBlock>
         {!isMobile && <Nav />}
-        <LogIn
-          user={user}
-          isLogIn={isLogIn}
-          logOut={logOut}
-          dispatchToggleAuthModal={dispatchToggleAuthModal}
-        />
+        <LoginHeaderContainer />
       </Wrapper>
       {isMobile && <Nav />}
     </HeaderBlock>
   );
 }
 
-export default React.memo(Header);
+export default Header;
