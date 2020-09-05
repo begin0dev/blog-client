@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { ProgressbarBlock } from './Progressbar.styles';
 
@@ -7,10 +7,10 @@ interface IProps {
 }
 
 const Progressbar: React.FunctionComponent<IProps> = ({ percent }) => {
-  const [isZero, setIsZero] = React.useState<boolean>(true);
-  const [visible, setVisible] = React.useState<boolean>(false);
+  const [isZero, setIsZero] = useState<boolean>(true);
+  const [visible, setVisible] = useState<boolean>(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     let timeOut: number | null = null;
     if (percent === 0) {
       setVisible(true);

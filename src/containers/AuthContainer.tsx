@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { parse } from 'qs';
 
@@ -18,8 +18,7 @@ function AuthContainer(): JSX.Element | null {
 
   const { addMessage } = useContext(MessageContext);
 
-  const authModal = useSelector((state: RootState) => state.base.authModal);
-  const isMobile = useSelector((state: RootState) => state.base.isMobile);
+  const { authModal, isMobile } = useSelector((state: RootState) => state.base, shallowEqual);
   const isLogIn = useSelector((state: RootState) => state.auth.isLogIn);
 
   const hideModal = () => dispatch(toggleAuthModal(false));
@@ -48,10 +47,9 @@ function AuthContainer(): JSX.Element | null {
         dispatch(toggleAuthModal(true));
       }
     }
-  }, [addMessage, dispatch, history]);
+  }, [dispatch, addMessage, history]);
 
   if (isLogIn) return null;
-
   return (
     <Modal
       active={authModal}
