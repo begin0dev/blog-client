@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 import { palette } from 'styles/palette';
 import { zIndexes, themes, includeMedia } from 'styles/utils';
@@ -54,13 +54,13 @@ export const NavBtn = styled(NavLink)`
   position: relative;
   font-size: 15px;
   font-weight: 600;
-  padding: 6px 0;
+  padding: 8px 0;
   color: ${palette.gray6};
   user-select: none;
   margin: 0 2px;
 
   ${includeMedia('<=md')} {
-    padding: 0 0 6px;
+    padding: 0 0 8px;
   }
 
   &::after {
@@ -130,15 +130,17 @@ export const ProfileImgWrapper = styled.div`
 export const LoginMenu = styled.div`
   z-index: ${zIndexes.loginMenu};
   position: absolute;
-  bottom: -405px;
-  right: -20px;
+  top: 50px;
+  right: -19px;
   width: 300px;
-  height: 390px;
+  max-height: 400px;
+  display: flex;
+  flex-flow: column wrap;
+  color: ${palette.gray9};
   background-color: ${palette.white};
   border: 1px solid ${palette.gray3};
   border-radius: 4px;
-  display: flex;
-  flex-flow: column wrap;
+  text-align: start;
 
   &::before {
     content: '';
@@ -162,16 +164,37 @@ export const ProfileWrapper = styled.div`
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  padding: 27px 22px 22px;
+  padding: 25px 22px 20px;
+  h3 {
+    margin-bottom: 2px;
+  }
 `;
 
 export const ProfileImageWrapper = styled.div`
   ${profileCss};
-  height: 45px;
-  width: 45px;
+  height: 48px;
+  width: 48px;
   margin-right: 20px;
   line-height: 0;
   img {
     width: 100%;
   }
+`;
+
+export const SettingLink = styled(Link)`
+  color: ${palette.gray5};
+  font-weight: 500;
+  margin-top: 5px;
+`;
+
+export const LogoutWrapper = styled.div`
+  padding: 20px 22px 25px;
+`;
+
+export const LogoutBtn = styled.button`
+  font-size: 14px;
+  background-color: inherit;
+  color: ${palette.gray5};
+  padding: 0;
+  margin: 0;
 `;

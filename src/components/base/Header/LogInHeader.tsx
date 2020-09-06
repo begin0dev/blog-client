@@ -8,6 +8,9 @@ import {
   LoginMenu,
   ProfileWrapper,
   ProfileImageWrapper,
+  SettingLink,
+  LogoutWrapper,
+  LogoutBtn,
 } from './Header.styles';
 
 interface IProps {
@@ -39,11 +42,13 @@ function LogInHeader({ user, isLogIn, showAuthModal, logOut }: IProps): JSX.Elem
           </ProfileImageWrapper>
           <div>
             <h3>{user?.displayName}</h3>
-
+            <SettingLink to="/settings">Settings</SettingLink>
           </div>
         </ProfileWrapper>
         <div>test</div>
-        <div>test</div>
+        <LogoutWrapper>
+          <LogoutBtn onClick={logOut}>Logout</LogoutBtn>
+        </LogoutWrapper>
       </LoginMenu>
     </ProfileBtn>
   );
