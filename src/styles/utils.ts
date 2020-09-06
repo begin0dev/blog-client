@@ -33,28 +33,19 @@ const changeToCondition = (condition: string): string => {
 export const includeMedia = (...conditions: string[]): string =>
   `@media ${conditions.map((condition) => changeToCondition(condition)).join(' and ')}`;
 
-interface IZIndexes {
-  overlay: number;
-  sidebar: number;
-  modal: number;
-  header: number;
-  hamburger: number;
-  progress: number;
-  message: number;
+export enum zIndexes {
+  header = 100,
+  overlay = 200,
+  modal = 300,
+  loginMenu = 500,
+  hamburger = 500,
+  progress = 1000,
+  message = 2000,
 }
-export const zIndexes: IZIndexes = {
-  overlay: 200,
-  sidebar: 400,
-  modal: 300,
-  header: 100,
-  hamburger: 500,
-  progress: 1000,
-  message: 2000,
-};
 
 interface IThemes {
   header: string;
 }
 export const themes: IThemes = {
-  header: palette.gray0,
+  header: palette.white,
 };

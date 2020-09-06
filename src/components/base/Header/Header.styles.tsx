@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 import { palette } from 'styles/palette';
@@ -13,45 +13,40 @@ export const HeaderBlock = styled.header`
 
 export const Wrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  padding: 0 35px;
-  height: 98px;
-
-  ${includeMedia('>md')} {
-    padding: 0 45px;
-    height: 80px;
-    max-width: 1280px;
-    margin: 0 auto;
+  flex-flow: row wrap;
+  max-width: 1280px;
+  padding: 0 45px;
+  margin: 0 auto;
+  
+  ${includeMedia('<=md')} {
+    padding: 0 35px;
   }
 `;
 
+// left
 export const LogoBlock = styled(NavLink)`
+  padding-right: 45px;
   line-height: 0;
   svg {
     height: 36px;
-    margin-top: -10px;
+    margin-top: -11px;
   }
 `;
 
-export const LoginBtn = styled.button`
-  font-size: 13px;
-  background-color: ${palette.green9};
-  color: ${palette.gray0};
-  padding: 7px 18px;
-  border-radius: 4px;
-`;
-
 export const NavWrapper = styled.div`
-  width: 100%;
   display: flex;
-  padding: 0 33px;
-  justify-content: space-between;
+  justify-content: flex-start;
+  align-items: center;
 
-  ${includeMedia('>md')} {
-    max-width: 420px;
-    padding: 0 45px;
-    align-items: center;
+  ${includeMedia('<=md')} {
+    flex-basis: 100%;
+    order: 2;
+  }
+  
+  a + a {
+    margin-left: 45px;
   }
 `;
 
@@ -59,11 +54,15 @@ export const NavBtn = styled(NavLink)`
   position: relative;
   font-size: 15px;
   font-weight: 600;
+  padding: 6px 0;
   color: ${palette.gray6};
-  padding: 0 0 6px;
-  margin: 0 5px;
   user-select: none;
-  -webkit-tap-highlight-color: transparent;
+  margin: 0 2px;
+
+  ${includeMedia('<=md')} {
+    padding: 0 0 6px;
+  }
+
   &::after {
     content: '';
     position: absolute;
@@ -85,33 +84,94 @@ export const NavBtn = styled(NavLink)`
   }
 `;
 
-export const ProfileBtn = styled.button`
-  position: relative;
+// right
+export const HeaderRight = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  height: 80px;
+`;
+
+export const LoginBtn = styled.button`
+  font-size: 13px;
+  background-color: ${palette.green9};
+  color: ${palette.white};
+  padding: 7px 18px;
+  border-radius: 4px;
+`;
+
+const profileCss = css`
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
+  border: 1px solid ${palette.green9};
+  overflow: hidden;
+`;
+
+export const ProfileBtn = styled.button`
+  position: relative;
   min-width: 35px;
   width: 35px;
   height: 35px;
-  border: 1px solid ${palette.green9};
+  border-radius: 50%;
 `;
 
 export const ProfileImgWrapper = styled.div`
+  ${profileCss};
   width: 100%;
   height: 100%;
-  border-radius: 50%;
   line-height: 0;
-  overflow: hidden;
   img {
     width: 100%;
   }
 `;
 
 export const LoginMenu = styled.div`
+  z-index: ${zIndexes.loginMenu};
   position: absolute;
   bottom: -405px;
-  right: -5px;
-  width: 250px;
+  right: -20px;
+  width: 300px;
   height: 390px;
+  background-color: ${palette.white};
+  border: 1px solid ${palette.gray3};
+  border-radius: 4px;
+  display: flex;
+  flex-flow: column wrap;
+
+  &::before {
+    content: '';
+    position: absolute;
+    right: 30px;
+    top: -7px;
+    height: 12px;
+    width: 12px;
+    transform: rotate(45deg);
+    background-color: ${palette.white};
+    border-left: 1px solid ${palette.gray3};
+    border-top: 1px solid ${palette.gray3};
+  }
+
+  & > div + div {
+    border-top: 1px solid ${palette.gray3};
+  }
+`;
+
+export const ProfileWrapper = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  padding: 27px 22px 22px;
+`;
+
+export const ProfileImageWrapper = styled.div`
+  ${profileCss};
+  height: 45px;
+  width: 45px;
+  margin-right: 20px;
+  line-height: 0;
+  img {
+    width: 100%;
+  }
 `;

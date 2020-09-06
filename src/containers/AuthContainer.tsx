@@ -55,7 +55,7 @@ function AuthContainer(): JSX.Element | null {
       active={authModal}
       fullScreen={isMobile}
       size={{ width: '390px' }}
-      backgroundColor={palette.gray1}
+      backgroundColor={palette.gray0}
       hideModal={hideModal}
     >
       <Auth socialRedirect={socialRedirect} hideModal={hideModal} />

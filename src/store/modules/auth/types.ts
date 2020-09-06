@@ -4,7 +4,9 @@ import * as actions from './actions';
 
 export interface User {
   _id: string;
+  email?: string;
   displayName: string;
+  profileImageUrl?: string;
 }
 export type AuthState = {
   user: null | User;

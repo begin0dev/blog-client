@@ -1,7 +1,14 @@
 import React, { memo } from 'react';
 
 import { User } from 'store/modules/auth';
-import { LoginBtn, ProfileBtn, ProfileImgWrapper, LoginMenu } from './Header.styles';
+import {
+  LoginBtn,
+  ProfileBtn,
+  ProfileImgWrapper,
+  LoginMenu,
+  ProfileWrapper,
+  ProfileImageWrapper,
+} from './Header.styles';
 
 interface IProps {
   user: User | null;
@@ -22,7 +29,22 @@ function LogInHeader({ user, isLogIn, showAuthModal, logOut }: IProps): JSX.Elem
         />
       </ProfileImgWrapper>
 
-      <LoginMenu>test</LoginMenu>
+      <LoginMenu>
+        <ProfileWrapper>
+          <ProfileImageWrapper>
+            <img
+              src="https://s.gravatar.com/avatar/6d0bbbddcac79e229b32706694b86afe?s=35&d=retro"
+              alt="profile_image"
+            />
+          </ProfileImageWrapper>
+          <div>
+            <h3>{user?.displayName}</h3>
+
+          </div>
+        </ProfileWrapper>
+        <div>test</div>
+        <div>test</div>
+      </LoginMenu>
     </ProfileBtn>
   );
 }
