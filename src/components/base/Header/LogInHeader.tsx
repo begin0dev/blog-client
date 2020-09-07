@@ -1,13 +1,12 @@
 import React, { memo } from 'react';
 
 import { User } from 'store/modules/auth';
+import { ProfileImage } from 'components';
 import {
   LoginBtn,
   ProfileBtn,
-  ProfileImgWrapper,
   LoginMenu,
   ProfileWrapper,
-  ProfileImageWrapper,
   SettingLink,
   LogoutWrapper,
   LogoutBtn,
@@ -22,24 +21,18 @@ interface IProps {
 
 function LogInHeader({ user, isLogIn, showAuthModal, logOut }: IProps): JSX.Element {
   if (!isLogIn) return <LoginBtn onClick={showAuthModal}>LogIn</LoginBtn>;
-
   return (
     <ProfileBtn>
-      <ProfileImgWrapper>
-        <img
-          src="https://s.gravatar.com/avatar/6d0bbbddcac79e229b32706694b86afe?s=35&d=retro"
-          alt="profile_image"
-        />
-      </ProfileImgWrapper>
+      <ProfileImage profileImage={user?.profileImage} size={35} round />
 
       <LoginMenu>
         <ProfileWrapper>
-          <ProfileImageWrapper>
-            <img
-              src="https://s.gravatar.com/avatar/6d0bbbddcac79e229b32706694b86afe?s=35&d=retro"
-              alt="profile_image"
-            />
-          </ProfileImageWrapper>
+          <ProfileImage
+            profileImage={user?.profileImage}
+            size={48}
+            styles={{ marginRight: '20px' }}
+            round
+          />
           <div>
             <h3>{user?.displayName}</h3>
             <SettingLink to="/settings">Settings</SettingLink>

@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import { NavLink, Link } from 'react-router-dom';
 
 import { palette } from 'styles/palette';
@@ -100,31 +100,12 @@ export const LoginBtn = styled.button`
   border-radius: 4px;
 `;
 
-const profileCss = css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  border: 1px solid ${palette.green9};
-  overflow: hidden;
-`;
-
 export const ProfileBtn = styled.button`
   position: relative;
   min-width: 35px;
   width: 35px;
   height: 35px;
   border-radius: 50%;
-`;
-
-export const ProfileImgWrapper = styled.div`
-  ${profileCss};
-  width: 100%;
-  height: 100%;
-  line-height: 0;
-  img {
-    width: 100%;
-  }
 `;
 
 export const LoginMenu = styled.div`
@@ -165,19 +146,9 @@ export const ProfileWrapper = styled.div`
   flex-flow: row wrap;
   align-items: center;
   padding: 25px 22px 20px;
+  
   h3 {
     margin-bottom: 2px;
-  }
-`;
-
-export const ProfileImageWrapper = styled.div`
-  ${profileCss};
-  height: 48px;
-  width: 48px;
-  margin-right: 20px;
-  line-height: 0;
-  img {
-    width: 100%;
   }
 `;
 
