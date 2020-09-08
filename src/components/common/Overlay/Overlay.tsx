@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { memo } from 'react';
 
 import { OverlayBlock } from './Overlay.styles';
 
@@ -7,8 +7,8 @@ interface IProps {
   onClick?: () => void;
 }
 
-const Overlay: React.FunctionComponent<IProps> = React.memo(({ visible, onClick }) => (
-  <OverlayBlock visible={visible} onClick={onClick} />
-));
+function Overlay({ visible, onClick }: IProps) {
+  return <OverlayBlock visible={visible} onClick={onClick} />;
+};
 
-export default Overlay;
+export default memo(Overlay);

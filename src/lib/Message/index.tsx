@@ -13,7 +13,7 @@ export const MessageContext = createContext<MessageContextValue>({
   destroy: () => {},
 });
 
-export const MessageProvider: React.FunctionComponent<IMessageProviderProps> = memo(
+export const MessageProvider: React.FC<IMessageProviderProps> = memo(
   ({ children, maxCount = 4, duration = 2400, ...props }) => {
     const animationTime = useRef<number>(600);
     const removeTime = useRef<number>(duration - animationTime.current);
@@ -38,7 +38,7 @@ export const MessageProvider: React.FunctionComponent<IMessageProviderProps> = m
 
     const addMessage = (message: string) => {
       if (maxCount >= messages.length) setMessage([...messages.slice(1, maxCount)]);
-      const id: number = messages.reduce(
+      const id = messages.reduce(
         (acc: number, msg: messagesType) => (msg.id > acc ? msg.id + 1 : acc),
         0,
       );

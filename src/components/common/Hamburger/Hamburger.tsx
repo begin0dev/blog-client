@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { memo } from 'react';
 
 import { HamburgerBlock, HamburgerWrapper, Box, Inner } from './Hamburger.styles';
 
@@ -7,14 +7,16 @@ interface IProps {
   dispatchToggleSidebar: (bool: boolean) => () => void;
 }
 
-const Hamburger: React.FunctionComponent<IProps> = React.memo(({ visible, dispatchToggleSidebar }) => (
-  <HamburgerBlock onClick={dispatchToggleSidebar(!visible)}>
-    <HamburgerWrapper active={visible}>
-      <Box>
-        <Inner />
-      </Box>
-    </HamburgerWrapper>
-  </HamburgerBlock>
-));
+function Hamburger({ visible, dispatchToggleSidebar }: IProps): JSX.Element {
+  return (
+    <HamburgerBlock onClick={dispatchToggleSidebar(!visible)}>
+      <HamburgerWrapper active={visible}>
+        <Box>
+          <Inner />
+        </Box>
+      </HamburgerWrapper>
+    </HamburgerBlock>
+  );
+}
 
-export default Hamburger;
+export default memo(Hamburger);
