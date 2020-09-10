@@ -9,13 +9,11 @@ function Message({
   position,
   zIndex,
   margin,
-}: IMessageProps): JSX.Element | null {
-  if (messages.length === 0) return null;
-
+}: IMessageProps): JSX.Element {
   return (
     <MessageBlock position={position} isBottom={isBottom} zIndex={zIndex}>
       {messages.map((content: messagesType) => (
-        <MessageWrapBlock margin={margin} visible={content.visible} key={content.id}>
+        <MessageWrapBlock margin={margin} key={content.id}>
           {content.message}
         </MessageWrapBlock>
       ))}

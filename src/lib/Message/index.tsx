@@ -15,8 +15,8 @@ export const MessageContext = createContext<MessageContextValue>({
 
 export const MessageProvider: React.FC<IMessageProviderProps> = memo(
   ({ children, maxCount = 4, duration = 2400, ...props }) => {
-    const animationTime = useRef<number>(600);
-    const removeTime = useRef<number>(duration - animationTime.current);
+    const messageId = useRef<number>(0);
+    const removeTime = useRef<number>(duration);
 
     const [messages, setMessage] = useState<messagesType[]>([]);
 
@@ -25,25 +25,17 @@ export const MessageProvider: React.FC<IMessageProviderProps> = memo(
     }, []);
 
     const removeMessage = (id: number) => {
-      setMessage(
-        messages.map((message: messagesType) =>
-          message.id === id ? { ...message, visible: false } : message,
-        ),
-      );
-      setTimeout(
-        () => setMessage(messages.filter((message: messagesType) => message.id !== id)),
-        animationTime.current,
-      );
+      setMessage((prevState) => prevState.filter((message: messagesType) => message.id !== id));
     };
 
     const addMessage = (message: string) => {
-      if (maxCount >= messages.length) setMessage([...messages.slice(1, maxCount)]);
-      const id = messages.reduce(
-        (acc: number, msg: messagesType) => (msg.id > acc ? msg.id + 1 : acc),
-        0,
-      );
-      setMessage([...messages, { id, message, visible: true }]);
+      const id = messageId.current;
+      setMessage((prevState) => [
+        ...prevState.slice(maxCount === prevState.length ? 1 : 0, maxCount),
+        { id, message, visible: true },
+      ]);
       setTimeout(() => removeMessage(id), removeTime.current);
+      messageId.current += 1;
     };
 
     return (
