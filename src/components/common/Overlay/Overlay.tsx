@@ -3,8 +3,8 @@ import React, { memo } from 'react';
 import { OverlayBlock } from './Overlay.styles';
 
 interface IProps {
-  visible?: boolean;
-  onClick?: () => void;
+  visible: boolean;
+  onClick: () => void;
 }
 
 function Overlay({ visible, onClick }: IProps) {
