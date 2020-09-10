@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { MessageContext } from '../../lib/Message';
+import { MessageContext } from 'lib/Message';
 
 function MainPage(): JSX.Element {
   const { addMessage } = useContext(MessageContext);

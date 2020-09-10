@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from 'store/modules';
-import { toggleAuthModal } from 'store/modules/base';
+import { setLoadingPercent, toggleAuthModal } from 'store/modules/base';
 import { removeUser } from 'store/modules/auth';
 import { logoutUserApi } from 'lib/services/user';
 import { errorHandler } from 'lib/utils/errorHandler';
@@ -12,21 +12,36 @@ function LoginHeaderContainer(): JSX.Element | null {
   const dispatch = useDispatch();
 
   const { user, isLogIn } = useSelector((state: RootState) => state.auth, shallowEqual);
+  const [isShowMenu, setIsShowMenu] = useState(false);
 
   const showAuthModal = () => dispatch(toggleAuthModal(true));
 
   const logOut = async () => {
     try {
+      dispatch(setLoadingPercent(0));
       await logoutUserApi();
       dispatch(removeUser());
     } catch (err) {
       const message = errorHandler(err);
       console.error(message);
+    } finally {
+      dispatch(setLoadingPercent(100));
     }
   };
 
+  const onClickProfileBtn = () => {
+    setIsShowMenu((prevState) => !prevState);
+  };
+
   return (
-    <LogInHeader user={user} isLogIn={isLogIn} logOut={logOut} showAuthModal={showAuthModal} />
+    <LogInHeader
+      user={user}
+      isLogIn={isLogIn}
+      isShowMenu={isShowMenu}
+      logOut={logOut}
+      showAuthModal={showAuthModal}
+      onClickProfileBtn={onClickProfileBtn}
+    />
   );
 }
 

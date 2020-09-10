@@ -19,7 +19,7 @@ export const Wrapper = styled.div`
   max-width: 1280px;
   padding: 0 45px;
   margin: 0 auto;
-  
+
   ${includeMedia('<=md')} {
     padding: 0 35px;
   }
@@ -44,7 +44,7 @@ export const NavWrapper = styled.div`
     flex-basis: 100%;
     order: 2;
   }
-  
+
   a + a {
     margin-left: 45px;
   }
@@ -114,14 +114,13 @@ export const LoginMenu = styled.div`
   top: 50px;
   right: -19px;
   width: 300px;
-  max-height: 400px;
   display: flex;
   flex-flow: column wrap;
+  text-align: start;
   color: ${palette.gray9};
   background-color: ${palette.white};
   border: 1px solid ${palette.gray3};
   border-radius: 4px;
-  text-align: start;
 
   &::before {
     content: '';
@@ -146,9 +145,27 @@ export const ProfileWrapper = styled.div`
   flex-flow: row wrap;
   align-items: center;
   padding: 25px 22px 20px;
-  
+
   h3 {
     margin-bottom: 2px;
+  }
+`;
+
+export const NotificationWrapper = styled.div`
+  padding: 20px 22px;
+`;
+
+export const EmptyNotification = styled.div`
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  color: ${palette.gray3};
+
+  svg {
+    font-size: 80px;
+    margin-bottom: 10px;
   }
 `;
 

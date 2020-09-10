@@ -5,3 +5,4 @@ export { ReactComponent as Github } from 'assets/svgs/github-icon.svg';
 export { ReactComponent as Kakao } from 'assets/svgs/kakao-icon.svg';
 export { ReactComponent as Logo } from 'assets/svgs/logo.svg';
 export { ReactComponent as Person } from 'assets/svgs/person.svg';
+export { ReactComponent as Bell } from 'assets/svgs/bell.svg';

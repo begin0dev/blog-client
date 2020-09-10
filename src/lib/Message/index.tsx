@@ -14,7 +14,7 @@ export const MessageContext = createContext<MessageContextValue>({
 });
 
 export const MessageProvider: React.FC<IMessageProviderProps> = memo(
-  ({ children, maxCount = 4, duration = 2400, ...props }) => {
+  ({ children, maxCount = 5, duration = 2400, ...props }) => {
     const messageId = useRef<number>(0);
     const removeTime = useRef<number>(duration);
 

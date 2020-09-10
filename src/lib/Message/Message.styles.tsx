@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { positionType } from './types';
 
@@ -18,7 +18,7 @@ export const MessageBlock = styled.div<{
   position?: positionType;
   isBottom?: boolean;
 }>`
-  z-index: ${(props) => (props.zIndex ? props.zIndex : 10000)};
+  z-index: ${(props) => props.zIndex || 10000};
   display: flex;
   flex-flow: column wrap;
   align-items: ${(props) => justifyContent(props.position)};
