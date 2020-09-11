@@ -1,4 +1,5 @@
-import React, { memo } from 'react';
+import * as React from 'react';
+import { forwardRef } from 'react';
 
 import { User } from 'store/modules/auth';
 import { ProfileImage } from 'components';
@@ -24,17 +25,13 @@ interface IProps {
   onClickProfileBtn: () => void;
 }
 
-function LogInHeader({
-  user,
-  isLogIn,
-  isShowMenu,
-  logOut,
-  showAuthModal,
-  onClickProfileBtn,
-}: IProps): JSX.Element {
+function LogInHeader(
+  { user, isLogIn, isShowMenu, logOut, showAuthModal, onClickProfileBtn }: IProps,
+  ref: React.Ref<HTMLDivElement>,
+): JSX.Element {
   if (!isLogIn) return <LoginBtn onClick={showAuthModal}>LogIn</LoginBtn>;
   return (
-    <div>
+    <div ref={ref}>
       <ProfileBtn onClick={onClickProfileBtn}>
         <ProfileImage profileImage={user?.profileImage} size={35} round />
       </ProfileBtn>
@@ -43,8 +40,8 @@ function LogInHeader({
           <ProfileWrapper>
             <ProfileImage
               profileImage={user?.profileImage}
-              size={48}
               styles={{ marginRight: '20px' }}
+              size={48}
               round
             />
             <div>
@@ -67,4 +64,4 @@ function LogInHeader({
   );
 }
 
-export default memo(LogInHeader);
+export default forwardRef(LogInHeader);

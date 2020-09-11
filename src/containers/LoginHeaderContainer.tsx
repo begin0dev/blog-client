@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import * as React from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from 'store/modules';
@@ -10,6 +11,8 @@ import LogInHeader from 'components/base/Header/LogInHeader';
 
 function LoginHeaderContainer(): JSX.Element | null {
   const dispatch = useDispatch();
+
+  const profileEl = useRef<HTMLDivElement | null>(null);
 
   const { user, isLogIn } = useSelector((state: RootState) => state.auth, shallowEqual);
   const [isShowMenu, setIsShowMenu] = useState(false);
@@ -29,9 +32,19 @@ function LoginHeaderContainer(): JSX.Element | null {
     }
   };
 
-  const onClickProfileBtn = () => {
-    setIsShowMenu((prevState) => !prevState);
-  };
+  const onClickProfileBtn = () => setIsShowMenu((prevState) => !prevState);
+
+  useEffect(() => {
+    const outSideClick = (e: MouseEvent) => {
+      if ((e.target as HTMLElement)?.tagName === 'A') setIsShowMenu(false);
+      if (!profileEl.current?.contains(e.target as HTMLElement)) setIsShowMenu(false);
+    };
+
+    if (isShowMenu) document.addEventListener('click', outSideClick);
+    return () => {
+      if (isShowMenu) document.removeEventListener('click', outSideClick);
+    };
+  }, [isShowMenu]);
 
   return (
     <LogInHeader
@@ -41,6 +54,7 @@ function LoginHeaderContainer(): JSX.Element | null {
       logOut={logOut}
       showAuthModal={showAuthModal}
       onClickProfileBtn={onClickProfileBtn}
+      ref={profileEl}
     />
   );
 }
