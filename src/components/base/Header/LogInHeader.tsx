@@ -6,6 +6,7 @@ import { ProfileImage } from 'components';
 import { Bell } from 'assets/svgs';
 import {
   LoginBtn,
+  ProfileBtnWrapper,
   ProfileBtn,
   LoginMenu,
   ProfileWrapper,
@@ -31,7 +32,7 @@ function LogInHeader(
 ): JSX.Element {
   if (!isLogIn) return <LoginBtn onClick={showAuthModal}>LogIn</LoginBtn>;
   return (
-    <div ref={ref}>
+    <ProfileBtnWrapper ref={ref}>
       <ProfileBtn onClick={onClickProfileBtn}>
         <ProfileImage profileImage={user?.profileImage} size={35} round />
       </ProfileBtn>
@@ -60,7 +61,7 @@ function LogInHeader(
           </LogoutWrapper>
         </LoginMenu>
       )}
-    </div>
+    </ProfileBtnWrapper>
   );
 }
 

@@ -100,6 +100,10 @@ export const LoginBtn = styled.button`
   border-radius: 4px;
 `;
 
+export const ProfileBtnWrapper = styled.div`
+  display: flex;
+`
+
 export const ProfileBtn = styled.button`
   position: relative;
   min-width: 35px;
