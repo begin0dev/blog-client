@@ -1,4 +1,5 @@
-import React, { createContext, useRef, useState, useCallback, memo } from 'react';
+import * as React from 'react';
+import { createContext, useRef, useState, useCallback, memo } from 'react';
 
 import { messagesType, IMessageProviderProps } from './types';
 import Message from './Message';

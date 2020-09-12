@@ -1,4 +1,5 @@
-import React, { useEffect, useContext } from 'react';
+import * as React from 'react';
+import { useEffect, useContext } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { parse } from 'qs';

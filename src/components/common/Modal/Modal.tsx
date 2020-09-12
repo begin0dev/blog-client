@@ -1,4 +1,5 @@
-import React, { memo } from 'react';
+import * as React from 'react';
+import { memo } from 'react';
 
 import { HideScrollbar } from 'components';
 import { ModalWrapper, OverlayBlock, ModalBlock } from './Modal.styles';

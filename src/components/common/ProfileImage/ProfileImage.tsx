@@ -1,4 +1,5 @@
-import React, { memo } from 'react';
+import * as React from 'react';
+import { memo } from 'react';
 
 import { ProfileImgWrapper } from './ProfileImage.styles';
 import noProfileImage from '../../../assets/images/no_profile.png';

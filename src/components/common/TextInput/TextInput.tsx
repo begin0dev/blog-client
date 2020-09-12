@@ -1,4 +1,5 @@
-import React, { memo, useRef, useState } from 'react';
+import * as React from 'react';
+import { memo, useRef, useState } from 'react';
 
 import { palette } from 'styles/palette';
 import { TextInputBlock, InputSlot, Label, Input, FormExplainBlock } from './TextInput.styles';

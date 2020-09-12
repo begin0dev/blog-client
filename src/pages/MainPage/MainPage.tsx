@@ -1,4 +1,6 @@
-import React, { useContext } from 'react';
+import * as React from 'react';
+import { useContext } from 'react';
+
 import { MessageContext } from 'lib/Message';
 
 function MainPage(): JSX.Element {
