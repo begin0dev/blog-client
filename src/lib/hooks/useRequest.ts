@@ -1,9 +1,7 @@
-import * as React from 'react';
+import { useRef, useState, useCallback } from 'react';
 import { AxiosPromise } from 'axios';
 
 import { errorHandler } from 'lib/utils/errorHandler';
-
-const { useRef, useState, useCallback } = React;
 
 type RequestParametersType<P> = [P, any?] | [number, P, any?];
 

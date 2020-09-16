@@ -1,6 +1,5 @@
 import * as React from 'react';
-
-const { useState, useCallback } = React;
+import { useState, useCallback } from 'react';
 
 export default function useInput(initValue: string | number | boolean) {
   const [input, setInput] = useState(initValue);

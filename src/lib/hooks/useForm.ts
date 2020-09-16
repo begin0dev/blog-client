@@ -1,6 +1,5 @@
 import * as React from 'react';
-
-const { useRef, useReducer, useCallback } = React;
+import { useRef, useReducer, useCallback } from 'react';
 
 interface IOnChangeAction {
   type: 'ON_CHANGE';
