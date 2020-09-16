@@ -1,68 +1,46 @@
-import React from 'react';
+import * as React from 'react';
+import { createContext, useRef, useState, useCallback, memo } from 'react';
 
 import { messagesType, IMessageProviderProps } from './types';
 import Message from './Message';
 
 interface MessageContextValue {
-  messages: messagesType[];
   addMessage: (message: string) => void;
   destroy: () => void;
 }
 
-export const MessageContext = React.createContext<MessageContextValue>({
-  messages: [],
-  addMessage: message => {},
+export const MessageContext = createContext<MessageContextValue>({
+  addMessage: (message: string) => {},
   destroy: () => {},
 });
 
-export const MessageProvider: React.FunctionComponent<IMessageProviderProps> = React.memo(
-  ({ children, maxCount = 4, duration = 2400, ...props }) => {
-    const messageLimit = React.useRef<number>(maxCount);
-    const animationTime = React.useRef<number>(600);
-    const removeTime = React.useRef<number>(duration - animationTime.current);
+export const MessageProvider: React.FC<IMessageProviderProps> = memo(
+  ({ children, maxCount = 5, duration = 2400, ...props }) => {
+    const messageId = useRef<number>(0);
+    const removeTime = useRef<number>(duration);
 
-    const [messages, setMessage] = React.useState<messagesType[]>([]);
+    const [messages, setMessage] = useState<messagesType[]>([]);
 
-    const destroy = React.useCallback(() => {
+    const destroy = useCallback(() => {
       setMessage([]);
     }, []);
 
-    const clearMessage = React.useCallback(
-      (id: number) => {
-        setMessage(messages.filter((message: messagesType) => message.id !== id));
-      },
-      [messages],
-    );
+    const removeMessage = (id: number) => {
+      setMessage((prevState) => prevState.filter((message: messagesType) => message.id !== id));
+    };
 
-    const removeMessage = React.useCallback(
-      (id: number) => {
-        setMessage(
-          messages.map((message: messagesType) =>
-            message.id === id ? { ...message, visible: false } : message,
-          ),
-        );
-        setTimeout(() => clearMessage(id), animationTime.current);
-      },
-      [clearMessage, messages],
-    );
-
-    const addMessage = React.useCallback(
-      (message: string) => {
-        if (messageLimit.current >= messages.length) {
-          setMessage([...messages.slice(1, messageLimit.current)]);
-        }
-        const id: number = messages.reduce(
-          (acc: number, msg: messagesType) => (msg.id > acc ? msg.id + 1 : acc),
-          0,
-        );
-        setMessage([...messages, { id, message, visible: true }]);
-        setTimeout(() => removeMessage(id), removeTime.current);
-      },
-      [messages, removeMessage],
-    );
+    const addMessage = (message: string) => {
+      const id = messageId.current;
+      setMessage((prevState) => [
+        ...prevState.slice(maxCount === prevState.length ? 1 : 0, maxCount),
+        { id, message, visible: true },
+      ]);
+      setTimeout(() => removeMessage(id), removeTime.current);
+      messageId.current += 1;
+    };
 
     return (
-      <MessageContext.Provider value={{ messages, addMessage, destroy }}>
+      <MessageContext.Provider value={{ addMessage, destroy }}>
         <Message messages={messages} {...props} />
         {children}
       </MessageContext.Provider>

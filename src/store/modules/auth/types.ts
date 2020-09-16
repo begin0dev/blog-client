@@ -4,7 +4,11 @@ import * as actions from './actions';
 
 export interface User {
   _id: string;
+  email?: string;
+  emailVerified: boolean;
   displayName: string;
+  profileImage?: string;
+  isAdmin: boolean;
 }
 export type AuthState = {
   user: null | User;

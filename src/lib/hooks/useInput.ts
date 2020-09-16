@@ -1,10 +1,13 @@
 import * as React from 'react';
+import { useState, useCallback } from 'react';
 
 export default function useInput(initValue: string | number | boolean) {
-  const [input, setInput] = React.useState(initValue);
+  const [input, setInput] = useState(initValue);
 
-  const onChange = React.useCallback(
-    ({ target: { value } }: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
+  const onChange = useCallback(
+    ({
+      target: { value },
+    }: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
       setInput(value);
     },
     [],

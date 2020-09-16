@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { memo } from 'react';
 
 import { SpinnerBlock, Circle } from './Spinner.styles';
 
@@ -7,12 +8,14 @@ interface IProps {
   color?: string;
 }
 
-const Spinner: React.FunctionComponent<IProps> = React.memo(({ size, color }) => (
-  <SpinnerBlock size={size}>
-    {Array.from({ length: 12 }, (arr, i) => (
-      <Circle color={color} index={i} key={`circle${i}`} />
-    ))}
-  </SpinnerBlock>
-));
+function Spinner({ size, color }: IProps): JSX.Element {
+  return (
+    <SpinnerBlock size={size}>
+      {Array.from({ length: 12 }, (arr, i) => (
+        <Circle color={color} index={i} key={`circle${i}`} />
+      ))}
+    </SpinnerBlock>
+  );
+}
 
-export default Spinner;
+export default memo(Spinner);

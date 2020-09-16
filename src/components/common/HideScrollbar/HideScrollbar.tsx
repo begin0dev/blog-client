@@ -1,14 +1,14 @@
-import * as React from 'react';
+import { useEffect } from 'react';
 
-const HideScrollbar: React.FunctionComponent = () => {
-  React.useEffect(() => {
+function HideScrollbar(): null {
+  useEffect(() => {
     if (document.body) document.body.style.overflowY = 'hidden';
     return () => {
       if (document.body) document.body.style.removeProperty('overflow-y');
     };
-  });
+  }, []);
 
   return null;
-};
+}
 
 export default HideScrollbar;

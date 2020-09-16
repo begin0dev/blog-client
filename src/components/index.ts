@@ -9,6 +9,7 @@ import Progressbar from './common/Progressbar';
 import TextInput from './common/TextInput';
 import Hamburger from './common/Hamburger';
 import HideScrollbar from './common/HideScrollbar';
+import ProfileImage from './common/ProfileImage';
 
 import PageTemplate from './templates/PageTemplate';
 
@@ -23,4 +24,5 @@ export {
   TextInput,
   HideScrollbar,
   PageTemplate,
+  ProfileImage,
 };

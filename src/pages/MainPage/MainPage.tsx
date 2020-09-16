@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-const MainPage: React.FunctionComponent = () => {
+function MainPage(): JSX.Element {
   return <div>main</div>;
-};
+}
 
 export default MainPage;

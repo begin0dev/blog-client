@@ -10,6 +10,7 @@ const GlobalStyle = createGlobalStyle`
     font-size: 13px;
     font-weight: 400;
     color: ${palette.gray9};
+    background-color: ${palette.gray0};
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -31,6 +32,7 @@ const GlobalStyle = createGlobalStyle`
   a {
     text-decoration: none;
     color: inherit;
+    -webkit-tap-highlight-color: transparent;
   }
   input, button, textarea {
     font-family: inherit;
