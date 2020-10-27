@@ -3,7 +3,7 @@ import { all, call, put, takeLatest } from 'redux-saga/effects';
 import { CheckUserAPiResponse, checkUserApi } from 'lib/services/user';
 import { errorHandler } from 'lib/utils/errorHandler';
 import { setLoadingPercent } from 'store/modules/base';
-import { CHECK_USER, checkUserAsync } from 'store/modules/auth';
+import { checkUserAsync } from 'store/modules/auth';
 
 function* checkUser() {
   try {
@@ -23,5 +23,5 @@ function* checkUser() {
 }
 
 export default function* userSaga() {
-  yield all([takeLatest(CHECK_USER.REQUEST, checkUser)]);
+  yield all([takeLatest(checkUserAsync.request, checkUser)]);
 }
