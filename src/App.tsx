@@ -8,20 +8,18 @@ import { MainPage, ProfilePage, CategoryPage, NotFoundPage } from 'pages';
 
 function App(): JSX.Element {
   return (
-    <>
+    <PageTemplate>
       <BaseCoreContainer />
       <AuthContainer />
-      <PageTemplate>
-        <Switch>
-          <Route exact path="/" component={MainPage} />
-          <Route path="/about" component={ProfilePage} />
-          <Route path="/log" component={ProfilePage} />
-          <Route path="/develop/:name(react|node|javascript|etc)" component={CategoryPage} />
-          <Route path="/develop" component={CategoryPage} />
-          <Route path="/*" component={NotFoundPage} />
-        </Switch>
-      </PageTemplate>
-    </>
+      <Switch>
+        <Route exact path="/" component={MainPage} />
+        <Route path="/about" component={ProfilePage} />
+        <Route path="/log" component={ProfilePage} />
+        <Route path="/develop/:name(react|node|javascript|etc)" component={CategoryPage} />
+        <Route path="/develop" component={CategoryPage} />
+        <Route path="/*" component={NotFoundPage} />
+      </Switch>
+    </PageTemplate>
   );
 }
 

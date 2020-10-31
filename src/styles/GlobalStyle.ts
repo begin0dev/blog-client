@@ -7,7 +7,7 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     font-family: 'Nunito', 'Noto Sans KR', sans-serif;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 400;
     color: ${palette.gray9};
     background-color: ${palette.gray0};
