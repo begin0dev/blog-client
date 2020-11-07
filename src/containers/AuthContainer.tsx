@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, useCallback } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { parse } from 'qs';
@@ -22,14 +22,17 @@ function AuthContainer(): JSX.Element | null {
   const isLogIn = useSelector((state: RootState) => state.auth.isLogIn);
   const { authModal, isMobile } = useSelector((state: RootState) => state.base, shallowEqual);
 
-  const hideModal = () => dispatch(toggleAuthModal(false));
+  const hideModal = useCallback(() => dispatch(toggleAuthModal(false)), [dispatch]);
 
-  const socialRedirect = (provider: 'kakao' | 'facebook' | 'github' | 'google') => () => {
-    dispatch(setLoadingPercent(0));
-    sessionStorage.setItem('referer', history.location.pathname);
-    setTimeout(() => dispatch(setLoadingPercent(100)), 1000);
-    window.location.href = `${baseURL}${SOCIAL_URL}/${provider}`;
-  };
+  const socialRedirect = useCallback(
+    (provider: 'kakao' | 'facebook' | 'github' | 'google') => () => {
+      dispatch(setLoadingPercent(0));
+      sessionStorage.setItem('referer', history.location.pathname);
+      setTimeout(() => dispatch(setLoadingPercent(100)), 1000);
+      window.location.href = `${baseURL}${SOCIAL_URL}/${provider}`;
+    },
+    [dispatch, history.location.pathname],
+  );
 
   useEffect(() => {
     dispatch(checkUserAsync.request());

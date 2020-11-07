@@ -1,5 +1,5 @@
 {
-  "extends": ["airbnb", "react-app", "prettier"],
+  "extends": ["react-app", "prettier"],
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
   "settings": {
@@ -14,8 +14,9 @@
     "react/prop-types": "off",
     "react/prefer-stateless-function": "off",
     "react/jsx-filename-extension": "off",
-    "react/no-array-index-key": "off",
     "react/jsx-props-no-spreading": "off",
+    "react/no-array-index-key": "off",
+    "react/require-default-props": "off",
     "jsx-a11y/no-static-element-interactions": "off",
     "jsx-a11y/click-events-have-key-events": "off",
     "import/prefer-default-export": "off",
@@ -26,6 +27,8 @@
     ],
     "no-param-reassign": ["error", { "props": true, "ignorePropertyModificationsFor": ["draft"] }],
     "no-use-before-define": "off",
+    "no-unused-expressions": "off",
+    "@typescript-eslint/no-unused-expressions": ["error"],
     "@typescript-eslint/no-use-before-define": ["error"]
   }
 }

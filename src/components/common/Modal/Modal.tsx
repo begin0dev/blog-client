@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 
 import { HideScrollbar } from 'components';
 import { ModalWrapper, OverlayBlock, ModalBlock } from './Modal.styles';
@@ -27,11 +27,14 @@ function Modal({
 }: IProps) {
   const modalEl = React.useRef<HTMLDivElement | null>(null);
 
-  const onClickOutSideEvent = (e: React.MouseEvent<HTMLElement>): void => {
-    if (fullScreen) return;
-    if (modalEl.current && modalEl.current.contains(e.target as HTMLElement)) return;
-    if (hideModal) hideModal(false);
-  };
+  const onClickOutSideEvent = useCallback(
+    (e: React.MouseEvent<HTMLElement>): void => {
+      if (fullScreen) return;
+      if (modalEl.current?.contains(e.target as HTMLElement)) return;
+      if (hideModal) hideModal(false);
+    },
+    [fullScreen, hideModal],
+  );
 
   return (
     <ModalWrapper>

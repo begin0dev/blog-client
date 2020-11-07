@@ -25,11 +25,11 @@ export const MessageProvider: React.FC<IMessageProviderProps> = memo(
       setMessage([]);
     }, []);
 
-    const removeMessage = (id: number) => {
+    const removeMessage = useCallback((id: number) => {
       setMessage((prevState) => prevState.filter((message: messagesType) => message.id !== id));
-    };
+    }, []);
 
-    const addMessage = (message: string) => {
+    const addMessage = useCallback((message: string) => {
       const id = messageId.current;
       setMessage((prevState) => [
         ...prevState.slice(maxCount === prevState.length ? 1 : 0, maxCount),
@@ -37,7 +37,7 @@ export const MessageProvider: React.FC<IMessageProviderProps> = memo(
       ]);
       setTimeout(() => removeMessage(id), removeTime.current);
       messageId.current += 1;
-    };
+    }, [maxCount, removeMessage]);
 
     return (
       <MessageContext.Provider value={{ addMessage, destroy }}>

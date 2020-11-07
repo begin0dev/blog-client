@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { memo, useRef, useState } from 'react';
+import { memo, useCallback, useRef, useState } from 'react';
 
 import { palette } from 'styles/palette';
 import { TextInputBlock, InputSlot, Label, Input, FormExplainBlock } from './TextInput.styles';
@@ -44,20 +44,25 @@ function TextInput({
     (inputRef.current?.value || '').length > 0 ||
     (value || '').length > 0;
 
-  const onFocusEvent = (e: React.FocusEvent<HTMLInputElement>) => {
-    setFocus(true);
-    onFocus?.(e);
-  };
+  const onFocusEvent = useCallback(
+    (e: React.FocusEvent<HTMLInputElement>) => {
+      setFocus(true);
+      if (onFocus) onFocus(e);
+    },
+    [onFocus],
+  );
 
-  const onBlurEvent = (e: React.FocusEvent<HTMLInputElement>) => {
-    setFocus(false);
-    onBlur?.(e);
-  };
+  const onBlurEvent = useCallback(
+    (e: React.FocusEvent<HTMLInputElement>) => {
+      setFocus(false);
+      if (onBlur) onBlur(e);
+    },
+    [onBlur],
+  );
 
-  const labelClick = () => {
-    if (!inputRef.current) return;
-    if (!focus) inputRef.current?.focus();
-  };
+  const labelClick = useCallback(() => {
+    if (!focus && inputRef.current) inputRef.current.focus();
+  }, [focus]);
 
   return (
     <TextInputBlock

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from 'store/modules';
@@ -17,9 +17,9 @@ function LoginHeaderContainer(): JSX.Element | null {
   const { user, isLogIn } = useSelector((state: RootState) => state.auth, shallowEqual);
   const [isShowMenu, setIsShowMenu] = useState(false);
 
-  const showAuthModal = () => dispatch(toggleAuthModal(true));
+  const showAuthModal = useCallback(() => dispatch(toggleAuthModal(true)), [dispatch]);
 
-  const logOut = async () => {
+  const logOut = useCallback(async () => {
     try {
       dispatch(setLoadingPercent(0));
       await logoutUserApi();
@@ -30,14 +30,17 @@ function LoginHeaderContainer(): JSX.Element | null {
     } finally {
       dispatch(setLoadingPercent(100));
     }
-  };
+  }, [dispatch]);
 
-  const onClickProfileBtn = () => setIsShowMenu((prevState) => !prevState);
+  const onClickProfileBtn = useCallback(() => setIsShowMenu((prevState) => !prevState), []);
 
   useEffect(() => {
     const outSideClick = (e: MouseEvent) => {
-      if ((e.target as HTMLElement)?.tagName === 'A') setIsShowMenu(false);
-      if (!profileEl.current?.contains(e.target as HTMLElement)) setIsShowMenu(false);
+      if (
+        (e.target as HTMLElement)?.tagName === 'A' ||
+        !profileEl.current?.contains(e.target as HTMLElement)
+      )
+        setIsShowMenu(false);
     };
 
     if (isShowMenu) document.addEventListener('click', outSideClick);
