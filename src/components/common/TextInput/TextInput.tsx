@@ -47,7 +47,7 @@ function TextInput({
   const onFocusEvent = useCallback(
     (e: React.FocusEvent<HTMLInputElement>) => {
       setFocus(true);
-      if (onFocus) onFocus(e);
+      onFocus?.(e);
     },
     [onFocus],
   );
@@ -55,13 +55,13 @@ function TextInput({
   const onBlurEvent = useCallback(
     (e: React.FocusEvent<HTMLInputElement>) => {
       setFocus(false);
-      if (onBlur) onBlur(e);
+      onBlur?.(e);
     },
     [onBlur],
   );
 
   const labelClick = useCallback(() => {
-    if (!focus && inputRef.current) inputRef.current.focus();
+    if (!focus) inputRef.current?.focus();
   }, [focus]);
 
   return (

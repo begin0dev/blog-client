@@ -31,7 +31,7 @@ function Modal({
     (e: React.MouseEvent<HTMLElement>): void => {
       if (fullScreen) return;
       if (modalEl.current?.contains(e.target as HTMLElement)) return;
-      if (hideModal) hideModal(false);
+      hideModal?.(false);
     },
     [fullScreen, hideModal],
   );
