@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import Header from 'components/base/Header'
+import Header from 'components/base/header'
 
 interface IProps {
   children: React.ReactNode;

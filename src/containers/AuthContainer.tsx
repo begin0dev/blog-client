@@ -11,7 +11,7 @@ import { baseURL } from 'lib/services/apiClient';
 import { SOCIAL_URL } from 'lib/services/auth';
 import { palette } from 'styles/palette';
 import { Auth, Modal } from 'components';
-import { MessageContext } from 'lib/Message';
+import { MessageContext } from 'components/common/message';
 
 function AuthContainer(): JSX.Element | null {
   const history = useHistory();

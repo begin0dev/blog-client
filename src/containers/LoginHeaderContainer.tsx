@@ -7,7 +7,7 @@ import { setLoadingPercent, toggleAuthModal } from 'store/modules/base';
 import { removeUser } from 'store/modules/auth';
 import { logoutUserApi } from 'lib/services/user';
 import { errorHandler } from 'lib/utils/errorHandler';
-import LogInHeader from 'components/base/Header/LogInHeader';
+import LogInHeader from 'components/base/header/LogInHeader';
 
 function LoginHeaderContainer(): JSX.Element | null {
   const dispatch = useDispatch();

@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import GlobalStyle from 'styles/GlobalStyle';
-import { MessageProvider } from 'lib/Message';
+import { MessageProvider } from 'components/common/message';
 
 import App from './App';
 import configureStore from './store/configureStore';
