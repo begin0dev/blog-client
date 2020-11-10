@@ -1,11 +1,8 @@
-import MainPage from './mainPage';
-import ProfilePage from './profilePage';
-import CategoryPage from './categoryPage';
-import NotFoundPage from './notFoundPage';
+import loadable from '@loadable/component';
 
-export {
-  MainPage,
-  ProfilePage,
-  CategoryPage,
-  NotFoundPage,
-};
+const MainPage = loadable(() => import('./mainPage'));
+const ProfilePage = loadable(() => import('./profilePage'));
+const CategoryPage = loadable(() => import('./categoryPage'));
+const NotFoundPage = loadable(() => import('./notFoundPage'));
+
+export { MainPage, ProfilePage, CategoryPage, NotFoundPage };
