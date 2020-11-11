@@ -10,6 +10,7 @@ import TextInput from './common/textInput';
 import Hamburger from './common/hamburger';
 import HideScrollbar from './common/hideScrollbar';
 import ProfileImage from './common/profileImage';
+import MarkdownEditor from './common/markdownEditor';
 
 import PageTemplate from './templates/pageTemplate';
 
@@ -20,6 +21,7 @@ export {
   Modal,
   Overlay,
   Spinner,
+  MarkdownEditor,
   Progressbar,
   TextInput,
   HideScrollbar,
