@@ -10,23 +10,27 @@ import './atom-one-light.css';
 import { EditorBlock } from './MarkdownEditor.styles';
 
 interface IProps {
+  markdown: string | null;
   onChange: (value: string) => void;
 }
 
-function MarkdownEditor({ onChange }: IProps) {
+function MarkdownEditor({ markdown, onChange }: IProps) {
+  const init = useRef<boolean>(true);
   const textAreaEl = useRef<HTMLTextAreaElement | null>(null);
   const codemirrorEl = useRef<EditorFromTextArea | null>(null);
 
-  const onChangeTextArea = useCallback((editor: Editor) => {
-    onChange(editor.getValue());
-  }, [onChange]);
+  const onChangeTextArea = useCallback(
+    (editor: Editor) => {
+      onChange(editor.getValue());
+    },
+    [onChange],
+  );
 
   useEffect(() => {
     if (!textAreaEl.current) return;
     const codemirror = CodeMirror.fromTextArea(textAreaEl.current, {
       mode: 'markdown',
       theme: 'one-light',
-      lineWrapping: true,
       placeholder: '내용을 작성해 주세요~',
     });
     codemirrorEl.current = codemirror;
@@ -35,7 +39,13 @@ function MarkdownEditor({ onChange }: IProps) {
     return () => {
       codemirror.toTextArea();
     };
-  }, [onChange]);
+  }, [onChangeTextArea]);
+
+  useEffect(() => {
+    if (!init.current) return;
+    init.current = false;
+    if (markdown) codemirrorEl.current?.setValue?.(markdown);
+  }, [markdown]);
 
   return (
     <EditorBlock>
