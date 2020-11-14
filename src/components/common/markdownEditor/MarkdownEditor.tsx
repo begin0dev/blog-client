@@ -10,7 +10,7 @@ import './atom-one-light.css';
 import { EditorBlock } from './MarkdownEditor.styles';
 
 interface IProps {
-  markdown: string | null;
+  markdown: string;
   onChange: (value: string) => void;
 }
 

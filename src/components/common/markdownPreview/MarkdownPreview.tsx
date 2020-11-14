@@ -1,14 +1,28 @@
 import * as React from 'react';
-import remarkParse from 'remark-parse';
-import remark2rehype from 'remark-rehype';
-import stringify from 'rehype-stringify';
 import unified from 'unified';
+import remarkBreaks from 'remark-breaks';
+import remarkParse from 'remark-parse';
+import rehypeRaw from 'rehype-raw';
+import remark2rehype from 'remark-rehype';
+import rehypeStringify from 'rehype-stringify';
 
-function MarkdownPreview() {
+import { MarkdownPreviewBlock } from './MarkdownPreview.styles';
 
-  const markdownToHtml = unified().use(remarkParse).use(remark2rehype).use(stringify)
+interface IProps {
+  markdown: string;
+}
 
-  return <div></div>;
+function MarkdownPreview({ markdown }: IProps) {
+  const markdownToHtml = unified()
+    .use(remarkBreaks)
+    .use(remarkParse)
+    .use(rehypeRaw)
+    .use(remark2rehype)
+    .use(rehypeStringify)
+    .processSync(markdown)
+    .toString();
+
+  return <MarkdownPreviewBlock dangerouslySetInnerHTML={{ __html: markdownToHtml }} />;
 }
 
 export default MarkdownPreview;
