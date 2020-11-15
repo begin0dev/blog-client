@@ -16,7 +16,7 @@ export const Wrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-flow: row wrap;
-  max-width: 1280px;
+  max-width: 1400px;
   padding: 0 45px;
   margin: 0 auto;
 

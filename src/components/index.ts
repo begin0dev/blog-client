@@ -13,10 +13,13 @@ import ProfileImage from './common/profileImage';
 import MarkdownEditor from './common/markdownEditor';
 import MarkdownPreview from './common/markdownPreview';
 
+import Editor from './editor';
+
 import PageTemplate from './templates/pageTemplate';
 
 export {
   Auth,
+  Editor,
   Header,
   Hamburger,
   Modal,

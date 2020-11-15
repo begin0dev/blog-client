@@ -15,7 +15,8 @@ const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  * {
+  body, header, footer, main, nav, div, article, section, button {
+    position: relative;
     margin: 0;
     padding: 0;
     border: 0;
@@ -23,11 +24,6 @@ const GlobalStyle = createGlobalStyle`
   }
   *, *:before, *:after {
     box-sizing: border-box;
-  }
-  body, header, footer, main, nav, div, article, section, ol, ul {
-    position: relative;
-    padding: 0;
-    border: 0;
   }
   a {
     text-decoration: none;
@@ -38,6 +34,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: inherit;
   }
   button {
+    border-style: none;
     &:active, &:focus, &:hover {
       outline: none;
     }

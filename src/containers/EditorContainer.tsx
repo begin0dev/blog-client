@@ -1,17 +1,12 @@
 import * as React from 'react';
 
-import { MarkdownEditor, MarkdownPreview } from 'components';
+import { Editor } from 'components';
 import { useState } from 'react';
 
 function EditorContainer() {
-  const [markdownText, setMarkdownText] = useState<string>('');
+  const [markdown, setMarkdown] = useState<string>('');
 
-  return (
-    <div>
-      <MarkdownEditor markdown={markdownText} onChange={setMarkdownText} />
-      <MarkdownPreview markdown={markdownText} />
-    </div>
-  );
+  return <Editor markdown={markdown} setMarkdown={setMarkdown} />;
 }
 
 export default EditorContainer;
