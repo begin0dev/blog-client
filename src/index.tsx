@@ -3,7 +3,6 @@ import 'react-app-polyfill/ie11';
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router } from 'react-router-dom';
 
 import GlobalStyle from 'styles/GlobalStyle';
 import { MessageProvider } from 'components/common/message';
@@ -18,9 +17,7 @@ ReactDOM.render(
   <Provider store={store}>
     <GlobalStyle />
     <MessageProvider>
-      <Router>
-        <App />
-      </Router>
+      <App />
     </MessageProvider>
   </Provider>,
   document.getElementById('root'),
