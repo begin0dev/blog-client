@@ -8,7 +8,7 @@ import 'codemirror/mode/markdown/markdown';
 import 'codemirror/addon/display/placeholder';
 
 import './atom-one-light.css';
-import { EditorBlock } from './MarkdownEditor.styles';
+import { EditorBlock, TitleInput } from './MarkdownEditor.styles';
 
 interface IProps {
   markdown: string;
@@ -53,6 +53,7 @@ function MarkdownEditor({ markdown, onChange }: IProps) {
 
   return (
     <EditorBlock>
+      <TitleInput type="text" placeholder="제목을 입력해주세요~" />
       <textarea ref={textAreaEl} />
     </EditorBlock>
   );

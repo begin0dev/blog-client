@@ -9,6 +9,9 @@ const atomOneDarkTheme = css`
   */
   pre {
     background: #313440;
+    code {
+      color: #e0e6f1;
+    }
   }
   p > code {
     background: rgba(27, 31, 35, 0.05);

@@ -27,16 +27,16 @@ function prismjsPlugin() {
     visit(tree, ['code', 'inlineCode'], (node: CodeNode) => {
       let { lang, value, type } = node;
 
-      if (Prism.languages[lang]) {
-        const code = Prism.highlight(value, Prism.languages[lang], lang);
-        // eslint-disable-next-line no-param-reassign
-        node.type = 'html';
-        // eslint-disable-next-line no-param-reassign
-        node.value =
-          type === 'inlineCode'
-            ? `<code class=”language-${lang}”>${code}</code>`
-            : `<pre class=”language-${lang}”><code>${code}</code></pre>`;
-      }
+      const codeLang = Prism.languages[lang] ? lang : 'javascript';
+
+      const code = Prism.highlight(value, Prism.languages[codeLang], codeLang);
+      // eslint-disable-next-line no-param-reassign
+      node.type = 'html';
+      // eslint-disable-next-line no-param-reassign
+      node.value =
+        type === 'inlineCode'
+          ? `<code class=”language-${lang}”>${code}</code>`
+          : `<pre class=”language-${lang}”><code>${code}</code></pre>`;
     });
 }
 
