@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { palette } from '../../../styles/palette';
+
 export const EditorBlock = styled.div`
   font-family: 'Fira Mono', 'Noto Sans KR', monospace;
   flex: 1;
@@ -12,11 +14,24 @@ export const EditorBlock = styled.div`
   }
 `;
 
+export const TitleInputWrap = styled.div`
+  position: relative;
+  padding: 10px;
+  margin-bottom: 5px;
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 13px;
+    height: 5px;
+    width: 30px;
+    background-color: ${palette.green9};
+  }
+`;
 export const TitleInput = styled.input`
   font-size: 34px;
   font-weight: 600;
-  padding: 10px;
-  position: relative;
+  width: 100%;
   background-color: inherit;
   border-style: none;
   outline: none;

@@ -63,7 +63,7 @@ export const NavBtn = styled(NavLink)`
     padding: 0 0 8px;
   }
 
-  &::after {
+  &:after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -78,7 +78,7 @@ export const NavBtn = styled(NavLink)`
   }
   &.current {
     color: ${palette.green9};
-    &::after {
+    &:after {
       width: 90%;
     }
   }
