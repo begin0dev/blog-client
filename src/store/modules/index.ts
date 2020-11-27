@@ -1,15 +1,16 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from '@reduxjs/toolkit'
+
 import base, { BaseState } from './base';
-import auth, { AuthState } from './auth';
+import user, { UserState } from './user';
 
 export type RootState = {
   base: BaseState;
-  auth: AuthState;
+  user: UserState;
 };
 
 const rootReducer = combineReducers({
   base,
-  auth,
+  user,
 });
 
 export default rootReducer;

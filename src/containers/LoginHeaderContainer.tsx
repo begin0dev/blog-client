@@ -3,8 +3,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from 'store/modules';
-import { setLoadingPercent, toggleAuthModal } from 'store/modules/base';
-import { removeUser } from 'store/modules/auth';
+import { actions as baseActions } from 'store/modules/base';
+import { actions as userActions } from 'store/modules/user';
 import { logoutUserApi } from 'lib/services/user';
 import { errorHandler } from 'lib/utils/errorHandler';
 import LogInHeader from 'components/base/header/LogInHeader';
@@ -14,21 +14,21 @@ function LoginHeaderContainer(): JSX.Element | null {
 
   const profileEl = useRef<HTMLDivElement | null>(null);
 
-  const { user, isLogIn } = useSelector((state: RootState) => state.auth, shallowEqual);
+  const { user, isLogIn } = useSelector((state: RootState) => state.user, shallowEqual);
   const [isShowMenu, setIsShowMenu] = useState(false);
 
-  const showAuthModal = useCallback(() => dispatch(toggleAuthModal(true)), [dispatch]);
+  const showAuthModal = useCallback(() => dispatch(baseActions.toggleAuthModal(true)), [dispatch]);
 
   const logOut = useCallback(async () => {
     try {
-      dispatch(setLoadingPercent(0));
+      dispatch(baseActions.setLoadingPercent(0));
       await logoutUserApi();
-      dispatch(removeUser());
+      dispatch(userActions.removeUser());
     } catch (err) {
       const message = errorHandler(err);
       console.error(message);
     } finally {
-      dispatch(setLoadingPercent(100));
+      dispatch(baseActions.setLoadingPercent(100));
     }
   }, [dispatch]);
 

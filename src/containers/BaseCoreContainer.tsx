@@ -4,7 +4,7 @@ import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 
 import { breakPoints } from 'styles/utils';
 import { RootState } from 'store/modules';
-import { setIsMobile } from 'store/modules/base';
+import { actions as baseActions } from 'store/modules/base';
 import { Progressbar } from 'components';
 
 function BaseCoreContainer(): JSX.Element {
@@ -15,9 +15,9 @@ function BaseCoreContainer(): JSX.Element {
 
   useEffect(() => {
     if (!isMobile && innerWidth <= breakPoints.sm) {
-      dispatch(setIsMobile(true));
+      dispatch(baseActions.setIsMobile(true));
     } else if (isMobile && innerWidth > breakPoints.sm) {
-      dispatch(setIsMobile(false));
+      dispatch(baseActions.setIsMobile(false));
     }
   }, [dispatch, innerWidth, isMobile]);
 
