@@ -1,5 +1,5 @@
 import { BaseJsendResponse } from 'types';
-import { User } from 'store/modules/auth';
+import { User } from 'store/user';
 import apiClient from './apiClient';
 
 export const CHECK_USER_URL: string = '/api/v1/users/check';
