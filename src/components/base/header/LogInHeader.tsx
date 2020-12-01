@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { forwardRef } from 'react';
 
-import { User } from 'store/modules/user';
+import { User } from 'store/user';
 import { ProfileImage } from 'components';
 import { Bell } from 'assets/svgs';
 import {

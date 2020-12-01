@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 
 import { breakPoints } from 'styles/utils';
-import { RootState } from 'store/modules';
-import { actions as baseActions } from 'store/modules/base';
+import { RootState } from 'store';
+import { actions as baseActions } from 'store/base';
 import { Progressbar } from 'components';
 
 function BaseCoreContainer(): JSX.Element {

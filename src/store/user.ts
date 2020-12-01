@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-import { checkUserApi } from 'lib/services/user';
+import { checkUserApi, logoutUserApi } from 'lib/services/user';
 
 const checkUser = createAsyncThunk('users/check', async () => {
   const {
@@ -9,6 +9,10 @@ const checkUser = createAsyncThunk('users/check', async () => {
     },
   } = await checkUserApi();
   return user;
+});
+const logoutUser = createAsyncThunk('users/logout', async () => {
+  await logoutUserApi();
+  return null;
 });
 
 export interface User {
@@ -34,12 +38,7 @@ const initialState: UserState = {
 const userSlice = createSlice({
   name: 'users',
   initialState,
-  reducers: {
-    removeUser(state) {
-      state.user = null;
-      state.isLogIn = false;
-    },
-  },
+  reducers: {},
   extraReducers: {
     [checkUser.pending.type]: (state) => {
       state.isLoading = true;
@@ -53,8 +52,12 @@ const userSlice = createSlice({
     [checkUser.rejected.type]: (state) => {
       state.isLoading = false;
     },
+    [logoutUser.fulfilled.type]: (state) => {
+      state.isLogIn = false;
+      state.user = null;
+    },
   },
 });
 
-export const actions = { ...userSlice.actions, checkUser };
+export const actions = { ...userSlice.actions, checkUser, logoutUser };
 export default userSlice.reducer;

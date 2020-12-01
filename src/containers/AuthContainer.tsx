@@ -4,9 +4,9 @@ import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { parse } from 'qs';
 
-import { RootState } from 'store/modules';
-import { actions as baseActions } from 'store/modules/base';
-import { actions as userActions } from 'store/modules/user';
+import { RootState } from 'store';
+import { actions as baseActions } from 'store/base';
+import { actions as userActions } from 'store/user';
 import { baseURL } from 'lib/services/apiClient';
 import { SOCIAL_URL } from 'lib/services/auth';
 import { palette } from 'styles/palette';
