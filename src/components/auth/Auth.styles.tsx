@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 import { includeMedia } from 'styles/utils';
-import { palette } from 'styles/palette';
+import { Palette } from 'styles/palette';
 import { pulseKeyframes } from 'styles/baseCss';
 
 const flexCss = css`
@@ -45,7 +45,7 @@ export const BackButton = styled.button`
   margin-bottom: 55px;
   margin-left: -3px;
   svg {
-    color: ${palette.gray6};
+    color: ${Palette.gray6};
     font-size: 26px;
     &:hover {
       opacity: 0.8;
@@ -83,7 +83,7 @@ export const StartHeader = styled.h2`
 
 export const SocialDescBlock = styled.div`
   font-size: 13px;
-  color: ${palette.gray7};
+  color: ${Palette.gray7};
   margin-bottom: 20px;
 `;
 
@@ -126,7 +126,7 @@ export const SocialButton = styled.button`
   }
   &.github {
     background-color: transparent;
-    color: ${palette.gray9};
+    color: ${Palette.gray9};
     svg {
       font-size: 42px;
     }

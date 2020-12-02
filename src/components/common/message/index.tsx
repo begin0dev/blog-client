@@ -41,8 +41,8 @@ export const MessageProvider: React.FC<IMessageProviderProps> = memo(
 
     return (
       <MessageContext.Provider value={{ addMessage, destroy }}>
-        <Message messages={messages} {...props} />
         {children}
+        <Message messages={messages} {...props} />
       </MessageContext.Provider>
     );
   },

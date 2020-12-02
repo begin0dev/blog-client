@@ -167,15 +167,30 @@ const atomOneDarkTheme = css`
 
 export const MarkdownPreviewBlock = styled.div`
   ${atomOneDarkTheme};
+  font-size: 14px;
+
   pre {
-    font-family: 'Fira Mono', monospace;
+    font-family: 'Fira Mono', 'Noto Sans KR', monospace;
   }
   ol,
   ul {
     list-style: unset;
     padding-left: 30px;
   }
-
+  h1 {
+    font-size: 2em;
+  }
+  h2 {
+    font-size: 1.7em;
+  }
+  h3 {
+    font-size: 1.4em;
+  }
+  h4,
+  h5,
+  h6 {
+    font-size: 1.17em;
+  }
   padding: 10px;
   flex: 1;
 `;

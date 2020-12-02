@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { memo, useCallback, useRef, useState } from 'react';
 
-import { palette } from 'styles/palette';
+import { Palette } from 'styles/palette';
 import { TextInputBlock, InputSlot, Label, Input, FormExplainBlock } from './TextInput.styles';
 
 interface IProps {
@@ -28,7 +28,7 @@ function TextInput({
   value,
   color,
   defaultBorderColor,
-  errorBorderColor = palette.red7,
+  errorBorderColor = Palette.red7,
   error = false,
   message,
   onChange,

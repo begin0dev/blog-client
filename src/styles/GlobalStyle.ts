@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import { palette } from './palette';
+import { Palette } from './palette';
 
 const GlobalStyle = createGlobalStyle`
   html, body, #root {
@@ -9,8 +9,8 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Nunito', 'Noto Sans KR', sans-serif;
     font-size: 12px;
     font-weight: 400;
-    color: ${palette.gray9};
-    background-color: ${palette.gray0};
+    color: ${Palette.gray9};
+    background-color: ${Palette.gray0};
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

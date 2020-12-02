@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavLink, Link } from 'react-router-dom';
 
-import { palette } from 'styles/palette';
+import { Palette } from 'styles/palette';
 import { zIndexes, themes, includeMedia } from 'styles/utils';
 
 export const HeaderBlock = styled.header`
@@ -55,7 +55,7 @@ export const NavBtn = styled(NavLink)`
   font-size: 15px;
   font-weight: 600;
   padding: 8px 0;
-  color: ${palette.gray6};
+  color: ${Palette.gray6};
   user-select: none;
   margin: 0 2px;
 
@@ -73,11 +73,11 @@ export const NavBtn = styled(NavLink)`
     width: 0;
     margin: 0 auto;
     border-radius: 2px;
-    background-color: ${palette.green9};
+    background-color: ${Palette.green9};
     transition: width 0.2s ease-in-out;
   }
   &.current {
-    color: ${palette.green9};
+    color: ${Palette.green9};
     &:after {
       width: 90%;
     }
@@ -94,8 +94,8 @@ export const HeaderRight = styled.div`
 
 export const LoginBtn = styled.button`
   font-size: 13px;
-  background-color: ${palette.green9};
-  color: ${palette.white};
+  background-color: ${Palette.green9};
+  color: ${Palette.white};
   padding: 7px 18px;
   border-radius: 4px;
 `;
@@ -121,9 +121,9 @@ export const LoginMenu = styled.div`
   display: flex;
   flex-flow: column wrap;
   text-align: start;
-  color: ${palette.gray9};
-  background-color: ${palette.white};
-  border: 1px solid ${palette.gray3};
+  color: ${Palette.gray9};
+  background-color: ${Palette.white};
+  border: 1px solid ${Palette.gray3};
   border-radius: 4px;
 
   &::before {
@@ -134,13 +134,13 @@ export const LoginMenu = styled.div`
     height: 12px;
     width: 12px;
     transform: rotate(45deg);
-    background-color: ${palette.white};
-    border-left: 1px solid ${palette.gray3};
-    border-top: 1px solid ${palette.gray3};
+    background-color: ${Palette.white};
+    border-left: 1px solid ${Palette.gray3};
+    border-top: 1px solid ${Palette.gray3};
   }
 
   & > div + div {
-    border-top: 1px solid ${palette.gray3};
+    border-top: 1px solid ${Palette.gray3};
   }
 `;
 
@@ -165,7 +165,7 @@ export const EmptyNotification = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 200px;
-  color: ${palette.gray3};
+  color: ${Palette.gray3};
 
   svg {
     font-size: 80px;
@@ -174,7 +174,7 @@ export const EmptyNotification = styled.div`
 `;
 
 export const SettingLink = styled(Link)`
-  color: ${palette.gray5};
+  color: ${Palette.gray5};
   font-weight: 500;
   margin-top: 5px;
 `;
@@ -186,7 +186,7 @@ export const LogoutWrapper = styled.div`
 export const LogoutBtn = styled.button`
   font-size: 14px;
   background-color: inherit;
-  color: ${palette.gray5};
+  color: ${Palette.gray5};
   padding: 0;
   margin: 0;
 `;

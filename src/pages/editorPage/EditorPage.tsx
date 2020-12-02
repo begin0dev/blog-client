@@ -1,9 +1,11 @@
 import * as React from 'react';
+import { useState } from 'react';
 
-import { EditorContainer } from 'containers';
+import { Editor } from '../../components';
 
-function EditorPage() {
-  return <EditorContainer />;
-}
+function EditorPage(): JSX.Element {
+  const [markdown, setMarkdown] = useState<string>('');
+
+  return <Editor markdown={markdown} setMarkdown={setMarkdown} />;}
 
 export default EditorPage;

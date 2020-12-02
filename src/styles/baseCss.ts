@@ -1,11 +1,11 @@
 import { css, keyframes, CSSProp } from 'styled-components';
 
-import { palette } from './palette';
+import { Palette } from './palette';
 
 export const pulseKeyframes = keyframes`
-  0% { box-shadow: 0 0 3px 0 ${palette.gray5}; }
-  50% { box-shadow: 0 0 8px 3px ${palette.gray5}; }
-  100% { box-shadow: 0 0 3px 0 ${palette.gray5}; }
+  0% { box-shadow: 0 0 3px 0 ${Palette.gray5}; }
+  50% { box-shadow: 0 0 8px 3px ${Palette.gray5}; }
+  100% { box-shadow: 0 0 3px 0 ${Palette.gray5}; }
 `;
 
 interface IButtonColorMap {
@@ -14,13 +14,13 @@ interface IButtonColorMap {
 
 export const buttonColorMap: IButtonColorMap = {
   red: css`
-    background: linear-gradient(-180deg, ${palette.red6} 0%, ${palette.red8} 98%);
-    color: ${palette.white};
+    background: linear-gradient(-180deg, ${Palette.red6} 0%, ${Palette.red8} 98%);
+    color: ${Palette.white};
     &:active {
       animation: ${pulseKeyframes} 0.3s;
     }
     &:hover {
-      background: ${palette.red8};
+      background: ${Palette.red8};
     }
     &:disabled {
       cursor: not-allowed;

@@ -1,4 +1,4 @@
-import { palette } from './palette';
+import { Palette } from './palette';
 
 interface IBreakPoints {
   sm: number;
@@ -47,5 +47,5 @@ interface IThemes {
   header: string;
 }
 export const themes: IThemes = {
-  header: palette.white,
+  header: Palette.white,
 };
