@@ -7,7 +7,7 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     font-family: 'Nunito', 'Noto Sans KR', sans-serif;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     color: ${Palette.gray9};
     background-color: ${Palette.gray0};
@@ -26,8 +26,8 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
   a {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
     -webkit-tap-highlight-color: transparent;
   }
   input, button, textarea {
