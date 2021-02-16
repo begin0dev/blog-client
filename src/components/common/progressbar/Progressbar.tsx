@@ -8,13 +8,14 @@ interface IProps {
   animationTime?: number;
 }
 
-function Progressbar({ isLoading, animationTime = 15 }: IProps) {
+const plusPercent = 5;
+
+function Progressbar({ isLoading, animationTime = 20 }: IProps) {
   const rafRef = useRef<number>(0);
   const delayTime = useRef<number>(animationTime);
   const timer = useRef<number>(animationTime);
 
   const prevPercent = useRef<number>(0);
-  const prevVisible = useRef<boolean>(false);
 
   const [percent, setPercent] = useState<number>(0);
   const [visible, setVisible] = useState<boolean>(false);
@@ -27,8 +28,8 @@ function Progressbar({ isLoading, animationTime = 15 }: IProps) {
     }
     timer.current = delayTime.current;
     if (isLoading && prevPercent.current !== 100) {
-      prevPercent.current += 5;
-      setPercent((prev) => prev + 5);
+      prevPercent.current += plusPercent;
+      setPercent((prev) => prev + plusPercent);
       rafRef.current = requestAnimationFrame(animate);
       return;
     }
@@ -38,19 +39,18 @@ function Progressbar({ isLoading, animationTime = 15 }: IProps) {
       rafRef.current = requestAnimationFrame(animate);
       return;
     }
-    if (!isLoading && prevVisible.current && prevPercent.current === 100) {
-      prevVisible.current = false;
+    if (!isLoading && prevPercent.current === 100) {
       setVisible(false);
       cancelAnimationFrame(rafRef.current);
       return;
     }
+    rafRef.current = requestAnimationFrame(animate);
   }, [isLoading]);
 
   useEffect(() => {
     if (isLoading) {
       timer.current = delayTime.current;
       prevPercent.current = 0;
-      prevVisible.current = true;
       setVisible(true);
       setPercent(0);
     }
