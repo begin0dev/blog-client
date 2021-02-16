@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { useState, useCallback } from 'react';
 
-export default function useInput(initValue: string | number | boolean) {
+function useInput(initValue: string | number) {
   const [input, setInput] = useState(initValue);
 
   const onChange = useCallback(
@@ -15,3 +15,5 @@ export default function useInput(initValue: string | number | boolean) {
 
   return [input, onChange] as [string | number, typeof onChange];
 }
+
+export default useInput;

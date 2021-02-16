@@ -53,4 +53,5 @@ export const SaveBtn = styled.button`
 
 export const EditorBlock = styled.div`
   display: flex;
+  padding: 10px;
 `;

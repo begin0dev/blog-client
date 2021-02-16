@@ -27,12 +27,7 @@ const atomOneDarkTheme = css`
     word-spacing: normal;
     word-break: normal;
     word-wrap: normal;
-    -moz-tab-size: 2;
-    -o-tab-size: 2;
     tab-size: 2;
-    -webkit-hyphens: none;
-    -moz-hyphens: none;
-    -ms-hyphens: none;
     hyphens: none;
   }
   pre[class*='language-']::-moz-selection,
@@ -168,6 +163,8 @@ const atomOneDarkTheme = css`
 export const MarkdownPreviewBlock = styled.div`
   ${atomOneDarkTheme};
   font-size: 14px;
+  flex: 1;
+  padding: 10px;
 
   pre {
     font-family: 'Fira Mono', 'Noto Sans KR', monospace;
@@ -191,6 +188,4 @@ export const MarkdownPreviewBlock = styled.div`
   h6 {
     font-size: 1.17em;
   }
-  padding: 10px;
-  flex: 1;
 `;

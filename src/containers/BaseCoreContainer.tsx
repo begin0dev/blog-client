@@ -9,7 +9,7 @@ import { Progressbar } from 'components';
 
 function BaseCoreContainer(): JSX.Element {
   const dispatch = useDispatch();
-  const { isMobile, loadingPercent } = useSelector((state: RootState) => state.base, shallowEqual);
+  const { isMobile, isLoading } = useSelector((state: RootState) => state.base, shallowEqual);
 
   const [innerWidth, setInnerWidth] = useState<number>(window.innerWidth);
 
@@ -30,7 +30,7 @@ function BaseCoreContainer(): JSX.Element {
     };
   }, []);
 
-  return <Progressbar percent={loadingPercent} />;
+  return <Progressbar isLoading={isLoading} />;
 }
 
 export default BaseCoreContainer;

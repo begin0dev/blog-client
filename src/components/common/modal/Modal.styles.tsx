@@ -35,11 +35,11 @@ export const ModalBlock = styled.div<{ fullScreen?: boolean; backgroundColor?: s
   align-items: center;
   margin: 1.5rem;
   border-radius: 0.5rem;
-  background-color: ${props => (props.backgroundColor ? props.backgroundColor : '#ffffff')};
+  background-color: ${({ backgroundColor }) => (backgroundColor ? backgroundColor : '#ffffff')};
   overflow: hidden;
   transform-origin: center;
-  ${props =>
-    props.fullScreen &&
+  ${({ fullScreen }) =>
+    fullScreen &&
     css`
       width: 100%;
       height: 100%;
@@ -50,7 +50,7 @@ export const ModalBlock = styled.div<{ fullScreen?: boolean; backgroundColor?: s
 `;
 
 export const OverlayBlock = styled.div<{ active: boolean; hideOverlay?: boolean }>`
-  display: ${props => (props.active ? 'flex' : 'none')};
+  display: ${({ active }) => (active ? 'flex' : 'none')};
   align-items: center;
   justify-content: center;
   position: fixed;
@@ -58,10 +58,10 @@ export const OverlayBlock = styled.div<{ active: boolean; hideOverlay?: boolean 
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: ${props => (props.hideOverlay ? `rgba(0,0,0,0)` : `rgba(0,0,0,.4)`)};
+  background-color: ${({ hideOverlay }) => (hideOverlay ? `rgba(0,0,0,0)` : `rgba(0,0,0,.4)`)};
   overflow: auto;
   ${ModalBlock} {
-    animation: ${props => (props.active ? modalAppear : modalDisappear)} .2s ease-in-out;
+    animation: ${({ active }) => (active ? modalAppear : modalDisappear)} .2s ease-in-out;
     animation-fill-mode: forwards;
   }:
 `;

@@ -4,13 +4,7 @@ import { memo } from 'react';
 import { IMessageProps, messagesType } from './types';
 import { MessageBlock, MessageWrapBlock } from './Message.styles';
 
-function Message({
-  messages,
-  isBottom,
-  position,
-  zIndex,
-  margin,
-}: IMessageProps): JSX.Element {
+function Message({ messages, isBottom, position, zIndex, margin }: IMessageProps) {
   return (
     <MessageBlock position={position} isBottom={isBottom} zIndex={zIndex}>
       {messages.map((content: messagesType) => (

@@ -2,14 +2,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type BaseState = {
   isMobile: boolean;
+  isLoading: boolean;
   authModal: boolean;
-  loadingPercent: number;
 };
 
 export const initialState: BaseState = {
   isMobile: window.innerWidth <= 450,
+  isLoading: false,
   authModal: false,
-  loadingPercent: 0,
 };
 
 const baseSlice = createSlice({
@@ -19,8 +19,8 @@ const baseSlice = createSlice({
     setIsMobile(state, { payload }: PayloadAction<boolean>) {
       state.isMobile = payload;
     },
-    setLoadingPercent(state, { payload }: PayloadAction<number>) {
-      state.loadingPercent = payload;
+    setIsLoading(state, { payload }: PayloadAction<boolean>) {
+      state.isLoading = payload;
     },
     toggleAuthModal(state, { payload }: PayloadAction<boolean>) {
       state.authModal = payload;

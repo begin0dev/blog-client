@@ -13,6 +13,8 @@ const justifyContent = (position?: positionType) => {
   }
 };
 
+const margin = 18;
+
 export const MessageBlock = styled.div<{
   zIndex?: number;
   position?: positionType;
@@ -35,8 +37,6 @@ export const MessageBlock = styled.div<{
           top: 0;
         `}
 `;
-
-const margin = 18;
 
 export const MessageWrapBlock = styled.div<{ margin?: number }>`
   color: #212529;

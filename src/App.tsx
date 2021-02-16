@@ -6,7 +6,7 @@ import { BaseCoreContainer, AuthContainer } from 'containers';
 import { EditorPage, MainPage, ProfilePage, CategoryPage, NotFoundPage } from 'pages';
 import AppRoute from './lib/utils/AppRoute';
 
-function App(): JSX.Element {
+function App() {
   return (
     <Router>
       <BaseCoreContainer />
