@@ -21,28 +21,27 @@ function Progressbar({ isLoading, animationTime = 20 }: IProps) {
   const [visible, setVisible] = useState<boolean>(false);
 
   const animate = useCallback(() => {
+    cancelAnimationFrame(rafRef.current);
     if (timer.current !== 0) {
       timer.current -= 1;
       rafRef.current = requestAnimationFrame(animate);
       return;
     }
-    timer.current = delayTime.current;
-    if (isLoading && prevPercent.current !== 100) {
-      prevPercent.current += plusPercent;
-      setPercent((prev) => prev + plusPercent);
-      rafRef.current = requestAnimationFrame(animate);
-      return;
-    }
-    if (!isLoading && prevPercent.current !== 100) {
-      prevPercent.current = 100;
-      setPercent(100);
-      rafRef.current = requestAnimationFrame(animate);
-      return;
-    }
+
     if (!isLoading && prevPercent.current === 100) {
       setVisible(false);
       cancelAnimationFrame(rafRef.current);
       return;
+    }
+
+    timer.current = delayTime.current;
+    if (isLoading && prevPercent.current !== 100) {
+      prevPercent.current += plusPercent;
+      setPercent((prev) => prev + plusPercent);
+    }
+    if (!isLoading && prevPercent.current !== 100) {
+      prevPercent.current = 100;
+      setPercent(100);
     }
     rafRef.current = requestAnimationFrame(animate);
   }, [isLoading]);
