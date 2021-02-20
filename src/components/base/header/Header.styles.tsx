@@ -3,6 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 
 import { Palette } from 'styles/palette';
 import { zIndexes, themes, includeMedia } from 'styles/utils';
+import { baseButtonCSS } from '../../../styles/baseCss';
 
 export const HeaderBlock = styled.header`
   z-index: ${zIndexes.header};
@@ -93,6 +94,7 @@ export const HeaderRight = styled.div`
 `;
 
 export const LoginBtn = styled.button`
+  ${baseButtonCSS};
   font-size: 13px;
   color: ${Palette.white};
   background-color: ${Palette.green9};

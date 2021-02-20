@@ -12,15 +12,26 @@ interface IButtonColorMap {
   red: CSSProp;
 }
 
+export const baseButtonCSS = css`
+  &:active {
+    animation: ${pulseKeyframes} 0.3s;
+  }
+  &:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+`;
+
 export const buttonColorMap: IButtonColorMap = {
   red: css`
     background: linear-gradient(-180deg, ${Palette.red6} 0%, ${Palette.red8} 98%);
     color: ${Palette.white};
-    &:active {
-      animation: ${pulseKeyframes} 0.3s;
-    }
     &:hover {
       background: ${Palette.red8};
+    }
+    &:active {
+      animation: ${pulseKeyframes} 0.3s;
     }
     &:disabled {
       cursor: not-allowed;
