@@ -94,15 +94,15 @@ export const HeaderRight = styled.div`
 
 export const LoginBtn = styled.button`
   font-size: 13px;
-  background-color: ${Palette.green9};
   color: ${Palette.white};
+  background-color: ${Palette.green9};
   padding: 7px 18px;
-  border-radius: 4px;
+  border-radius: 18px;
 `;
 
 export const ProfileBtnWrapper = styled.div`
   display: flex;
-`
+`;
 
 export const ProfileBtn = styled.button`
   position: relative;
@@ -185,8 +185,8 @@ export const LogoutWrapper = styled.div`
 
 export const LogoutBtn = styled.button`
   font-size: 14px;
-  background-color: inherit;
   color: ${Palette.gray5};
+  background-color: inherit;
   padding: 0;
   margin: 0;
 `;

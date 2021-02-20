@@ -1,5 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
+
 import { Palette } from './palette';
+import { pulseKeyframes } from './baseCss';
 
 const GlobalStyle = createGlobalStyle`
   html, body, #root {
@@ -37,6 +39,12 @@ const GlobalStyle = createGlobalStyle`
     border-style: none;
     &:active, &:focus, &:hover {
       outline: none;
+    }
+    &:hover {
+      opacity: 0.9;
+    }
+    &:active {
+      animation: ${pulseKeyframes} 0.3s;
     }
   }
   ol, ul {

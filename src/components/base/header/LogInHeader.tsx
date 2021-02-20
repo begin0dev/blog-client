@@ -30,7 +30,7 @@ function LogInHeader(
   { user, isLogIn, isShowMenu, logOut, showAuthModal, onClickProfileBtn }: IProps,
   ref: React.Ref<HTMLDivElement>,
 ): JSX.Element {
-  if (!isLogIn) return <LoginBtn onClick={showAuthModal}>LogIn</LoginBtn>;
+  if (!isLogIn) return <LoginBtn onClick={showAuthModal}>로그인</LoginBtn>;
   return (
     <ProfileBtnWrapper ref={ref}>
       <ProfileBtn onClick={onClickProfileBtn}>
@@ -47,7 +47,7 @@ function LogInHeader(
             />
             <div>
               <h3>{user?.displayName}</h3>
-              <SettingLink to="/settings">Settings</SettingLink>
+              <SettingLink to="/settings">프로필 설정</SettingLink>
             </div>
           </ProfileWrapper>
           <NotificationWrapper>
@@ -57,7 +57,7 @@ function LogInHeader(
             </EmptyNotification>
           </NotificationWrapper>
           <LogoutWrapper>
-            <LogoutBtn onClick={logOut}>Logout</LogoutBtn>
+            <LogoutBtn onClick={logOut}>로그아웃</LogoutBtn>
           </LogoutWrapper>
         </LoginMenu>
       )}

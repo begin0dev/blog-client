@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { memo, useCallback } from 'react';
 
-import { HideScrollbar } from 'components';
 import { ModalWrapper, OverlayBlock, ModalBlock } from './Modal.styles';
 
 interface IProps {
@@ -39,7 +38,6 @@ function Modal({
   return (
     <ModalWrapper>
       <OverlayBlock active={active} hideOverlay={hideOverlay} onClick={onClickOutSideEvent}>
-        {active && <HideScrollbar />}
         <ModalBlock
           fullScreen={fullScreen}
           backgroundColor={backgroundColor}
