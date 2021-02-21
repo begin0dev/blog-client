@@ -21,10 +21,6 @@ export const MessageProvider: React.FC<IMessageProviderProps> = memo(
 
     const [messages, setMessage] = useState<messagesType[]>([]);
 
-    const destroy = useCallback(() => {
-      setMessage([]);
-    }, []);
-
     const removeMessage = useCallback((id: number) => {
       setMessage((prevState) => prevState.filter((message: messagesType) => message.id !== id));
     }, []);
@@ -41,6 +37,10 @@ export const MessageProvider: React.FC<IMessageProviderProps> = memo(
       },
       [maxCount, removeMessage],
     );
+
+    const destroy = useCallback(() => {
+      setMessage([]);
+    }, []);
 
     return (
       <MessageContext.Provider value={{ addMessage, destroy }}>

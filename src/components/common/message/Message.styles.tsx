@@ -13,23 +13,21 @@ const justifyContent = (position?: positionType) => {
   }
 };
 
-const margin = 18;
-
 export const MessageBlock = styled.div<{
   zIndex?: number;
   position?: positionType;
   isBottom?: boolean;
 }>`
-  z-index: ${(props) => props.zIndex || 10000};
-  display: flex;
-  flex-flow: column wrap;
-  align-items: ${(props) => justifyContent(props.position)};
+  z-index: ${({ zIndex = 10000 }) => zIndex};
   position: fixed;
   left: 0;
   right: 0;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: ${({ position }) => justifyContent(position)};
   pointer-events: none;
-  ${(props) =>
-    props.isBottom
+  ${({ isBottom }) =>
+    isBottom
       ? css`
           bottom: 0;
         `
@@ -47,9 +45,9 @@ export const MessageWrapBlock = styled.div<{ margin?: number }>`
   padding: 10px 16px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  margin: ${(props) => `${props.margin || margin}px ${props.margin || margin}px 0`};
+  margin: ${({ margin = 18 }) => `${margin}px ${margin}px 0`};
 
   &:last-child {
-    margin-bottom: ${(props) => `${props.margin || margin}px`};
+    margin-bottom: ${({ margin = 18 }) => `${margin}px`};
   }
 `;

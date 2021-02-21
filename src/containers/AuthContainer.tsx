@@ -52,6 +52,7 @@ function AuthContainer(): JSX.Element | null {
   }, [dispatch, addMessage, history]);
 
   if (isLogIn) return null;
+
   return (
     <Modal
       active={authModal}
