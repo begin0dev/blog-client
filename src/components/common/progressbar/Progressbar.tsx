@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useState, useEffect, memo, useRef, useCallback } from 'react';
 
 import { ProgressbarBlock } from './Progressbar.styles';

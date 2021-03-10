@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
@@ -7,7 +6,7 @@ import { actions as baseActions } from 'store/base';
 import { actions as userActions } from 'store/user';
 import LogInHeader from 'components/base/header/LogInHeader';
 
-function LoginHeaderContainer(): JSX.Element | null {
+function LoginHeaderContainer() {
   const dispatch = useDispatch();
 
   const profileEl = useRef<HTMLDivElement | null>(null);

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 
@@ -7,7 +6,7 @@ import { RootState } from 'store';
 import { actions as baseActions } from 'store/base';
 import { Progressbar } from 'components';
 
-function BaseCoreContainer(): JSX.Element {
+function BaseCoreContainer() {
   const dispatch = useDispatch();
   const { isMobile, isLoading } = useSelector((state: RootState) => state.base, shallowEqual);
 

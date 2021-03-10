@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { memo } from 'react';
 
 import { ProfileImgWrapper } from './ProfileImage.styles';
@@ -11,7 +10,7 @@ interface IProps {
   styles?: object;
 }
 
-function ProfileImage({ profileImage, size = 35, round, styles = {} }: IProps): JSX.Element {
+function ProfileImage({ profileImage, size = 35, round, styles = {} }: IProps) {
   return (
     <ProfileImgWrapper size={size} round={round} style={styles}>
       <img

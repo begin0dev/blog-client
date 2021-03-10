@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { memo } from 'react';
 
 import { OverlayBlock } from './Overlay.styles';

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useEffect, useContext, useCallback } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -13,7 +12,7 @@ import { Palette } from 'styles/palette';
 import { Auth, Modal } from 'components';
 import { MessageContext } from 'components/common/message';
 
-function AuthContainer(): JSX.Element | null {
+function AuthContainer() {
   const history = useHistory();
   const dispatch = useDispatch();
 

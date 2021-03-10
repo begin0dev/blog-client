@@ -1,11 +1,9 @@
-import * as React from 'react';
-
 import { Logo } from 'assets/svgs';
 import { LoginHeaderContainer } from 'containers';
 import { HeaderBlock, LogoBlock, Wrapper, HeaderRight } from './Header.styles';
 import Nav from './Nav';
 
-function Header(): JSX.Element {
+function Header() {
   return (
     <HeaderBlock>
       <Wrapper>

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { memo } from 'react';
 
 import { ArrowLeft, Logo } from 'assets/svgs';
 import {
@@ -45,4 +45,4 @@ function Auth({ hideModal, socialRedirect }: IProps) {
   );
 }
 
-export default React.memo(Auth);
+export default memo(Auth);

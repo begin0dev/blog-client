@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useRef, MouseEvent } from 'react';
 
 import { ModalWrapper, OverlayBlock, ModalBlock } from './Modal.styles';
 
@@ -24,10 +23,10 @@ function Modal({
   hideModal,
   children,
 }: IProps) {
-  const modalEl = React.useRef<HTMLDivElement | null>(null);
+  const modalEl = useRef<HTMLDivElement | null>(null);
 
   const onClickOutSideEvent = useCallback(
-    (e: React.MouseEvent<HTMLElement>): void => {
+    (e: MouseEvent<HTMLElement>): void => {
       if (fullScreen) return;
       if (modalEl.current?.contains(e.target as HTMLElement)) return;
       hideModal?.(false);

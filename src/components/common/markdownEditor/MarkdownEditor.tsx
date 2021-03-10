@@ -1,6 +1,5 @@
 import 'codemirror/lib/codemirror.css';
 
-import * as React from 'react';
 import { memo } from 'react';
 import CodeMirror, { Editor, EditorFromTextArea } from 'codemirror';
 import { useCallback, useEffect, useRef } from 'react';

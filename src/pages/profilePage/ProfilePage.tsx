@@ -1,6 +1,4 @@
-import * as React from 'react';
-
-function ProfilePage(): JSX.Element {
+function ProfilePage() {
   return <div>profile</div>;
 }
 

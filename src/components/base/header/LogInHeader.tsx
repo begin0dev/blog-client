@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { forwardRef } from 'react';
+import { forwardRef, Ref } from 'react';
 
 import { User } from 'store/user';
 import { ProfileImage } from 'components';
@@ -28,8 +27,8 @@ interface IProps {
 
 function LogInHeader(
   { user, isLogIn, isShowMenu, logOut, showAuthModal, onClickProfileBtn }: IProps,
-  ref: React.Ref<HTMLDivElement>,
-): JSX.Element {
+  ref: Ref<HTMLDivElement>,
+) {
   if (!isLogIn) return <LoginBtn onClick={showAuthModal}>로그인</LoginBtn>;
   return (
     <ProfileBtnWrapper ref={ref}>

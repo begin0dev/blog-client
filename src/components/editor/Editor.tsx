@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { MarkdownEditor, MarkdownPreview } from 'components';
 import { EditorWrapperBlock, HeaderBlock, BackButton, EditorBlock, SaveBtn } from './Editor.styles';
 import { ArrowLeft } from '../../assets/svgs';

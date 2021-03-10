@@ -1,6 +1,4 @@
-import * as React from 'react';
-
-function CategoryPage(): JSX.Element {
+function CategoryPage() {
   return <div>category</div>;
 }
 

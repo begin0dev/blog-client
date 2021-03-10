@@ -1,6 +1,4 @@
-import * as React from 'react';
-
-function MainPage(): JSX.Element {
+function MainPage() {
   return <div>main</div>;
 }
 

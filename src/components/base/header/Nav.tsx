@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 import { NavWrapper, NavBtn } from './Header.styles';
 
 function Nav() {

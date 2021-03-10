@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { memo } from 'react';
 
 import { SpinnerBlock, Circle } from './Spinner.styles';
@@ -8,7 +7,7 @@ interface IProps {
   color?: string;
 }
 
-function Spinner({ size, color }: IProps): JSX.Element {
+function Spinner({ size, color }: IProps) {
   return (
     <SpinnerBlock size={size}>
       {Array.from({ length: 12 }, (arr, i) => (

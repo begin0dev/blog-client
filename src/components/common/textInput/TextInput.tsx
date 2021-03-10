@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { memo, useCallback, useRef, useState } from 'react';
+import { memo, useCallback, useRef, useState, FocusEvent, ChangeEvent } from 'react';
 
 import { Palette } from 'styles/palette';
 import { TextInputBlock, InputSlot, Label, Input, FormExplainBlock } from './TextInput.styles';
@@ -15,9 +14,9 @@ interface IProps {
   placeholder?: string;
   error?: boolean;
   message?: string | null;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  onFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
+  onFocus?: (e: FocusEvent<HTMLInputElement>) => void;
 }
 
 function TextInput({
@@ -34,7 +33,7 @@ function TextInput({
   onChange,
   onFocus,
   onBlur,
-}: IProps): JSX.Element {
+}: IProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [focus, setFocus] = useState<boolean>(false);
 
@@ -45,7 +44,7 @@ function TextInput({
     (value || '').length > 0;
 
   const onFocusEvent = useCallback(
-    (e: React.FocusEvent<HTMLInputElement>) => {
+    (e: FocusEvent<HTMLInputElement>) => {
       setFocus(true);
       onFocus?.(e);
     },
@@ -53,7 +52,7 @@ function TextInput({
   );
 
   const onBlurEvent = useCallback(
-    (e: React.FocusEvent<HTMLInputElement>) => {
+    (e: FocusEvent<HTMLInputElement>) => {
       setFocus(false);
       onBlur?.(e);
     },

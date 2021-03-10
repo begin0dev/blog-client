@@ -1,6 +1,3 @@
-import * as React from 'react';
-import { memo } from 'react';
-
 import { Facebook, Github, Google, Kakao } from 'assets/svgs';
 import { SocialBlock, SocialButton } from './Auth.styles';
 
@@ -8,7 +5,7 @@ interface IProps {
   socialRedirect(provider: 'kakao' | 'facebook' | 'github' | 'google'): () => void;
 }
 
-function SocialButtons({ socialRedirect }: IProps): JSX.Element {
+function SocialButtons({ socialRedirect }: IProps) {
   return (
     <SocialBlock>
       <SocialButton className="facebook" onClick={socialRedirect('facebook')}>
@@ -27,4 +24,4 @@ function SocialButtons({ socialRedirect }: IProps): JSX.Element {
   );
 }
 
-export default memo(SocialButtons);
+export default SocialButtons;

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { memo } from 'react';
 
 import { HamburgerBlock, HamburgerWrapper, Box, Inner } from './Hamburger.styles';
@@ -8,7 +7,7 @@ interface IProps {
   dispatchToggleSidebar: (bool: boolean) => () => void;
 }
 
-function Hamburger({ visible, dispatchToggleSidebar }: IProps): JSX.Element {
+function Hamburger({ visible, dispatchToggleSidebar }: IProps) {
   return (
     <HamburgerBlock onClick={dispatchToggleSidebar(!visible)}>
       <HamburgerWrapper active={visible}>

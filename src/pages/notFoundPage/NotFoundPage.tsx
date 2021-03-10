@@ -1,8 +1,6 @@
-import * as React from 'react';
-
 import { NotFoundPageBlock } from './NotFoundPage.styles';
 
-function NotFoundPage(): JSX.Element {
+function NotFoundPage() {
   return <NotFoundPageBlock>404 not found</NotFoundPageBlock>;
 }
 
