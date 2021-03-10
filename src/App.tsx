@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 
 import { PageTemplate } from 'components';

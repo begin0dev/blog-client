@@ -1,6 +1,5 @@
 import 'react-app-polyfill/ie11';
 
-import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
