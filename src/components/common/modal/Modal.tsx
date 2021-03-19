@@ -1,4 +1,4 @@
-import { memo, useCallback, useRef, MouseEvent } from 'react';
+import { memo, useCallback, useRef, MouseEvent, ReactNode } from 'react';
 
 import { ModalWrapper, OverlayBlock, ModalBlock } from './Modal.styles';
 
@@ -10,7 +10,7 @@ interface IProps {
   hideOverlay?: boolean;
   backgroundColor?: string;
   hideModal?: (bool?: boolean) => void;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 function Modal({
@@ -23,7 +23,7 @@ function Modal({
   hideModal,
   children,
 }: IProps) {
-  const modalEl = useRef<HTMLDivElement | null>(null);
+  const modalEl = useRef<HTMLDivElement>(null);
 
   const onClickOutSideEvent = useCallback(
     (e: MouseEvent<HTMLElement>): void => {

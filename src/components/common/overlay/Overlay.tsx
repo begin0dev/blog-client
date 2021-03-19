@@ -9,6 +9,6 @@ interface IProps {
 
 function Overlay({ visible, onClick }: IProps) {
   return <OverlayBlock visible={visible} onClick={onClick} />;
-};
+}
 
 export default memo(Overlay);

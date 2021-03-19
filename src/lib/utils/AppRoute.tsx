@@ -1,9 +1,9 @@
-import * as React from 'react';
+import { ComponentType } from 'react';
 import { Route, RouteProps } from 'react-router-dom';
 import { RouteComponentProps } from 'react-router';
 
 interface IProps extends RouteProps {
-  layout?: React.ComponentType<RouteComponentProps<any>> | React.ComponentType<any>;
+  layout?: ComponentType<RouteComponentProps<any>> | ComponentType<any>;
 }
 
 function AppRoute({ layout: Layout, component: Component, ...rest }: IProps) {

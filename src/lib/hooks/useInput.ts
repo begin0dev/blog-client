@@ -1,13 +1,10 @@
-import * as React from 'react';
-import { useState, useCallback } from 'react';
+import { useState, useCallback, ChangeEvent } from 'react';
 
 function useInput(initValue: string | number) {
   const [input, setInput] = useState(initValue);
 
   const onChange = useCallback(
-    ({
-      target: { value },
-    }: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
+    ({ target: { value } }: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
       setInput(value);
     },
     [],

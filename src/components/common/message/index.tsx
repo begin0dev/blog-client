@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { FC } from 'react';
 import { createContext, useRef, useState, useCallback, memo } from 'react';
 
 import { messagesType, IMessageProviderProps } from './types';
@@ -14,7 +14,7 @@ export const MessageContext = createContext<MessageContextValue>({
   destroy: () => {},
 });
 
-export const MessageProvider: React.FC<IMessageProviderProps> = memo(
+export const MessageProvider: FC<IMessageProviderProps> = memo(
   ({ children, maxCount = 5, duration = 2400, ...props }) => {
     const messageId = useRef<number>(0);
     const removeTime = useRef<number>(duration);
