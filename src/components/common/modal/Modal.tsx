@@ -1,4 +1,5 @@
 import { memo, useCallback, useRef, MouseEvent, ReactNode } from 'react';
+import { createPortal } from 'react-dom';
 
 import { ModalWrapper, OverlayBlock, ModalBlock } from './Modal.styles';
 
@@ -23,6 +24,7 @@ function Modal({
   hideModal,
   children,
 }: IProps) {
+  const modalRoot = useRef<HTMLDivElement>(document.querySelector('#modal'));
   const modalEl = useRef<HTMLDivElement>(null);
 
   const onClickOutSideEvent = useCallback(
@@ -34,7 +36,7 @@ function Modal({
     [fullScreen, hideModal],
   );
 
-  return (
+  return createPortal(
     <ModalWrapper>
       <OverlayBlock active={active} hideOverlay={hideOverlay} onClick={onClickOutSideEvent}>
         <ModalBlock
@@ -46,7 +48,8 @@ function Modal({
           {children}
         </ModalBlock>
       </OverlayBlock>
-    </ModalWrapper>
+    </ModalWrapper>,
+    modalRoot.current as HTMLDivElement,
   );
 }
 
