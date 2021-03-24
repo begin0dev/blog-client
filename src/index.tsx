@@ -1,5 +1,6 @@
 import 'react-app-polyfill/ie11';
 
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
@@ -18,12 +19,14 @@ const store = configureStore({
 });
 
 ReactDOM.render(
-  <Provider store={store}>
-    <GlobalStyle />
-    <MessageProvider>
-      <App />
-    </MessageProvider>
-  </Provider>,
+  <StrictMode>
+    <Provider store={store}>
+      <GlobalStyle />
+      <MessageProvider>
+        <App />
+      </MessageProvider>
+    </Provider>
+  </StrictMode>,
   document.getElementById('root'),
 );
 
