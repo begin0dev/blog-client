@@ -1,23 +1,22 @@
-import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 
 import { breakPoints } from 'styles/utils';
-import { RootState } from 'store/modules';
-import { setIsMobile } from 'store/modules/base';
+import { RootState } from 'store';
+import { actions as baseActions } from 'store/base';
 import { Progressbar } from 'components';
 
-function BaseCoreContainer(): JSX.Element {
+function BaseCoreContainer() {
   const dispatch = useDispatch();
-  const { isMobile, loadingPercent } = useSelector((state: RootState) => state.base, shallowEqual);
+  const { isMobile, isLoading } = useSelector((state: RootState) => state.base, shallowEqual);
 
   const [innerWidth, setInnerWidth] = useState<number>(window.innerWidth);
 
   useEffect(() => {
     if (!isMobile && innerWidth <= breakPoints.sm) {
-      dispatch(setIsMobile(true));
+      dispatch(baseActions.setIsMobile(true));
     } else if (isMobile && innerWidth > breakPoints.sm) {
-      dispatch(setIsMobile(false));
+      dispatch(baseActions.setIsMobile(false));
     }
   }, [dispatch, innerWidth, isMobile]);
 
@@ -30,7 +29,7 @@ function BaseCoreContainer(): JSX.Element {
     };
   }, []);
 
-  return <Progressbar percent={loadingPercent} />;
+  return <Progressbar isLoading={isLoading} />;
 }
 
 export default BaseCoreContainer;

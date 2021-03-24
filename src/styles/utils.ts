@@ -1,4 +1,4 @@
-import { palette } from './palette';
+import { Palette } from './palette';
 
 interface IBreakPoints {
   sm: number;
@@ -16,6 +16,7 @@ export const breakPoints: IBreakPoints = {
 const changeToCondition = (condition: string): string => {
   const breakPoint: string = condition.slice(condition.length - 2, condition.length);
   const width: number = breakPoints[breakPoint as keyof IBreakPoints];
+
   switch (true) {
     case /^>=/.test(condition):
       return `(min-width: ${width}px)`;
@@ -26,7 +27,7 @@ const changeToCondition = (condition: string): string => {
     case /^</.test(condition):
       return `(max-width: ${width - 1}px)`;
     default:
-      return '';
+      throw new Error('올바르지 않은 미디어 쿼리 형식입니다.')
   }
 };
 
@@ -35,10 +36,10 @@ export const includeMedia = (...conditions: string[]): string =>
 
 export enum zIndexes {
   header = 100,
-  overlay = 200,
-  modal = 300,
-  loginMenu = 500,
-  hamburger = 500,
+  overlay = 300,
+  modal = 500,
+  loginMenu = 700,
+  hamburger = 700,
   progress = 1000,
   message = 2000,
 }
@@ -47,5 +48,5 @@ interface IThemes {
   header: string;
 }
 export const themes: IThemes = {
-  header: palette.white,
+  header: Palette.white,
 };

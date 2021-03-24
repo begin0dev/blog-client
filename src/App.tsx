@@ -1,28 +1,30 @@
-import * as React from 'react';
-import { Route, Switch } from 'react-router-dom';
-import { hot } from 'react-hot-loader/root';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 
 import { PageTemplate } from 'components';
 import { BaseCoreContainer, AuthContainer } from 'containers';
-import { MainPage, ProfilePage, CategoryPage, NotFoundPage } from 'pages';
+import { EditorPage, MainPage, ProfilePage, CategoryPage, NotFoundPage } from 'pages';
+import AppRoute from './lib/utils/AppRoute';
 
-function App(): JSX.Element {
+function App() {
   return (
-    <>
+    <Router>
       <BaseCoreContainer />
       <AuthContainer />
-      <PageTemplate>
-        <Switch>
-          <Route exact path="/" component={MainPage} />
-          <Route path="/about" component={ProfilePage} />
-          <Route path="/log" component={ProfilePage} />
-          <Route path="/develop/:name(react|node|javascript|etc)" component={CategoryPage} />
-          <Route path="/develop" component={CategoryPage} />
-          <Route path="/*" component={NotFoundPage} />
-        </Switch>
-      </PageTemplate>
-    </>
+      <Switch>
+        <AppRoute exact path="/" layout={PageTemplate} component={MainPage} />
+        <AppRoute path="/about" layout={PageTemplate} component={ProfilePage} />
+        <AppRoute path="/log" layout={PageTemplate} component={ProfilePage} />
+        <AppRoute
+          path="/develop/:name(react|node|javascript|etc)"
+          layout={PageTemplate}
+          component={CategoryPage}
+        />
+        <AppRoute path="/develop" layout={PageTemplate} component={CategoryPage} />
+        <AppRoute path="/editor" component={EditorPage} />
+        <AppRoute path="/*" layout={PageTemplate} component={NotFoundPage} />
+      </Switch>
+    </Router>
   );
 }
 
-export default hot(App);
+export default App;

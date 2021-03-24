@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
-import { palette } from './palette';
+
+import { Palette } from './palette';
 
 const GlobalStyle = createGlobalStyle`
   html, body, #root {
@@ -7,15 +8,16 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     font-family: 'Nunito', 'Noto Sans KR', sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 400;
-    color: ${palette.gray9};
-    background-color: ${palette.gray0};
+    color: ${Palette.gray9};
+    background-color: ${Palette.gray0};
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  * {
+  body, header, footer, main, nav, div, article, section, button {
+    position: relative;
     margin: 0;
     padding: 0;
     border: 0;
@@ -24,22 +26,21 @@ const GlobalStyle = createGlobalStyle`
   *, *:before, *:after {
     box-sizing: border-box;
   }
-  body, header, footer, main, nav, div, article, section, ol, ul {
-    position: relative;
-    padding: 0;
-    border: 0;
-  }
   a {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
     -webkit-tap-highlight-color: transparent;
   }
   input, button, textarea {
     font-family: inherit;
   }
   button {
+    border-style: none;
     &:active, &:focus, &:hover {
       outline: none;
+    }
+    &:hover {
+      opacity: 0.9;
     }
   }
   ol, ul {

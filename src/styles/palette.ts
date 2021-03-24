@@ -1,4 +1,4 @@
-export enum palette {
+export enum Palette {
   white = '#ffffff',
   black = '#0b0b0b',
 
