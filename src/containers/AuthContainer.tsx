@@ -1,7 +1,7 @@
-import { useEffect, useContext, useCallback } from 'react';
+import { parse } from 'qs';
+import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { parse } from 'qs';
 
 import { RootState } from 'store';
 import { actions as baseActions } from 'store/base';
@@ -10,13 +10,10 @@ import { baseURL } from 'lib/services/apiClient';
 import { SOCIAL_URL } from 'lib/services/auth';
 import { Palette } from 'styles/palette';
 import { Auth, Modal } from 'components';
-import { MessageContext } from 'components/common/message';
 
 function AuthContainer() {
   const history = useHistory();
   const dispatch = useDispatch();
-
-  const { addMessage } = useContext(MessageContext);
 
   const isLogIn = useSelector((state: RootState) => state.user.isLogIn);
   const { authModal, isMobile } = useSelector((state: RootState) => state.base, shallowEqual);
@@ -45,10 +42,10 @@ function AuthContainer() {
       history.replace(referer);
     }
     if (queryString.message) {
-      addMessage(queryString.message as string);
+      // TODO addMessage(queryString.message);
       dispatch(baseActions.toggleAuthModal(true));
     }
-  }, [dispatch, addMessage, history]);
+  }, [dispatch, history]);
 
   if (isLogIn) return null;
 
@@ -56,9 +53,9 @@ function AuthContainer() {
     <Modal
       active={authModal}
       fullScreen={isMobile}
+      hideModal={hideModal}
       size={{ width: '390px' }}
       backgroundColor={Palette.gray0}
-      hideModal={hideModal}
     >
       <Auth socialRedirect={socialRedirect} hideModal={hideModal} />
     </Modal>

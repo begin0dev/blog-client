@@ -6,10 +6,9 @@ import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 
 import GlobalStyle from 'styles/GlobalStyle';
-import { MessageProvider } from 'components/common/message';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 import rootReducer from './store';
+import reportWebVitals from './reportWebVitals';
 import thunkMiddleware from './store/middleware/thunkMiddleware';
 
 const store = configureStore({
@@ -20,11 +19,9 @@ const store = configureStore({
 
 ReactDOM.render(
   <StrictMode>
+    <GlobalStyle />
     <Provider store={store}>
-      <GlobalStyle />
-      <MessageProvider>
-        <App />
-      </MessageProvider>
+      <App />
     </Provider>
   </StrictMode>,
   document.getElementById('root'),
