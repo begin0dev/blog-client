@@ -11,7 +11,7 @@ export const EditorWrapperBlock = styled.div`
 `;
 
 export const HeaderBlock = styled.header`
-  z-index: ${zIndexes.header};
+  z-index: ${zIndexes.HEADER};
   position: relative;
   width: 100%;
   height: ${HEADER_HEIGHT}px;
@@ -19,7 +19,7 @@ export const HeaderBlock = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 0 40px;
-  background-color: ${themes.header};
+  background-color: ${themes.HEADER};
 
   ${includeMedia('<=md')} {
     padding: 0 30px;

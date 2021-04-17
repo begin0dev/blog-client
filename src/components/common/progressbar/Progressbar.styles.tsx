@@ -4,7 +4,7 @@ import { zIndexes } from 'styles/utils';
 import { Palette } from 'styles/palette';
 
 export const ProgressbarBlock = styled.div<{ percent: number; visible: boolean }>`
-  z-index: ${zIndexes.progress};
+  z-index: ${zIndexes.PROGRESS};
   position: fixed;
   top: 0;
   width: ${({ percent }) => percent}%;

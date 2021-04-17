@@ -6,10 +6,10 @@ import { zIndexes, themes, includeMedia } from 'styles/utils';
 import { baseButtonCSS } from '../../../styles/baseCss';
 
 export const HeaderBlock = styled.header`
-  z-index: ${zIndexes.header};
+  z-index: ${zIndexes.HEADER};
   position: relative;
   width: 100%;
-  background-color: ${themes.header};
+  background-color: ${themes.HEADER};
 `;
 
 export const Wrapper = styled.div`
@@ -115,7 +115,7 @@ export const ProfileBtn = styled.button`
 `;
 
 export const LoginMenu = styled.div`
-  z-index: ${zIndexes.loginMenu};
+  z-index: ${zIndexes.HEADER + 200};
   position: absolute;
   top: 50px;
   right: -19px;

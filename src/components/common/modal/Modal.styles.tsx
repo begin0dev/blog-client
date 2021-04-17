@@ -26,7 +26,7 @@ const modalDisappear = keyframes`
 
 export const ModalWrapper = styled.div`
   position: relative;
-  z-index: ${zIndexes.modal};
+  z-index: ${zIndexes.MODAL};
 `;
 
 export const ModalBlock = styled.div<{ fullScreen?: boolean; backgroundColor?: string }>`
