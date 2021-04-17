@@ -1,10 +1,10 @@
 import styled, { css, keyframes } from 'styled-components';
 
-import { Palette } from 'styles/palette';
+import { palette } from 'styles/palette';
 
 export const SpinnerBlock = styled.div<{ size?: string }>`
   position: relative;
-  ${props =>
+  ${(props) =>
     props.size
       ? css`
           width: ${props.size};
@@ -33,11 +33,11 @@ export const Circle = styled.span<{ color?: string; index: number }>`
     margin: 0 auto;
     width: 15%;
     height: 15%;
-    background-color: ${props => (props.color ? props.color : Palette.gray7)};
+    background-color: ${({ color }) => (color ? color : palette.gray7)};
     border-radius: 100%;
     animation: ${circleFadeDelay} 1.2s infinite ease-in-out both;
   }
-  ${props =>
+  ${(props) =>
     props.index !== 0 &&
     css`
       transform: rotate(${30 * props.index}deg);

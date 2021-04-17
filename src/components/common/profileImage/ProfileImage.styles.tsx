@@ -1,12 +1,12 @@
 import styled, { css } from 'styled-components';
 
-import { Palette } from 'styles/palette';
+import { palette } from 'styles/palette';
 
 export const ProfileImgWrapper = styled.div<{ round: boolean; size: number }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid ${Palette.green9};
+  border: 1px solid ${palette.green9};
   overflow: hidden;
   line-height: 0;
 

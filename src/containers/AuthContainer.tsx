@@ -8,7 +8,7 @@ import { actions as baseActions } from 'store/base';
 import { actions as userActions } from 'store/user';
 import { baseURL } from 'lib/services/apiClient';
 import { SOCIAL_URL } from 'lib/services/auth';
-import { Palette } from 'styles/palette';
+import { palette } from 'styles/palette';
 import { Auth, Modal } from 'components';
 
 function AuthContainer() {
@@ -55,7 +55,7 @@ function AuthContainer() {
       fullScreen={isMobile}
       hideModal={hideModal}
       size={{ width: '390px' }}
-      backgroundColor={Palette.gray0}
+      backgroundColor={palette.gray0}
     >
       <Auth socialRedirect={socialRedirect} hideModal={hideModal} />
     </Modal>

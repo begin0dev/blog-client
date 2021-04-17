@@ -1,4 +1,4 @@
-import { Palette } from './palette';
+import { palette } from './palette';
 
 export const breakPoints = {
   sm: 530,
@@ -19,13 +19,13 @@ export const zIndexes = {
 } as const;
 
 export const themes = {
-  HEADER: Palette.white,
+  HEADER: palette.white,
 } as const;
 
 const changeToCondition = (condition: string): string => {
   const breakPoint = condition.slice(condition.length - 2, condition.length) as keyof TBreakPoints;
-  const width: number = breakPoints[breakPoint];
-
+  const width: number | undefined = breakPoints[breakPoint];
+  if (!width) throw new Error('올바르지 않은 미디어 쿼리 형식입니다.');
   switch (true) {
     case /^>=/.test(condition):
       return `(min-width: ${width}px)`;
