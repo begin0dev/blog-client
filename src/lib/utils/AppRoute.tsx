@@ -9,7 +9,6 @@ interface IProps extends RouteProps {
 function AppRoute({ layout: Layout, component: Component, ...rest }: IProps) {
   if (!Component) return null;
   if (!Layout) return <Route {...rest} component={Component} />;
-
   return (
     <Route
       {...rest}

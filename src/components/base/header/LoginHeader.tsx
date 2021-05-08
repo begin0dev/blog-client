@@ -1,6 +1,9 @@
-import { forwardRef, Ref } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 
-import { User } from 'store/user';
+import { RootState } from 'store';
+import { actions as baseActions } from 'store/base';
+import { actions as userActions } from 'store/user';
 import { ProfileImage } from 'components';
 import { Bell } from 'assets/svgs';
 import {
@@ -16,22 +19,35 @@ import {
   LogoutBtn,
 } from './Header.styles';
 
-interface IProps {
-  user: User | null;
-  isLogIn: boolean;
-  isShowMenu: boolean;
-  logOut: () => void;
-  showAuthModal: () => void;
-  onClickProfileBtn: () => void;
-}
+function LoginHeaderContainer() {
+  const dispatch = useDispatch();
 
-function LogInHeader(
-  { user, isLogIn, isShowMenu, logOut, showAuthModal, onClickProfileBtn }: IProps,
-  ref: Ref<HTMLDivElement>,
-) {
+  const profileEl = useRef<HTMLDivElement | null>(null);
+
+  const { user, isLogIn } = useSelector((state: RootState) => state.user, shallowEqual);
+  const [isShowMenu, setIsShowMenu] = useState(false);
+
+  const showAuthModal = useCallback(() => dispatch(baseActions.toggleAuthModal(true)), [dispatch]);
+  const logOut = useCallback(() => dispatch(userActions.logoutUser()), [dispatch]);
+
+  const onClickProfileBtn = useCallback(() => setIsShowMenu((prevState) => !prevState), []);
+
+  useEffect(() => {
+    const outSideClick = (e: MouseEvent) => {
+      const dom = e.target as HTMLElement;
+      if (dom.tagName === 'A' || !profileEl.current?.contains(dom)) setIsShowMenu(false);
+    };
+
+    if (isShowMenu) document.addEventListener('click', outSideClick);
+    return () => {
+      if (isShowMenu) document.removeEventListener('click', outSideClick);
+    };
+  }, [isShowMenu]);
+
   if (!isLogIn) return <LoginBtn onClick={showAuthModal}>로그인</LoginBtn>;
+
   return (
-    <ProfileBtnWrapper ref={ref}>
+    <ProfileBtnWrapper ref={profileEl}>
       <ProfileBtn onClick={onClickProfileBtn}>
         <ProfileImage profileImage={user?.profileImage} size={35} round />
       </ProfileBtn>
@@ -64,4 +80,4 @@ function LogInHeader(
   );
 }
 
-export default forwardRef(LogInHeader);
+export default LoginHeaderContainer;

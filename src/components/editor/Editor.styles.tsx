@@ -12,9 +12,9 @@ export const EditorWrapperBlock = styled.div`
 
 export const HeaderBlock = styled.header`
   z-index: ${zIndexes.HEADER};
+  height: ${HEADER_HEIGHT}px;
   position: relative;
   width: 100%;
-  height: ${HEADER_HEIGHT}px;
   display: flex;
   justify-content: space-between;
   align-items: center;
