@@ -51,6 +51,7 @@ const userSlice = createSlice({
     },
     [checkUser.rejected.type]: (state) => {
       state.isLoading = false;
+      state.isLogIn = false;
     },
     [logoutUser.fulfilled.type]: (state) => {
       state.isLogIn = false;

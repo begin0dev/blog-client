@@ -1,8 +1,8 @@
 import axios, { AxiosInstance } from 'axios';
 
 const { NODE_ENV } = process.env;
-const PRODUCTION_BASE_URL = 'https://begin0dev.ml';
-const DEVELOPMENT_BASE_URL = 'https://begin0dev.ml';
+const PRODUCTION_BASE_URL = 'https://begin0dev.ml/api';
+const DEVELOPMENT_BASE_URL = 'https://begin0dev.ml/api';
 
 export const baseURL = NODE_ENV === 'production' ? PRODUCTION_BASE_URL : DEVELOPMENT_BASE_URL;
 

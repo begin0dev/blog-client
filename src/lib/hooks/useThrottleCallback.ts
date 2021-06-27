@@ -1,5 +1,5 @@
-import { useRef, useMemo } from 'react';
 import { throttle } from 'lodash';
+import { useMemo, useRef } from 'react';
 
 const options = { leading: true, trailing: false };
 

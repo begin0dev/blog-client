@@ -2,10 +2,12 @@ import { BaseJsendResponse } from 'types';
 import { User } from 'store/user';
 import apiClient from './apiClient';
 
-export const CHECK_USER_URL: string = '/api/v1/users/check';
-export const LOGOUT_USER_URL: string = '/api/v1/users/logout';
+const V1_USERS_URL = '/v1/users';
+export const CHECK_USER_URL: string = `${V1_USERS_URL}/me`;
+export const LOGOUT_USER_URL: string = `${V1_USERS_URL}/logout`;
 
 export type CheckUserAPiResponse = BaseJsendResponse<{ user: User }>;
 
 export const checkUserApi = (): Promise<CheckUserAPiResponse> => apiClient.get(CHECK_USER_URL);
-export const logoutUserApi = (): Promise<BaseJsendResponse<null>> => apiClient.delete(LOGOUT_USER_URL);
+export const logoutUserApi = (): Promise<BaseJsendResponse<null>> =>
+  apiClient.delete(LOGOUT_USER_URL);
