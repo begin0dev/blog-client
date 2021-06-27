@@ -8,17 +8,11 @@ export const errorHandler = (err: Error | AxiosError): string => {
   if (process.env.NODE_ENV !== 'production') console.error(err);
   let message: string;
 
-  if (isAxiosError(err)) {
+  if (isAxiosError(err) && err.response) {
     const { response } = err;
-    if (!response) {
-      ({ message } = err);
-    } else if (typeof response.data === 'object') {
-      ({ message } = response.data);
-    } else {
-      message = response.statusText;
-    }
+    message = response.data?.message || response.statusText;
   } else {
-    ({ message } = err as Error);
+    ({ message } = err);
   }
 
   return message;
