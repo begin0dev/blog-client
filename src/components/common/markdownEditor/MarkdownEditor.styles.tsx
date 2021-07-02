@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Palette } from '../../../styles/palette';
+import { palette } from '../../../styles/palette';
 
 export const EditorBlock = styled.div`
   font-family: 'Fira Mono', 'Noto Sans KR', monospace;
@@ -14,7 +14,7 @@ export const EditorBlock = styled.div`
   }
   .cm-header {
     line-height: 2.2;
-    color: ${Palette.gray8};
+    color: ${palette.gray8};
   }
   .cm-header-1 {
     font-size: 2em;
@@ -32,7 +32,7 @@ export const EditorBlock = styled.div`
   }
   .cm-strong,
   .cm-em {
-    color: ${Palette.gray8};
+    color: ${palette.gray8};
   }
 `;
 
@@ -47,7 +47,7 @@ export const TitleInputWrap = styled.div`
     left: 13px;
     height: 5px;
     width: 30px;
-    background-color: ${Palette.green9};
+    background-color: ${palette.green9};
   }
 `;
 export const TitleInput = styled.input`

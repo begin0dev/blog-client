@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import { PageTemplate } from 'components';
 import { BaseCoreContainer, AuthContainer } from 'containers';
 import { EditorPage, MainPage, ProfilePage, CategoryPage, NotFoundPage } from 'pages';
-import AppRoute from './lib/utils/AppRoute';
+import AppRoute from './components/common/AppRoute';
 
 function App() {
   return (

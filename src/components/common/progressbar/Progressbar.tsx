@@ -7,7 +7,7 @@ interface IProps {
   animationTime?: number;
 }
 
-const plusPercent = 5;
+const plusPercent = 20;
 
 function Progressbar({ isLoading, animationTime = 20 }: IProps) {
   const rafRef = useRef<number>(0);
@@ -27,13 +27,12 @@ function Progressbar({ isLoading, animationTime = 20 }: IProps) {
       return;
     }
 
-    if (!isLoading && prevPercent.current === 100) {
-      setVisible(false);
+    timer.current = delayTime.current;
+    if (prevPercent.current === 100) {
       cancelAnimationFrame(rafRef.current);
+      setVisible(false);
       return;
     }
-
-    timer.current = delayTime.current;
     if (isLoading && prevPercent.current !== 100) {
       prevPercent.current += plusPercent;
       setPercent((prev) => prev + plusPercent);

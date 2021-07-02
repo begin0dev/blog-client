@@ -1,7 +1,8 @@
-import { memo, useCallback, useRef, MouseEvent, ReactNode } from 'react';
+import { memo, useCallback, useRef, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
 import { ModalWrapper, OverlayBlock, ModalBlock } from './Modal.styles';
+import useOnClickOutside from '../../../lib/hooks/useOnClickOutside';
 
 interface IProps {
   active: boolean;
@@ -27,18 +28,16 @@ function Modal({
   const modalRoot = useRef<HTMLDivElement>(document.querySelector('#modal'));
   const modalEl = useRef<HTMLDivElement>(null);
 
-  const onClickOutSideEvent = useCallback(
-    (e: MouseEvent<HTMLElement>): void => {
-      if (fullScreen) return;
-      if (modalEl.current?.contains(e.target as HTMLElement)) return;
-      hideModal?.(false);
-    },
-    [fullScreen, hideModal],
-  );
+  const onClickOutsideEvent = useCallback((): void => {
+    if (fullScreen) return;
+    hideModal?.(false);
+  }, [fullScreen, hideModal]);
+
+  useOnClickOutside(modalEl, onClickOutsideEvent, active);
 
   return createPortal(
     <ModalWrapper>
-      <OverlayBlock active={active} hideOverlay={hideOverlay} onClick={onClickOutSideEvent}>
+      <OverlayBlock active={active} hideOverlay={hideOverlay}>
         <ModalBlock
           fullScreen={fullScreen}
           backgroundColor={backgroundColor}

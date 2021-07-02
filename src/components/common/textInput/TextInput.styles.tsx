@@ -4,7 +4,7 @@ export const InputSlot = styled.div<{ color: string; focus: boolean }>`
   display: flex;
   flex: 1;
   align-items: center;
-  color: ${props => props.color};
+  color: ${({ color }) => color};
 
   &:before {
     content: '';
@@ -23,8 +23,8 @@ export const InputSlot = styled.div<{ color: string; focus: boolean }>`
     transform: scaleX(0);
   }
 
-  ${props =>
-    props.focus &&
+  ${({ focus }) =>
+    focus &&
     css`
       &:after {
         transform: scaleX(1);
@@ -44,7 +44,7 @@ export const Label = styled.label<{ existContent: boolean }>`
   transform-origin: top;
   transition: all 0.35s;
   overflow: hidden;
-  ${props =>
+  ${(props) =>
     props.existContent &&
     css`
       top: -0.9rem;
@@ -80,7 +80,11 @@ export const FormExplainBlock = styled.div`
   transition: all 0.3s ease-in;
 `;
 
-export const TextInputBlock = styled.div<{ defaultBorderColor: string; errorBorderColor: string; error: boolean }>`
+export const TextInputBlock = styled.div<{
+  defaultBorderColor: string;
+  errorBorderColor: string;
+  error: boolean;
+}>`
   display: flex;
   flex-flow: column wrap;
   flex: 1 1 auto;
@@ -88,14 +92,16 @@ export const TextInputBlock = styled.div<{ defaultBorderColor: string; errorBord
   text-align: left;
   ${InputSlot} {
     &:before {
-      border-bottom: 1px solid ${props => (props.error ? props.errorBorderColor : props.defaultBorderColor)};
+      border-bottom: 1px solid
+        ${(props) => (props.error ? props.errorBorderColor : props.defaultBorderColor)};
     }
     &:after {
-      border: 1px solid ${props => (props.error ? props.errorBorderColor : props.defaultBorderColor)};
+      border: 1px solid
+        ${(props) => (props.error ? props.errorBorderColor : props.defaultBorderColor)};
     }
   }
   ${FormExplainBlock} {
-    display: ${props => (props.error ? 'block' : 'none')};
-    color: ${props => (props.error ? props.errorBorderColor : props.defaultBorderColor)};
+    display: ${(props) => (props.error ? 'block' : 'none')};
+    color: ${(props) => (props.error ? props.errorBorderColor : props.defaultBorderColor)};
   }
 `;

@@ -1,15 +1,15 @@
 import styled from 'styled-components';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-import { Palette } from 'styles/palette';
+import { palette } from 'styles/palette';
 import { zIndexes, themes, includeMedia } from 'styles/utils';
 import { baseButtonCSS } from '../../../styles/baseCss';
 
 export const HeaderBlock = styled.header`
-  z-index: ${zIndexes.header};
+  z-index: ${zIndexes.HEADER};
   position: relative;
   width: 100%;
-  background-color: ${themes.header};
+  background-color: ${themes.HEADER};
 `;
 
 export const Wrapper = styled.div`
@@ -28,11 +28,11 @@ export const Wrapper = styled.div`
 
 // left
 export const LogoBlock = styled(NavLink)`
-  padding-right: 45px;
+  padding-right: 55px;
   line-height: 0;
   svg {
     height: 36px;
-    margin-top: -11px;
+    margin-top: -8px;
   }
 `;
 
@@ -52,17 +52,16 @@ export const NavWrapper = styled.div`
 `;
 
 export const NavBtn = styled(NavLink)`
+  ${includeMedia('<=md')} {
+    display: none;
+  }
   position: relative;
   font-size: 15px;
   font-weight: 600;
   padding: 8px 0;
-  color: ${Palette.gray6};
+  color: ${palette.gray6};
   user-select: none;
   margin: 0 2px;
-
-  ${includeMedia('<=md')} {
-    padding: 0 0 8px;
-  }
 
   &:after {
     content: '';
@@ -74,11 +73,11 @@ export const NavBtn = styled(NavLink)`
     width: 0;
     margin: 0 auto;
     border-radius: 2px;
-    background-color: ${Palette.green9};
+    background-color: ${palette.green9};
     transition: width 0.2s ease-in-out;
   }
   &.current {
-    color: ${Palette.green9};
+    color: ${palette.green9};
     &:after {
       width: 90%;
     }
@@ -96,99 +95,8 @@ export const HeaderRight = styled.div`
 export const LoginBtn = styled.button`
   ${baseButtonCSS};
   font-size: 13px;
-  color: ${Palette.white};
-  background-color: ${Palette.green9};
-  padding: 7px 18px;
+  color: ${palette.white};
+  background-color: ${palette.green9};
+  padding: 7px 22px;
   border-radius: 18px;
-`;
-
-export const ProfileBtnWrapper = styled.div`
-  display: flex;
-`;
-
-export const ProfileBtn = styled.button`
-  position: relative;
-  min-width: 35px;
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-`;
-
-export const LoginMenu = styled.div`
-  z-index: ${zIndexes.loginMenu};
-  position: absolute;
-  top: 50px;
-  right: -19px;
-  width: 300px;
-  display: flex;
-  flex-flow: column wrap;
-  text-align: start;
-  color: ${Palette.gray9};
-  background-color: ${Palette.white};
-  border: 1px solid ${Palette.gray3};
-  border-radius: 4px;
-
-  &::before {
-    content: '';
-    position: absolute;
-    right: 30px;
-    top: -7px;
-    height: 12px;
-    width: 12px;
-    transform: rotate(45deg);
-    background-color: ${Palette.white};
-    border-left: 1px solid ${Palette.gray3};
-    border-top: 1px solid ${Palette.gray3};
-  }
-
-  & > div + div {
-    border-top: 1px solid ${Palette.gray3};
-  }
-`;
-
-export const ProfileWrapper = styled.div`
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  padding: 25px 22px 20px;
-
-  h3 {
-    margin-bottom: 2px;
-  }
-`;
-
-export const NotificationWrapper = styled.div`
-  padding: 20px 22px;
-`;
-
-export const EmptyNotification = styled.div`
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-  align-items: center;
-  min-height: 200px;
-  color: ${Palette.gray3};
-
-  svg {
-    font-size: 80px;
-    margin-bottom: 10px;
-  }
-`;
-
-export const SettingLink = styled(Link)`
-  color: ${Palette.gray5};
-  font-weight: 500;
-  margin-top: 5px;
-`;
-
-export const LogoutWrapper = styled.div`
-  padding: 20px 22px 25px;
-`;
-
-export const LogoutBtn = styled.button`
-  font-size: 14px;
-  color: ${Palette.gray5};
-  background-color: inherit;
-  padding: 0;
-  margin: 0;
 `;

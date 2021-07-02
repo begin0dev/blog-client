@@ -1,7 +1,7 @@
 import { Logo } from 'assets/svgs';
-import { LoginHeaderContainer } from 'containers';
 import { HeaderBlock, LogoBlock, Wrapper, HeaderRight } from './Header.styles';
 import Nav from './Nav';
+import LoginHeader from './LoginHeader';
 
 function Header() {
   return (
@@ -12,7 +12,7 @@ function Header() {
         </LogoBlock>
         <Nav />
         <HeaderRight>
-          <LoginHeaderContainer />
+          <LoginHeader />
         </HeaderRight>
       </Wrapper>
     </HeaderBlock>

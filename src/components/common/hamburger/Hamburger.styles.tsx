@@ -35,7 +35,7 @@ const hamburgerVariable: IHamburgerVariable = {
 };
 
 export const HamburgerBlock = styled.div`
-  z-index: ${zIndexes.hamburger};
+  z-index: ${zIndexes.HAMBURGER};
   height: 35px;
   width: 35px;
   display: flex;
@@ -67,7 +67,7 @@ export const HamburgerWrapper = styled.div<{ active: boolean }>`
     ${hamburgerVariable.hoverUseFilter
       ? { filter: hamburgerVariable.hoverFilter }
       : { opacity: hamburgerVariable.hoverOpacity }}
-    ${props =>
+    ${(props) =>
       props.active &&
       (hamburgerVariable.hoverUseFilter
         ? { filter: hamburgerVariable.activeHoverFilter }
@@ -75,10 +75,14 @@ export const HamburgerWrapper = styled.div<{ active: boolean }>`
   }
 
   & > span > span {
-    ${props =>
+    ${(props) =>
       props.active &&
       css`
-        transform: translate3d(0, calc(${hamburgerVariable.spacing} + ${hamburgerVariable.height}), 0)
+        transform: translate3d(
+            0,
+            calc(${hamburgerVariable.spacing} + ${hamburgerVariable.height}),
+            0
+          )
           rotate(-45deg);
         &,
         &:before,
@@ -87,7 +91,11 @@ export const HamburgerWrapper = styled.div<{ active: boolean }>`
         }
         &:before {
           transform: rotate(45deg)
-            translate3d(calc(${hamburgerVariable.width} / 7), calc(${hamburgerVariable.spacing} * -1), 0);
+            translate3d(
+              calc(${hamburgerVariable.width} / 7),
+              calc(${hamburgerVariable.spacing} * -1),
+              0
+            );
           opacity: 0;
         }
         &:after {

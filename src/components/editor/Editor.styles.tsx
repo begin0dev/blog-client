@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { themes, zIndexes } from '../../styles/utils';
-import { Palette } from '../../styles/palette';
+import { palette } from '../../styles/palette';
 import { includeMedia } from '../../styles/utils';
 
 const HEADER_HEIGHT = 70;
@@ -11,15 +11,15 @@ export const EditorWrapperBlock = styled.div`
 `;
 
 export const HeaderBlock = styled.header`
-  z-index: ${zIndexes.header};
+  z-index: ${zIndexes.HEADER};
+  height: ${HEADER_HEIGHT}px;
   position: relative;
   width: 100%;
-  height: ${HEADER_HEIGHT}px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 40px;
-  background-color: ${themes.header};
+  background-color: ${themes.HEADER};
 
   ${includeMedia('<=md')} {
     padding: 0 30px;
@@ -35,7 +35,7 @@ export const BackButton = styled.button`
   background-color: transparent;
   border-radius: 50%;
   svg {
-    color: ${Palette.gray6};
+    color: ${palette.gray6};
     font-size: 26px;
     &:hover {
       opacity: 0.8;
@@ -45,8 +45,8 @@ export const BackButton = styled.button`
 
 export const SaveBtn = styled.button`
   font-size: 13px;
-  background-color: ${Palette.green9};
-  color: ${Palette.white};
+  background-color: ${palette.green9};
+  color: ${palette.white};
   padding: 7px 18px;
   border-radius: 4px;
 `;
