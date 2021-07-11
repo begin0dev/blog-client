@@ -1,6 +1,5 @@
 import { ComponentType } from 'react';
-import { Route, RouteProps } from 'react-router-dom';
-import { RouteComponentProps } from 'react-router';
+import { Route, RouteProps, RouteComponentProps } from 'react-router-dom';
 
 interface IProps extends RouteProps {
   layout?: ComponentType<RouteComponentProps<any>> | ComponentType<any>;

@@ -4,7 +4,7 @@ import { zIndexes } from 'styles/utils';
 
 export const OverlayBlock = styled.div<{ visible?: boolean }>`
   z-index: ${zIndexes.OVERLAY};
-  display: ${(props) => (props.visible ? 'block' : 'none')};
+  display: ${({ visible }) => (visible ? 'block' : 'none')};
   position: fixed;
   top: 0;
   left: 0;

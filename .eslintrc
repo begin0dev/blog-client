@@ -28,6 +28,7 @@
       { "props": true, "ignorePropertyModificationsFor": ["draft", "state"] }
     ],
     "@typescript-eslint/no-use-before-define": ["error"],
-    "@typescript-eslint/no-unused-expressions": ["error"]
+    "@typescript-eslint/no-unused-expressions": ["error"],
+    "react-hooks/exhaustive-deps": ["warn", { "additionalHooks": "useRecoilCallback" }]
   }
 }
