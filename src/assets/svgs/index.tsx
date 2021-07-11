@@ -6,3 +6,6 @@ export { ReactComponent as Kakao } from 'assets/svgs/kakao-icon.svg';
 export { ReactComponent as Logo } from 'assets/svgs/logo.svg';
 export { ReactComponent as Person } from 'assets/svgs/person.svg';
 export { ReactComponent as Bell } from 'assets/svgs/bell.svg';
+export { ReactComponent as CheckCircle } from 'assets/svgs/check-circle.svg';
+export { ReactComponent as ExclamationCircle } from 'assets/svgs/exclamation-circle.svg';
+export { ReactComponent as XCircle } from 'assets/svgs/x-circle.svg';

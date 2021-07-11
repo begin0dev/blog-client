@@ -67,16 +67,16 @@ export const HamburgerWrapper = styled.div<{ active: boolean }>`
     ${hamburgerVariable.hoverUseFilter
       ? { filter: hamburgerVariable.hoverFilter }
       : { opacity: hamburgerVariable.hoverOpacity }}
-    ${(props) =>
-      props.active &&
+    ${({ active }) =>
+      active &&
       (hamburgerVariable.hoverUseFilter
         ? { filter: hamburgerVariable.activeHoverFilter }
         : { opacity: hamburgerVariable.activeHoverOpacity })}
   }
 
   & > span > span {
-    ${(props) =>
-      props.active &&
+    ${({ active }) =>
+      active &&
       css`
         transform: translate3d(
             0,
