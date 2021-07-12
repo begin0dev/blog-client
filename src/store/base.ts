@@ -22,8 +22,8 @@ const baseSlice = createSlice({
     setIsLoading(state, { payload }: PayloadAction<boolean>) {
       state.isLoading = payload;
     },
-    toggleAuthModal(state, { payload }: PayloadAction<boolean>) {
-      state.authModal = payload;
+    toggleAuthModal(state) {
+      state.authModal = !state.authModal;
     },
   },
 });

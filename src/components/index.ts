@@ -1,6 +1,6 @@
-import Auth from './auth';
+import Auth from './authModal';
 
-import Header from './base/header';
+import Header from './header';
 
 import Modal from './common/modal';
 import Overlay from './common/overlay';

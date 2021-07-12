@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { ArrowLeft, Logo } from 'assets/svgs';
+import { ArrowLeft, Facebook, Github, Google, Kakao, Logo } from 'assets/svgs';
 import {
   AuthBlock,
   SectionTopBlock,
@@ -10,8 +10,9 @@ import {
   LogoWrapper,
   StartHeader,
   SocialDescBlock,
+  SocialBlock,
+  SocialButton,
 } from './Auth.styles';
-import SocialButtons from './SocialButtons';
 
 interface IProps {
   hideModal: () => void;
@@ -39,7 +40,20 @@ function Auth({ hideModal, socialRedirect }: IProps) {
       <SectionBottomBlock>
         <StartHeader>시작하기</StartHeader>
         <SocialDescBlock>소셜 미디어를 통해 편하게 로그인 하세요</SocialDescBlock>
-        <SocialButtons socialRedirect={socialRedirect} />
+        <SocialBlock>
+          <SocialButton className="facebook" onClick={socialRedirect('facebook')}>
+            <Facebook />
+          </SocialButton>
+          <SocialButton className="google">
+            <Google />
+          </SocialButton>
+          <SocialButton className="kakao" onClick={socialRedirect('kakao')}>
+            <Kakao />
+          </SocialButton>
+          <SocialButton className="github">
+            <Github />
+          </SocialButton>
+        </SocialBlock>{' '}
       </SectionBottomBlock>
     </AuthBlock>
   );

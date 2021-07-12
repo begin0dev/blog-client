@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import { palette } from 'styles/palette';
 import { zIndexes, themes, includeMedia } from 'styles/utils';
-import { baseButtonCSS } from '../../../styles/baseCss';
+import { baseButtonCSS } from '../../styles/baseCss';
 
 export const HeaderBlock = styled.header`
   z-index: ${zIndexes.HEADER};

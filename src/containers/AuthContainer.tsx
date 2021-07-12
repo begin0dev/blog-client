@@ -10,15 +10,18 @@ import { baseURL } from 'lib/services/apiClient';
 import { V1_SOCIALS_URL } from 'lib/services/auth';
 import { palette } from 'styles/palette';
 import { Auth, Modal } from 'components';
+import useToasts from '../components/common/toast/useToasts';
 
 function AuthContainer() {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  const { addToast } = useToasts({ duration: 4500 });
+
   const isLogIn = useSelector((state: RootState) => state.user.isLogIn);
   const { authModal, isMobile } = useSelector((state: RootState) => state.base, shallowEqual);
 
-  const hideModal = useCallback(() => dispatch(baseActions.toggleAuthModal(false)), [dispatch]);
+  const hideModal = useCallback(() => dispatch(baseActions.toggleAuthModal()), [dispatch]);
 
   const socialRedirect = useCallback(
     (provider: 'kakao' | 'facebook' | 'github' | 'google') => () => {
@@ -42,10 +45,10 @@ function AuthContainer() {
       history.replace(referer);
     }
     if (queryString.message) {
-      // TODO addMessage(queryString.message);
-      dispatch(baseActions.toggleAuthModal(true));
+      addToast('error', queryString.message as string);
+      dispatch(baseActions.toggleAuthModal());
     }
-  }, [dispatch, history]);
+  }, [addToast, dispatch, history]);
 
   if (isLogIn) return null;
 

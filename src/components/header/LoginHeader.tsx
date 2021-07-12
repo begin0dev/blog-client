@@ -11,7 +11,7 @@ function LoginHeaderContainer() {
 
   const { isLogIn } = useSelector((state: RootState) => state.user, shallowEqual);
 
-  const showAuthModal = useCallback(() => dispatch(baseActions.toggleAuthModal(true)), [dispatch]);
+  const showAuthModal = useCallback(() => dispatch(baseActions.toggleAuthModal()), [dispatch]);
   // const logOut = useCallback(() => dispatch(userActions.logoutUser()), [dispatch]);
 
   return <LoginBtn onClick={showAuthModal}>{isLogIn ? '로그아웃' : '로그인'}</LoginBtn>;
