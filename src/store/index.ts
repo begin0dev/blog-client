@@ -1,16 +1,13 @@
-import { combineReducers } from '@reduxjs/toolkit'
+import { combineReducers } from '@reduxjs/toolkit';
 
-import base, { BaseState } from './base';
-import user, { UserState } from './user';
-
-export type RootState = {
-  base: BaseState;
-  user: UserState;
-};
+import base from './base';
+import user from './user';
 
 const rootReducer = combineReducers({
   base,
   user,
 });
+
+export type RootState = ReturnType<typeof rootReducer>;
 
 export default rootReducer;

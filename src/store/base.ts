@@ -1,12 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export type BaseState = {
+interface IBaseState {
   isMobile: boolean;
   isLoading: boolean;
   authModal: boolean;
-};
-
-export const initialState: BaseState = {
+}
+const initialState: IBaseState = {
   isMobile: window.innerWidth <= 450,
   isLoading: false,
   authModal: false,
