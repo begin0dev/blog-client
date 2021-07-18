@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface IBaseState {
   isLoading: boolean;
-  authModal: boolean;
+  isActiveAuthModal: boolean;
 }
 const initialState: IBaseState = {
   isLoading: false,
-  authModal: false,
+  isActiveAuthModal: false,
 };
 
 const baseSlice = createSlice({
@@ -17,7 +17,7 @@ const baseSlice = createSlice({
       state.isLoading = payload;
     },
     toggleAuthModal(state) {
-      state.authModal = !state.authModal;
+      state.isActiveAuthModal = !state.isActiveAuthModal;
     },
   },
 });

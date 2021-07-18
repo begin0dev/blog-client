@@ -1,6 +1,6 @@
 import qs from 'qs';
 import { useEffect, useCallback } from 'react';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { RootState } from 'stores';
@@ -12,15 +12,17 @@ import { palette } from 'styles/palette';
 import { Auth, Modal } from 'components';
 import { breakPoints } from '../styles/utils';
 import useToasts from '../components/common/toast/useToasts';
+import useCheckBreakPoint from '../lib/hooks/useCheckBreakPoint';
 
 function AuthContainer() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const { addToast } = useToasts({ duration: 4500 });
-
   const isLogIn = useSelector((state: RootState) => state.user.isLogIn);
-  const { authModal } = useSelector((state: RootState) => state.base, shallowEqual);
+  const isActiveAuthModal = useSelector((state: RootState) => state.base.isActiveAuthModal);
+
+  const { addToast } = useToasts({ duration: 4500 });
+  const isFullScreen = useCheckBreakPoint('<=', breakPoints.sm);
 
   const hideModal = useCallback(() => dispatch(baseActions.toggleAuthModal()), [dispatch]);
 
@@ -56,11 +58,11 @@ function AuthContainer() {
 
   return (
     <Modal
-      active={authModal}
-      fullScreen={window.innerWidth <= breakPoints.sm}
+      active={isActiveAuthModal}
+      fullScreen={isFullScreen}
       hideModal={hideModal}
-      size={{ width: '390px' }}
       backgroundColor={palette.gray0}
+      size={{ width: '390px' }}
     >
       <Auth socialRedirect={socialRedirect} hideModal={hideModal} />
     </Modal>
