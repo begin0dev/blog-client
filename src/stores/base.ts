@@ -1,13 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export type BaseState = {
-  isMobile: boolean;
+interface IBaseState {
   isLoading: boolean;
   authModal: boolean;
-};
-
-export const initialState: BaseState = {
-  isMobile: window.innerWidth <= 450,
+}
+const initialState: IBaseState = {
   isLoading: false,
   authModal: false,
 };
@@ -16,14 +13,11 @@ const baseSlice = createSlice({
   name: 'bases',
   initialState,
   reducers: {
-    setIsMobile(state, { payload }: PayloadAction<boolean>) {
-      state.isMobile = payload;
-    },
     setIsLoading(state, { payload }: PayloadAction<boolean>) {
       state.isLoading = payload;
     },
-    toggleAuthModal(state, { payload }: PayloadAction<boolean>) {
-      state.authModal = payload;
+    toggleAuthModal(state) {
+      state.authModal = !state.authModal;
     },
   },
 });

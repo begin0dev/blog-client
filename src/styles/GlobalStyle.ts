@@ -7,7 +7,7 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
   }
   body {
-    font-family: 'Nunito', 'Noto Sans KR', sans-serif;
+    font-family: 'Nunito', 'Spoqa Han Sans Neo', sans-serif;
     font-size: 14px;
     font-weight: 400;
     color: ${palette.gray9};
@@ -45,6 +45,10 @@ const GlobalStyle = createGlobalStyle`
   }
   ol, ul {
     list-style: none;
+  }
+  input {
+    outline: none;
+    -webkit-tap-highlight-color: inherit;
   }
 `;
 

@@ -1,1 +1,1 @@
-export const V1_SOCIALS_URL: string = '/v1/socials';
+export const V1_SOCIALS_URL: string = '/api/v1/socials';

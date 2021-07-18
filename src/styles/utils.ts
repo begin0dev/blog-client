@@ -2,7 +2,7 @@ import { palette } from './palette';
 
 export const breakPoints = {
   sm: 530,
-  md: 768,
+  md: 840,
   lg: 1024,
   hg: 1200,
 } as const;

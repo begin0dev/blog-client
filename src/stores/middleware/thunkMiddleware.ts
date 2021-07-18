@@ -1,6 +1,6 @@
 import { AnyAction, Dispatch, MiddlewareAPI } from '@reduxjs/toolkit';
 
-import { actions as baseActions } from 'store/base';
+import { actions as baseActions } from 'stores/base';
 
 function thunkMiddleware({ dispatch }: MiddlewareAPI) {
   return (next: Dispatch) => (action: AnyAction) => {

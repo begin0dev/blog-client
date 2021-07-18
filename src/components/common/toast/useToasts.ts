@@ -33,7 +33,7 @@ function useToasts({ duration = 3000 }: IProps = {}) {
     [clear, setToast],
   );
 
-  const add = useCallback(
+  const addToast = useCallback(
     (type: TType, message: string) => {
       const id = new Date().getTime();
       setToast((prevState) => [...prevState, { id, type, message, visible: true }]);
@@ -42,7 +42,7 @@ function useToasts({ duration = 3000 }: IProps = {}) {
     [duration, update, setToast],
   );
 
-  return { add, remove: update };
+  return { addToast, removeToast: update };
 }
 
 export default useToasts;
