@@ -1,16 +1,20 @@
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import { shallowEqual, useSelector } from 'react-redux';
 
-import { PageTemplate } from 'components';
-import { BaseCoreContainer, AuthContainer } from 'containers';
+import { PageTemplate, Progressbar } from 'components';
+import { AuthContainer } from 'containers';
 import { EditorPage, MainPage, ProfilePage, CategoryPage, NotFoundPage } from 'pages';
+import { RootState } from './stores';
 import AppRoute from './components/common/AppRoute';
 import ToastRoot from './components/common/toast/ToastRoot';
 
 function App() {
+  const { isLoading } = useSelector((state: RootState) => state.base, shallowEqual);
+
   return (
     <ToastRoot>
+      <Progressbar isLoading={isLoading} />
       <Router>
-        <BaseCoreContainer />
         <AuthContainer />
         <Switch>
           <AppRoute exact path="/" layout={PageTemplate} component={MainPage} />

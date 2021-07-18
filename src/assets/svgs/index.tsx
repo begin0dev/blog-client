@@ -9,3 +9,4 @@ export { ReactComponent as Bell } from 'assets/svgs/bell.svg';
 export { ReactComponent as CheckCircle } from 'assets/svgs/check-circle.svg';
 export { ReactComponent as ExclamationCircle } from 'assets/svgs/exclamation-circle.svg';
 export { ReactComponent as XCircle } from 'assets/svgs/x-circle.svg';
+export { ReactComponent as IcSearch } from 'assets/svgs/ic-search.svg';

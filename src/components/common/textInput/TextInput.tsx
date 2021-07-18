@@ -1,38 +1,37 @@
-import { memo, useCallback, useRef, useState, FocusEvent, ChangeEvent } from 'react';
+import { memo, useCallback, useRef, useState, FocusEvent, InputHTMLAttributes } from 'react';
 
 import { palette } from 'styles/palette';
 import { TextInputBlock, InputSlot, Label, Input, FormExplainBlock } from './TextInput.styles';
 
-interface IProps {
-  type: string;
+interface IProps extends InputHTMLAttributes<any> {
+  type?: string;
   name: string;
   value?: string;
   label?: string;
-  color: string;
-  defaultBorderColor: string;
+  color?: string;
+  defaultBorderColor?: string;
   errorBorderColor?: string;
   placeholder?: string;
   error?: boolean;
   message?: string | null;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: FocusEvent<HTMLInputElement>) => void;
   onFocus?: (e: FocusEvent<HTMLInputElement>) => void;
 }
 
 function TextInput({
-  type,
+  type = 'text',
   name,
   label,
   placeholder,
   value,
-  color,
-  defaultBorderColor,
+  color = palette.gray9,
+  defaultBorderColor = palette.gray4,
   errorBorderColor = palette.red7,
   error = false,
   message,
-  onChange,
   onFocus,
   onBlur,
+  ...restProps
 }: IProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [focus, setFocus] = useState<boolean>(false);
@@ -42,6 +41,10 @@ function TextInput({
     !!placeholder ||
     (inputRef.current?.value || '').length > 0 ||
     (value || '').length > 0;
+
+  const labelClick = () => {
+    if (!focus) inputRef.current?.focus();
+  };
 
   const onFocusEvent = useCallback(
     (e: FocusEvent<HTMLInputElement>) => {
@@ -58,10 +61,6 @@ function TextInput({
     },
     [onBlur],
   );
-
-  const labelClick = useCallback(() => {
-    if (!focus) inputRef.current?.focus();
-  }, [focus]);
 
   return (
     <TextInputBlock
@@ -82,8 +81,8 @@ function TextInput({
           placeholder={placeholder}
           onFocus={onFocusEvent}
           onBlur={onBlurEvent}
-          onChange={onChange}
           ref={inputRef}
+          {...restProps}
         />
       </InputSlot>
       {message && <FormExplainBlock>{message}</FormExplainBlock>}

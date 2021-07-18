@@ -18,12 +18,8 @@ export const Wrapper = styled.div`
   align-items: center;
   flex-flow: row wrap;
   max-width: 1400px;
-  padding: 0 45px;
+  padding: 0 35px;
   margin: 0 auto;
-
-  ${includeMedia('<=md')} {
-    padding: 0 35px;
-  }
 `;
 
 // left
@@ -40,14 +36,12 @@ export const NavWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-
   ${includeMedia('<=md')} {
     flex-basis: 100%;
     order: 2;
   }
-
   a + a {
-    margin-left: 45px;
+    margin-left: 40px;
   }
 `;
 
@@ -97,6 +91,7 @@ export const LoginBtn = styled.button`
   font-size: 13px;
   color: ${palette.white};
   background-color: ${palette.green9};
-  padding: 7px 22px;
   border-radius: 18px;
+  padding: 7px 18px;
+  margin-left: 18px;
 `;

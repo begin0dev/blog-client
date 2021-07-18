@@ -60,9 +60,7 @@ export const Input = styled.input`
   padding: 0.68rem 0 0.7rem;
   line-height: 1;
   background-color: inherit;
-  -webkit-tap-highlight-color: inherit;
   border-style: none;
-  outline: none;
   &::placeholder {
     color: inherit;
     font-size: inherit;

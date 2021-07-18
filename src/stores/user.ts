@@ -1,15 +1,24 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-import { checkUserApi, logoutUserApi } from 'lib/services/user';
+import { checkUserApi, logoutUserApi, verifyUserApi } from 'lib/services/user';
 import { IUser } from '../types';
 
+const verifyUser = createAsyncThunk('users/verify', async (verifyCode: string) => {
+  const {
+    data: {
+      data: { payload },
+    },
+  } = await verifyUserApi(verifyCode);
+  return payload;
+});
 const checkUser = createAsyncThunk('users/check', async () => {
   const {
     data: {
-      data: { user },
+      data: { payload },
     },
   } = await checkUserApi();
-  return user;
+  if (!payload) throw new Error();
+  return payload;
 });
 const logoutUser = createAsyncThunk('users/logout', async () => {
   await logoutUserApi();
@@ -32,6 +41,19 @@ const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
+    [verifyUser.pending.type]: (state) => {
+      state.isLoading = true;
+      state.isLogIn = false;
+    },
+    [verifyUser.fulfilled.type]: (state, { payload }) => {
+      state.isLoading = false;
+      state.isLogIn = true;
+      state.user = payload;
+    },
+    [verifyUser.rejected.type]: (state) => {
+      state.isLoading = false;
+      state.isLogIn = false;
+    },
     [checkUser.pending.type]: (state) => {
       state.isLoading = true;
       state.isLogIn = false;
@@ -52,5 +74,5 @@ const userSlice = createSlice({
   },
 });
 
-export const actions = { ...userSlice.actions, checkUser, logoutUser };
+export const actions = { ...userSlice.actions, checkUser, verifyUser, logoutUser };
 export default userSlice.reducer;

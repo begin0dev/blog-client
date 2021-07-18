@@ -7,9 +7,9 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import GlobalStyle from 'styles/GlobalStyle';
 import App from './App';
-import rootReducer from './store';
+import rootReducer from './stores';
 import reportWebVitals from './reportWebVitals';
-import thunkMiddleware from './store/middleware/thunkMiddleware';
+import thunkMiddleware from './stores/middleware/thunkMiddleware';
 
 const store = configureStore({
   reducer: rootReducer,
