@@ -1,4 +1,4 @@
-import Auth from './authModal';
+import AuthModal from './authModal';
 
 import Header from './header';
 
@@ -16,7 +16,7 @@ import Editor from './editor';
 import PageTemplate from './templates/pageTemplate';
 
 export {
-  Auth,
+  AuthModal,
   Editor,
   Header,
   Hamburger,

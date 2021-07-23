@@ -1,19 +1,37 @@
 import { memo } from 'react';
 
-import { HamburgerBlock, HamburgerWrapper, Box, Inner } from './Hamburger.styles';
+import { HamburgerBlock, HamburgerWrapper } from './Hamburger.styles';
+import { palette } from '../../../styles/palette';
 
 interface IProps {
-  visible: boolean;
-  dispatchToggleSidebar: (bool: boolean) => () => void;
+  width?: number;
+  height?: number;
+  spacing?: number;
+  color?: string;
+  active: boolean;
+  toggleHamburger: () => void;
 }
 
-function Hamburger({ visible, dispatchToggleSidebar }: IProps) {
+function Hamburger({
+  width,
+  height,
+  spacing,
+  color = palette.green9,
+  active,
+  toggleHamburger,
+}: IProps) {
   return (
-    <HamburgerBlock onClick={dispatchToggleSidebar(!visible)}>
-      <HamburgerWrapper active={visible}>
-        <Box>
-          <Inner />
-        </Box>
+    <HamburgerBlock onClick={toggleHamburger}>
+      <HamburgerWrapper
+        width={`${width || 18}px`}
+        height={`${height || 2}px`}
+        spacing={`${spacing || 4}px`}
+        color={color}
+        active={active}
+      >
+        <span className="box">
+          <span className="line" />
+        </span>
       </HamburgerWrapper>
     </HamburgerBlock>
   );

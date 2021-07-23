@@ -1,4 +1,4 @@
-import unified from 'unified';
+import { unified } from 'unified';
 import remarkBreaks from 'remark-breaks';
 import remarkParse from 'remark-parse';
 import rehypeRaw from 'rehype-raw';

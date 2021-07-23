@@ -1,8 +1,7 @@
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { PageTemplate, Progressbar } from 'components';
-import { AuthContainer } from 'containers';
+import { AuthModal, PageTemplate, Progressbar } from 'components';
 import { EditorPage, MainPage, ProfilePage, CategoryPage, NotFoundPage } from 'pages';
 import { RootState } from './stores';
 import AppRoute from './components/common/AppRoute';
@@ -15,11 +14,11 @@ function App() {
     <ToastRoot>
       <Progressbar isLoading={isLoading} />
       <Router>
-        <AuthContainer />
+        <AuthModal />
         <Switch>
           <AppRoute exact path="/" layout={PageTemplate} component={MainPage} />
           <AppRoute path="/about" layout={PageTemplate} component={ProfilePage} />
-          <AppRoute path="/log" layout={PageTemplate} component={ProfilePage} />
+          <AppRoute path="/log" layout={PageTemplate} component={CategoryPage} />
           <AppRoute
             path="/develop/:name(react|node|javascript|etc)"
             layout={PageTemplate}
