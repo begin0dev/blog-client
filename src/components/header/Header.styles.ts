@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 import { palette } from 'styles/palette';
-import { zIndexes, themes } from 'styles/utils';
+import { zIndexes, themes, sizes } from 'styles/utils';
 import { baseButtonCSS } from '../../styles/baseCss';
 
 export const HeaderBlock = styled.header`
@@ -17,7 +17,7 @@ export const Wrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-flow: row wrap;
-  height: 80px;
+  height: ${sizes.HEADER}px;
   max-width: 1400px;
   padding: 0 35px;
   margin: 0 auto;
@@ -33,7 +33,7 @@ export const LogoBlock = styled(NavLink)`
   }
 `;
 
-export const NavWrapper = styled.div`
+export const DesktopNavWrapper = styled.div`
   display: flex;
   align-items: center;
   a + a {
@@ -76,6 +76,33 @@ export const HeaderRight = styled.div`
   display: flex;
   align-items: center;
   margin-left: auto;
+`;
+
+const hamburgerSize = '34px';
+
+export const SearchIconBtn = styled.button`
+  background-color: transparent;
+  line-height: 0;
+  margin-right: calc(4px + ${hamburgerSize});
+  > svg {
+    font-size: 18px;
+    color: ${palette.green9};
+  }
+`;
+
+export const HamburgerBlock = styled.div`
+  z-index: ${zIndexes.HAMBURGER};
+  position: fixed;
+  top: calc(${sizes.HEADER}px / 2);
+  transform: translateY(-50%);
+  right: 28px;
+  width: ${hamburgerSize};
+  height: ${hamburgerSize};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.7);
 `;
 
 export const LoginBtn = styled.button`

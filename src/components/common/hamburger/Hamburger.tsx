@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { HamburgerBlock, HamburgerWrapper } from './Hamburger.styles';
+import { HamburgerWrapper } from './Hamburger.styles';
 import { palette } from '../../../styles/palette';
 
 interface IProps {
@@ -21,19 +21,18 @@ function Hamburger({
   toggleHamburger,
 }: IProps) {
   return (
-    <HamburgerBlock onClick={toggleHamburger}>
-      <HamburgerWrapper
-        width={`${width || 18}px`}
-        height={`${height || 2}px`}
-        spacing={`${spacing || 4}px`}
-        color={color}
-        active={active}
-      >
-        <span className="box">
-          <span className="line" />
-        </span>
-      </HamburgerWrapper>
-    </HamburgerBlock>
+    <HamburgerWrapper
+      width={`${width || 18}px`}
+      height={`${height || 2}px`}
+      spacing={`${spacing || 4}px`}
+      color={color}
+      active={active}
+      onClick={toggleHamburger}
+    >
+      <span className="box">
+        <span className="line" />
+      </span>
+    </HamburgerWrapper>
   );
 }
 

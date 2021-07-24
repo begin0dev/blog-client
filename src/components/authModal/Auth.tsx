@@ -32,7 +32,7 @@ function Auth() {
   const dispatch = useDispatch();
 
   const isLogIn = useSelector((state: RootState) => state.user.isLogIn);
-  const isActiveModal = useSelector((state: RootState) => state.base.isActiveAuthModal);
+  const isShowModal = useSelector((state: RootState) => state.base.isShowAuthModal);
 
   const { addToast } = useToasts({ duration: 4500 });
   const isFullScreen = useCheckBreakPoint('<=', breakPoints.sm);
@@ -70,7 +70,7 @@ function Auth() {
   if (isLogIn) return null;
   return (
     <Modal
-      active={isActiveModal}
+      active={isShowModal}
       fullScreen={isFullScreen}
       hideModal={hideModal}
       backgroundColor={palette.gray0}

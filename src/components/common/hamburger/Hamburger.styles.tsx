@@ -1,17 +1,5 @@
 import styled, { css } from 'styled-components';
 
-import { zIndexes } from 'styles/utils';
-
-export const HamburgerBlock = styled.div`
-  z-index: ${zIndexes.HAMBURGER};
-  height: 35px;
-  width: 35px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  line-height: 0;
-`;
-
 export const HamburgerWrapper = styled.div<{
   width: string;
   height: string;
@@ -49,6 +37,7 @@ export const HamburgerWrapper = styled.div<{
         position: absolute;
         width: ${width};
         height: ${height};
+        border-radius: calc(${height} / 2);
         background-color: ${color};
         transition-property: transform, opacity;
         transition-duration: 0.15s;
@@ -68,13 +57,15 @@ export const HamburgerWrapper = styled.div<{
     }
     ${active &&
     css`
-      transform: translate3d(0, calc(${spacing} + ${height}), 0) rotate(-45deg);
-      &:before {
-        transform: rotate(45deg) translate3d(calc(${width} / 7), calc(${spacing} * -1), 0);
-        opacity: 0;
-      }
-      &:after {
-        transform: translate3d(0, calc((${spacing} + ${height}) * -2), 0) rotate(90deg);
+      & > span.box > span.line {
+        transform: translate3d(0, calc(${spacing} + ${height}), 0) rotate(-45deg);
+        &:before {
+          transform: rotate(45deg) translate3d(calc(${width} / 7), calc(${spacing} * -1), 0);
+          opacity: 0;
+        }
+        &:after {
+          transform: translate3d(0, calc((${spacing} + ${height}) * -2), 0) rotate(90deg);
+        }
       }
     `}
   `}

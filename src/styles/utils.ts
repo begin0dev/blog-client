@@ -12,14 +12,19 @@ type TBreakPoints = typeof breakPoints;
 export const zIndexes = {
   HEADER: 200,
   OVERLAY: 500,
-  MODAL: 700,
-  HAMBURGER: 900,
-  PROGRESS: 1500,
-  MESSAGE: 2000,
+  MODAL: 1000,
+  SIDEBAR: 1500,
+  HAMBURGER: 2000,
+  MESSAGE: 3000,
+  PROGRESS: 5000,
 } as const;
 
 export const themes = {
   HEADER: palette.white,
+} as const;
+
+export const sizes = {
+  HEADER: 70,
 } as const;
 
 const changeToCondition = (condition: string): string => {
