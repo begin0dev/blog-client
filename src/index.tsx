@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 
-import GlobalStyle from 'styles/GlobalStyle';
+import GlobalStyle from 'styles/globalStyle';
 import App from './App';
 import rootReducer from './stores';
 import reportWebVitals from './reportWebVitals';

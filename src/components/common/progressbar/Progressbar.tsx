@@ -1,6 +1,8 @@
 import { useState, useEffect, memo, useRef, useCallback } from 'react';
+import styled from 'styled-components';
 
-import { ProgressbarBlock } from './Progressbar.styles';
+import { zIndexes } from '../../../styles/utils';
+import { palette } from '../../../styles/palette';
 
 interface IProps {
   isLoading: boolean;
@@ -58,3 +60,14 @@ function Progressbar({ isLoading, animationTime = 20 }: IProps) {
 }
 
 export default memo(Progressbar);
+
+const ProgressbarBlock = styled.div<{ percent: number; visible: boolean }>`
+  z-index: ${zIndexes.PROGRESS};
+  position: fixed;
+  top: 0;
+  width: ${({ percent }) => percent}%;
+  height: ${({ visible }) => (visible ? '4px' : 0)};
+  opacity: ${({ visible }) => (visible ? 1 : 0)};
+  transition: width 0.2s ease-in;
+  background-color: ${palette.green9};
+`;

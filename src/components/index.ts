@@ -3,7 +3,6 @@ import AuthModal from './authModal';
 import Header from './header';
 
 import Modal from './common/modal';
-import Overlay from './common/overlay';
 import Spinner from './common/spinner';
 import Progressbar from './common/progressbar';
 import TextInput from './common/textInput';
@@ -21,7 +20,6 @@ export {
   Header,
   Hamburger,
   Modal,
-  Overlay,
   Spinner,
   MarkdownEditor,
   MarkdownPreview,
