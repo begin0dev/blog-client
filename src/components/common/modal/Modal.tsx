@@ -1,9 +1,10 @@
 import { memo, useCallback, useRef, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import useOnClickOutside from '../../../lib/hooks/useOnClickOutside';
 import { zIndexes } from '../../../styles/utils';
+import Transition, { TTransitionStatus } from '../../base/Transition';
 
 interface IProps {
   active: boolean;
@@ -37,43 +38,27 @@ function Modal({
   useOnClickOutside(modalEl, onClickOutsideEvent, active);
 
   return createPortal(
-    <ModalWrapper active={active}>
-      {!hideOverlay && <OverlayBlock />}
-      <ModalBlock
-        fullScreen={fullScreen}
-        backgroundColor={backgroundColor}
-        style={{ ...style, ...(!fullScreen && size) }}
-        ref={modalEl}
-      >
-        {children}
-      </ModalBlock>
-    </ModalWrapper>,
+    <Transition active={active} timeout={200}>
+      {(status) => (
+        <ModalWrapper status={status}>
+          {!hideOverlay && <OverlayBlock />}
+          <ModalBlock
+            className={status}
+            fullScreen={fullScreen}
+            backgroundColor={backgroundColor}
+            style={{ ...style, ...(!fullScreen && size) }}
+            ref={modalEl}
+          >
+            {children}
+          </ModalBlock>
+        </ModalWrapper>
+      )}
+    </Transition>,
     modalRoot.current as HTMLDivElement,
   );
 }
 
 export default memo(Modal);
-
-const modalAppear = keyframes`
-  0% {
-    opacity: 0;
-    transform: scale(0.85, 0.85);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1, 1);
-  }
-`;
-const modalDisappear = keyframes`
-  0% {
-    opacity: 1;
-    transform: scale(1, 1);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0.85, 0.85);
-  }
-`;
 
 const OverlayBlock = styled.div`
   position: absolute;
@@ -92,6 +77,13 @@ const ModalBlock = styled.div<{ fullScreen?: boolean; backgroundColor?: string }
   background-color: ${({ backgroundColor }) => (backgroundColor ? backgroundColor : '#ffffff')};
   overflow: hidden;
   transform-origin: center;
+  transition: all 0.2s ease;
+  opacity: 0;
+  transform: scale(0.85, 0.85);
+  &.entered {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
   ${({ fullScreen }) =>
     fullScreen &&
     css`
@@ -102,7 +94,7 @@ const ModalBlock = styled.div<{ fullScreen?: boolean; backgroundColor?: string }
       border-radius: 0;
     `}
 `;
-const ModalWrapper = styled.div<{ active: boolean }>`
+const ModalWrapper = styled.div<{ status: TTransitionStatus }>`
   z-index: ${zIndexes.MODAL};
   position: fixed;
   display: flex;
@@ -111,12 +103,8 @@ const ModalWrapper = styled.div<{ active: boolean }>`
   top: 0;
   left: 0;
   overflow: hidden;
-  ${({ active }) => css`
-    height: ${active ? '100%' : 0};
-    width: ${active ? '100%' : 0};
-    ${ModalBlock} {
-      animation: ${active ? modalAppear : modalDisappear} .2s ease-in-out;
-      animation-fill-mode: forwards;
-    }:
+  ${({ status }) => css`
+    height: ${status === 'exited' ? 0 : '100%'};
+    width: ${status === 'exited' ? 0 : '100%'};
   `}
 `;
