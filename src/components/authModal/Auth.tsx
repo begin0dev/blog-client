@@ -63,7 +63,6 @@ function Auth() {
       active={isShowModal}
       fullScreen={isFullScreen}
       hideModal={hideModal}
-      backgroundColor={palette.gray0}
       size={{ width: '390px' }}
     >
       <AuthBlock>
@@ -117,6 +116,7 @@ const AuthBlock = styled.div`
   position: relative;
   flex-flow: column wrap;
   justify-content: space-between;
+  background-color: ${palette.gray0};
   padding: 75px 35px;
   overflow-x: hidden;
   overflow-y: auto;

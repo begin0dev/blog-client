@@ -8,7 +8,7 @@ function DesktopNav() {
   return (
     <DesktopNavWrapper>
       {navLinks.map((nav) => (
-        <NavBtn to={nav.to} key={nav.text} exact={nav.exact} activeClassName="current">
+        <NavBtn to={nav.to} exact={nav.exact} key={nav.text} activeClassName="current">
           {nav.text}
         </NavBtn>
       ))}

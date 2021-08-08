@@ -34,7 +34,7 @@ function Header() {
 
   const logOut = useCallback(() => dispatch(userActions.logoutUser()), [dispatch]);
   const toggleAuthModal = useCallback(() => dispatch(baseActions.toggleAuthModal()), [dispatch]);
-  const onToggleSidebar = useCallback(() => {
+  const toggleSidebar = useCallback(() => {
     dispatch(baseActions.onChangIsShowSidebar(!isShowSidebar));
   }, [dispatch, isShowSidebar]);
 
@@ -61,13 +61,13 @@ function Header() {
         )}
         {isMobile && (
           <>
-            <MobileNav />
+            <MobileNav toggleAuthModal={toggleAuthModal} toggleSidebar={toggleSidebar} />
             <HeaderRight>
               <SearchIconBtn>
                 <IcSearch />
               </SearchIconBtn>
               <HamburgerBlock>
-                <Hamburger active={isShowSidebar} toggleHamburger={onToggleSidebar} />
+                <Hamburger active={isShowSidebar} toggleHamburger={toggleSidebar} />
               </HamburgerBlock>
             </HeaderRight>
           </>
@@ -112,7 +112,7 @@ const HeaderRight = styled.div`
   margin-left: auto;
 `;
 
-const hamburgerSize = '34px';
+const hamburgerSize = '30px';
 const SearchIconBtn = styled.button`
   background-color: transparent;
   line-height: 0;
@@ -126,14 +126,14 @@ const HamburgerBlock = styled.div`
   z-index: ${zIndexes.HAMBURGER};
   position: fixed;
   top: calc(${sizes.HEADER}px / 2);
-  transform: translateY(-50%);
   right: 28px;
+  transform: translateY(-50%);
   width: ${hamburgerSize};
   height: ${hamburgerSize};
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 4px;
+  border-radius: 6px;
   background-color: rgba(255, 255, 255, 0.7);
 `;
 const LoginBtn = styled.button`

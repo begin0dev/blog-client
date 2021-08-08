@@ -13,21 +13,11 @@ interface IProps {
   style?: object;
   fullScreen?: boolean;
   hideOverlay?: boolean;
-  backgroundColor?: string;
   hideModal?: (bool?: boolean) => void;
   children: ReactNode;
 }
 
-function Modal({
-  active,
-  size,
-  style,
-  hideOverlay,
-  fullScreen,
-  backgroundColor,
-  hideModal,
-  children,
-}: IProps) {
+function Modal({ active, size, style, hideOverlay, fullScreen, hideModal, children }: IProps) {
   const modalRoot = useRef<HTMLDivElement>(document.querySelector('#modal'));
   const modalEl = useRef<HTMLDivElement>(null);
 
@@ -46,7 +36,6 @@ function Modal({
           <ModalBlock
             className={status}
             fullScreen={fullScreen}
-            backgroundColor={backgroundColor}
             style={{ ...style, ...(!fullScreen && size) }}
             ref={modalEl}
           >
@@ -75,15 +64,13 @@ const ModalWrapper = styled.div<{ status: TTransitionStatus }>`
     width: ${status === 'exited' ? 0 : '100%'};
   `}
 `;
-
-const ModalBlock = styled.div<{ fullScreen?: boolean; backgroundColor?: string }>`
+const ModalBlock = styled.div<{ fullScreen?: boolean }>`
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 1.5rem;
   border-radius: 0.5rem;
-  background-color: ${({ backgroundColor }) => (backgroundColor ? backgroundColor : '#ffffff')};
   overflow: hidden;
   opacity: 0;
   transform: scale(0.85, 0.85);
