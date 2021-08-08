@@ -1,10 +1,11 @@
 import { memo, useCallback, useRef, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 
 import useOnClickOutside from '../../../lib/hooks/useOnClickOutside';
 import { zIndexes } from '../../../styles/utils';
 import Transition, { TTransitionStatus } from '../../base/Transition';
+import Overlay from '../overlay';
 
 interface IProps {
   active: boolean;
@@ -41,7 +42,7 @@ function Modal({
     <Transition active={active} timeout={200}>
       {(status) => (
         <ModalWrapper status={status}>
-          {!hideOverlay && <OverlayBlock />}
+          {!hideOverlay && <Overlay />}
           <ModalBlock
             className={status}
             fullScreen={fullScreen}
@@ -60,40 +61,6 @@ function Modal({
 
 export default memo(Modal);
 
-const OverlayBlock = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.35);
-`;
-const ModalBlock = styled.div<{ fullScreen?: boolean; backgroundColor?: string }>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 1.5rem;
-  border-radius: 0.5rem;
-  background-color: ${({ backgroundColor }) => (backgroundColor ? backgroundColor : '#ffffff')};
-  overflow: hidden;
-  transform-origin: center;
-  transition: all 0.2s ease;
-  opacity: 0;
-  transform: scale(0.85, 0.85);
-  &.entered {
-    opacity: 1;
-    transform: scale(1, 1);
-  }
-  ${({ fullScreen }) =>
-    fullScreen &&
-    css`
-      width: 100%;
-      height: 100%;
-      padding: 0;
-      margin: 0;
-      border-radius: 0;
-    `}
-`;
 const ModalWrapper = styled.div<{ status: TTransitionStatus }>`
   z-index: ${zIndexes.MODAL};
   position: fixed;
@@ -107,4 +74,32 @@ const ModalWrapper = styled.div<{ status: TTransitionStatus }>`
     height: ${status === 'exited' ? 0 : '100%'};
     width: ${status === 'exited' ? 0 : '100%'};
   `}
+`;
+
+const ModalBlock = styled.div<{ fullScreen?: boolean; backgroundColor?: string }>`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: ${({ backgroundColor }) => (backgroundColor ? backgroundColor : '#ffffff')};
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.85, 0.85);
+  transform-origin: center;
+  transition: all 0.2s ease;
+  &.entered {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+  ${({ fullScreen }) =>
+    fullScreen &&
+    css`
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+      border-radius: 0;
+    `}
 `;

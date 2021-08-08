@@ -5,7 +5,7 @@ import rehypeRaw from 'rehype-raw';
 import remark2rehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
 
-import prismjsPlugin from '../../../lib/utils/psismjsPlugin';
+import prismPlugin from '../../../lib/utils/prismPlugin';
 import { MarkdownPreviewBlock } from './MarkdownPreview.styles';
 
 interface IProps {
@@ -16,7 +16,7 @@ function MarkdownPreview({ markdown }: IProps) {
   const markdownToHtml = unified()
     .use(remarkBreaks)
     .use(remarkParse)
-    .use(prismjsPlugin)
+    .use(prismPlugin)
     .use(remark2rehype, { allowDangerousHtml: true })
     .use(rehypeRaw)
     .use(rehypeStringify)

@@ -1,5 +1,5 @@
 import { InputHTMLAttributes } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 import { palette } from '../../../styles/palette';
 import { IcSearch } from '../../../assets/svgs';

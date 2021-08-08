@@ -1,4 +1,4 @@
-import { css, keyframes, CSSProp } from 'styled-components';
+import { css, keyframes, CSSProp } from 'styled-components/macro';
 
 import { palette } from './palette';
 

@@ -1,6 +1,6 @@
 import Prism from 'prismjs';
-import { Node } from 'unist';
-import visit from 'unist-util-visit';
+import { Node, Data } from 'unist';
+import { visit } from 'unist-util-visit';
 
 import 'prismjs/components/prism-bash.min';
 import 'prismjs/components/prism-css.min';
@@ -17,16 +17,16 @@ import 'prismjs/components/prism-swift.min';
 import 'prismjs/components/prism-kotlin.min';
 import 'prismjs/components/prism-python.min';
 
-interface CodeNode extends Node {
+interface ITreeNode extends Node<Data> {
   lang: string;
   value: string;
 }
 
-function prismjsPlugin() {
-  return (tree: Node) =>
-    visit(tree, ['code', 'inlineCode'], (node: CodeNode) => {
-      let { lang, value, type } = node;
-
+function prismPlugin() {
+  return (tree: ITreeNode) =>
+    visit(tree, ['code', 'inlineCode'], (node: ITreeNode) => {
+      console.log(node);
+      let { type, lang, value } = node;
       const codeLang = Prism.languages[lang] ? lang : 'javascript';
 
       const code = Prism.highlight(value, Prism.languages[codeLang], codeLang);
@@ -35,9 +35,9 @@ function prismjsPlugin() {
       // eslint-disable-next-line no-param-reassign
       node.value =
         type === 'inlineCode'
-          ? `<code class=”language-${lang}”>${code}</code>`
-          : `<pre class=”language-${lang}”><code>${code}</code></pre>`;
+          ? `<code class="language-${codeLang}">${code}</code>`
+          : `<pre class="language-${codeLang}"><code>${code}</code></pre>`;
     });
 }
 
-export default prismjsPlugin;
+export default prismPlugin;

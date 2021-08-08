@@ -1,5 +1,5 @@
 import { useRef, useState, FocusEvent, InputHTMLAttributes } from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 
 import { palette } from 'styles/palette';
 

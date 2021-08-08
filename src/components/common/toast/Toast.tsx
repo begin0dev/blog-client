@@ -1,5 +1,5 @@
 import { useRecoilValue } from 'recoil';
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components/macro';
 
 import { TPosition, TToast } from './types';
 import { toastState } from './ToastState';

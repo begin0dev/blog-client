@@ -1,5 +1,5 @@
 import { useState, useEffect, memo, useRef, useCallback } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 import { zIndexes } from '../../../styles/utils';
 import { palette } from '../../../styles/palette';

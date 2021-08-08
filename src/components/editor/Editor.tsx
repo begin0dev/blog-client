@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 import { MarkdownEditor, MarkdownPreview } from 'components';
 import { ArrowLeft } from '../../assets/svgs';

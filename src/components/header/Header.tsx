@@ -1,7 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 import { IcSearch, Logo } from 'assets/svgs';
 import { actions as userActions } from 'stores/user';
@@ -14,6 +14,7 @@ import { baseButtonCSS } from '../../styles/baseCss';
 import DesktopNav from './DesktopNav';
 import SearchInput from '../common/searchInput';
 import useCheckBreakPoint from '../../lib/hooks/useCheckBreakPoint';
+import MobileNav from './MobileNav';
 
 type TNavLink = { text: string; to: string; exact: boolean };
 export const navLinks: TNavLink[] = [
@@ -26,9 +27,10 @@ export const navLinks: TNavLink[] = [
 function Header() {
   const dispatch = useDispatch();
 
-  const isMobile = useCheckBreakPoint('<=', breakPoints.md);
   const isLogIn = useSelector((state: RootState) => state.user.isLogIn);
   const isShowSidebar = useSelector((state: RootState) => state.base.isShowSidebar);
+
+  const isMobile = useCheckBreakPoint('<=', breakPoints.md);
 
   const logOut = useCallback(() => dispatch(userActions.logoutUser()), [dispatch]);
   const toggleAuthModal = useCallback(() => dispatch(baseActions.toggleAuthModal()), [dispatch]);
@@ -58,14 +60,17 @@ function Header() {
           </>
         )}
         {isMobile && (
-          <HeaderRight>
-            <SearchIconBtn>
-              <IcSearch />
-            </SearchIconBtn>
-            <HamburgerBlock>
-              <Hamburger active={isShowSidebar} toggleHamburger={onToggleSidebar} />
-            </HamburgerBlock>
-          </HeaderRight>
+          <>
+            <MobileNav />
+            <HeaderRight>
+              <SearchIconBtn>
+                <IcSearch />
+              </SearchIconBtn>
+              <HamburgerBlock>
+                <Hamburger active={isShowSidebar} toggleHamburger={onToggleSidebar} />
+              </HamburgerBlock>
+            </HeaderRight>
+          </>
         )}
       </Wrapper>
     </HeaderBlock>

@@ -2,7 +2,7 @@ import 'codemirror/lib/codemirror.css';
 
 import { memo } from 'react';
 import CodeMirror, { Editor, EditorFromTextArea } from 'codemirror';
-import { useCallback, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import 'codemirror/mode/markdown/markdown';
 import 'codemirror/addon/display/placeholder';
 
@@ -19,13 +19,6 @@ function MarkdownEditor({ markdown, onChange }: IProps) {
   const textAreaEl = useRef<HTMLTextAreaElement | null>(null);
   const codemirrorEl = useRef<EditorFromTextArea | null>(null);
 
-  const onChangeTextArea = useCallback(
-    (editor: Editor) => {
-      onChange(editor.getValue());
-    },
-    [onChange],
-  );
-
   useEffect(() => {
     if (!textAreaEl.current) return;
 
@@ -37,12 +30,14 @@ function MarkdownEditor({ markdown, onChange }: IProps) {
     });
     codemirrorEl.current = codemirror;
     codemirror.focus();
-    codemirror.on('change', onChangeTextArea);
+    codemirror.on('change', (editor: Editor) => {
+      onChange?.(editor.getValue());
+    });
 
     return () => {
       codemirror.toTextArea();
     };
-  }, [onChangeTextArea]);
+  }, [onChange]);
 
   useEffect(() => {
     if (!initialize.current) return;

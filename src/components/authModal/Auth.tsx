@@ -2,7 +2,7 @@ import qs from 'qs';
 import { memo, useCallback, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 
 import { Modal } from 'components';
 import { ArrowLeft, Facebook, Github, Google, Kakao, Logo } from 'assets/svgs';
