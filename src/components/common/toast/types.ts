@@ -1,11 +1,18 @@
-export type TType = 'success' | 'warning' | 'error';
-export type TToast = {
+import { ValueOf } from '../../../lib/utils/typescriptUtils';
+
+export const ToastType = {
+  SUCCESS: 'success',
+  WARNING: 'warning',
+  ERROR: 'error',
+} as const;
+
+export interface ToastInterface {
   id: number;
-  type: TType;
+  type: ValueOf<typeof ToastType>;
   message: string;
   visible: boolean;
-};
-export type TPosition =
+}
+export type PositionType =
   | 'top-left'
   | 'top-center'
   | 'top-right'

@@ -1,8 +1,8 @@
 import { atom } from 'recoil';
 
-import { TToast } from './types';
+import { ToastInterface } from './types';
 
-export const toastState = atom<TToast[]>({
+export const toastState = atom<ToastInterface[]>({
   key: 'notificationState',
   default: [],
 });

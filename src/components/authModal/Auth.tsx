@@ -9,13 +9,20 @@ import { ArrowLeft, Facebook, Github, Google, Kakao, Logo } from 'assets/svgs';
 import { RootState } from '../../stores';
 import { breakPoints, includeMedia } from '../../styles/utils';
 import { actions as baseActions } from '../../stores/base';
-import { baseURL } from '../../lib/services/apiClient';
 import { V1_SOCIALS_URL } from '../../lib/services/auth';
 import { actions as userActions } from '../../stores/user';
 import { palette } from '../../styles/palette';
 import { pulseKeyframes } from '../../styles/baseCss';
+import { ValueOf } from '../../lib/utils/typescriptUtils';
 import useToasts from '../common/toast/useToasts';
 import useCheckBreakPoint from '../../lib/hooks/useCheckBreakPoint';
+
+const SocialProvider = {
+  KAKAO: 'kakao',
+  FACEBOOK: 'facebook',
+  GITHUB: 'github',
+  GOOGLE: 'google',
+} as const;
 
 function Auth() {
   const history = useHistory();
@@ -27,12 +34,12 @@ function Auth() {
   const { addToast } = useToasts({ duration: 4500 });
   const isFullScreen = useCheckBreakPoint('<=', breakPoints.sm);
 
-  const hideModal = useCallback(() => dispatch(baseActions.toggleAuthModal()), [dispatch]);
+  const hideModal = () => dispatch(baseActions.toggleAuthModal());
 
   const socialRedirect = useCallback(
-    (provider: 'kakao' | 'facebook' | 'github' | 'google') => () => {
+    (provider: ValueOf<typeof SocialProvider>) => {
       sessionStorage.setItem('referer', history.location.pathname);
-      window.location.href = `${baseURL}${V1_SOCIALS_URL}/${provider}`;
+      window.location.href = `${process.env.REACT_APP_SERVER_URL}${V1_SOCIALS_URL}/${provider}`;
     },
     [history.location.pathname],
   );
@@ -50,11 +57,8 @@ function Auth() {
       addToast('error', message as string);
       dispatch(baseActions.toggleAuthModal());
     }
-    if (history.location.pathname !== referer) {
-      sessionStorage.removeItem('referer');
-      return;
-    }
-    history.replace(referer);
+    sessionStorage.removeItem('referer');
+    if (referer !== history.location.pathname) history.replace(referer);
   }, [dispatch, history, addToast]);
 
   if (isLogIn) return null;
@@ -85,13 +89,16 @@ function Auth() {
           <StartHeader>시작하기</StartHeader>
           <SocialDescBlock>소셜 미디어를 통해 편하게 로그인 하세요</SocialDescBlock>
           <SocialBlock>
-            <SocialButton className="facebook" onClick={socialRedirect('facebook')}>
+            <SocialButton
+              className="facebook"
+              onClick={() => socialRedirect(SocialProvider.FACEBOOK)}
+            >
               <Facebook />
             </SocialButton>
             <SocialButton className="google">
               <Google />
             </SocialButton>
-            <SocialButton className="kakao" onClick={socialRedirect('kakao')}>
+            <SocialButton className="kakao" onClick={() => socialRedirect(SocialProvider.KAKAO)}>
               <Kakao />
             </SocialButton>
             <SocialButton className="github">

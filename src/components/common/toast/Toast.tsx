@@ -1,18 +1,18 @@
 import { useRecoilValue } from 'recoil';
 import styled, { css, keyframes } from 'styled-components/macro';
 
-import { TPosition, TToast } from './types';
+import { PositionType, ToastInterface } from './types';
 import { toastState } from './ToastState';
 import { XCircle, CheckCircle, ExclamationCircle } from '../../../assets/svgs';
 import { animationDuration } from './useToasts';
 import { palette } from '../../../styles/palette';
 
 interface IProps {
-  position?: TPosition;
+  position?: PositionType;
 }
 
 function Toast({ position = 'top-center' }: IProps) {
-  const toasts = useRecoilValue<TToast[]>(toastState);
+  const toasts = useRecoilValue<ToastInterface[]>(toastState);
 
   return (
     <ToastsWrap position={position}>
@@ -74,7 +74,7 @@ const exitingKeyframes = keyframes`
     opacity: 0;
   }
 `;
-const ToastsWrap = styled.div<{ position: TPosition }>`
+const ToastsWrap = styled.div<{ position: PositionType }>`
   z-index: 1010;
   position: fixed;
   max-height: 100%;
@@ -92,7 +92,7 @@ const ToastItem = styled.div<{ visible: boolean }>`
     padding: 10px 14px;
     margin: 8px 0;
     animation: ${({ visible }) => (visible ? enteringKeyframes : exitingKeyframes)}
-      ${`${animationDuration}ms`};
+      ${`${animationDuration + 5}ms`};
     > span {
       font-size: 14px;
     }

@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 
-import { TToast, TType } from './types';
+import { ToastInterface } from './types';
 import { toastState } from './ToastState';
 
 export const animationDuration = 300;
@@ -11,7 +11,7 @@ interface IProps {
 }
 
 function useToasts({ duration = 3000 }: IProps = {}) {
-  const [, setToast] = useRecoilState<TToast[]>(toastState);
+  const [, setToast] = useRecoilState<ToastInterface[]>(toastState);
 
   const clear = useCallback(
     (id: number) => {
@@ -22,19 +22,18 @@ function useToasts({ duration = 3000 }: IProps = {}) {
 
   const update = useCallback(
     (id: number) => {
-      setToast((prevState) => {
-        const next = [...prevState];
-        const index = prevState.findIndex((notification) => notification.id === id);
-        next.splice(index, 1, { ...prevState[index], visible: false });
-        return next;
-      });
+      setToast((prevState) =>
+        prevState.map((notification) =>
+          notification.id === id ? { ...notification, visible: false } : notification,
+        ),
+      );
       setTimeout(() => clear(id), animationDuration);
     },
     [clear, setToast],
   );
 
   const addToast = useCallback(
-    (type: TType, message: string) => {
+    (type: ToastInterface['type'], message: string) => {
       const id = new Date().getTime();
       setToast((prevState) => [...prevState, { id, type, message, visible: true }]);
       setTimeout(() => update(id), duration);

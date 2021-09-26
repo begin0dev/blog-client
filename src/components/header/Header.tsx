@@ -98,7 +98,6 @@ const Wrapper = styled.div`
 `;
 // left
 const LogoBlock = styled(NavLink)`
-  margin-right: 55px;
   line-height: 0;
   svg {
     height: 36px;
