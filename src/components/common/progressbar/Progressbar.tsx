@@ -1,4 +1,4 @@
-import { useState, useEffect, memo, useRef, useCallback } from 'react';
+import { useState, useEffect, memo, useRef } from 'react';
 import styled from 'styled-components/macro';
 
 import { zIndexes } from '../../../styles/utils';
@@ -9,7 +9,7 @@ interface IProps {
   animationTime?: number;
 }
 
-const plusPercent = 20;
+const plusPercent = 25;
 
 function Progressbar({ isLoading, animationTime = 20 }: IProps) {
   const rafRef = useRef<number>(0);
@@ -21,31 +21,6 @@ function Progressbar({ isLoading, animationTime = 20 }: IProps) {
   const [percent, setPercent] = useState<number>(0);
   const [visible, setVisible] = useState<boolean>(false);
 
-  const animate = useCallback(() => {
-    cancelAnimationFrame(rafRef.current);
-    if (timer.current !== 0) {
-      timer.current -= 1;
-      rafRef.current = requestAnimationFrame(animate);
-      return;
-    }
-
-    timer.current = delayTime.current;
-    if (prevPercent.current === 100) {
-      cancelAnimationFrame(rafRef.current);
-      setVisible(false);
-      return;
-    }
-    if (isLoading && prevPercent.current !== 100) {
-      prevPercent.current += plusPercent;
-      setPercent((prev) => prev + plusPercent);
-    }
-    if (!isLoading && prevPercent.current !== 100) {
-      prevPercent.current = 100;
-      setPercent(100);
-    }
-    rafRef.current = requestAnimationFrame(animate);
-  }, [isLoading]);
-
   useEffect(() => {
     if (isLoading) {
       timer.current = delayTime.current;
@@ -53,8 +28,34 @@ function Progressbar({ isLoading, animationTime = 20 }: IProps) {
       setVisible(true);
       setPercent(0);
     }
+
+    const animate = () => {
+      if (timer.current !== 0) {
+        timer.current -= 1;
+        rafRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
+      timer.current = delayTime.current;
+      if (prevPercent.current === 100) {
+        cancelAnimationFrame(rafRef.current);
+        setVisible(false);
+        return;
+      }
+      if (!isLoading && prevPercent.current !== 100) {
+        prevPercent.current = 100;
+        setPercent(100);
+      }
+      if (prevPercent.current !== 100) {
+        prevPercent.current += plusPercent;
+        setPercent((prev) => prev + plusPercent);
+      }
+      rafRef.current = requestAnimationFrame(animate);
+    };
+
+    cancelAnimationFrame(rafRef.current);
     rafRef.current = requestAnimationFrame(animate);
-  }, [animate, isLoading]);
+  }, [isLoading]);
 
   return <ProgressbarBlock percent={percent} visible={visible} />;
 }

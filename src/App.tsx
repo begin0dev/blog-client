@@ -9,7 +9,7 @@ import ToastRoot from './components/common/toast/ToastRoot';
 
 function App() {
   const isLoading = useSelector((state: RootState) => state.base.isLoading);
-
+  console.log(isLoading);
   return (
     <ToastRoot>
       <Progressbar isLoading={isLoading} />

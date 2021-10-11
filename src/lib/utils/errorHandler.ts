@@ -1,10 +1,15 @@
 import { AxiosError } from 'axios';
 
-function isAxiosError(err: Error | AxiosError): err is AxiosError {
+interface JsendErrorInterface {
+  status: 'error';
+  message: string;
+}
+
+function isAxiosError(err: Error | AxiosError): err is AxiosError<JsendErrorInterface> {
   return (err as AxiosError).isAxiosError;
 }
 
-export const errorHandler = (err: Error | AxiosError): string => {
+export const errorHandler = (err: Error | AxiosError<JsendErrorInterface>): string => {
   if (process.env.NODE_ENV !== 'production') console.error(err);
   let message: string;
 
