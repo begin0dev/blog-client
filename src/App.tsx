@@ -11,16 +11,15 @@ function App() {
 
   return (
     <ToastRoot>
-      <Progressbar isLoading={isLoading} />
       <Router>
+        <Progressbar isLoading={isLoading} />
         <AuthModal />
         <PageTemplate>
           <Routes>
             <Route path="/" element={<MainPage />} />
             <Route path="about" element={<ProfilePage />} />
             <Route path="log" element={<CategoryPage />} />
-            <Route path="develop/:name(react|node|javascript|etc)" element={<CategoryPage />} />
-            <Route path="develop" element={<CategoryPage />} />
+            <Route path="develop/:name(all|react|node|javascript|etc)" element={<CategoryPage />} />
             <Route path="editor" element={<EditorPage />} />
             <Route path="/*" element={<NotFoundPage />} />
           </Routes>
