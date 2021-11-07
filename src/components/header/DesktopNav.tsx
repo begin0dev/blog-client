@@ -2,7 +2,7 @@ import styled from 'styled-components/macro';
 
 import { navLinks } from './Header';
 import { palette } from '../../styles/palette';
-import ActiveLink from '../common/activeLink/ActiveLink';
+import ActiveLink from '../common/activeLink';
 
 function DesktopNav() {
   return (

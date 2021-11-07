@@ -7,7 +7,7 @@ import { RootState } from '../../stores';
 import { palette } from '../../styles/palette';
 import { navLinks } from './Header';
 import { baseButtonCSS } from '../../styles/baseCss';
-import Drawer from '../common/drawer/Drawer';
+import Drawer from '../common/drawer';
 
 interface IProps {
   toggleSidebar: () => void;

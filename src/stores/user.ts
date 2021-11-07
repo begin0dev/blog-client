@@ -67,7 +67,7 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.isLogIn = false;
     },
-    [logoutUser.fulfilled.type]: (state) => {
+    [logoutUser.pending.type]: (state) => {
       state.isLogIn = false;
       state.user = null;
     },

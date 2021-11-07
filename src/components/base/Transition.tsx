@@ -23,6 +23,7 @@ function Transition({ active, timeout = 300, children }: IProps) {
 
   useEffect(() => {
     if ((active && current === 'enter') || (!active && current === 'exit')) return;
+
     setTimeout(() => {
       setCurrent((prevState) => (prevState === 'enter' ? 'exit' : 'enter'));
     }, duration.current);
