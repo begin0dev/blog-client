@@ -7,12 +7,6 @@ const atomOneDarkTheme = css`
   * Based on dabblet (http://dabblet.com)
   * @author Lea Verou
   */
-  pre {
-    background: #313440;
-    code {
-      color: #212529;
-    }
-  }
   p > code[class*='language-'] {
     color: #383e49;
     background: rgba(27, 31, 35, 0.05);
@@ -21,7 +15,7 @@ const atomOneDarkTheme = css`
   }
   code[class*='language-'],
   pre[class*='language-'] {
-    color: #e0e6f1;
+    color: #abb2bf;
     text-align: left;
     white-space: pre;
     word-spacing: normal;
