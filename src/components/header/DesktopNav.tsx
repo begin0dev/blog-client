@@ -2,15 +2,19 @@ import styled from 'styled-components/macro';
 
 import { navLinks } from './Header';
 import { palette } from '../../styles/palette';
-import ActiveLink from '../common/activeLink';
+import { NavLink } from 'react-router-dom';
 
 function DesktopNav() {
   return (
     <DesktopNavWrapper>
       {navLinks.map((nav) => (
-        <NavBtn to={nav.to} key={nav.text}>
+        <CustomNavLink
+          to={nav.to}
+          key={nav.text}
+          className={({ isActive }) => (isActive ? 'active' : '')}
+        >
           {nav.text}
-        </NavBtn>
+        </CustomNavLink>
       ))}
     </DesktopNavWrapper>
   );
@@ -27,7 +31,7 @@ const DesktopNavWrapper = styled.div`
   }
 `;
 
-const NavBtn = styled(ActiveLink)`
+const CustomNavLink = styled(NavLink)`
   position: relative;
   font-size: 16px;
   font-weight: 600;
