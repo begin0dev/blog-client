@@ -1,6 +1,6 @@
 import { MouseEventHandler } from 'react';
 import styled from 'styled-components/macro';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { RootState } from '../../stores';
@@ -15,13 +15,13 @@ interface IProps {
 }
 
 function MobileNav({ toggleSidebar, toggleAuthModal }: IProps) {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const isShowSidebar = useSelector((state: RootState) => state.base.isShowSidebar);
 
   const onClickLink: MouseEventHandler<HTMLButtonElement> = (e) => {
     toggleSidebar();
-    history.push(e.currentTarget.dataset!.path as string);
+    navigate(e.currentTarget.dataset!.path as string);
   };
 
   return (

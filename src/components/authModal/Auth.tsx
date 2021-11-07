@@ -1,6 +1,6 @@
 import qs from 'qs';
-import { memo, useCallback, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useCallback, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled, { css } from 'styled-components/macro';
 
@@ -25,7 +25,8 @@ const SocialProvider = {
 } as const;
 
 function Auth() {
-  const history = useHistory();
+  const { pathname, search } = useLocation();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const isLogIn = useSelector((state: RootState) => state.user.isLogIn);
@@ -38,28 +39,32 @@ function Auth() {
 
   const socialRedirect = useCallback(
     (provider: ValueOf<typeof SocialProvider>) => {
-      sessionStorage.setItem('referer', history.location.pathname);
+      sessionStorage.setItem('referer', pathname);
       window.location.href = `${process.env.REACT_APP_SERVER_URL}${V1_SOCIALS_URL}/${provider}`;
     },
-    [history.location.pathname],
+    [pathname],
   );
 
   useEffect(() => {
     const referer = sessionStorage.getItem('referer');
-    if (!referer) {
-      dispatch(userActions.checkUser());
-      return;
-    }
+    if (!referer) dispatch(userActions.checkUser());
+  }, [dispatch]);
 
-    const { message, verify_code } = qs.parse(history.location.search, { ignoreQueryPrefix: true });
-    if (verify_code) dispatch(userActions.verifyUser(verify_code as string));
+  useEffect(() => {
+    const referer = sessionStorage.getItem('referer');
+    if (!referer) return;
+
+    const { message, verify_code }: { message?: string; verify_code?: string } = qs.parse(search, {
+      ignoreQueryPrefix: true,
+    });
     if (message) {
-      addToast('error', message as string);
+      addToast('error', message);
       dispatch(baseActions.toggleAuthModal());
     }
+    if (verify_code) dispatch(userActions.verifyUser(verify_code));
     sessionStorage.removeItem('referer');
-    if (referer !== history.location.pathname) history.replace(referer);
-  }, [dispatch, history, addToast]);
+    navigate(referer, { replace: true });
+  }, [dispatch, addToast, search, pathname, navigate]);
 
   if (isLogIn) return null;
   return (
@@ -111,7 +116,7 @@ function Auth() {
   );
 }
 
-export default memo(Auth);
+export default Auth;
 
 const flexCss = css`
   display: flex;

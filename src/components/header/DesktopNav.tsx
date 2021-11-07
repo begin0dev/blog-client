@@ -1,14 +1,14 @@
 import styled from 'styled-components/macro';
-import { NavLink } from 'react-router-dom';
 
 import { navLinks } from './Header';
 import { palette } from '../../styles/palette';
+import ActiveLink from '../common/activeLink/ActiveLink';
 
 function DesktopNav() {
   return (
     <DesktopNavWrapper>
       {navLinks.map((nav) => (
-        <NavBtn to={nav.to} exact={nav.exact} key={nav.text} activeClassName="current">
+        <NavBtn to={nav.to} key={nav.text}>
           {nav.text}
         </NavBtn>
       ))}
@@ -27,9 +27,9 @@ const DesktopNavWrapper = styled.div`
   }
 `;
 
-const NavBtn = styled(NavLink)`
+const NavBtn = styled(ActiveLink)`
   position: relative;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 600;
   padding: 8px 0;
   color: ${palette.gray6};
@@ -48,7 +48,7 @@ const NavBtn = styled(NavLink)`
     background-color: ${palette.green9};
     transition: width 0.2s ease-in-out;
   }
-  &.current {
+  &.active {
     color: ${palette.green9};
     &:after {
       width: 90%;

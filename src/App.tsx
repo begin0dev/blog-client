@@ -1,10 +1,9 @@
-import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { AuthModal, PageTemplate, Progressbar } from 'components';
 import { EditorPage, MainPage, ProfilePage, CategoryPage, NotFoundPage } from 'pages';
 import { RootState } from './stores';
-import AppRoute from './components/common/AppRoute';
 import ToastRoot from './components/common/toast/ToastRoot';
 
 function App() {
@@ -15,19 +14,17 @@ function App() {
       <Progressbar isLoading={isLoading} />
       <Router>
         <AuthModal />
-        <Switch>
-          <AppRoute exact path="/" layout={PageTemplate} component={MainPage} />
-          <AppRoute path="/about" layout={PageTemplate} component={ProfilePage} />
-          <AppRoute path="/log" layout={PageTemplate} component={CategoryPage} />
-          <AppRoute
-            path="/develop/:name(react|node|javascript|etc)"
-            layout={PageTemplate}
-            component={CategoryPage}
-          />
-          <AppRoute path="/develop" layout={PageTemplate} component={CategoryPage} />
-          <AppRoute path="/editor" component={EditorPage} />
-          <AppRoute path="/*" layout={PageTemplate} component={NotFoundPage} />
-        </Switch>
+        <PageTemplate>
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+            <Route path="about" element={<ProfilePage />} />
+            <Route path="log" element={<CategoryPage />} />
+            <Route path="develop/:name(react|node|javascript|etc)" element={<CategoryPage />} />
+            <Route path="develop" element={<CategoryPage />} />
+            <Route path="editor" element={<EditorPage />} />
+            <Route path="/*" element={<NotFoundPage />} />
+          </Routes>
+        </PageTemplate>
       </Router>
     </ToastRoot>
   );

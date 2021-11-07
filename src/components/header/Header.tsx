@@ -16,12 +16,12 @@ import SearchInput from '../common/searchInput';
 import useCheckBreakPoint from '../../lib/hooks/useCheckBreakPoint';
 import MobileNav from './MobileNav';
 
-type TNavLink = { text: string; to: string; exact: boolean };
+type TNavLink = { text: string; to: string };
 export const navLinks: TNavLink[] = [
-  { text: 'Home', to: '/', exact: true },
-  { text: 'About', to: '/about', exact: false },
-  { text: 'Develop', to: '/develop', exact: false },
-  { text: 'Log', to: '/log', exact: false },
+  { text: 'Home', to: '/' },
+  { text: 'About', to: '/about' },
+  { text: 'Develop', to: '/develop' },
+  { text: 'Log', to: '/log' },
 ];
 
 function Header() {
