@@ -1,20 +1,19 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
 import { IcSearch, Logo } from 'assets/svgs';
-import { actions as userActions } from 'stores/user';
 import { Hamburger } from 'components';
 import { RootState } from '../../stores';
 import { actions as baseActions } from '../../stores/base';
 import { breakPoints, sizes, themes, zIndexes } from '../../styles/utils';
 import { palette } from '../../styles/palette';
-import { baseButtonCSS } from '../../styles/baseCss';
 import DesktopNav from './DesktopNav';
 import SearchInput from '../common/searchInput';
 import useCheckBreakPoint from '../../lib/hooks/useCheckBreakPoint';
 import MobileNav from './MobileNav';
+import LoginButton from './LoginButton';
 
 type TNavLink = { text: string; to: string };
 export const navLinks: TNavLink[] = [
@@ -27,16 +26,10 @@ export const navLinks: TNavLink[] = [
 function Header() {
   const dispatch = useDispatch();
 
-  const isLogIn = useSelector((state: RootState) => state.user.isLogIn);
   const isShowSidebar = useSelector((state: RootState) => state.base.isShowSidebar);
 
   const isMobile = useCheckBreakPoint('<=', breakPoints.md);
-
-  const logOut = useCallback(() => dispatch(userActions.logoutUser()), [dispatch]);
-  const toggleAuthModal = useCallback(() => dispatch(baseActions.toggleAuthModal()), [dispatch]);
-  const toggleSidebar = useCallback(() => {
-    dispatch(baseActions.onChangIsShowSidebar(!isShowSidebar));
-  }, [dispatch, isShowSidebar]);
+  const toggleSidebar = () => dispatch(baseActions.onChangIsShowSidebar(!isShowSidebar));
 
   useEffect(() => {
     if (isMobile || !isShowSidebar) return;
@@ -54,14 +47,13 @@ function Header() {
             <DesktopNav />
             <HeaderRight>
               <SearchInput placeholder="검색어를 입력해주세요!" />
-              {!isLogIn && <LoginBtn onClick={toggleAuthModal}>로그인</LoginBtn>}
-              {isLogIn && <LoginBtn onClick={logOut}>로그아웃</LoginBtn>}
+              <LoginButton />
             </HeaderRight>
           </>
         )}
         {isMobile && (
           <>
-            <MobileNav toggleAuthModal={toggleAuthModal} toggleSidebar={toggleSidebar} />
+            <MobileNav toggleSidebar={toggleSidebar} />
             <HeaderRight>
               <SearchIconBtn>
                 <IcSearch />
@@ -134,13 +126,4 @@ const HamburgerBlock = styled.div`
   align-items: center;
   border-radius: 6px;
   background-color: rgba(255, 255, 255, 0.7);
-`;
-const LoginBtn = styled.button`
-  ${baseButtonCSS};
-  font-size: 13px;
-  color: ${palette.white};
-  background-color: ${palette.green9};
-  border-radius: 18px;
-  padding: 7px 18px;
-  margin-left: 18px;
 `;

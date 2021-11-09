@@ -6,15 +6,14 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../stores';
 import { palette } from '../../styles/palette';
 import { navLinks } from './Header';
-import { baseButtonCSS } from '../../styles/baseCss';
 import Drawer from '../common/drawer';
+import LoginButton from './LoginButton';
 
 interface IProps {
   toggleSidebar: () => void;
-  toggleAuthModal: () => void;
 }
 
-function MobileNav({ toggleSidebar, toggleAuthModal }: IProps) {
+function MobileNav({ toggleSidebar }: IProps) {
   const navigate = useNavigate();
 
   const isShowSidebar = useSelector((state: RootState) => state.base.isShowSidebar);
@@ -29,10 +28,10 @@ function MobileNav({ toggleSidebar, toggleAuthModal }: IProps) {
       <SidebarWrapper>
         {navLinks.map((nav) => (
           <LinkBtn data-path={nav.to} onClick={onClickLink} key={nav.text}>
-            {nav.text.toUpperCase()}
+            {nav.text}
           </LinkBtn>
         ))}
-        <LoginBtn onClick={toggleAuthModal}>로그인</LoginBtn>
+        <LoginButton />
       </SidebarWrapper>
     </Drawer>
   );
@@ -57,14 +56,4 @@ const LinkBtn = styled.button`
   font-weight: 600;
   background-color: transparent;
   color: ${palette.gray0};
-`;
-const LoginBtn = styled.button`
-  ${baseButtonCSS};
-  font-size: 16px;
-  width: 100px;
-  height: 38px;
-  color: ${palette.white};
-  background-color: ${palette.green9};
-  border-radius: 18px;
-  margin: 26px 0;
 `;

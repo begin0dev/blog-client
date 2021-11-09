@@ -33,9 +33,9 @@ const DesktopNavWrapper = styled.div`
 
 const CustomNavLink = styled(NavLink)`
   position: relative;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
-  padding: 8px 0;
+  padding: 6px 0;
   color: ${palette.gray6};
   user-select: none;
   margin: 0 2px;
