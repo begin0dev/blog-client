@@ -28,7 +28,7 @@ const LoginBtn = styled.button`
   background-color: ${palette.green9};
   border-radius: 18px;
   ${includeMedia('>md')} {
-    font-size: 14px;
+    font-size: 13px;
     padding: 7px 18px;
     margin-left: 18px;
   }

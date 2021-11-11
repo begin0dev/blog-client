@@ -1,13 +1,13 @@
 import styled from 'styled-components/macro';
-
-import { navLinks } from './Header';
-import { palette } from '../../styles/palette';
 import { NavLink } from 'react-router-dom';
+
+import { navigations } from './Header';
+import { palette } from '../../styles/palette';
 
 function DesktopNav() {
   return (
     <DesktopNavWrapper>
-      {navLinks.map((nav) => (
+      {navigations.map((nav) => (
         <CustomNavLink
           to={nav.to}
           key={nav.text}

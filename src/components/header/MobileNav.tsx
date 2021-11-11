@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 import { RootState } from '../../stores';
 import { palette } from '../../styles/palette';
-import { navLinks } from './Header';
+import { navigations } from './Header';
 import Drawer from '../common/drawer';
 import LoginButton from './LoginButton';
 
@@ -26,7 +26,7 @@ function MobileNav({ toggleSidebar }: IProps) {
   return (
     <Drawer position="left" active={isShowSidebar} hideOverlay>
       <SidebarWrapper>
-        {navLinks.map((nav) => (
+        {navigations.map((nav) => (
           <LinkBtn data-path={nav.to} onClick={onClickLink} key={nav.text}>
             {nav.text}
           </LinkBtn>

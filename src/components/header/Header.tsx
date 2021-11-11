@@ -15,8 +15,8 @@ import useCheckBreakPoint from '../../lib/hooks/useCheckBreakPoint';
 import MobileNav from './MobileNav';
 import LoginButton from './LoginButton';
 
-type TNavLink = { text: string; to: string };
-export const navLinks: TNavLink[] = [
+type TNavigations = { text: string; to: string };
+export const navigations: TNavigations[] = [
   { text: 'Home', to: '/' },
   { text: 'About', to: '/about' },
   { text: 'Develop', to: '/develop' },
