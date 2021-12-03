@@ -12,16 +12,16 @@ function App() {
     <Router>
       <Progressbar isLoading={isLoading} />
       <AuthModal />
-      <PageTemplate>
-        <Routes>
+      <Routes>
+        <Route path="/" element={<PageTemplate />}>
           <Route path="/" element={<MainPage />} />
           <Route path="about" element={<ProfilePage />} />
           <Route path="log" element={<CategoryPage />} />
           <Route path="develop/:name(all|react|node|javascript|etc)" element={<CategoryPage />} />
-          <Route path="editor" element={<EditorPage />} />
           <Route path="/*" element={<NotFoundPage />} />
-        </Routes>
-      </PageTemplate>
+        </Route>
+        <Route path="editor" element={<EditorPage />} />
+      </Routes>
     </Router>
   );
 }

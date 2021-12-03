@@ -25,7 +25,6 @@ interface ITreeNode extends Node<Data> {
 function prismPlugin() {
   return (tree: ITreeNode) =>
     visit(tree, ['code', 'inlineCode'], (node: ITreeNode) => {
-      console.log(node);
       let { type, lang, value } = node;
       const codeLang = Prism.languages[lang] ? lang : 'javascript';
 
