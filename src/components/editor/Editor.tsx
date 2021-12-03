@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 
 import { MarkdownEditor, MarkdownPreview } from 'components';
-import { ArrowLeft } from '../../assets/svgs';
+import { IcArrowLeft } from '../../assets/svgs';
 import { includeMedia, sizes, themes, zIndexes } from '../../styles/utils';
 import { palette } from '../../styles/palette';
 
@@ -15,7 +15,7 @@ function Editor({ markdown, setMarkdown }: IProps) {
     <EditorWrapperBlock>
       <HeaderBlock>
         <BackButton type="button">
-          <ArrowLeft />
+          <IcArrowLeft />
         </BackButton>
         <SaveBtn>저장하기</SaveBtn>
       </HeaderBlock>

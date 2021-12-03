@@ -1,17 +1,5 @@
 import { ValueOf } from '../../../lib/utils/typescriptUtils';
 
-export const ToastType = {
-  SUCCESS: 'success',
-  WARNING: 'warning',
-  ERROR: 'error',
-} as const;
-
-export interface ToastInterface {
-  id: number;
-  type: ValueOf<typeof ToastType>;
-  message: string;
-  visible: boolean;
-}
 export type PositionType =
   | 'top-left'
   | 'top-center'
@@ -19,3 +7,33 @@ export type PositionType =
   | 'bottom-left'
   | 'bottom-center'
   | 'bottom-right';
+
+export const ToastType = {
+  SUCCESS: 'success',
+  WARNING: 'warning',
+  ERROR: 'error',
+} as const;
+type ToastValueType = ValueOf<typeof ToastType>;
+
+export const ToastAction = {
+  ADD: 'add',
+  REMOVE: 'remove',
+} as const;
+type ToastActionType = ValueOf<typeof ToastAction>;
+
+export interface ToastItemInterface {
+  id: string;
+  type: ToastValueType;
+  action: ToastActionType;
+  message: string;
+  visible: boolean;
+  autoCloseTime: number;
+  isAutoClose: boolean;
+}
+
+export type ToastAddType = Pick<ToastItemInterface, 'message'> &
+  Partial<Pick<ToastItemInterface, 'type' | 'autoCloseTime' | 'isAutoClose'>>;
+
+export type ToastCallbackType = (
+  toast: Pick<ToastItemInterface, 'id' | 'action'> | ToastItemInterface,
+) => void;

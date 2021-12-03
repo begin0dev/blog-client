@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
-import { IcSearch, Logo } from 'assets/svgs';
+import { IcSearch, IcLogo } from 'assets/svgs';
 import { Hamburger } from 'components';
 import { RootState } from '../../stores';
 import { actions as baseActions } from '../../stores/base';
@@ -11,7 +11,7 @@ import { breakPoints, sizes, themes, zIndexes } from '../../styles/utils';
 import { palette } from '../../styles/palette';
 import DesktopNav from './DesktopNav';
 import SearchInput from '../common/searchInput';
-import useCheckBreakPoint from '../../lib/hooks/useCheckBreakPoint';
+import useCheckBreakPoint from '../../hooks/useCheckBreakPoint';
 import MobileNav from './MobileNav';
 import LoginButton from './LoginButton';
 
@@ -40,7 +40,7 @@ function Header() {
     <HeaderBlock>
       <Wrapper>
         <LogoBlock to="/">
-          <Logo />
+          <IcLogo />
         </LogoBlock>
         {!isMobile && (
           <>
@@ -73,7 +73,8 @@ export default Header;
 
 const HeaderBlock = styled.header`
   z-index: ${zIndexes.HEADER};
-  position: relative;
+  position: sticky;
+  top: 0;
   height: ${sizes.HEADER}px;
   width: 100%;
   background-color: ${themes.HEADER};

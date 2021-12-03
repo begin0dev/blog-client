@@ -32,24 +32,22 @@ const GlobalStyle = createGlobalStyle`
     text-decoration: none;
     -webkit-tap-highlight-color: transparent;
   }
-  input, button, textarea {
+  input, textarea, select, button {
     font-family: inherit;
-  }
-  button {
-    border-style: none;
+    outline: none;
+    -webkit-tap-highlight-color: inherit;
     &:active, &:focus, &:hover {
       outline: none;
     }
+  }
+  button {
+    border-style: none;
     &:hover {
       opacity: 0.9;
     }
   }
   ol, ul {
     list-style: none;
-  }
-  input {
-    outline: none;
-    -webkit-tap-highlight-color: inherit;
   }
 `;
 

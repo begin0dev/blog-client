@@ -20,7 +20,7 @@ function Spinner({ size, color }: IProps) {
 
 export default memo(Spinner);
 
-const circleFadeDelayKeyframs = keyframes`
+const circleFadeDelayKeyframes = keyframes`
   0%, 39%, 100% { opacity: 0; }
   40% { opacity: 1; }
 `;
@@ -28,8 +28,8 @@ const SpinnerBlock = styled.div<{ size?: string }>`
   position: relative;
   ${({ size }) =>
     css`
-      width: ${size || '12px'};
-      height: ${size || '12px'};
+      width: ${size || '14px'};
+      height: ${size || '14px'};
     `}
 `;
 const Circle = styled.span<{ color?: string; index: number }>`
@@ -46,7 +46,7 @@ const Circle = styled.span<{ color?: string; index: number }>`
     height: 15%;
     background-color: ${({ color }) => color || palette.gray7};
     border-radius: 100%;
-    animation: ${circleFadeDelayKeyframs} 1.2s infinite ease-in-out both;
+    animation: ${circleFadeDelayKeyframes} 1.2s infinite ease-in-out both;
   }
   ${({ index }) =>
     index !== 0 &&

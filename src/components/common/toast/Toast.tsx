@@ -1,18 +1,68 @@
-import { useRecoilValue } from 'recoil';
+import { useCallback, useEffect, useState } from 'react';
 import styled, { css, keyframes } from 'styled-components/macro';
 
-import { PositionType, ToastInterface } from './types';
-import { toastState } from './ToastState';
-import { XCircle, CheckCircle, ExclamationCircle } from '../../../assets/svgs';
-import { animationDuration } from './useToasts';
+import {
+  PositionType,
+  ToastAction,
+  ToastCallbackType,
+  ToastItemInterface,
+  ToastType,
+} from './types';
+import { IcXCircle, IcCheckCircle, IcExclamationCircle } from '../../../assets/svgs';
 import { palette } from '../../../styles/palette';
+import ToastEventEmitter from './ToastEventEmitter';
+
+const animationDuration = 300;
 
 interface IProps {
+  maxCount?: number;
   position?: PositionType;
 }
 
-function Toast({ position = 'top-center' }: IProps) {
-  const toasts = useRecoilValue<ToastInterface[]>(toastState);
+function Toast({ maxCount = 10, position = 'top-center' }: IProps) {
+  const [toasts, setToasts] = useState<ToastItemInterface[]>([]);
+
+  const clear = useCallback(
+    (id: string) => {
+      setToasts((prevState) => prevState.filter((notification) => notification.id !== id));
+    },
+    [setToasts],
+  );
+
+  const update = useCallback(
+    (id: string) => {
+      setToasts((prevState) =>
+        prevState.map((notification) =>
+          notification.id === id ? { ...notification, visible: false } : notification,
+        ),
+      );
+      setTimeout(() => clear(id), animationDuration);
+    },
+    [clear],
+  );
+
+  const addToast = useCallback(
+    (toast: ToastItemInterface) => {
+      setToasts((prevState) => [...prevState, toast].slice(maxCount * -1));
+      if (toast.isAutoClose) setTimeout(() => update(toast.id), toast.autoCloseTime);
+    },
+    [maxCount, update],
+  );
+
+  const eventCallback: ToastCallbackType = useCallback(
+    (toast) => {
+      if (toast.action === ToastAction.ADD) addToast(toast as ToastItemInterface);
+      if (toast.action === ToastAction.REMOVE) update(toast.id);
+    },
+    [addToast, update],
+  );
+
+  useEffect(() => {
+    ToastEventEmitter.addChangeListener(eventCallback);
+    return () => {
+      ToastEventEmitter.removeChangeListener(eventCallback);
+    };
+  }, [eventCallback]);
 
   return (
     <ToastsWrap position={position}>
@@ -20,9 +70,9 @@ function Toast({ position = 'top-center' }: IProps) {
         <ToastItem visible={toast.visible} key={toast.id}>
           <div className="item">
             <span className="svg-span">
-              {toast.type === 'success' && <CheckCircle className={toast.type} />}
-              {toast.type === 'warning' && <ExclamationCircle className={toast.type} />}
-              {toast.type === 'error' && <XCircle className={toast.type} />}
+              {toast.type === ToastType.SUCCESS && <IcCheckCircle className={toast.type} />}
+              {toast.type === ToastType.WARNING && <IcExclamationCircle className={toast.type} />}
+              {toast.type === ToastType.ERROR && <IcXCircle className={toast.type} />}
             </span>
             <span>{toast.message}</span>
           </div>

@@ -26,7 +26,6 @@ function Progressbar({ isLoading, animationTime = 20 }: IProps) {
       timer.current = delayTime.current;
       prevPercent.current = 0;
       setVisible(true);
-      setPercent(0);
     }
 
     const animate = () => {
@@ -37,9 +36,10 @@ function Progressbar({ isLoading, animationTime = 20 }: IProps) {
       }
 
       timer.current = delayTime.current;
-      if (prevPercent.current === 100) {
+      if (!isLoading && prevPercent.current === 100) {
         cancelAnimationFrame(rafRef.current);
         setVisible(false);
+        setPercent(0);
         return;
       }
       if (!isLoading && prevPercent.current !== 100) {

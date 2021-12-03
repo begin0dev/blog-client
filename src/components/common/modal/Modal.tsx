@@ -2,7 +2,7 @@ import { memo, useCallback, useRef, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import styled, { css } from 'styled-components/macro';
 
-import useOnClickOutside from '../../../lib/hooks/useOnClickOutside';
+import useOnClickOutside from '../../../hooks/useOnClickOutside';
 import { zIndexes } from '../../../styles/utils';
 import Transition, { TTransitionStatus } from '../../base/Transition';
 import Overlay from '../overlay';
@@ -64,7 +64,7 @@ const ModalWrapper = styled.div<{ status: TTransitionStatus }>`
     width: ${status === 'exited' ? 0 : '100%'};
   `}
 `;
-const ModalBlock = styled.div<{ fullScreen?: boolean }>`
+const ModalBlock = styled.section<{ fullScreen?: boolean }>`
   position: relative;
   display: flex;
   justify-content: center;

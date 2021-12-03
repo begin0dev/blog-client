@@ -10,7 +10,7 @@ function PageTemplate({ children }: IProps) {
   return (
     <>
       <Header />
-      <div>{children}</div>
+      <main>{children}</main>
     </>
   );
 }

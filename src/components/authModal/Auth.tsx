@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled, { css } from 'styled-components/macro';
 
 import { Modal } from 'components';
-import { ArrowLeft, Facebook, Github, Google, Kakao, Logo } from 'assets/svgs';
+import { IcArrowLeft, IcFacebook, IcGithub, IcGoogle, IcKakao, IcLogo } from 'assets/svgs';
 import { RootState } from '../../stores';
 import { breakPoints, includeMedia } from '../../styles/utils';
 import { actions as baseActions } from '../../stores/base';
@@ -14,8 +14,8 @@ import { actions as userActions } from '../../stores/user';
 import { palette } from '../../styles/palette';
 import { pulseKeyframes } from '../../styles/baseCss';
 import { ValueOf } from '../../lib/utils/typescriptUtils';
-import useToasts from '../common/toast/useToasts';
-import useCheckBreakPoint from '../../lib/hooks/useCheckBreakPoint';
+import useCheckBreakPoint from '../../hooks/useCheckBreakPoint';
+import useToast from '../common/toast/useToast';
 
 const SocialProvider = {
   KAKAO: 'kakao',
@@ -32,7 +32,7 @@ function Auth() {
   const isLogIn = useSelector((state: RootState) => state.user.isLogIn);
   const isShowModal = useSelector((state: RootState) => state.base.isShowAuthModal);
 
-  const { addToast } = useToasts({ duration: 4500 });
+  const toast = useToast();
   const isFullScreen = useCheckBreakPoint('<=', breakPoints.sm);
 
   const hideModal = () => dispatch(baseActions.toggleAuthModal());
@@ -58,13 +58,13 @@ function Auth() {
       ignoreQueryPrefix: true,
     });
     if (message) {
-      addToast('error', message);
+      toast.add({ type: 'error', message });
       dispatch(baseActions.toggleAuthModal());
     }
     if (verify_code) dispatch(userActions.verifyUser(verify_code));
     sessionStorage.removeItem('referer');
     navigate(referer, { replace: true });
-  }, [dispatch, addToast, search, pathname, navigate]);
+  }, [dispatch, search, pathname, navigate, toast]);
 
   if (isLogIn) return null;
   return (
@@ -77,13 +77,13 @@ function Auth() {
       <AuthBlock>
         <SectionTopBlock>
           <BackButton type="button" onClick={hideModal}>
-            <ArrowLeft />
+            <IcArrowLeft />
           </BackButton>
           <WelcomeBlock>
             <div>안녕하세요!</div>
             <div>
               <LogoWrapper>
-                <Logo />
+                <IcLogo />
               </LogoWrapper>
               블로그에
             </div>
@@ -98,16 +98,16 @@ function Auth() {
               className="facebook"
               onClick={() => socialRedirect(SocialProvider.FACEBOOK)}
             >
-              <Facebook />
+              <IcFacebook />
             </SocialButton>
             <SocialButton className="google">
-              <Google />
+              <IcGoogle />
             </SocialButton>
             <SocialButton className="kakao" onClick={() => socialRedirect(SocialProvider.KAKAO)}>
-              <Kakao />
+              <IcKakao />
             </SocialButton>
             <SocialButton className="github">
-              <Github />
+              <IcGithub />
             </SocialButton>
           </SocialBlock>
         </SectionBottomBlock>
