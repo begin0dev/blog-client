@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { AuthModal, PageTemplate, Progressbar } from 'components';
 import { EditorPage, MainPage, ProfilePage, CategoryPage, NotFoundPage } from 'pages';
 import { RootState } from './stores';
+import Toast from './components/common/toast/Toast';
 
 function App() {
   const isLoading = useSelector((state: RootState) => state.base.isLoading);
@@ -11,6 +12,7 @@ function App() {
   return (
     <Router>
       <Progressbar isLoading={isLoading} />
+      <Toast />
       <AuthModal />
       <Routes>
         <Route path="/" element={<PageTemplate />}>
