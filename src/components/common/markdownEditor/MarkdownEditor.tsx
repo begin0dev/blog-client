@@ -9,12 +9,12 @@ import 'codemirror/addon/display/placeholder';
 import './atom-one-light.css';
 import { EditorBlock, TitleInputWrap, TitleInput } from './MarkdownEditor.styles';
 
-interface IProps {
+interface Props {
   markdown: string;
   onChange: (value: string) => void;
 }
 
-function MarkdownEditor({ markdown, onChange }: IProps) {
+function MarkdownEditor({ markdown, onChange }: Props) {
   const initialize = useRef<boolean>(true);
   const textAreaEl = useRef<HTMLTextAreaElement | null>(null);
   const codemirrorEl = useRef<EditorFromTextArea | null>(null);

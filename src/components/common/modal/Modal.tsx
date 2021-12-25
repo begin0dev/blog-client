@@ -4,10 +4,10 @@ import styled, { css } from 'styled-components/macro';
 
 import useOnClickOutside from '../../../hooks/useOnClickOutside';
 import { zIndexes } from '../../../styles/utils';
-import Transition, { TTransitionStatus } from '../../base/Transition';
 import Overlay from '../overlay';
+import useTransition, { TransitionStatus } from '../../../hooks/useTransition';
 
-interface IProps {
+interface Props {
   active: boolean;
   size?: object;
   style?: object;
@@ -17,40 +17,37 @@ interface IProps {
   children: ReactNode;
 }
 
-function Modal({ active, size, style, hideOverlay, fullScreen, hideModal, children }: IProps) {
+function Modal({ active, size, style, hideOverlay, fullScreen, hideModal, children }: Props) {
   const modalRoot = useRef<HTMLDivElement>(document.querySelector('#modal'));
-  const modalEl = useRef<HTMLDivElement>(null);
+  const { status } = useTransition({ active });
 
-  const onClickOutsideEvent = useCallback((): void => {
-    if (fullScreen) return;
-    hideModal?.(false);
-  }, [fullScreen, hideModal]);
-
-  useOnClickOutside(modalEl, onClickOutsideEvent, active);
+  const modalEl = useOnClickOutside(
+    active,
+    useCallback((): void => {
+      if (fullScreen) return;
+      hideModal?.(false);
+    }, [fullScreen, hideModal]),
+  );
 
   return createPortal(
-    <Transition active={active} timeout={200}>
-      {(status) => (
-        <ModalWrapper status={status}>
-          {!hideOverlay && <Overlay />}
-          <ModalBlock
-            className={status}
-            fullScreen={fullScreen}
-            style={{ ...style, ...(!fullScreen && size) }}
-            ref={modalEl}
-          >
-            {children}
-          </ModalBlock>
-        </ModalWrapper>
-      )}
-    </Transition>,
+    <ModalWrapper status={status}>
+      {!hideOverlay && <Overlay />}
+      <ModalBlock
+        className={status}
+        fullScreen={fullScreen}
+        style={{ ...style, ...(!fullScreen && size) }}
+        ref={modalEl}
+      >
+        {children}
+      </ModalBlock>
+    </ModalWrapper>,
     modalRoot.current as HTMLDivElement,
   );
 }
 
 export default memo(Modal);
 
-const ModalWrapper = styled.div<{ status: TTransitionStatus }>`
+const ModalWrapper = styled.div<{ status: TransitionStatus }>`
   z-index: ${zIndexes.MODAL};
   position: fixed;
   display: flex;

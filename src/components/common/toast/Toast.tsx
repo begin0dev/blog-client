@@ -14,12 +14,12 @@ import ToastEventEmitter from './ToastEventEmitter';
 
 const animationDuration = 300;
 
-interface IProps {
+interface Props {
   maxCount?: number;
   position?: PositionType;
 }
 
-function Toast({ maxCount = 10, position = 'top-center' }: IProps) {
+function Toast({ maxCount = 10, position = 'top-center' }: Props) {
   const [toasts, setToasts] = useState<ToastItemInterface[]>([]);
 
   const clear = useCallback(

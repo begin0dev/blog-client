@@ -5,12 +5,12 @@ import { IcArrowLeft } from '../../assets/svgs';
 import { includeMedia, sizes, themes, zIndexes } from '../../styles/utils';
 import { palette } from '../../styles/palette';
 
-interface IProps {
+interface Props {
   markdown: string;
   setMarkdown: (value: string) => void;
 }
 
-function Editor({ markdown, setMarkdown }: IProps) {
+function Editor({ markdown, setMarkdown }: Props) {
   return (
     <EditorWrapperBlock>
       <HeaderBlock>

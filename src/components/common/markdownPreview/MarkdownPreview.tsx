@@ -8,11 +8,11 @@ import rehypeStringify from 'rehype-stringify';
 import prismPlugin from '../../../lib/utils/prismPlugin';
 import { MarkdownPreviewBlock } from './MarkdownPreview.styles';
 
-interface IProps {
+interface Props {
   markdown: string;
 }
 
-function MarkdownPreview({ markdown }: IProps) {
+function MarkdownPreview({ markdown }: Props) {
   const markdownToHtml = unified()
     .use(remarkBreaks)
     .use(remarkParse)

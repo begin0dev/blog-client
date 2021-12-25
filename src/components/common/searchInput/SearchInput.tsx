@@ -4,7 +4,7 @@ import styled from 'styled-components/macro';
 import { palette } from '../../../styles/palette';
 import { IcSearch } from '../../../assets/svgs';
 
-interface IProps extends InputHTMLAttributes<any> {
+interface Props extends InputHTMLAttributes<any> {
   fontSize?: string;
   primaryColor?: string;
   borderColor?: string;
@@ -15,7 +15,7 @@ function SearchInput({
   primaryColor = palette.green9,
   borderColor = palette.gray3,
   ...restProps
-}: IProps) {
+}: Props) {
   return (
     <SearchInputBlock fontSize={fontSize} primaryColor={primaryColor}>
       <IcSearch />

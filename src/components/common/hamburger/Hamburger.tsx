@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components/macro';
 
 import { palette } from '../../../styles/palette';
 
-interface IProps {
+interface Props {
   width?: number;
   height?: number;
   spacing?: number;
@@ -19,7 +19,7 @@ function Hamburger({
   color = palette.green9,
   active,
   toggleHamburger,
-}: IProps) {
+}: Props) {
   return (
     <HamburgerWrapper
       width={`${width || 18}px`}

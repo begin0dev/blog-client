@@ -1,6 +1,6 @@
 {
   "parser": "@typescript-eslint/parser",
-  "extends": ["react-app", "prettier"],
+  "extends": ["react-app", "react-app/jest", "prettier"],
   "plugins": ["@typescript-eslint"],
   "settings": {
     "import/resolver": {
@@ -14,7 +14,7 @@
     "react/prop-types": "off",
     "react/prefer-stateless-function": "off",
     "react/jsx-filename-extension": "off",
-    "react/jsx-props-no-spreading": "warn",
+    "react/jsx-props-no-spreading": "off",
     "import/prefer-default-export": "off",
     "import/extensions": [
       "error",

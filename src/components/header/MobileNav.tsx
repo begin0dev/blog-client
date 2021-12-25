@@ -9,13 +9,12 @@ import { navigations } from './Header';
 import Drawer from '../common/drawer';
 import LoginButton from './LoginButton';
 
-interface IProps {
+interface Props {
   toggleSidebar: () => void;
 }
 
-function MobileNav({ toggleSidebar }: IProps) {
+function MobileNav({ toggleSidebar }: Props) {
   const navigate = useNavigate();
-
   const isShowSidebar = useSelector((state: RootState) => state.base.isShowSidebar);
 
   const onClickLink: MouseEventHandler<HTMLButtonElement> = (e) => {

@@ -3,12 +3,12 @@ import styled, { css, keyframes } from 'styled-components/macro';
 
 import { palette } from '../../../styles/palette';
 
-interface IProps {
+interface Props {
   size?: string;
   color?: string;
 }
 
-function Spinner({ size, color }: IProps) {
+function Spinner({ size, color }: Props) {
   return (
     <SpinnerBlock size={size}>
       {Array.from({ length: 12 }, (arr, i) => (

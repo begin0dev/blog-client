@@ -1,16 +1,7 @@
-import { AxiosResponse } from 'axios';
-
-export type BaseJsendResponse<D> = AxiosResponse<{
+export interface BaseJsendResponse<D> {
   status: 'success' | 'fail' | 'error';
   data: { payload: D };
   message?: string;
-}>;
-
-export interface IUser {
-  _id: string;
-  email?: string;
-  emailVerified: boolean;
-  displayName: string;
-  profileImage?: string;
-  isAdmin: boolean;
 }
+
+export * from './user';

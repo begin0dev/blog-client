@@ -1,10 +1,10 @@
 import styled from 'styled-components/macro';
 
-interface IProps {
+interface Props {
   onClick?: () => void;
 }
 
-function Overlay({ onClick }: IProps) {
+function Overlay({ onClick }: Props) {
   return <OverlayBlock onClick={onClick} />;
 }
 

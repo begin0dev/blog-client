@@ -1,35 +1,33 @@
 import { ReactNode } from 'react';
 import styled, { css } from 'styled-components/macro';
 
-import Transition, { TTransitionStatus } from '../../base/Transition';
 import { zIndexes } from '../../../styles/utils';
 import Overlay from '../overlay';
+import useTransition, { TransitionStatus } from '../../../hooks/useTransition';
 
-interface IProps {
+interface Props {
   active: boolean;
   position: 'top' | 'bottom' | 'left' | 'right';
   hideOverlay?: boolean;
   children: ReactNode;
 }
 
-function Drawer({ active, hideOverlay, position = 'bottom', children }: IProps) {
+function Drawer({ active, hideOverlay, position = 'bottom', children }: Props) {
+  const { status } = useTransition({ active });
+
   return (
-    <Transition active={active} timeout={200}>
-      {(status) => (
-        <DrawerWrapper status={status}>
-          {!hideOverlay && <Overlay />}
-          <DrawerBlock active={active} position={position}>
-            {children}
-          </DrawerBlock>
-        </DrawerWrapper>
-      )}
-    </Transition>
+    <DrawerWrapper status={status}>
+      {!hideOverlay && <Overlay />}
+      <DrawerBlock active={active} position={position}>
+        {children}
+      </DrawerBlock>
+    </DrawerWrapper>
   );
 }
 
 export default Drawer;
 
-const DrawerWrapper = styled.div<{ status: TTransitionStatus }>`
+const DrawerWrapper = styled.div<{ status: TransitionStatus }>`
   z-index: ${zIndexes.MODAL};
   position: fixed;
   display: flex;
@@ -45,7 +43,7 @@ const DrawerWrapper = styled.div<{ status: TTransitionStatus }>`
 `;
 const DrawerBlock = styled.div<{
   active: boolean;
-  position: IProps['position'];
+  position: Props['position'];
 }>`
   position: absolute;
   ${({ active, position }) => css`

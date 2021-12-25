@@ -4,14 +4,14 @@ import styled from 'styled-components/macro';
 import { zIndexes } from '../../../styles/utils';
 import { palette } from '../../../styles/palette';
 
-interface IProps {
+interface Props {
   isLoading: boolean;
   animationTime?: number;
 }
 
 const plusPercent = 25;
 
-function Progressbar({ isLoading, animationTime = 20 }: IProps) {
+function Progressbar({ isLoading, animationTime = 20 }: Props) {
   const rafRef = useRef<number>(0);
   const delayTime = useRef<number>(animationTime);
   const timer = useRef<number>(animationTime);
