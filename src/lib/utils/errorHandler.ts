@@ -1,20 +1,19 @@
-import { AxiosError } from 'axios';
+import { HTTPError } from 'ky';
 
-interface JsendErrorInterface {
-  status: 'error';
-  message: string;
+// interface JsendErrorInterface {
+//   status: 'error';
+//   message: string;
+// }
+
+function isResponseError(err: Error | HTTPError): err is HTTPError {
+  return err.hasOwnProperty('response');
 }
 
-function isAxiosError(err: Error | AxiosError): err is AxiosError<JsendErrorInterface> {
-  return (err as AxiosError).isAxiosError;
-}
-
-export const errorHandler = (err: Error | AxiosError<JsendErrorInterface>): string => {
+export function errorHandler(err: Error | HTTPError): string {
   if (process.env.NODE_ENV !== 'production') console.error(err);
 
-  if (isAxiosError(err) && err.response) {
-    const { response } = err;
-    return response.data?.message || response.statusText;
+  if (isResponseError(err)) {
   }
+
   return err.message;
-};
+}
