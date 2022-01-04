@@ -41,6 +41,7 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   button {
+    user-select: none;
     border-style: none;
     &:hover {
       opacity: 0.9;

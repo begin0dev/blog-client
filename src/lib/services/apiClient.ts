@@ -1,12 +1,5 @@
-import axios, { AxiosInstance } from 'axios';
+import ky from 'ky';
 
-const apiClient: AxiosInstance = axios.create({
-  withCredentials: true,
-  timeout: 5000,
-});
-
-// apiClient.interceptors.request.use(config => {
-//   return config;
-// });
+const apiClient = ky.create({ timeout: 5 * 1000, retry: 3 });
 
 export default apiClient;

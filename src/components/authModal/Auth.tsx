@@ -170,14 +170,14 @@ const WelcomeBlock = styled.div`
   font-size: 20px;
   font-weight: 400;
   color: #333;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   div + div {
-    margin-top: 5px;
+    margin-top: 8px;
   }
 `;
 const LogoWrapper = styled.span`
   line-height: 0;
-  margin-right: 7px;
+  margin-right: 6px;
   svg {
     height: 30px;
     margin-top: -5px;

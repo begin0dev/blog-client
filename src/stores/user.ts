@@ -5,17 +5,13 @@ import { IUser } from '../types';
 
 const verifyUser = createAsyncThunk('users/verify', async (verifyCode: string) => {
   const {
-    data: {
-      data: { payload },
-    },
+    data: { payload },
   } = await verifyUserApi(verifyCode);
   return payload;
 });
 const checkUser = createAsyncThunk('users/check', async () => {
   const {
-    data: {
-      data: { payload },
-    },
+    data: { payload },
   } = await checkUserApi();
   if (!payload) throw new Error();
   return payload;

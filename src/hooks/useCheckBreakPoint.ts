@@ -1,31 +1,29 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-type TComparison = '>=' | '>' | '<=' | '<';
+type Comparison = '>=' | '>' | '<=' | '<';
 
-const comparisonCompare = (comparison: TComparison, a: number, b: number): boolean => {
-  if (comparison === '>=') return a >= b;
-  if (comparison === '>') return a > b;
-  if (comparison === '<=') return a <= b;
-  if (comparison === '<') return a < b;
-  return a === b;
+const comparisonCompare = (comparison: Comparison, width: number): boolean => {
+  const windowWidth = window.innerWidth;
+  if (comparison === '>=') return windowWidth >= width;
+  if (comparison === '>') return windowWidth > width;
+  if (comparison === '<=') return windowWidth <= width;
+  if (comparison === '<') return windowWidth < width;
+  return windowWidth === width;
 };
 
-function useCheckBreakPoint(comparison: TComparison, width: number) {
-  const [bool, setBool] = useState(comparisonCompare(comparison, window.innerWidth, width));
-
-  const resizeEventListener = useCallback(
-    (e) => {
-      setBool(comparisonCompare(comparison, e.target.innerWidth, width));
-    },
-    [width, comparison],
-  );
+function useCheckBreakPoint(comparison: Comparison, width: number) {
+  const [bool, setBool] = useState<boolean>(comparisonCompare(comparison, width));
 
   useEffect(() => {
+    const resizeEventListener = () => {
+      setBool(comparisonCompare(comparison, width));
+    };
+
     window.addEventListener('resize', resizeEventListener);
     return () => {
       window.removeEventListener('resize', resizeEventListener);
     };
-  }, [resizeEventListener]);
+  }, [width, comparison]);
 
   return bool;
 }

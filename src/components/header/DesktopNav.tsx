@@ -22,7 +22,7 @@ function DesktopNav() {
 
 export default DesktopNav;
 
-const DesktopNavWrapper = styled.div`
+const DesktopNavWrapper = styled.aside`
   margin-left: 54px;
   display: flex;
   align-items: center;

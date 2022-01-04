@@ -63,13 +63,17 @@ const BackButton = styled.button`
   }
 `;
 const SaveBtn = styled.button`
-  font-size: 13px;
+  font-size: 14px;
   background-color: ${palette.green9};
   color: ${palette.white};
-  padding: 7px 18px;
-  border-radius: 4px;
+  padding: 8px 16px;
+  border-radius: 28px;
 `;
 const EditorBlock = styled.div`
   display: flex;
-  padding: 10px;
+  padding: 10px 30px;
+  height: calc(100vh - ${sizes.HEADER}px);
+  > div + div {
+    border-left: 1px solid ${palette.gray2};
+  }
 `;

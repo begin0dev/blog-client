@@ -14,9 +14,9 @@
   "dependencies": {
     "@loadable/component": "^5.15.2",
     "@reduxjs/toolkit": "^1.7.0",
-    "axios": "^0.24.0",
     "codemirror": "^5.59.2",
     "immer": "^9.0.7",
+    "ky": "^0.28.7",
     "lodash": "^4.17.20",
     "prismjs": "^1.23.0",
     "qs": "^6.10.2",

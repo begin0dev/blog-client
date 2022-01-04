@@ -38,7 +38,7 @@ function MobileNav({ toggleSidebar }: Props) {
 
 export default MobileNav;
 
-const SidebarWrapper = styled.div`
+const SidebarWrapper = styled.aside`
   height: 100%;
   width: 310px;
   display: flex;
