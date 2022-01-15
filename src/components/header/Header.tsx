@@ -6,7 +6,7 @@ import styled from 'styled-components/macro';
 import { IcSearch, IcLogo } from 'assets/svgs';
 import { Hamburger } from 'components';
 import { RootState } from '../../stores';
-import { actions as baseActions } from '../../stores/base';
+import { baseActions } from '../../stores/base';
 import { breakPoints, sizes, themes, zIndexes } from '../../styles/utils';
 import { palette } from '../../styles/palette';
 import DesktopNav from './DesktopNav';

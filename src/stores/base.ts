@@ -1,11 +1,11 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-interface IBaseState {
+interface BaseState {
   isLoading: boolean;
   isShowSidebar: boolean;
   isShowAuthModal: boolean;
 }
-const initialState: IBaseState = {
+const initialState: BaseState = {
   isLoading: false,
   isShowSidebar: false,
   isShowAuthModal: false,
@@ -27,5 +27,5 @@ const baseSlice = createSlice({
   },
 });
 
-export const { actions } = baseSlice;
+export const { actions: baseActions } = baseSlice;
 export default baseSlice.reducer;

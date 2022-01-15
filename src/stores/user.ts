@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import { checkUserApi, logoutUserApi, verifyUserApi } from 'lib/services/user';
-import { IUser } from '../types';
+import type { UserSchema } from '../types';
 
 const verifyUser = createAsyncThunk('users/verify', async (verifyCode: string) => {
   const {
@@ -21,12 +21,12 @@ const logoutUser = createAsyncThunk('users/logout', async () => {
   return null;
 });
 
-interface IUserState {
+interface UserState {
   isLogIn: boolean;
   isLoading: boolean;
-  user: null | IUser;
+  user: null | UserSchema;
 }
-const initialState: IUserState = {
+const initialState: UserState = {
   isLogIn: false,
   isLoading: false,
   user: null,
@@ -70,5 +70,5 @@ const userSlice = createSlice({
   },
 });
 
-export const actions = { ...userSlice.actions, checkUser, verifyUser, logoutUser };
+export const userActions = { ...userSlice.actions, checkUser, verifyUser, logoutUser };
 export default userSlice.reducer;

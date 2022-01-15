@@ -4,16 +4,16 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import styled, { css } from 'styled-components/macro';
 
+import type { RootState } from '../../stores';
+import type { ValueOf } from '../../lib/utils/typescriptUtils';
 import { Modal } from 'components';
 import { IcArrowLeft, IcFacebook, IcGithub, IcGoogle, IcKakao, IcLogo } from 'assets/svgs';
-import { RootState } from '../../stores';
 import { breakPoints, includeMedia } from '../../styles/utils';
-import { actions as baseActions } from '../../stores/base';
+import { baseActions } from '../../stores/base';
+import { userActions } from '../../stores/user';
 import { V1_SOCIALS_URL } from '../../lib/services/auth';
-import { actions as userActions } from '../../stores/user';
 import { palette } from '../../styles/palette';
 import { pulseKeyframes } from '../../styles/baseCss';
-import { ValueOf } from '../../lib/utils/typescriptUtils';
 import useCheckBreakPoint from '../../hooks/useCheckBreakPoint';
 import useToast from '../common/toast/useToast';
 
@@ -32,8 +32,12 @@ function Auth() {
   const isLogIn = useSelector((state: RootState) => state.user.isLogIn);
   const isShowModal = useSelector((state: RootState) => state.base.isShowAuthModal);
 
-  const toast = useToast();
+  const { addToast } = useToast();
   const isFullScreen = useCheckBreakPoint('<=', breakPoints.sm);
+
+  const { message, verify_code }: { message?: string; verify_code?: string } = qs.parse(search, {
+    ignoreQueryPrefix: true,
+  });
 
   const hideModal = () => dispatch(baseActions.toggleAuthModal());
 
@@ -46,25 +50,22 @@ function Auth() {
   );
 
   useEffect(() => {
-    const referer = sessionStorage.getItem('referer');
-    if (!referer) dispatch(userActions.checkUser());
-  }, [dispatch]);
+    if (!verify_code) dispatch(userActions.checkUser());
+  }, [dispatch, verify_code]);
 
   useEffect(() => {
-    const referer = sessionStorage.getItem('referer');
-    if (!referer) return;
+    if (!message && !verify_code) return;
 
-    const { message, verify_code }: { message?: string; verify_code?: string } = qs.parse(search, {
-      ignoreQueryPrefix: true,
-    });
+    if (verify_code) dispatch(userActions.verifyUser(verify_code));
     if (message) {
-      toast.add({ type: 'error', message });
+      addToast({ type: 'error', message });
       dispatch(baseActions.toggleAuthModal());
     }
-    if (verify_code) dispatch(userActions.verifyUser(verify_code));
+
+    const referer = sessionStorage.getItem('referer') || '/';
     sessionStorage.removeItem('referer');
     navigate(referer, { replace: true });
-  }, [dispatch, search, pathname, navigate, toast]);
+  }, [dispatch, search, pathname, navigate, message, verify_code, addToast]);
 
   if (isLogIn) return null;
   return (

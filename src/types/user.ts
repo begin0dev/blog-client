@@ -1,4 +1,4 @@
-export interface IUser {
+export interface UserSchema {
   _id: string;
   email?: string;
   emailVerified: boolean;

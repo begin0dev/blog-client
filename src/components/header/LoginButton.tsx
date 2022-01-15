@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 
 import { RootState } from '../../stores';
-import { actions as userActions } from '../../stores/user';
-import { actions as baseActions } from '../../stores/base';
+import { userActions } from '../../stores/user';
+import { baseActions } from '../../stores/base';
 import { baseButtonCSS } from '../../styles/baseCss';
 import { palette } from '../../styles/palette';
 import { includeMedia } from '../../styles/utils';

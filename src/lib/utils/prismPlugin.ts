@@ -17,14 +17,14 @@ import 'prismjs/components/prism-swift.min';
 import 'prismjs/components/prism-kotlin.min';
 import 'prismjs/components/prism-python.min';
 
-interface ITreeNode extends Node<Data> {
+interface TreeNode extends Node<Data> {
   lang: string;
   value: string;
 }
 
 function prismPlugin() {
-  return (tree: ITreeNode) =>
-    visit(tree, ['code', 'inlineCode'], (node: ITreeNode) => {
+  return (tree: TreeNode) =>
+    visit(tree, ['code', 'inlineCode'], (node: TreeNode) => {
       let { type, lang, value } = node;
       const codeLang = Prism.languages[lang] ? lang : 'javascript';
 
