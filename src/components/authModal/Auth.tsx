@@ -29,7 +29,7 @@ function Auth() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const isLogIn = useSelector((state: RootState) => state.user.isLogIn);
+  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
   const isShowModal = useSelector((state: RootState) => state.base.isShowAuthModal);
 
   const { addToast } = useToast();
@@ -67,7 +67,7 @@ function Auth() {
     navigate(referer, { replace: true });
   }, [dispatch, search, pathname, navigate, message, verify_code, addToast]);
 
-  if (isLogIn) return null;
+  if (isLoggedIn) return null;
   return (
     <Modal
       active={isShowModal}

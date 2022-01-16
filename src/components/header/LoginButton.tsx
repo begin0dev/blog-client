@@ -11,12 +11,12 @@ import { includeMedia } from '../../styles/utils';
 function LoginButton() {
   const dispatch = useDispatch();
 
-  const isLogIn = useSelector((state: RootState) => state.user.isLogIn);
+  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
 
   const logOut = () => dispatch(userActions.logoutUser());
   const toggleAuthModal = () => dispatch(baseActions.toggleAuthModal());
 
-  if (!isLogIn) return <LoginBtn onClick={toggleAuthModal}>로그인</LoginBtn>;
+  if (!isLoggedIn) return <LoginBtn onClick={toggleAuthModal}>로그인</LoginBtn>;
   return <LoginBtn onClick={logOut}>로그아웃</LoginBtn>;
 }
 

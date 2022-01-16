@@ -22,13 +22,13 @@ const logoutUser = createAsyncThunk('users/logout', async () => {
 });
 
 interface UserState {
-  isLogIn: boolean;
   isLoading: boolean;
+  isLoggedIn: boolean;
   user: null | UserSchema;
 }
 const initialState: UserState = {
-  isLogIn: false,
   isLoading: false,
+  isLoggedIn: false,
   user: null,
 };
 
@@ -39,32 +39,32 @@ const userSlice = createSlice({
   extraReducers: {
     [verifyUser.pending.type]: (state) => {
       state.isLoading = true;
-      state.isLogIn = false;
+      state.isLoggedIn = false;
     },
     [verifyUser.fulfilled.type]: (state, { payload }) => {
       state.isLoading = false;
-      state.isLogIn = true;
+      state.isLoggedIn = true;
       state.user = payload;
     },
     [verifyUser.rejected.type]: (state) => {
       state.isLoading = false;
-      state.isLogIn = false;
+      state.isLoggedIn = false;
     },
     [checkUser.pending.type]: (state) => {
       state.isLoading = true;
-      state.isLogIn = false;
+      state.isLoggedIn = false;
     },
     [checkUser.fulfilled.type]: (state, { payload }) => {
       state.isLoading = false;
-      state.isLogIn = true;
+      state.isLoggedIn = true;
       state.user = payload;
     },
     [checkUser.rejected.type]: (state) => {
       state.isLoading = false;
-      state.isLogIn = false;
+      state.isLoggedIn = false;
     },
     [logoutUser.pending.type]: (state) => {
-      state.isLogIn = false;
+      state.isLoggedIn = false;
       state.user = null;
     },
   },
