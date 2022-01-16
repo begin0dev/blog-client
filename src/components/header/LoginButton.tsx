@@ -1,17 +1,14 @@
-import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/macro';
 
-import { RootState } from '../../stores';
-import { userActions } from '../../stores/user';
-import { baseActions } from '../../stores/base';
+import { useAppDispatch, useAppSelector, userActions, baseActions } from '../../stores';
 import { baseButtonCSS } from '../../styles/baseCss';
 import { palette } from '../../styles/palette';
 import { includeMedia } from '../../styles/utils';
 
 function LoginButton() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
+  const isLoggedIn = useAppSelector((state) => state.user.isLoggedIn);
 
   const logOut = () => dispatch(userActions.logoutUser());
   const toggleAuthModal = () => dispatch(baseActions.toggleAuthModal());

@@ -1,19 +1,17 @@
 import qs from 'qs';
 import { useCallback, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 import styled, { css } from 'styled-components/macro';
 
-import type { RootState } from '../../stores';
 import type { ValueOf } from '../../lib/utils/typescriptUtils';
 import { Modal } from 'components';
 import { IcArrowLeft, IcFacebook, IcGithub, IcGoogle, IcKakao, IcLogo } from 'assets/svgs';
 import { breakPoints, includeMedia } from '../../styles/utils';
-import { baseActions } from '../../stores/base';
-import { userActions } from '../../stores/user';
+import { baseActions, userActions } from '../../stores';
 import { V1_SOCIALS_URL } from '../../lib/services/auth';
 import { palette } from '../../styles/palette';
 import { pulseKeyframes } from '../../styles/baseCss';
+import { useAppDispatch, useAppSelector } from '../../stores';
 import useCheckBreakPoint from '../../hooks/useCheckBreakPoint';
 import useToast from '../common/toast/useToast';
 
@@ -27,10 +25,10 @@ const SocialProvider = {
 function Auth() {
   const { pathname, search } = useLocation();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
-  const isShowModal = useSelector((state: RootState) => state.base.isShowAuthModal);
+  const isLoggedIn = useAppSelector((state) => state.user.isLoggedIn);
+  const isShowModal = useAppSelector((state) => state.base.isShowAuthModal);
 
   const { addToast } = useToast();
   const isFullScreen = useCheckBreakPoint('<=', breakPoints.sm);

@@ -1,13 +1,12 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 import { AuthModal, PageTemplate, Progressbar } from 'components';
 import { EditorPage, MainPage, ProfilePage, CategoryPage, NotFoundPage } from 'pages';
-import type { RootState } from './stores';
+import { useAppSelector } from './stores';
 import Toast from './components/common/toast/Toast';
 
 function App() {
-  const isLoading = useSelector((state: RootState) => state.base.isLoading);
+  const isLoading = useAppSelector((state) => state.base.isLoading);
 
   return (
     <Router>

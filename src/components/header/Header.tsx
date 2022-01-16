@@ -1,12 +1,10 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
 import { IcSearch, IcLogo } from 'assets/svgs';
 import { Hamburger } from 'components';
-import { RootState } from '../../stores';
-import { baseActions } from '../../stores/base';
+import { baseActions, useAppSelector, useAppDispatch } from '../../stores';
 import { breakPoints, sizes, themes, zIndexes } from '../../styles/utils';
 import { palette } from '../../styles/palette';
 import DesktopNav from './DesktopNav';
@@ -15,8 +13,11 @@ import useCheckBreakPoint from '../../hooks/useCheckBreakPoint';
 import MobileNav from './MobileNav';
 import LoginButton from './LoginButton';
 
-type TNavigations = { text: string; to: string };
-export const navigations: TNavigations[] = [
+interface Navigation {
+  text: string;
+  to: string;
+}
+export const navigations: Navigation[] = [
   { text: 'Home', to: '/' },
   { text: 'About', to: '/about' },
   { text: 'Develop', to: '/develop' },
@@ -24,16 +25,16 @@ export const navigations: TNavigations[] = [
 ];
 
 function Header() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const isShowSidebar = useSelector((state: RootState) => state.base.isShowSidebar);
+  const isShowSidebar = useAppSelector((state) => state.base.isShowSidebar);
 
   const isMobile = useCheckBreakPoint('<=', breakPoints.md);
-  const toggleSidebar = () => dispatch(baseActions.onChangIsShowSidebar(!isShowSidebar));
+  const toggleSidebar = () => dispatch(baseActions.showSidebar(!isShowSidebar));
 
   useEffect(() => {
     if (isMobile || !isShowSidebar) return;
-    dispatch(baseActions.onChangIsShowSidebar(false));
+    dispatch(baseActions.showSidebar(false));
   }, [dispatch, isShowSidebar, isMobile]);
 
   return (

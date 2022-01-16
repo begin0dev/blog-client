@@ -3,19 +3,11 @@ import 'react-app-polyfill/ie11';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
 
 import GlobalStyle from 'styles/globalStyle';
 import App from './App';
-import rootReducer from './stores';
+import store from './stores';
 import reportWebVitals from './reportWebVitals';
-import thunkMiddleware from './stores/middleware/thunkMiddleware';
-
-const store = configureStore({
-  reducer: rootReducer,
-  devTools: process.env.NODE_ENV !== 'production',
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunkMiddleware),
-});
 
 ReactDOM.render(
   <StrictMode>

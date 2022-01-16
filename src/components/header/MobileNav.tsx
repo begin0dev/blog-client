@@ -1,9 +1,8 @@
 import { MouseEventHandler } from 'react';
 import styled from 'styled-components/macro';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
-import { RootState } from '../../stores';
+import { useAppSelector } from '../../stores';
 import { palette } from '../../styles/palette';
 import { navigations } from './Header';
 import Drawer from '../common/drawer';
@@ -15,7 +14,8 @@ interface Props {
 
 function MobileNav({ toggleSidebar }: Props) {
   const navigate = useNavigate();
-  const isShowSidebar = useSelector((state: RootState) => state.base.isShowSidebar);
+
+  const isShowSidebar = useAppSelector((state) => state.base.isShowSidebar);
 
   const onClickLink: MouseEventHandler<HTMLButtonElement> = (e) => {
     toggleSidebar();
