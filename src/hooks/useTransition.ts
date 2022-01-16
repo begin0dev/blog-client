@@ -26,7 +26,7 @@ interface Props {
 }
 
 function useTransition({ active, timeout = 200 }: Props) {
-  const timer = useRef<NodeJS.Timeout | null>(null);
+  const timer = useRef<NodeJS.Timeout>();
   const [status, setStatus] = useState<TransitionStatus>(transitionStatus.EXITED);
 
   useEffect(() => {
