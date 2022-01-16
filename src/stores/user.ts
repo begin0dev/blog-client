@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-import { checkUserApi, logoutUserApi, verifyUserApi } from 'lib/services/user';
 import type { UserSchema } from '../types';
+import { checkUserApi, logoutUserApi, verifyUserApi } from 'lib/services/user';
 
 const verifyUser = createAsyncThunk('users/verify', async (verifyCode: string) => {
   const {
@@ -37,33 +37,33 @@ const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [verifyUser.pending.type]: (state) => {
+    [verifyUser.pending.type](state) {
       state.isLoading = true;
       state.isLoggedIn = false;
     },
-    [verifyUser.fulfilled.type]: (state, { payload }) => {
+    [verifyUser.fulfilled.type](state, { payload }) {
       state.isLoading = false;
       state.isLoggedIn = true;
       state.user = payload;
     },
-    [verifyUser.rejected.type]: (state) => {
+    [verifyUser.rejected.type](state) {
       state.isLoading = false;
       state.isLoggedIn = false;
     },
-    [checkUser.pending.type]: (state) => {
+    [checkUser.pending.type](state) {
       state.isLoading = true;
       state.isLoggedIn = false;
     },
-    [checkUser.fulfilled.type]: (state, { payload }) => {
+    [checkUser.fulfilled.type](state, { payload }) {
       state.isLoading = false;
       state.isLoggedIn = true;
       state.user = payload;
     },
-    [checkUser.rejected.type]: (state) => {
+    [checkUser.rejected.type](state) {
       state.isLoading = false;
       state.isLoggedIn = false;
     },
-    [logoutUser.pending.type]: (state) => {
+    [logoutUser.pending.type](state) {
       state.isLoggedIn = false;
       state.user = null;
     },
