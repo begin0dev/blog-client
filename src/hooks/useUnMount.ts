@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
 
-function useMount(callback: () => void) {
+function useUnMount(callback: () => void | Promise<() => void>) {
   const callbackRef = useRef<() => void>(callback);
 
   useEffect(() => {
@@ -11,4 +11,4 @@ function useMount(callback: () => void) {
   }, []);
 }
 
-export default useMount;
+export default useUnMount;

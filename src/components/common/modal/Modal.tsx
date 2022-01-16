@@ -19,7 +19,8 @@ interface Props {
 
 function Modal({ active, size, style, hideOverlay, fullScreen, hideModal, children }: Props) {
   const modalRoot = useRef<HTMLDivElement>(document.querySelector('#modal'));
-  const { status } = useTransition({ active });
+
+  const status = useTransition({ active });
 
   const modalEl = useOnClickOutside(
     active,

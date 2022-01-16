@@ -26,7 +26,7 @@ interface Props {
 }
 
 function useTransition({ active, timeout = 200 }: Props) {
-  const duration = useRef<number>(timeout);
+  const timer = useRef<NodeJS.Timeout | null>(null);
   const [status, setStatus] = useState<TransitionStatus>(transitionStatus.EXITED);
 
   useEffect(() => {
@@ -34,12 +34,16 @@ function useTransition({ active, timeout = 200 }: Props) {
     if (!active && status !== transitionStatus.ENTERED) return;
 
     setStatus((prevState) => getNextStatus(prevState));
-    setTimeout(() => {
+    timer.current = setTimeout(() => {
       setStatus((prevState) => getNextStatus(prevState));
-    }, duration.current);
-  }, [active, status]);
+    }, timeout);
 
-  return { status };
+    return () => {
+      if (timer.current) clearTimeout(timer.current);
+    };
+  }, [active, timeout, status]);
+
+  return status;
 }
 
 export default useTransition;

@@ -13,7 +13,7 @@ interface Props {
 }
 
 function Drawer({ active, hideOverlay, position = 'bottom', children }: Props) {
-  const { status } = useTransition({ active });
+  const status = useTransition({ active });
 
   return (
     <DrawerWrapper status={status}>
