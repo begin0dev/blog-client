@@ -27,5 +27,5 @@ const baseSlice = createSlice({
   },
 });
 
-export const { actions: baseActions } = baseSlice;
+export const baseActions = baseSlice.actions;
 export default baseSlice.reducer;
