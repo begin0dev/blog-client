@@ -1,4 +1,5 @@
 import styled from 'styled-components/macro';
+import { useNavigate } from 'react-router-dom';
 
 import { MarkdownEditor, MarkdownPreview } from 'components';
 import { IcArrowLeft } from '../../assets/svgs';
@@ -11,10 +12,12 @@ interface Props {
 }
 
 function Editor({ markdown, setMarkdown }: Props) {
+  const navigate = useNavigate();
+
   return (
     <EditorWrapperBlock>
       <HeaderBlock>
-        <BackButton type="button">
+        <BackButton type="button" onClick={() => navigate(-1)}>
           <IcArrowLeft />
         </BackButton>
         <SaveBtn>저장하기</SaveBtn>

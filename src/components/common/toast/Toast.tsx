@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import styled, { css, keyframes } from 'styled-components/macro';
 
 import {
@@ -11,6 +11,7 @@ import {
 import { IcXCircle, IcCheckCircle, IcExclamationCircle } from '../../../assets/svgs';
 import { palette } from '../../../styles/palette';
 import ToastEventEmitter from './ToastEventEmitter';
+import useUnMount from '../../../hooks/useUnMount';
 
 const animationDuration = 300;
 
@@ -20,11 +21,13 @@ interface Props {
 }
 
 function Toast({ maxCount = 10, position = 'top-center' }: Props) {
+  const timers = useRef<Record<string, NodeJS.Timer>>({});
   const [toasts, setToasts] = useState<ToastItemInterface[]>([]);
 
   const clear = useCallback(
     (id: string) => {
       setToasts((prevState) => prevState.filter((notification) => notification.id !== id));
+      delete timers.current[id];
     },
     [setToasts],
   );
@@ -36,7 +39,8 @@ function Toast({ maxCount = 10, position = 'top-center' }: Props) {
           notification.id === id ? { ...notification, visible: false } : notification,
         ),
       );
-      setTimeout(() => clear(id), animationDuration);
+      if (timers.current[id]) clearTimeout(timers.current[id]);
+      timers.current[id] = setTimeout(() => clear(id), animationDuration);
     },
     [clear],
   );
@@ -44,7 +48,9 @@ function Toast({ maxCount = 10, position = 'top-center' }: Props) {
   const addToast = useCallback(
     (toast: ToastItemInterface) => {
       setToasts((prevState) => [...prevState, toast].slice(maxCount * -1));
-      if (toast.isAutoClose) setTimeout(() => update(toast.id), toast.autoCloseTime);
+      if (toast.isAutoClose) {
+        timers.current[toast.id] = setTimeout(() => update(toast.id), toast.autoCloseTime);
+      }
     },
     [maxCount, update],
   );
@@ -63,6 +69,12 @@ function Toast({ maxCount = 10, position = 'top-center' }: Props) {
       ToastEventEmitter.removeChangeListener(eventCallback);
     };
   }, [eventCallback]);
+
+  useUnMount(() => {
+    Object.values(timers.current).forEach((timer) => {
+      if (timer) clearTimeout(timer);
+    });
+  });
 
   return (
     <ToastsWrap position={position}>
