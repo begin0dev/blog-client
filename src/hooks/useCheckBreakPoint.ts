@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+
+import useRafState from './useRafState';
 
 type Comparison = '>=' | '>' | '<=' | '<';
 
@@ -12,7 +14,7 @@ const comparisonCompare = (comparison: Comparison, width: number): boolean => {
 };
 
 function useCheckBreakPoint(comparison: Comparison, width: number) {
-  const [bool, setBool] = useState<boolean>(comparisonCompare(comparison, width));
+  const [bool, setBool] = useRafState<boolean>(comparisonCompare(comparison, width));
 
   useEffect(() => {
     const resizeEventListener = () => {
@@ -23,7 +25,7 @@ function useCheckBreakPoint(comparison: Comparison, width: number) {
     return () => {
       window.removeEventListener('resize', resizeEventListener);
     };
-  }, [width, comparison]);
+  }, [width, comparison, setBool]);
 
   return bool;
 }
