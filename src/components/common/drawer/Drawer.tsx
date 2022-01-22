@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components/macro';
 
 import { zIndexes } from '../../../styles/utils';
 import Overlay from '../overlay';
-import useTransition, { TransitionStatus } from '../../../hooks/useTransition';
+import useTransition, { TransitionStatusType } from '../../../hooks/useTransition';
 
 interface Props {
   active: boolean;
@@ -27,7 +27,7 @@ function Drawer({ active, hideOverlay, position = 'bottom', children }: Props) {
 
 export default Drawer;
 
-const DrawerWrapper = styled.div<{ status: TransitionStatus }>`
+const DrawerWrapper = styled.div<{ status: TransitionStatusType }>`
   z-index: ${zIndexes.MODAL};
   position: fixed;
   display: flex;

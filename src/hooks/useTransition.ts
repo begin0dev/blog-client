@@ -10,9 +10,9 @@ const transitionStatus = {
   EXITED: 'exited',
 } as const;
 
-export type TransitionStatus = ValueOf<typeof transitionStatus>;
+export type TransitionStatusType = ValueOf<typeof transitionStatus>;
 
-const getNextStatus = (current: TransitionStatus) => {
+const getNextStatus = (current: TransitionStatusType) => {
   return {
     [transitionStatus.ENTERING]: transitionStatus.ENTERED,
     [transitionStatus.ENTERED]: transitionStatus.EXITING,
@@ -28,7 +28,7 @@ interface Props {
 
 function useTransition({ active, timeout = 200 }: Props) {
   const timer = useRef<NodeJS.Timeout>();
-  const [status, setStatus] = useState<TransitionStatus>(transitionStatus.EXITED);
+  const [status, setStatus] = useState<TransitionStatusType>(transitionStatus.EXITED);
 
   useEffect(() => {
     if (active && status !== transitionStatus.EXITED) return;

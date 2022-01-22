@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components/macro';
 import useOnClickOutside from '../../../hooks/useOnClickOutside';
 import { zIndexes } from '../../../styles/utils';
 import Overlay from '../overlay';
-import useTransition, { TransitionStatus } from '../../../hooks/useTransition';
+import useTransition, { TransitionStatusType } from '../../../hooks/useTransition';
 
 interface Props {
   active: boolean;
@@ -48,7 +48,7 @@ function Modal({ active, size, style, hideOverlay, fullScreen, hideModal, childr
 
 export default memo(Modal);
 
-const ModalWrapper = styled.div<{ status: TransitionStatus }>`
+const ModalWrapper = styled.div<{ status: TransitionStatusType }>`
   z-index: ${zIndexes.MODAL};
   position: fixed;
   display: flex;
