@@ -165,13 +165,13 @@ const ToastItem = styled.div<{ visible: boolean; animationDuration: number }>`
         font-size: 18px;
         margin-right: 8px;
         &.success {
-          color: #52c41a;
+          color: ${palette.green5};
         }
         &.warning {
-          color: #faad14;
+          color: ${palette.orange5};
         }
         &.error {
-          color: #ff4d4f;
+          color: ${palette.red5};
         }
       }
     }
