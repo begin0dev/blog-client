@@ -2,29 +2,29 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import styled, { css, keyframes } from 'styled-components/macro';
 
 import {
-  PositionType,
+  ToastType,
   ToastAction,
+  PositionType,
   ToastCallbackType,
   ToastItemInterface,
-  ToastType,
 } from './types';
 import { IcXCircle, IcCheckCircle, IcExclamationCircle } from '../../../assets/svgs';
 import { palette } from '../../../styles/palette';
 import ToastEventEmitter from './ToastEventEmitter';
 import useUnMount from '../../../hooks/useUnMount';
 
-const animationDuration = 300;
-
 interface Props {
+  animationDuration?: number;
   maxCount?: number;
   position?: PositionType;
 }
 
-function Toast({ maxCount = 10, position = 'top-center' }: Props) {
+function Toast({ maxCount = 10, position = 'top-center', animationDuration = 300 }: Props) {
   const timers = useRef<Record<string, NodeJS.Timer>>({});
+
   const [toasts, setToasts] = useState<ToastItemInterface[]>([]);
 
-  const clear = useCallback(
+  const remove = useCallback(
     (id: string) => {
       setToasts((prevState) => prevState.filter((notification) => notification.id !== id));
       delete timers.current[id];
@@ -40,9 +40,9 @@ function Toast({ maxCount = 10, position = 'top-center' }: Props) {
         ),
       );
       if (timers.current[id]) clearTimeout(timers.current[id]);
-      timers.current[id] = setTimeout(() => clear(id), animationDuration);
+      timers.current[id] = setTimeout(() => remove(id), animationDuration);
     },
-    [clear],
+    [animationDuration, remove],
   );
 
   const addToast = useCallback(
@@ -79,7 +79,7 @@ function Toast({ maxCount = 10, position = 'top-center' }: Props) {
   return (
     <ToastsWrap position={position}>
       {toasts.map((toast) => (
-        <ToastItem visible={toast.visible} key={toast.id}>
+        <ToastItem visible={toast.visible} animationDuration={animationDuration} key={toast.id}>
           <div className="item">
             <span className="svg-span">
               {toast.type === ToastType.SUCCESS && <IcCheckCircle className={toast.type} />}
@@ -132,7 +132,8 @@ const enteringKeyframes = keyframes`
 const exitingKeyframes = keyframes`
   0% { transform: translate3d(0,0,0); }
   100% { 
-    transform: scale(0.66);
+    transform: scale(0.8);
+    height: 0;
     opacity: 0;
   }
 `;
@@ -142,36 +143,37 @@ const ToastsWrap = styled.div<{ position: PositionType }>`
   max-height: 100%;
   ${({ position }) => placements[position]}
 `;
-const ToastItem = styled.div<{ visible: boolean }>`
-  transition: height ${`${animationDuration}ms`} ease;
-  > .item {
-    width: 320px;
-    max-width: 360px;
-    background-color: ${palette.white};
-    box-shadow: 0 3px 6px -4px #0000001f, 0 6px 10px #00000014, 0 9px 20px 8px #0000000d;
-    border-radius: 4px;
-    vertical-align: baseline;
-    padding: 10px 14px;
-    margin: 8px 0;
-    animation: ${({ visible }) => (visible ? enteringKeyframes : exitingKeyframes)}
-      ${`${animationDuration + 5}ms`};
-    > span {
-      font-size: 14px;
+const ToastItem = styled.div<{ visible: boolean; animationDuration: number }>`
+  ${({ visible, animationDuration }) => css`
+    transition: height ${`${animationDuration}ms`} ease;
+    > .item {
+      width: 320px;
+      max-width: 360px;
+      background-color: ${palette.white};
+      box-shadow: 0 3px 6px -4px #0000001f, 0 6px 10px #00000014, 0 9px 20px 8px #0000000d;
+      border-radius: 4px;
+      vertical-align: baseline;
+      padding: 10px 14px;
+      margin: 8px 0;
+      animation: ${visible ? enteringKeyframes : exitingKeyframes} ${`${animationDuration}ms`};
+      > span {
+        font-size: 14px;
+      }
+      > .svg-span > svg {
+        position: relative;
+        margin-bottom: -5px;
+        font-size: 18px;
+        margin-right: 8px;
+        &.success {
+          color: #52c41a;
+        }
+        &.warning {
+          color: #faad14;
+        }
+        &.error {
+          color: #ff4d4f;
+        }
+      }
     }
-    > .svg-span > svg {
-      position: relative;
-      margin-bottom: -5px;
-      font-size: 18px;
-      margin-right: 8px;
-      &.success {
-        color: #52c41a;
-      }
-      &.warning {
-        color: #faad14;
-      }
-      &.error {
-        color: #ff4d4f;
-      }
-    }
-  }
+  `}
 `;
