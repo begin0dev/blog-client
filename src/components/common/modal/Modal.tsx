@@ -20,7 +20,7 @@ interface Props {
 function Modal({ active, size, style, hideOverlay, fullScreen, hideModal, children }: Props) {
   const modalRoot = useRef<HTMLDivElement>(document.querySelector('#modal'));
 
-  const status = useTransition({ active });
+  const status = useTransition({ active, duration: 200 });
 
   const modalEl = useOnClickOutside(
     active,
@@ -51,11 +51,11 @@ export default memo(Modal);
 const ModalWrapper = styled.div<{ status: TransitionStatusType }>`
   z-index: ${zIndexes.MODAL};
   position: fixed;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 0;
-  left: 0;
   overflow: hidden;
   ${({ status }) => css`
     height: ${status === 'exited' ? 0 : '100%'};
@@ -68,10 +68,10 @@ const ModalBlock = styled.section<{ fullScreen?: boolean }>`
   justify-content: center;
   align-items: center;
   margin: 1.5rem;
-  border-radius: 0.5rem;
+  border-radius: 10px;
   overflow: hidden;
   opacity: 0;
-  transform: scale(0.85, 0.85);
+  transform: scale(0.8, 0.8);
   transform-origin: center;
   transition: all 0.2s ease;
   &.entered {

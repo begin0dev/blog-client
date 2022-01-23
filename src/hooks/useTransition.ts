@@ -23,10 +23,10 @@ const getNextStatus = (current: TransitionStatusType) => {
 
 interface Props {
   active: boolean;
-  timeout?: number;
+  duration?: number;
 }
 
-function useTransition({ active, timeout = 200 }: Props) {
+function useTransition({ active, duration = 200 }: Props) {
   const timer = useRef<NodeJS.Timeout>();
   const [status, setStatus] = useState<TransitionStatusType>(transitionStatus.EXITED);
 
@@ -37,8 +37,8 @@ function useTransition({ active, timeout = 200 }: Props) {
     setStatus((prevState) => getNextStatus(prevState));
     timer.current = setTimeout(() => {
       setStatus((prevState) => getNextStatus(prevState));
-    }, timeout);
-  }, [active, timeout, status]);
+    }, duration);
+  }, [active, duration, status]);
 
   useUnMount(() => {
     if (timer.current) clearTimeout(timer.current);
