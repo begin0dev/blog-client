@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import styled, { css } from 'styled-components/macro';
 
-import { palette } from '../../../styles/palette';
+import { themes } from '../../../styles/utils';
 
 interface Props {
   width?: number;
@@ -16,7 +16,7 @@ function Hamburger({
   width,
   height,
   spacing,
-  color = palette.green9,
+  color = themes.PRIMARY,
   active,
   toggleHamburger,
 }: Props) {

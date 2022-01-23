@@ -67,7 +67,7 @@ const BackButton = styled.button`
 `;
 const SaveBtn = styled.button`
   font-size: 14px;
-  background-color: ${palette.green9};
+  background-color: ${themes.PRIMARY};
   color: ${palette.white};
   padding: 8px 16px;
   border-radius: 28px;

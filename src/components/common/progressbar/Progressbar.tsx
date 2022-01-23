@@ -1,8 +1,7 @@
 import { useState, useEffect, memo, useRef } from 'react';
 import styled from 'styled-components/macro';
 
-import { zIndexes } from '../../../styles/utils';
-import { palette } from '../../../styles/palette';
+import { themes, zIndexes } from '../../../styles/utils';
 
 interface Props {
   isLoading: boolean;
@@ -70,5 +69,5 @@ const ProgressbarBlock = styled.div<{ percent: number; visible: boolean }>`
   height: ${({ visible }) => (visible ? '4px' : 0)};
   opacity: ${({ visible }) => (visible ? 1 : 0)};
   transition: width 0.2s ease-in;
-  background-color: ${palette.green9};
+  background-color: ${themes.PRIMARY};
 `;

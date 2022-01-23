@@ -3,7 +3,7 @@ import { useCallback, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
 
-import type { ValueOf } from '../../lib/utils/typescriptUtils';
+import type { ValueOf } from '../../lib/utils/typescript-utils';
 import { Modal } from 'components';
 import { IcArrowLeft, IcFacebook, IcGithub, IcGoogle, IcKakao, IcLogo } from 'assets/svgs';
 import { breakPoints, includeMedia } from '../../styles/utils';

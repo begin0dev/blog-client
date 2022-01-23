@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components/macro';
 
-import { palette } from './palette';
+import { themes } from './utils';
 
 const GlobalStyle = createGlobalStyle`
   html, body, #root {
@@ -10,8 +10,8 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Nunito', 'Spoqa Han Sans Neo', sans-serif;
     font-size: 14px;
     font-weight: 400;
-    color: ${palette.gray9};
-    background-color: ${palette.gray0};
+    color: ${themes.TEXT};
+    background-color: ${themes.BACKGROUND_COLOR};
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

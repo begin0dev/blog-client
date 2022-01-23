@@ -1,13 +1,15 @@
+import { isFinite } from 'lodash';
+
 import { palette } from './palette';
 
-export const breakPoints = {
+type BreakPointType = 'sm' | 'md' | 'lg' | 'hg';
+
+export const breakPoints: Record<BreakPointType | string, number> = {
   sm: 530,
   md: 840,
   lg: 1024,
   hg: 1200,
-} as const;
-
-type TBreakPoints = typeof breakPoints;
+};
 
 export const zIndexes = {
   HEADER: 200,
@@ -20,29 +22,33 @@ export const zIndexes = {
 } as const;
 
 export const themes = {
+  BACKGROUND_COLOR: palette.gray0,
   HEADER: palette.white,
+  PRIMARY: palette.green9,
+  TEXT: palette.gray9,
+  TEXT_LEVEL1: palette.gray7,
+  TEXT_LEVEL2: palette.gray6,
+  TEXT_IN_PRIMARY: palette.white,
 } as const;
 
 export const sizes = {
   HEADER: 70,
+  SMALL: 24,
+  MIDDLE: 30,
+  LARGE: 36,
 } as const;
 
 const changeToCondition = (condition: string): string => {
-  const breakPoint = condition.slice(condition.length - 2, condition.length) as keyof TBreakPoints;
-  const width: number | undefined = breakPoints[breakPoint];
-  if (!width) throw new Error('올바르지 않은 미디어 쿼리 형식입니다.');
-  switch (true) {
-    case /^>=/.test(condition):
-      return `(min-width: ${width}px)`;
-    case /^>/.test(condition):
-      return `(min-width: ${width + 1}px)`;
-    case /^<=/.test(condition):
-      return `(max-width: ${width}px)`;
-    case /^</.test(condition):
-      return `(max-width: ${width - 1}px)`;
-    default:
-      throw new Error('올바르지 않은 미디어 쿼리 형식입니다.');
-  }
+  const errMessage = '올바르지 않은 미디어 쿼리 형식입니다.';
+  const breakPoint = condition.replace(/[<=>]/g, '');
+  const width: number = breakPoints[breakPoint] ?? Number(breakPoint);
+  if (!isFinite(width)) throw new Error(errMessage);
+
+  if (condition.startsWith('>=')) return `(min-width: ${width}px)`;
+  if (condition.startsWith('>')) return `(min-width: ${width + 1}px)`;
+  if (condition.startsWith('<=')) return `(max-width: ${width}px)`;
+  if (condition.startsWith('<')) return `(max-width: ${width - 1}px)`;
+  throw new Error(errMessage);
 };
 
 export const includeMedia = (...conditions: string[]): string =>

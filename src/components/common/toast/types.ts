@@ -1,4 +1,4 @@
-import { ValueOf } from '../../../lib/utils/typescriptUtils';
+import { ValueOf } from '../../../lib/utils/typescript-utils';
 
 export type PositionType =
   | 'top-left'

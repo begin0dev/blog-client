@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 import { useAppDispatch, useAppSelector, userActions, baseActions } from '../../stores';
 import { baseButtonCSS } from '../../styles/baseCss';
 import { palette } from '../../styles/palette';
-import { includeMedia } from '../../styles/utils';
+import { includeMedia, themes } from '../../styles/utils';
 
 function LoginButton() {
   const dispatch = useAppDispatch();
@@ -22,7 +22,7 @@ export default LoginButton;
 const LoginBtn = styled.button`
   ${baseButtonCSS};
   color: ${palette.white};
-  background-color: ${palette.green9};
+  background-color: ${themes.PRIMARY};
   border-radius: 18px;
   ${includeMedia('>md')} {
     font-size: 13px;

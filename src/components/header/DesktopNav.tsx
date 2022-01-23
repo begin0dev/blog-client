@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 
 import { navigations } from './Header';
 import { palette } from '../../styles/palette';
+import { themes } from '../../styles/utils';
+import { cx } from '../../lib/utils/helpers';
 
 function DesktopNav() {
   return (
@@ -11,7 +13,7 @@ function DesktopNav() {
         <CustomNavLink
           to={nav.to}
           key={nav.text}
-          className={({ isActive }) => (isActive ? 'active' : '')}
+          className={({ isActive }) => cx(['active', isActive])}
         >
           {nav.text}
         </CustomNavLink>
@@ -49,11 +51,11 @@ const CustomNavLink = styled(NavLink)`
     width: 0;
     margin: 0 auto;
     border-radius: 2px;
-    background-color: ${palette.green9};
+    background-color: ${themes.PRIMARY};
     transition: width 0.2s ease-in-out;
   }
   &.active {
-    color: ${palette.green9};
+    color: ${themes.PRIMARY};
     &:after {
       width: 90%;
     }

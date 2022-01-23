@@ -6,7 +6,6 @@ import { IcSearch, IcLogo } from 'assets/svgs';
 import { Hamburger } from 'components';
 import { baseActions, useAppSelector, useAppDispatch } from '../../stores';
 import { breakPoints, sizes, themes, zIndexes } from '../../styles/utils';
-import { palette } from '../../styles/palette';
 import DesktopNav from './DesktopNav';
 import SearchInput from '../common/searchInput';
 import useCheckBreakPoint from '../../hooks/useCheckBreakPoint';
@@ -28,8 +27,8 @@ function Header() {
   const dispatch = useAppDispatch();
 
   const isShowSidebar = useAppSelector((state) => state.base.isShowSidebar);
-
   const isMobile = useCheckBreakPoint('<=', breakPoints.md);
+
   const toggleSidebar = () => dispatch(baseActions.showSidebar(!isShowSidebar));
 
   useEffect(() => {
@@ -112,7 +111,7 @@ const SearchIconBtn = styled.button`
   margin-right: calc(4px + ${hamburgerSize});
   > svg {
     font-size: 18px;
-    color: ${palette.green9};
+    color: ${themes.PRIMARY};
   }
 `;
 const HamburgerBlock = styled.div`

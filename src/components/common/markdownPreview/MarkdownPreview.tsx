@@ -5,7 +5,7 @@ import rehypeRaw from 'rehype-raw';
 import remark2rehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
 
-import prismPlugin from '../../../lib/utils/prismPlugin';
+import prismPlugin from '../../../lib/utils/prism-plugin';
 import { MarkdownPreviewBlock } from './MarkdownPreview.styles';
 
 interface Props {
