@@ -1,10 +1,9 @@
 import { isFinite } from 'lodash';
 
 import { palette } from './palette';
+import { ValueOf } from '../lib/utils/typescript-utils';
 
-type BreakPointType = 'sm' | 'md' | 'lg' | 'hg';
-
-export const breakPoints: Record<BreakPointType | string, number> = {
+export const breakPoints: Record<string, number> = {
   sm: 530,
   md: 840,
   lg: 1024,
@@ -29,12 +28,21 @@ export const themes = {
   TEXT_LEVEL1: palette.gray7,
   TEXT_LEVEL2: palette.gray6,
   TEXT_IN_PRIMARY: palette.white,
+  WHITE: palette.white,
 } as const;
+
+export const inputSizes = {
+  SMALL: 'small',
+  MIDDLE: 'middle',
+  LARGE: 'large',
+} as const;
+
+export type InputSizeType = ValueOf<typeof inputSizes>;
 
 export const sizes = {
   HEADER: 70,
-  SMALL: 24,
-  MIDDLE: 30,
+  SMALL: 28,
+  MIDDLE: 32,
   LARGE: 36,
 } as const;
 

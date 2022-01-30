@@ -64,9 +64,6 @@ const ModalWrapper = styled.div<{ status: TransitionStatusType }>`
 `;
 const ModalBlock = styled.section<{ fullScreen?: boolean }>`
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   margin: 1.5rem;
   border-radius: 10px;
   overflow: hidden;

@@ -25,5 +25,15 @@
       "error",
       { "props": true, "ignorePropertyModificationsFor": ["draft", "state"] }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/*.stories.*"
+      ],
+      "rules": {
+        "import/no-anonymous-default-export": "off"
+      }
+    }
+  ]
 }
