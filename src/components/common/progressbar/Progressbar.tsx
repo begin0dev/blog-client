@@ -12,9 +12,7 @@ const plusPercent = 25;
 
 function Progressbar({ isLoading, animationTime = 20 }: Props) {
   const rafRef = useRef<number>(0);
-  const delayTime = useRef<number>(animationTime);
   const timer = useRef<number>(animationTime);
-
   const prevPercent = useRef<number>(0);
 
   const [percent, setPercent] = useState<number>(0);
@@ -22,7 +20,7 @@ function Progressbar({ isLoading, animationTime = 20 }: Props) {
 
   useEffect(() => {
     if (isLoading) {
-      timer.current = delayTime.current;
+      timer.current = animationTime;
       prevPercent.current = 0;
       setVisible(true);
     }
@@ -34,7 +32,7 @@ function Progressbar({ isLoading, animationTime = 20 }: Props) {
         return;
       }
 
-      timer.current = delayTime.current;
+      timer.current = animationTime;
       if (!isLoading && prevPercent.current === 100) {
         cancelAnimationFrame(rafRef.current);
         setVisible(false);
@@ -54,7 +52,7 @@ function Progressbar({ isLoading, animationTime = 20 }: Props) {
 
     cancelAnimationFrame(rafRef.current);
     rafRef.current = requestAnimationFrame(animate);
-  }, [isLoading]);
+  }, [animationTime, isLoading]);
 
   return <ProgressbarBlock percent={percent} visible={visible} />;
 }

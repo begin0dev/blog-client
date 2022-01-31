@@ -4,15 +4,15 @@ import styled, { css, keyframes } from 'styled-components/macro';
 import { palette } from '../../../styles/palette';
 
 interface Props {
-  size?: string;
+  size?: number;
   color?: string;
 }
 
-function Spinner({ size, color }: Props) {
+function Spinner({ size = 14, color }: Props) {
   return (
     <SpinnerBlock size={size}>
       {Array.from({ length: 12 }, (arr, i) => (
-        <Circle color={color} index={i} key={`circle${i}`} />
+        <Circle color={color} index={i} key={`circle_${i}`} />
       ))}
     </SpinnerBlock>
   );
@@ -24,12 +24,12 @@ const circleFadeDelayKeyframes = keyframes`
   0%, 39%, 100% { opacity: 0; }
   40% { opacity: 1; }
 `;
-const SpinnerBlock = styled.div<{ size?: string }>`
+const SpinnerBlock = styled.div<{ size: number }>`
   position: relative;
   ${({ size }) =>
     css`
-      width: ${size || '14px'};
-      height: ${size || '14px'};
+      width: ${size}px;
+      height: ${size}px;
     `}
 `;
 const Circle = styled.span<{ color?: string; index: number }>`
