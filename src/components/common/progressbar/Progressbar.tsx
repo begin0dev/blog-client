@@ -8,7 +8,7 @@ interface Props {
   animationTime?: number;
 }
 
-const plusPercent = 25;
+const plusPercent = 35;
 
 function Progressbar({ isLoading, animationTime = 20 }: Props) {
   const rafRef = useRef<number>(0);
@@ -66,6 +66,6 @@ const ProgressbarBlock = styled.div<{ percent: number; visible: boolean }>`
   width: ${({ percent }) => percent}%;
   height: ${({ visible }) => (visible ? '4px' : 0)};
   opacity: ${({ visible }) => (visible ? 1 : 0)};
-  transition: width 0.2s ease-in;
+  transition: width 0.3s ease-in;
   background-color: ${themes.PRIMARY};
 `;

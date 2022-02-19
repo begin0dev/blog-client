@@ -3,6 +3,8 @@ import styled, { css, keyframes } from 'styled-components/macro';
 
 import { palette } from '../../../styles/palette';
 
+const SPINNER_COUNT = 12;
+
 interface Props {
   size?: number;
   color?: string;
@@ -11,7 +13,7 @@ interface Props {
 function Spinner({ size = 14, color }: Props) {
   return (
     <SpinnerBlock size={size}>
-      {Array.from({ length: 12 }, (arr, i) => (
+      {Array.from({ length: SPINNER_COUNT }, (empty, i) => (
         <Circle color={color} index={i} key={`circle_${i}`} />
       ))}
     </SpinnerBlock>
@@ -21,8 +23,8 @@ function Spinner({ size = 14, color }: Props) {
 export default memo(Spinner);
 
 const circleFadeDelayKeyframes = keyframes`
-  0%, 39%, 100% { opacity: 0; }
-  40% { opacity: 1; }
+  0% { opacity: 1; }
+  50%, 100% { opacity: 0; }
 `;
 const SpinnerBlock = styled.div<{ size: number }>`
   position: relative;
@@ -53,7 +55,7 @@ const Circle = styled.span<{ color?: string; index: number }>`
     css`
       transform: rotate(${30 * index}deg);
       &:before {
-        animation-delay: ${((12 - index) / 10) * -1}s;
+        animation-delay: ${((SPINNER_COUNT - index) / 10) * -1}s;
       }
     `}
 `;
