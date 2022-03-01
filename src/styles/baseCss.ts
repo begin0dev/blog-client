@@ -1,11 +1,11 @@
 import { css, keyframes } from 'styled-components/macro';
 
-import { palette } from './palette';
+import { themes } from './utils';
 
 export const pulseKeyframes = keyframes`
-  0% { box-shadow: 0 0 3px 0 ${palette.gray4}; }
-  50% { box-shadow: 0 0 6px 3px ${palette.gray4}; }
-  100% { box-shadow: 0 0 3px 0 ${palette.gray4}; }
+  0% { box-shadow: 0 0 3px 0 ${themes.PRIMARY}; }
+  50% { box-shadow: 0 0 6px 3px ${themes.PRIMARY}; }
+  100% { box-shadow: 0 0 3px 0 ${themes.PRIMARY}; }
 `;
 
 export const baseButtonCSS = css`

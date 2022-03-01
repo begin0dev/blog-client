@@ -2,7 +2,6 @@ import styled from 'styled-components/macro';
 import { NavLink } from 'react-router-dom';
 
 import { navigations } from './Header';
-import { palette } from '../../styles/palette';
 import { themes } from '../../styles/utils';
 import { cx } from '../../lib/utils/helpers';
 
@@ -25,8 +24,10 @@ function DesktopNav() {
 export default DesktopNav;
 
 const DesktopNavWrapper = styled.aside`
-  margin-left: 54px;
   display: flex;
+  flex: 1;
+  justify-content: center;
+  margin-left: 54px;
   align-items: center;
   a + a {
     margin-left: 40px;
@@ -38,7 +39,7 @@ const CustomNavLink = styled(NavLink)`
   font-size: 14px;
   font-weight: 600;
   padding: 6px 0;
-  color: ${palette.gray6};
+  color: ${themes.TEXT_L2};
   user-select: none;
   margin: 0 2px;
   &:after {

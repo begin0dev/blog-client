@@ -21,14 +21,13 @@ export const zIndexes = {
 } as const;
 
 export const themes = {
-  BACKGROUND_COLOR: palette.gray0,
-  HEADER: palette.white,
-  PRIMARY: palette.green9,
-  TEXT: palette.gray9,
-  TEXT_LEVEL1: palette.gray7,
-  TEXT_LEVEL2: palette.gray6,
-  TEXT_IN_PRIMARY: palette.white,
-  WHITE: palette.white,
+  BACKGROUND_COLOR: palette.GRAY2,
+  HEADER: palette.GRAY3,
+  SIDEBAR: palette.GRAY3,
+  PRIMARY: palette.PRIMARY,
+  SECONDARY: palette.SECONDARY,
+  TEXT_L1: palette.GRAY0,
+  TEXT_L2: palette.GRAY1,
 } as const;
 
 export const inputSizes = {

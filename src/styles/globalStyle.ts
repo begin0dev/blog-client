@@ -10,7 +10,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Nunito', 'Spoqa Han Sans Neo', sans-serif;
     font-size: 14px;
     font-weight: 400;
-    color: ${themes.TEXT};
+    color: ${themes.TEXT_L1};
     background-color: ${themes.BACKGROUND_COLOR};
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;

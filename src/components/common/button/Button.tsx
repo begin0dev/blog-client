@@ -67,13 +67,12 @@ const shapeCSS = {
   [shapes.PRIMARY]: css`
     ${baseButtonCSS};
     background-color: ${themes.PRIMARY};
-    color: ${themes.TEXT_IN_PRIMARY};
+    color: ${themes.TEXT_L1};
   `,
   [shapes.SECONDARY]: css`
     ${baseButtonCSS};
-    border: 1px solid ${themes.PRIMARY};
-    background-color: ${themes.WHITE};
-    color: ${themes.PRIMARY};
+    background-color: ${themes.SECONDARY};
+    color: ${themes.TEXT_L1};
   `,
   [shapes.DASHED]: css`
     ${baseButtonCSS};

@@ -7,6 +7,7 @@ import { palette } from '../../styles/palette';
 import { navigations } from './Header';
 import Drawer from '../common/drawer';
 import LoginButton from './LoginButton';
+import { themes } from '../../styles/utils';
 
 interface Props {
   toggleSidebar: () => void;
@@ -23,7 +24,7 @@ function MobileNav({ toggleSidebar }: Props) {
   };
 
   return (
-    <Drawer position="left" active={isShowSidebar} hideOverlay>
+    <Drawer position="right" active={isShowSidebar} hideOverlay>
       <SidebarWrapper>
         {navigations.map((nav) => (
           <LinkBtn data-path={nav.to} onClick={onClickLink} key={nav.text}>
@@ -45,7 +46,7 @@ const SidebarWrapper = styled.aside`
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  background-color: ${palette.gray9};
+  background-color: ${themes.SIDEBAR};
 `;
 const LinkBtn = styled.button`
   width: 100%;
