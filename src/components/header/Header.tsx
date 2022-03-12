@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
 import { IcSearch, IcLogo } from 'assets/svgs';
-import { Hamburger } from 'components';
+import { Hamburger } from 'components/common';
 import { baseActions, useAppSelector, useAppDispatch } from '../../stores';
 import { breakPoints, sizes, themes, zIndexes } from '../../styles/utils';
 import DesktopNav from './DesktopNav';
@@ -77,7 +77,7 @@ const HeaderBlock = styled.header`
   top: 0;
   height: ${sizes.HEADER}px;
   width: 100%;
-  background-color: ${themes.HEADER};
+  background-color: ${themes.BACKGROUND_L1};
 `;
 const Wrapper = styled.div`
   display: flex;

@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 import { useNavigate } from 'react-router-dom';
 
-import { MarkdownEditor, MarkdownPreview } from 'components';
+import { MarkdownEditor, MarkdownPreview } from 'components/common';
 import { IcArrowLeft } from '../../assets/svgs';
 import { includeMedia, sizes, themes, zIndexes } from '../../styles/utils';
 import { palette } from '../../styles/palette';
@@ -44,7 +44,7 @@ const HeaderBlock = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 0 40px;
-  background-color: ${themes.HEADER};
+  background-color: ${themes.BACKGROUND_L1};
   ${includeMedia('<=md')} {
     padding: 0 30px;
   }

@@ -46,7 +46,7 @@ const SidebarWrapper = styled.aside`
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  background-color: ${themes.SIDEBAR};
+  background-color: ${themes.BACKGROUND_L1};
 `;
 const LinkBtn = styled.button`
   width: 100%;

@@ -21,9 +21,8 @@ export const zIndexes = {
 } as const;
 
 export const themes = {
-  BACKGROUND_COLOR: palette.GRAY2,
-  HEADER: palette.GRAY3,
-  SIDEBAR: palette.GRAY3,
+  BACKGROUND_L0: palette.GRAY2,
+  BACKGROUND_L1: palette.GRAY3,
   PRIMARY: palette.PRIMARY,
   SECONDARY: palette.SECONDARY,
   TEXT_L1: palette.GRAY0,

@@ -1,9 +1,10 @@
 import { memo, useCallback, useRef, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import styled, { css } from 'styled-components/macro';
+import { rgba } from 'polished';
 
 import useOnClickOutside from '../../../hooks/useOnClickOutside';
-import { zIndexes } from '../../../styles/utils';
+import { themes, zIndexes } from '../../../styles/utils';
 import Overlay from '../overlay';
 import useTransition, { TransitionStatusType } from '../../../hooks/useTransition';
 
@@ -74,6 +75,7 @@ const ModalBlock = styled.section<{ fullScreen?: boolean }>`
   &.entered {
     opacity: 1;
     transform: scale(1, 1);
+    box-shadow: 0 0 6px 3px ${rgba(themes.PRIMARY, 0.1)};
   }
   ${({ fullScreen }) =>
     fullScreen &&

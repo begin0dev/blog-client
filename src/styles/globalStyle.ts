@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
     font-size: 14px;
     font-weight: 400;
     color: ${themes.TEXT_L1};
-    background-color: ${themes.BACKGROUND_COLOR};
+    background-color: ${themes.BACKGROUND_L0};
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
