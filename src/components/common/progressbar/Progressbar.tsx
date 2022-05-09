@@ -8,9 +8,9 @@ interface Props {
   animationTime?: number;
 }
 
-const plusPercent = 35;
+const plusPercent = 25;
 
-function Progressbar({ isLoading, animationTime = 20 }: Props) {
+function Progressbar({ isLoading, animationTime = 5 }: Props) {
   const rafRef = useRef<number>(0);
   const timer = useRef<number>(animationTime);
   const prevPercent = useRef<number>(0);
@@ -44,9 +44,10 @@ function Progressbar({ isLoading, animationTime = 20 }: Props) {
         setPercent(100);
       }
       if (prevPercent.current !== 100) {
-        prevPercent.current += plusPercent;
-        setPercent((prev) => prev + plusPercent);
+        prevPercent.current = Math.min(100, prevPercent.current + plusPercent);
+        setPercent(prevPercent.current);
       }
+
       rafRef.current = requestAnimationFrame(animate);
     };
 

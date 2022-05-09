@@ -1,22 +1,22 @@
 import 'react-app-polyfill/ie11';
 
 import { StrictMode } from 'react';
-import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { createRoot } from 'react-dom/client';
 
 import GlobalStyle from 'styles/globalStyle';
 import App from './App';
 import store from './stores';
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
+const root = createRoot(document.getElementById('root')!);
+root.render(
   <StrictMode>
     <GlobalStyle />
     <Provider store={store}>
       <App />
     </Provider>
   </StrictMode>,
-  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function
