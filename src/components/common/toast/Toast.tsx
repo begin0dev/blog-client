@@ -149,9 +149,10 @@ const ToastItem = styled.div<{ visible: boolean; animationDuration: number }>`
     > .item {
       width: 320px;
       max-width: 360px;
-      background-color: ${palette.white};
-      box-shadow: 0 3px 6px -4px #0000001f, 0 6px 10px #00000014, 0 9px 20px 8px #0000000d;
+      background-color: ${palette.black};
+      box-shadow: 0 8px 12px 8px rgba(255, 255, 255, 0.05);
       border-radius: 4px;
+      color: ${palette.white};
       vertical-align: baseline;
       padding: 10px 14px;
       margin: 8px 0;
