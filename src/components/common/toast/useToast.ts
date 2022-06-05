@@ -1,6 +1,7 @@
+import { useCallback } from 'react';
+
 import ToastEventEmitter from './ToastEventEmitter';
 import { ToastAddType } from './types';
-import { useCallback } from 'react';
 
 function useToast() {
   const addToast = useCallback((toast: ToastAddType) => {
