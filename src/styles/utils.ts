@@ -1,7 +1,7 @@
 import { isFinite } from 'lodash';
 
 import { palette } from './palette';
-import { ValueOf } from '../lib/utils/typescript-utils';
+import { ValueOf } from 'lib/utils/typescript-utils';
 
 export const breakPoints: Record<string, number> = {
   sm: 530,

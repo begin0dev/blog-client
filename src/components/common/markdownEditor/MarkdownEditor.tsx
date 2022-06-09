@@ -5,10 +5,9 @@ import 'codemirror/addon/display/placeholder';
 import { memo, useRef } from 'react';
 import CodeMirror, { Editor, EditorFromTextArea } from 'codemirror';
 
+import { useMount, useUnMount } from 'hooks';
 import './atom-one-light.css';
 import { EditorBlock, TitleInputWrap, TitleInput } from './MarkdownEditor.styles';
-import useMount from '../../../hooks/useMount';
-import useUnMount from '../../../hooks/useUnMount';
 
 interface Props {
   markdown: string;

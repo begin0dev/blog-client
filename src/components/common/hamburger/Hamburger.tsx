@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import styled, { css } from 'styled-components/macro';
 
-import { themes } from '../../../styles/utils';
+import { themes } from 'styles';
 
 interface Props {
   width?: number;

@@ -2,13 +2,13 @@ import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
+import { useCheckBreakPoint } from 'hooks';
 import { IcSearch, IcLogo } from 'assets/svgs';
 import { Hamburger } from 'components/common';
-import { baseActions, useAppSelector, useAppDispatch } from '../../stores';
-import { breakPoints, sizes, themes, zIndexes } from '../../styles/utils';
+import { baseActions, useAppSelector, useAppDispatch } from 'stores';
+import { breakPoints, sizes, themes, zIndexes } from 'styles';
 import DesktopNav from './DesktopNav';
 import SearchInput from '../common/searchInput';
-import useCheckBreakPoint from '../../hooks/useCheckBreakPoint';
 import MobileNav from './MobileNav';
 import LoginButton from './LoginButton';
 

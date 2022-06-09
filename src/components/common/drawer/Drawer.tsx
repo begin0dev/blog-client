@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 import styled, { css } from 'styled-components/macro';
 
-import { zIndexes } from '../../../styles/utils';
+import { zIndexes } from 'styles';
+import { useTransition, TransitionStatusType } from 'hooks';
 import Overlay from '../overlay';
-import useTransition, { TransitionStatusType } from '../../../hooks/useTransition';
 
 interface Props {
   active: boolean;

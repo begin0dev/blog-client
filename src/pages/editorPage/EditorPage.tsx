@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import Editor from '../../components/editor';
+import Editor from 'components/editor';
 
 function EditorPage() {
   const [markdown, setMarkdown] = useState<string>('');

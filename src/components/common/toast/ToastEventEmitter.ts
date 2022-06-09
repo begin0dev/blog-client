@@ -1,7 +1,7 @@
 import { EventEmitter } from 'events';
 
-import { ToastAction, ToastAddType, ToastCallbackType, ToastType } from './types';
-import { generateID } from '../../../hooks/useId';
+import { ToastAddType, ToastCallbackType, ToastAction, ToastType } from './types';
+import { generateID } from 'lib/utils/helpers';
 
 class ToastEventEmitter extends EventEmitter {
   private readonly CHANGE_EVENT_NAME = 'change' as const;

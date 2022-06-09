@@ -8,10 +8,10 @@ import {
   ToastCallbackType,
   ToastItemInterface,
 } from './types';
-import { IcXCircle, IcCheckCircle, IcExclamationCircle } from '../../../assets/svgs';
-import { palette } from '../../../styles/palette';
+import { useUnMount } from 'hooks';
+import { IcXCircle, IcCheckCircle, IcExclamationCircle } from 'assets/svgs';
+import { palette } from 'styles';
 import ToastEventEmitter from './ToastEventEmitter';
-import useUnMount from '../../../hooks/useUnMount';
 
 interface Props {
   animationDuration?: number;

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-function useLazyImageObserver(options?: IntersectionObserverInit) {
+export function useLazyImageObserver(options?: IntersectionObserverInit) {
   const imageRef = useRef<HTMLImageElement>();
   const intersectionOptions = useRef<IntersectionObserverInit | undefined>(options);
 
@@ -24,5 +24,3 @@ function useLazyImageObserver(options?: IntersectionObserverInit) {
 
   return { imageRef };
 }
-
-export default useLazyImageObserver;

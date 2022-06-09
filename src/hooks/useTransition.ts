@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { ValueOf } from '../lib/utils/typescript-utils';
-import useUnMount from './useUnMount';
+import { ValueOf } from 'lib/utils/typescript-utils';
+import { useUnMount } from './useUnMount';
 
 export const transitionStatus = {
   ENTERING: 'entering',
@@ -26,7 +26,7 @@ interface Props {
   duration?: number;
 }
 
-function useTransition({ active, duration = 200 }: Props) {
+export function useTransition({ active, duration = 200 }: Props) {
   const timer = useRef<NodeJS.Timeout>();
   const [status, setStatus] = useState<TransitionStatusType>(transitionStatus.EXITED);
 
@@ -46,5 +46,3 @@ function useTransition({ active, duration = 200 }: Props) {
 
   return status;
 }
-
-export default useTransition;

@@ -1,9 +1,8 @@
 import { InputHTMLAttributes } from 'react';
 import styled from 'styled-components/macro';
 
-import { IcSearch } from '../../../assets/svgs';
-import { themes } from '../../../styles/utils';
-import { palette } from '../../../styles/palette';
+import { IcSearch } from 'assets/svgs';
+import { themes, palette } from 'styles';
 
 interface Props extends InputHTMLAttributes<any> {
   fontSize?: string;

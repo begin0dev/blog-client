@@ -1,9 +1,7 @@
 import styled from 'styled-components/macro';
 
-import { useAppDispatch, useAppSelector, userActions, baseActions } from '../../stores';
-import { baseButtonCSS } from '../../styles/baseCss';
-import { palette } from '../../styles/palette';
-import { includeMedia, themes } from '../../styles/utils';
+import { useAppDispatch, useAppSelector, userActions, baseActions } from 'stores';
+import { baseButtonCSS, palette, themes, includeMedia } from 'styles';
 
 function LoginButton() {
   const dispatch = useAppDispatch();

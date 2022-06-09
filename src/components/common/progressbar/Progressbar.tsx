@@ -1,7 +1,7 @@
 import { useState, useEffect, memo, useRef } from 'react';
 import styled from 'styled-components/macro';
 
-import { themes, zIndexes } from '../../../styles/utils';
+import { themes, zIndexes } from 'styles';
 
 interface Props {
   isLoading: boolean;

@@ -2,12 +2,11 @@ import { MouseEventHandler } from 'react';
 import styled from 'styled-components/macro';
 import { useNavigate } from 'react-router-dom';
 
-import { useAppSelector } from '../../stores';
-import { palette } from '../../styles/palette';
+import { useAppSelector } from 'stores';
+import { palette, themes } from 'styles';
 import { navigations } from './Header';
 import Drawer from '../common/drawer';
 import LoginButton from './LoginButton';
-import { themes } from '../../styles/utils';
 
 interface Props {
   toggleSidebar: () => void;

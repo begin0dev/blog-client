@@ -2,9 +2,8 @@ import styled from 'styled-components/macro';
 import { useNavigate } from 'react-router-dom';
 
 import { MarkdownEditor, MarkdownPreview } from 'components/common';
-import { IcArrowLeft } from '../../assets/svgs';
-import { includeMedia, sizes, themes, zIndexes } from '../../styles/utils';
-import { palette } from '../../styles/palette';
+import { IcArrowLeft } from 'assets/svgs';
+import { includeMedia, sizes, themes, zIndexes, palette } from 'styles';
 
 interface Props {
   markdown: string;

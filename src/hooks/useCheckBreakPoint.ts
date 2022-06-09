@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import useRafState from './useRafState';
+import { useRafState } from './useRafState';
 
 type Comparison = '>=' | '>' | '<=' | '<';
 
@@ -13,7 +13,7 @@ const comparisonCompare = (comparison: Comparison, width: number): boolean => {
   return windowWidth === width;
 };
 
-function useCheckBreakPoint(comparison: Comparison, width: number) {
+export function useCheckBreakPoint(comparison: Comparison, width: number) {
   const [bool, setBool] = useRafState<boolean>(comparisonCompare(comparison, width));
 
   useEffect(() => {
@@ -29,5 +29,3 @@ function useCheckBreakPoint(comparison: Comparison, width: number) {
 
   return bool;
 }
-
-export default useCheckBreakPoint;

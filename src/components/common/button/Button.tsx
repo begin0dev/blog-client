@@ -1,10 +1,9 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react';
 import styled, { css } from 'styled-components/macro';
 
-import { inputSizes, InputSizeType, sizes, themes } from '../../../styles/utils';
-import { baseButtonCSS } from '../../../styles/baseCss';
-import { ValueOf } from '../../../lib/utils/typescript-utils';
-import { cx } from '../../../lib/utils/helpers';
+import { baseButtonCSS, inputSizes, sizes, themes, InputSizeType } from 'styles';
+import { ValueOf } from 'lib/utils/typescript-utils';
+import { cx } from 'lib/utils/helpers';
 
 export const shapes = {
   PRIMARY: 'primary',

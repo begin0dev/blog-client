@@ -2,9 +2,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { Progressbar, Toast } from 'components/common';
 import { EditorPage, MainPage, ProfilePage, CategoryPage, NotFoundPage } from 'pages';
-import { useAppSelector } from './stores';
+import { useAppSelector } from 'stores';
 import AuthModal from 'components/authModal';
-import PageTemplate from './components/templates/pageTemplate';
+import PageTemplate from 'components/templates/pageTemplate';
 
 function App() {
   const isLoading = useAppSelector((state) => state.base.isLoading);

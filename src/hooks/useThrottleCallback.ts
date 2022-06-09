@@ -1,7 +1,7 @@
 import { throttle } from 'lodash';
 import { useMemo, useRef } from 'react';
 
-function useThrottleCallback(cb: (...args: any[]) => void, delayMs: number = 300) {
+export function useThrottleCallback(cb: (...args: any[]) => void, delayMs: number = 300) {
   const cbRef = useRef(cb);
   cbRef.current = cb;
 
@@ -11,5 +11,3 @@ function useThrottleCallback(cb: (...args: any[]) => void, delayMs: number = 300
     [delayMs],
   );
 }
-
-export default useThrottleCallback;

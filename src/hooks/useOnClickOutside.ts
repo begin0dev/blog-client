@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-function useOnClickOutside(active: boolean, onClick: () => void) {
+export function useOnClickOutside(active: boolean, onClick: () => void) {
   const modalEl = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -19,5 +19,3 @@ function useOnClickOutside(active: boolean, onClick: () => void) {
 
   return modalEl;
 }
-
-export default useOnClickOutside;

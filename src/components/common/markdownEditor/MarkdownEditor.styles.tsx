@@ -1,6 +1,6 @@
 import styled from 'styled-components/macro';
 
-import { palette } from '../../../styles/palette';
+import { palette } from 'styles';
 
 export const EditorBlock = styled.div`
   font-family: 'Fira Mono', 'Noto Sans KR', monospace;

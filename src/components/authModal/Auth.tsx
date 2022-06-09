@@ -3,16 +3,13 @@ import { useCallback, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
 
-import type { ValueOf } from '../../lib/utils/typescript-utils';
+import type { ValueOf } from 'lib/utils/typescript-utils';
 import { Modal } from 'components/common';
 import { IcArrowLeft, IcFacebook, IcGithub, IcGoogle, IcKakao, IcLogo } from 'assets/svgs';
-import { breakPoints, includeMedia, themes } from '../../styles/utils';
-import { baseActions, userActions } from '../../stores';
-import { V1_SOCIALS_URL } from '../../lib/services/auth';
-import { palette } from '../../styles/palette';
-import { pulseKeyframes } from '../../styles/baseCss';
-import { useAppDispatch, useAppSelector } from '../../stores';
-import useCheckBreakPoint from '../../hooks/useCheckBreakPoint';
+import { palette, pulseKeyframes, breakPoints, themes, includeMedia } from 'styles';
+import { baseActions, userActions, useAppSelector, useAppDispatch } from 'stores';
+import { V1_SOCIALS_URL } from 'lib/services/auth';
+import { useCheckBreakPoint } from 'hooks';
 import useToast from '../common/toast/useToast';
 
 const SocialProvider = {

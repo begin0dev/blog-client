@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
 
-function useUnMount(callback: () => void | Promise<() => void>) {
+export function useUnMount(callback: () => void | Promise<() => void>) {
   const callbackRef = useRef<() => void>(callback);
 
   useEffect(() => {
@@ -10,5 +10,3 @@ function useUnMount(callback: () => void | Promise<() => void>) {
     };
   }, []);
 }
-
-export default useUnMount;

@@ -2,8 +2,8 @@ import styled from 'styled-components/macro';
 import { NavLink } from 'react-router-dom';
 
 import { navigations } from './Header';
-import { themes } from '../../styles/utils';
-import { cx } from '../../lib/utils/helpers';
+import { themes } from 'styles';
+import { cx } from 'lib/utils/helpers';
 
 function DesktopNav() {
   return (

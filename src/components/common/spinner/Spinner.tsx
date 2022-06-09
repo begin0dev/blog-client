@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import styled, { css, keyframes } from 'styled-components/macro';
 
-import { palette } from '../../../styles/palette';
+import { palette } from 'styles';
 
 const SPINNER_COUNT = 12;
 
