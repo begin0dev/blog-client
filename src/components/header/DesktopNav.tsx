@@ -9,13 +9,11 @@ function DesktopNav() {
   return (
     <DesktopNavWrapper>
       {navigations.map((nav) => (
-        <CustomNavLink
-          to={nav.to}
-          key={nav.text}
-          className={({ isActive }) => cx(['active', isActive])}
-        >
-          {nav.text}
-        </CustomNavLink>
+        <li key={nav.text}>
+          <CustomNavLink to={nav.to} className={({ isActive }) => cx(['active', isActive])}>
+            {nav.text}
+          </CustomNavLink>
+        </li>
       ))}
     </DesktopNavWrapper>
   );
@@ -23,13 +21,13 @@ function DesktopNav() {
 
 export default DesktopNav;
 
-const DesktopNavWrapper = styled.aside`
+const DesktopNavWrapper = styled.ul`
   display: flex;
   flex: 1;
   justify-content: center;
   margin-left: 54px;
   align-items: center;
-  a + a {
+  li + li {
     margin-left: 40px;
   }
 `;

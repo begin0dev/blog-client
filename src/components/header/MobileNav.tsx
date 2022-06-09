@@ -27,9 +27,11 @@ function MobileNav({ toggleSidebar }: Props) {
     <Drawer position="right" active={isShowSidebar} hideOverlay>
       <SidebarWrapper>
         {navigations.map((nav) => (
-          <LinkBtn data-path={nav.to} onClick={onClickLink} key={nav.text}>
-            {nav.text}
-          </LinkBtn>
+          <li key={nav.text}>
+            <LinkBtn data-path={nav.to} onClick={onClickLink}>
+              {nav.text}
+            </LinkBtn>
+          </li>
         ))}
         <LoginButton />
       </SidebarWrapper>
@@ -39,7 +41,7 @@ function MobileNav({ toggleSidebar }: Props) {
 
 export default MobileNav;
 
-const SidebarWrapper = styled.aside`
+const SidebarWrapper = styled.ul`
   height: 100%;
   width: 310px;
   display: flex;

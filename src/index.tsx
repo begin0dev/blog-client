@@ -1,6 +1,5 @@
 import 'react-app-polyfill/ie11';
 
-import { StrictMode } from 'react';
 import { Provider } from 'react-redux';
 import { createRoot } from 'react-dom/client';
 
@@ -11,12 +10,10 @@ import reportWebVitals from './reportWebVitals';
 
 const root = createRoot(document.getElementById('root')!);
 root.render(
-  <StrictMode>
+  <Provider store={store}>
     <GlobalStyle />
-    <Provider store={store}>
-      <App />
-    </Provider>
-  </StrictMode>,
+    <App />
+  </Provider>,
 );
 
 // If you want to start measuring performance in your app, pass a function

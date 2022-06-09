@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ValueOf } from '../lib/utils/typescript-utils';
 import useUnMount from './useUnMount';
 
-const transitionStatus = {
+export const transitionStatus = {
   ENTERING: 'entering',
   ENTERED: 'entered',
   EXITING: 'exiting',

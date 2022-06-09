@@ -47,7 +47,8 @@ const GlobalStyle = createGlobalStyle`
       opacity: 0.9;
     }
   }
-  ol, ul {
+  ol, ul, dl {
+    padding: 0;
     list-style: none;
   }
 `;

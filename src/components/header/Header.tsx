@@ -71,7 +71,7 @@ function Header() {
 
 export default Header;
 
-const HeaderBlock = styled.header`
+const HeaderBlock = styled.nav`
   z-index: ${zIndexes.HEADER};
   position: sticky;
   top: 0;

@@ -72,6 +72,7 @@ function Auth() {
       fullScreen={isFullScreen}
       hideModal={hideModal}
       size={{ width: '390px' }}
+      hideOverlay={false}
     >
       <AuthBlock>
         <BackButton type="button" onClick={hideModal}>
