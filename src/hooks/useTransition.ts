@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
 import { ValueOf } from 'lib/utils/typescript-utils';
-import { useUnMount } from './useUnMount';
 
 export const transitionStatus = {
   ENTERING: 'entering',
@@ -38,11 +37,11 @@ export function useTransition({ active, duration = 200 }: Props) {
     timer.current = setTimeout(() => {
       setStatus((prevState) => getNextStatus(prevState));
     }, duration);
-  }, [active, duration, status]);
 
-  useUnMount(() => {
-    if (timer.current) clearTimeout(timer.current);
-  });
+    return () => {
+      if (timer.current) clearTimeout(timer.current);
+    };
+  }, [active, duration, status]);
 
   return status;
 }
