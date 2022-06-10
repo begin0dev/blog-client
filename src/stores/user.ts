@@ -1,21 +1,17 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
+import type { UserSchema } from '../types';
 import { checkUserApi, logoutUserApi, verifyUserApi } from 'lib/services/user';
-import { IUser } from '../types';
 
 const verifyUser = createAsyncThunk('users/verify', async (verifyCode: string) => {
   const {
-    data: {
-      data: { payload },
-    },
+    data: { payload },
   } = await verifyUserApi(verifyCode);
   return payload;
 });
 const checkUser = createAsyncThunk('users/check', async () => {
   const {
-    data: {
-      data: { payload },
-    },
+    data: { payload },
   } = await checkUserApi();
   if (!payload) throw new Error();
   return payload;
@@ -25,14 +21,14 @@ const logoutUser = createAsyncThunk('users/logout', async () => {
   return null;
 });
 
-interface IUserState {
-  isLogIn: boolean;
+interface UserState {
   isLoading: boolean;
-  user: null | IUser;
+  isLoggedIn: boolean;
+  user: null | UserSchema;
 }
-const initialState: IUserState = {
-  isLogIn: false,
+const initialState: UserState = {
   isLoading: false,
+  isLoggedIn: false,
   user: null,
 };
 
@@ -41,38 +37,38 @@ const userSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    [verifyUser.pending.type]: (state) => {
+    [verifyUser.pending.type](state) {
       state.isLoading = true;
-      state.isLogIn = false;
+      state.isLoggedIn = false;
     },
-    [verifyUser.fulfilled.type]: (state, { payload }) => {
+    [verifyUser.fulfilled.type](state, { payload }) {
       state.isLoading = false;
-      state.isLogIn = true;
+      state.isLoggedIn = true;
       state.user = payload;
     },
-    [verifyUser.rejected.type]: (state) => {
+    [verifyUser.rejected.type](state) {
       state.isLoading = false;
-      state.isLogIn = false;
+      state.isLoggedIn = false;
     },
-    [checkUser.pending.type]: (state) => {
+    [checkUser.pending.type](state) {
       state.isLoading = true;
-      state.isLogIn = false;
+      state.isLoggedIn = false;
     },
-    [checkUser.fulfilled.type]: (state, { payload }) => {
+    [checkUser.fulfilled.type](state, { payload }) {
       state.isLoading = false;
-      state.isLogIn = true;
+      state.isLoggedIn = true;
       state.user = payload;
     },
-    [checkUser.rejected.type]: (state) => {
+    [checkUser.rejected.type](state) {
       state.isLoading = false;
-      state.isLogIn = false;
+      state.isLoggedIn = false;
     },
-    [logoutUser.fulfilled.type]: (state) => {
-      state.isLogIn = false;
+    [logoutUser.pending.type](state) {
+      state.isLoggedIn = false;
       state.user = null;
     },
   },
 });
 
-export const actions = { ...userSlice.actions, checkUser, verifyUser, logoutUser };
+export const userActions = { ...userSlice.actions, checkUser, verifyUser, logoutUser };
 export default userSlice.reducer;

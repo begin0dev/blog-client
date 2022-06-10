@@ -1,54 +1,42 @@
 import 'codemirror/lib/codemirror.css';
-
-import { memo } from 'react';
-import CodeMirror, { Editor, EditorFromTextArea } from 'codemirror';
-import { useCallback, useEffect, useRef } from 'react';
 import 'codemirror/mode/markdown/markdown';
 import 'codemirror/addon/display/placeholder';
 
+import { memo, useRef } from 'react';
+import CodeMirror, { Editor, EditorFromTextArea } from 'codemirror';
+
+import { useMount, useUnMount } from 'hooks';
 import './atom-one-light.css';
 import { EditorBlock, TitleInputWrap, TitleInput } from './MarkdownEditor.styles';
 
-interface IProps {
+interface Props {
   markdown: string;
   onChange: (value: string) => void;
 }
 
-function MarkdownEditor({ markdown, onChange }: IProps) {
-  const initialize = useRef<boolean>(true);
+function MarkdownEditor({ markdown, onChange }: Props) {
   const textAreaEl = useRef<HTMLTextAreaElement | null>(null);
   const codemirrorEl = useRef<EditorFromTextArea | null>(null);
 
-  const onChangeTextArea = useCallback(
-    (editor: Editor) => {
-      onChange(editor.getValue());
-    },
-    [onChange],
-  );
-
-  useEffect(() => {
+  useMount(() => {
     if (!textAreaEl.current) return;
-
     const codemirror = CodeMirror.fromTextArea(textAreaEl.current, {
       mode: 'markdown',
       theme: 'one-light',
       lineWrapping: true,
       placeholder: '내용을 작성해 주세요~',
     });
-    codemirrorEl.current = codemirror;
+    if (markdown) codemirror.setValue(markdown);
     codemirror.focus();
-    codemirror.on('change', onChangeTextArea);
+    codemirror.on('change', (editor: Editor) => {
+      onChange?.(editor.getValue());
+    });
+    codemirrorEl.current = codemirror;
+  });
 
-    return () => {
-      codemirror.toTextArea();
-    };
-  }, [onChangeTextArea]);
-
-  useEffect(() => {
-    if (!initialize.current) return;
-    initialize.current = false;
-    if (markdown) codemirrorEl.current?.setValue?.(markdown);
-  }, [markdown]);
+  useUnMount(() => {
+    codemirrorEl.current?.toTextArea?.();
+  });
 
   return (
     <EditorBlock>

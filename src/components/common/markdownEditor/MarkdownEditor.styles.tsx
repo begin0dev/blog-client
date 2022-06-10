@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
-import { palette } from '../../../styles/palette';
+import { palette } from 'styles';
 
 export const EditorBlock = styled.div`
   font-family: 'Fira Mono', 'Noto Sans KR', monospace;
@@ -40,15 +40,6 @@ export const TitleInputWrap = styled.div`
   position: relative;
   padding: 10px;
   margin-bottom: 5px;
-  &:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 13px;
-    height: 5px;
-    width: 30px;
-    background-color: ${palette.green9};
-  }
 `;
 export const TitleInput = styled.input`
   font-size: 34px;

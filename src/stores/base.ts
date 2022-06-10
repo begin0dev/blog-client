@@ -1,12 +1,14 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-interface IBaseState {
+interface BaseState {
   isLoading: boolean;
-  authModal: boolean;
+  isShowSidebar: boolean;
+  isShowAuthModal: boolean;
 }
-const initialState: IBaseState = {
+const initialState: BaseState = {
   isLoading: false,
-  authModal: false,
+  isShowSidebar: false,
+  isShowAuthModal: false,
 };
 
 const baseSlice = createSlice({
@@ -16,11 +18,14 @@ const baseSlice = createSlice({
     setIsLoading(state, { payload }: PayloadAction<boolean>) {
       state.isLoading = payload;
     },
+    showSidebar(state, { payload }: PayloadAction<boolean>) {
+      state.isShowSidebar = payload;
+    },
     toggleAuthModal(state) {
-      state.authModal = !state.authModal;
+      state.isShowAuthModal = !state.isShowAuthModal;
     },
   },
 });
 
-export const { actions } = baseSlice;
+export const baseActions = baseSlice.actions;
 export default baseSlice.reducer;

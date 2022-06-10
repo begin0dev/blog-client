@@ -1,15 +1,14 @@
-import { ReactNode } from 'react';
+import { Outlet } from 'react-router-dom';
+
 import Header from 'components/header';
 
-interface IProps {
-  children: ReactNode;
-}
-
-function PageTemplate({ children }: IProps) {
+function PageTemplate() {
   return (
     <>
       <Header />
-      <div>{children}</div>
+      <main>
+        <Outlet />
+      </main>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/macro';
 
 const atomOneDarkTheme = css`
   /**
@@ -7,21 +7,15 @@ const atomOneDarkTheme = css`
   * Based on dabblet (http://dabblet.com)
   * @author Lea Verou
   */
-  pre {
-    background: #313440;
-    code {
-      color: #e0e6f1;
-    }
-  }
-  p > code {
+  p > code[class*='language-'] {
+    color: #383e49;
     background: rgba(27, 31, 35, 0.05);
     border-radius: 3px;
-    padding: 0.2em 0.4em;
+    padding: 0.25em 0.45em;
   }
   code[class*='language-'],
   pre[class*='language-'] {
-    color: #e0e6f1;
-    background: none;
+    color: #abb2bf;
     text-align: left;
     white-space: pre;
     word-spacing: normal;
@@ -165,9 +159,8 @@ export const MarkdownPreviewBlock = styled.div`
   font-size: 14px;
   flex: 1;
   padding: 10px;
-
   pre {
-    font-family: 'Fira Mono', 'Noto Sans KR', monospace;
+    font-family: 'Fira Mono', 'Spoqa Han Sans Neo', 'Noto Sans KR', monospace;
   }
   ol,
   ul {

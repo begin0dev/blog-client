@@ -133,4 +133,11 @@ export const palette = {
   orange7: '#f76707',
   orange8: '#e8590c',
   orange9: '#d9480f',
+
+  GRAY0: '#F8F9FA',
+  GRAY1: '#CED4DA',
+  GRAY2: '#141312',
+  GRAY3: '#0E0D0D',
+  PRIMARY: '#19C9DC',
+  SECONDARY: '#5D5C5C',
 } as const;

@@ -1,6 +1,6 @@
 {
-  "extends": ["react-app", "prettier"],
   "parser": "@typescript-eslint/parser",
+  "extends": ["react-app", "react-app/jest", "prettier"],
   "plugins": ["@typescript-eslint"],
   "settings": {
     "import/resolver": {
@@ -15,8 +15,6 @@
     "react/prefer-stateless-function": "off",
     "react/jsx-filename-extension": "off",
     "react/jsx-props-no-spreading": "off",
-    "react/require-default-props": "off",
-    "jsx-a11y/no-static-element-interactions": "off",
     "import/prefer-default-export": "off",
     "import/extensions": [
       "error",
@@ -26,9 +24,16 @@
     "no-param-reassign": [
       "error",
       { "props": true, "ignorePropertyModificationsFor": ["draft", "state"] }
-    ],
-    "@typescript-eslint/no-use-before-define": ["error"],
-    "@typescript-eslint/no-unused-expressions": ["error"],
-    "react-hooks/exhaustive-deps": ["warn", { "additionalHooks": "useRecoilCallback" }]
-  }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/*.stories.*"
+      ],
+      "rules": {
+        "import/no-anonymous-default-export": "off"
+      }
+    }
+  ]
 }
