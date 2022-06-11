@@ -8,11 +8,9 @@ function LoginButton() {
 
   const isLoggedIn = useAppSelector((state) => state.user.isLoggedIn);
 
-  const logOut = () => dispatch(userActions.logoutUser());
-  const toggleAuthModal = () => dispatch(baseActions.toggleAuthModal());
-
-  if (!isLoggedIn) return <LoginBtn onClick={toggleAuthModal}>로그인</LoginBtn>;
-  return <LoginBtn onClick={logOut}>로그아웃</LoginBtn>;
+  if (!isLoggedIn)
+    return <LoginBtn onClick={() => dispatch(baseActions.showAuthModal())}>로그인</LoginBtn>;
+  return <LoginBtn onClick={() => dispatch(userActions.logoutUser())}>로그아웃</LoginBtn>;
 }
 
 export default LoginButton;

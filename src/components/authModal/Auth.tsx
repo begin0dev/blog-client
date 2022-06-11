@@ -34,7 +34,7 @@ function Auth() {
     ignoreQueryPrefix: true,
   });
 
-  const hideModal = () => dispatch(baseActions.toggleAuthModal());
+  const hideModal = () => dispatch(baseActions.hideAuthModal());
 
   const socialRedirect = useCallback(
     (provider: ValueOf<typeof SocialProvider>) => {
@@ -54,7 +54,7 @@ function Auth() {
     if (verify_code) dispatch(userActions.verifyUser(verify_code));
     if (message) {
       addToast({ type: 'error', message });
-      dispatch(baseActions.toggleAuthModal());
+      dispatch(baseActions.showAuthModal());
     }
 
     const referer = sessionStorage.getItem('referer') || '/';

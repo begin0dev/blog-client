@@ -21,8 +21,11 @@ const baseSlice = createSlice({
     showSidebar(state, { payload }: PayloadAction<boolean>) {
       state.isShowSidebar = payload;
     },
-    toggleAuthModal(state) {
-      state.isShowAuthModal = !state.isShowAuthModal;
+    showAuthModal(state) {
+      state.isShowAuthModal = true;
+    },
+    hideAuthModal(state) {
+      state.isShowAuthModal = false;
     },
   },
 });
