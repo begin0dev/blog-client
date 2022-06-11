@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { rgba } from 'polished';
 import styled, { css } from 'styled-components/macro';
 
-import { useOnClickOutside, useTransition, transitionStatus, TransitionStatusType } from 'hooks';
+import { useClickOutside, useTransition, transitionStatus, TransitionStatusType } from 'hooks';
 import { themes, zIndexes } from 'styles';
 
 interface Props {
@@ -21,7 +21,7 @@ function Modal({ active, size, style, hideOverlay, fullScreen, hideModal, childr
 
   const status = useTransition({ active, duration: 200 });
 
-  const modalRef = useOnClickOutside(status === transitionStatus.ENTERED, () => {
+  const modalRef = useClickOutside(() => {
     hideModal?.();
   });
 

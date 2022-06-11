@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
 
-export function useOnClickOutside(active: boolean, onClick: () => void) {
+export function useClickOutside(onClick: () => void) {
   const modalEl = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!active) return;
+    if (!modalEl.current) return;
 
     const eventHandler = (e: MouseEvent) => {
       if (modalEl.current?.contains(e.target as HTMLElement)) return;
@@ -15,7 +15,7 @@ export function useOnClickOutside(active: boolean, onClick: () => void) {
     return () => {
       document.removeEventListener('click', eventHandler);
     };
-  }, [active, onClick]);
+  }, [modalEl, onClick]);
 
   return modalEl;
 }
