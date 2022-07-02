@@ -73,7 +73,6 @@ const DrawerWrapper = styled.div<{ position: Props['position'] }>`
     ${({ position }) => positionCssMapper[position]}
   }
 `;
-
 const DrawerBlock = styled.div`
   position: absolute;
   transition: all 0.2s cubic-bezier(0.7, 0.3, 0.1, 1);
