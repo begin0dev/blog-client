@@ -1,10 +1,12 @@
-import { memo, useRef, ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { rgba } from 'polished';
+import { CSSTransition } from 'react-transition-group';
 import styled, { css } from 'styled-components/macro';
 
-import { useClickOutside, useTransition, transitionStatus, TransitionStatusType } from 'hooks';
 import { themes, zIndexes } from 'styles';
+
+const modalRoot = document.querySelector('#modal') as HTMLDivElement;
 
 interface Props {
   active: boolean;
@@ -16,62 +18,74 @@ interface Props {
   children: ReactNode;
 }
 
-function Modal({ active, size, style, hideOverlay, fullScreen, hideModal, children }: Props) {
-  const modalRoot = useRef<HTMLDivElement>(document.querySelector('#modal'));
-
-  const status = useTransition({ active, duration: 200 });
-
-  const modalRef = useClickOutside(() => {
-    hideModal?.();
-  });
-
-  if (status === transitionStatus.EXITED) return null;
+function Modal({
+  active,
+  size,
+  style,
+  fullScreen,
+  hideOverlay = false,
+  hideModal,
+  children,
+}: Props) {
   return createPortal(
-    <ModalWrapper status={status} hideOverlay={hideOverlay ?? false}>
-      <ModalBlock
-        className={status}
-        fullScreen={fullScreen}
-        style={{ ...style, ...(!fullScreen && size) }}
-        ref={modalRef}
-      >
-        {children}
-      </ModalBlock>
-    </ModalWrapper>,
-    modalRoot.current as HTMLDivElement,
+    <CSSTransition in={active} classNames="modal" timeout={200} unmountOnExit>
+      <ModalWrapper>
+        {!hideOverlay && <Dim onClick={hideModal} />}
+        <ModalBlock
+          className="modalContent"
+          fullScreen={fullScreen}
+          style={{ ...style, ...(!fullScreen && size) }}
+        >
+          {children}
+        </ModalBlock>
+      </ModalWrapper>
+    </CSSTransition>,
+    modalRoot,
   );
 }
 
 export default memo(Modal);
 
-const ModalWrapper = styled.aside<{ status: TransitionStatusType; hideOverlay: boolean }>`
+const ModalWrapper = styled.aside`
   z-index: ${zIndexes.MODAL};
   position: fixed;
   top: 0;
   left: 0;
+  bottom: 0;
+  right: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  ${({ status, hideOverlay }) => css`
-    height: ${status === 'exited' ? 0 : '100%'};
-    width: ${status === 'exited' ? 0 : '100%'};
-    background: ${hideOverlay ? 'transparent' : 'rgba(0, 0, 0, 0.2)'};
-  `}
+  backdrop-filter: blur(2px);
+
+  &.modal-enter-done .modalContent,
+  &.modal-exit .modalContent {
+    opacity: 1;
+  }
+  &.modal-enter .modalContent,
+  &.modal-exit-active .modalContent {
+    opacity: 0;
+    transform: scale(0.8);
+  }
 `;
+const Dim = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.2);
+`;
+
 const ModalBlock = styled.section<{ fullScreen?: boolean }>`
   position: relative;
   margin: 1.5rem;
   border-radius: 10px;
   overflow: hidden;
-  opacity: 0;
-  transform: scale(0.8, 0.8);
   transform-origin: center;
-  transition: all 0.2s ease;
-  &.entered {
-    opacity: 1;
-    transform: scale(1, 1);
-    box-shadow: 0 0 9px 6px ${rgba(themes.PRIMARY, 0.1)};
-  }
+  transition: all 0.2s;
+  box-shadow: 0 0 9px 6px ${rgba(themes.PRIMARY, 0.1)};
+
   ${({ fullScreen }) =>
     fullScreen &&
     css`

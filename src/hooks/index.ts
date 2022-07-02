@@ -1,5 +1,4 @@
 export * from './useCheckBreakPoint';
-export * from './useInput';
 export * from './useLazyImageObserver';
 export * from './useMount';
 export * from './useClickOutside';
