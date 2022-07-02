@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import styled, { css, keyframes } from 'styled-components/macro';
+import styled, { css } from 'styled-components/macro';
 
 import {
   ToastType,
@@ -32,35 +32,22 @@ function Toast({ maxCount = 10, position = 'top-center', animationDuration = 300
     [setToasts],
   );
 
-  const update = useCallback(
-    (id: string) => {
-      setToasts((prevState) =>
-        prevState.map((notification) =>
-          notification.id === id ? { ...notification, visible: false } : notification,
-        ),
-      );
-      if (timers.current[id]) clearTimeout(timers.current[id]);
-      timers.current[id] = setTimeout(() => remove(id), animationDuration);
-    },
-    [animationDuration, remove],
-  );
-
   const addToast = useCallback(
     (toast: ToastItemInterface) => {
       setToasts((prevState) => [...prevState, toast].slice(maxCount * -1));
       if (toast.isAutoClose) {
-        timers.current[toast.id] = setTimeout(() => update(toast.id), toast.autoCloseTime);
+        timers.current[toast.id] = setTimeout(() => remove(toast.id), toast.autoCloseTime);
       }
     },
-    [maxCount, update],
+    [maxCount, remove],
   );
 
   const eventCallback: ToastCallbackType = useCallback(
     (toast) => {
       if (toast.action === ToastAction.ADD) addToast(toast as ToastItemInterface);
-      if (toast.action === ToastAction.REMOVE) update(toast.id);
+      if (toast.action === ToastAction.REMOVE) remove(toast.id);
     },
-    [addToast, update],
+    [addToast, remove],
   );
 
   useEffect(() => {
@@ -125,18 +112,6 @@ const placements = {
   `,
 };
 
-const enteringKeyframes = keyframes`
-  0% { transform: translate3d(0, -100%, 0); }
-  100% { transform: translate3d(0, 0, 0); }
-`;
-const exitingKeyframes = keyframes`
-  0% { transform: translate3d(0,0,0); }
-  100% { 
-    transform: scale(0.8);
-    height: 0;
-    opacity: 0;
-  }
-`;
 const ToastsWrap = styled.div<{ position: PositionType }>`
   z-index: 1010;
   position: fixed;
@@ -144,8 +119,8 @@ const ToastsWrap = styled.div<{ position: PositionType }>`
   ${({ position }) => placements[position]}
 `;
 const ToastItem = styled.div<{ visible: boolean; animationDuration: number }>`
-  ${({ visible, animationDuration }) => css`
-    transition: height ${`${animationDuration}ms`} ease;
+  ${({ animationDuration }) => css`
+    transition: height ${`${animationDuration}ms`};
     > .item {
       width: 320px;
       max-width: 360px;
@@ -156,7 +131,6 @@ const ToastItem = styled.div<{ visible: boolean; animationDuration: number }>`
       vertical-align: baseline;
       padding: 10px 14px;
       margin: 8px 0;
-      animation: ${visible ? enteringKeyframes : exitingKeyframes} ${`${animationDuration}ms`};
       > span {
         font-size: 14px;
       }

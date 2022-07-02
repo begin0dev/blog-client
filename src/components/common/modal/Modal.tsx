@@ -5,6 +5,7 @@ import { CSSTransition } from 'react-transition-group';
 import styled, { css } from 'styled-components/macro';
 
 import { themes, zIndexes } from 'styles';
+import Overlay from '../overlay';
 
 const modalRoot = document.querySelector('#modal') as HTMLDivElement;
 
@@ -28,9 +29,9 @@ function Modal({
   children,
 }: Props) {
   return createPortal(
-    <CSSTransition in={active} classNames="modal" timeout={200} unmountOnExit>
+    <CSSTransition in={active} timeout={200} classNames="modal" unmountOnExit>
       <ModalWrapper>
-        {!hideOverlay && <Dim onClick={hideModal} />}
+        {!hideOverlay && <Overlay onClick={hideModal} />}
         <ModalBlock
           className="modalContent"
           fullScreen={fullScreen}
@@ -67,14 +68,6 @@ const ModalWrapper = styled.aside`
     opacity: 0;
     transform: scale(0.8);
   }
-`;
-const Dim = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.2);
 `;
 
 const ModalBlock = styled.section<{ fullScreen?: boolean }>`

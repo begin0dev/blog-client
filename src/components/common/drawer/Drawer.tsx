@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
+import { CSSTransition } from 'react-transition-group';
 import styled, { css } from 'styled-components/macro';
 
 import { zIndexes } from 'styles';
-import { useTransition, TransitionStatusType } from 'hooks';
 import Overlay from '../overlay';
 
 interface Props {
@@ -12,22 +12,47 @@ interface Props {
   children: ReactNode;
 }
 
-function Drawer({ active, hideOverlay, position = 'bottom', children }: Props) {
-  const status = useTransition({ active });
-
+function Drawer({ active, position = 'bottom', hideOverlay, children }: Props) {
   return (
-    <DrawerWrapper status={status}>
-      {!hideOverlay && <Overlay />}
-      <DrawerBlock active={active} position={position}>
-        {children}
-      </DrawerBlock>
-    </DrawerWrapper>
+    <CSSTransition in={active} timeout={200} classNames="drawer" unmountOnExit>
+      <DrawerWrapper position={position}>
+        {!hideOverlay && <Overlay />}
+        <DrawerBlock className="drawerContent">{children}</DrawerBlock>
+      </DrawerWrapper>
+    </CSSTransition>
   );
 }
 
 export default Drawer;
 
-const DrawerWrapper = styled.div<{ status: TransitionStatusType }>`
+const positionCssMapper = {
+  top: css`
+    top: 0;
+    left: 0;
+    right: 0;
+    transform: translateY(-100%);
+  `,
+  bottom: css`
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: translateY(200%);
+  `,
+  left: css`
+    top: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+  `,
+  right: css`
+    top: 0;
+    bottom: 0;
+    right: 0;
+    transform: translateX(200%);
+  `,
+};
+
+const DrawerWrapper = styled.div<{ position: Props['position'] }>`
   z-index: ${zIndexes.MODAL};
   position: fixed;
   display: flex;
@@ -35,21 +60,21 @@ const DrawerWrapper = styled.div<{ status: TransitionStatusType }>`
   align-items: center;
   top: 0;
   left: 0;
-  overflow: hidden;
-  ${({ status }) => css`
-    height: ${status === 'exited' ? 0 : '100%'};
-    width: ${status === 'exited' ? 0 : '100%'};
-  `}
+  bottom: 0;
+  right: 0;
+
+  &.drawer-enter-done .drawerContent,
+  &.drawer-exit .drawerContent {
+    ${({ position }) => positionCssMapper[position]}
+    transform: translate(0, 0);
+  }
+  &.drawer-enter .drawerContent,
+  &.drawer-exit-active .drawerContent {
+    ${({ position }) => positionCssMapper[position]}
+  }
 `;
-const DrawerBlock = styled.div<{
-  active: boolean;
-  position: Props['position'];
-}>`
+
+const DrawerBlock = styled.div`
   position: absolute;
-  ${({ active, position }) => css`
-    width: ${['top', 'bottom'].includes(position) ? '100%' : 'auto'};
-    height: ${['left', 'right'].includes(position) ? '100%' : 'auto'};
-    ${position}: ${active ? 0 : '-100%'};
-    transition: ${position} 0.25s cubic-bezier(0.7, 0.3, 0.1, 1);
-  `}
+  transition: all 0.2s cubic-bezier(0.7, 0.3, 0.1, 1);
 `;
