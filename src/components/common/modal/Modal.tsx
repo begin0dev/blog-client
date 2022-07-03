@@ -1,10 +1,9 @@
 import { memo, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
-import { rgba } from 'polished';
 import { CSSTransition } from 'react-transition-group';
 import styled, { css } from 'styled-components/macro';
 
-import { themes, zIndexes } from 'styles';
+import { zIndexes } from 'styles';
 import Overlay from '../overlay';
 
 const modalRoot = document.querySelector('#modal') as HTMLDivElement;
@@ -77,7 +76,7 @@ const ModalBlock = styled.section<{ fullScreen?: boolean }>`
   overflow: hidden;
   transform-origin: center;
   transition: all 0.2s;
-  box-shadow: 0 0 9px 6px ${rgba(themes.PRIMARY, 0.1)};
+  box-shadow: 0 2px 8px 3px rgba(255, 255, 255, 0.03);
 
   ${({ fullScreen }) =>
     fullScreen &&

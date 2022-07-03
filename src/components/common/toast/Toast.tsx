@@ -12,6 +12,7 @@ import { useUnMount } from 'hooks';
 import { IcXCircle, IcCheckCircle, IcExclamationCircle } from 'assets/svgs';
 import { palette } from 'styles';
 import ToastEventEmitter from './ToastEventEmitter';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 interface Props {
   animationDuration?: number;
@@ -19,7 +20,7 @@ interface Props {
   position?: PositionType;
 }
 
-function Toast({ maxCount = 10, position = 'top-center', animationDuration = 300 }: Props) {
+function Toast({ maxCount = 10, position = 'top-center', animationDuration = 250 }: Props) {
   const timers = useRef<Record<string, NodeJS.Timer>>({});
 
   const [toasts, setToasts] = useState<ToastItemInterface[]>([]);
@@ -66,16 +67,16 @@ function Toast({ maxCount = 10, position = 'top-center', animationDuration = 300
   return (
     <ToastsWrap position={position}>
       {toasts.map((toast) => (
-        <ToastItem visible={toast.visible} animationDuration={animationDuration} key={toast.id}>
-          <div className="item">
-            <span className="svg-span">
-              {toast.type === ToastType.SUCCESS && <IcCheckCircle className={toast.type} />}
-              {toast.type === ToastType.WARNING && <IcExclamationCircle className={toast.type} />}
-              {toast.type === ToastType.ERROR && <IcXCircle className={toast.type} />}
+        <CSSTransition key={toast.id} timeout={animationDuration} classNames="toast">
+          <ToastItem animationDuration={animationDuration} key={toast.id}>
+            <span className={`svg-span ${toast.type}`}>
+              {toast.type === ToastType.SUCCESS && <IcCheckCircle />}
+              {toast.type === ToastType.WARNING && <IcExclamationCircle />}
+              {toast.type === ToastType.ERROR && <IcXCircle />}
             </span>
             <span>{toast.message}</span>
-          </div>
-        </ToastItem>
+          </ToastItem>
+        </CSSTransition>
       ))}
     </ToastsWrap>
   );
@@ -83,7 +84,7 @@ function Toast({ maxCount = 10, position = 'top-center', animationDuration = 300
 
 export default Toast;
 
-const placements = {
+const positionsMapper = {
   'top-left': css`
     top: 0;
     left: 0;
@@ -111,43 +112,75 @@ const placements = {
     right: 0;
   `,
 };
+const initPositionCss = (position: PositionType) => {
+  if (position.includes('right'))
+    return css`
+      transform: translateX(150%);
+    `;
+  if (position.includes('lef'))
+    return css`
+      transform: translateX(-50%);
+    `;
+  if (position.includes('top'))
+    return css`
+      max-height: 0;
+      margin: 0 10px;
+      transform: translateY(-50%); ;
+    `;
+  return css`
+    max-height: 0;
+    margin: 0 10px;
+    transform: translateY(150%);
+  `;
+};
 
-const ToastsWrap = styled.div<{ position: PositionType }>`
-  z-index: 1010;
+const ToastsWrap = styled(TransitionGroup)<{ position: PositionType }>`
+  z-index: 9999;
   position: fixed;
   max-height: 100%;
-  ${({ position }) => placements[position]}
+  ${({ position }) => css`
+    ${positionsMapper[position]};
+
+    .toast-enter-active,
+    .toast-exit {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+    .toast-enter,
+    .toast-exit-active {
+      ${initPositionCss(position)};
+      opacity: 0;
+    }
+  `}
 `;
-const ToastItem = styled.div<{ visible: boolean; animationDuration: number }>`
+const ToastItem = styled.div<{ animationDuration: number }>`
   ${({ animationDuration }) => css`
-    transition: height ${`${animationDuration}ms`};
-    > .item {
-      width: 320px;
-      max-width: 360px;
-      background-color: ${palette.black};
-      box-shadow: 0 8px 12px 8px rgba(255, 255, 255, 0.05);
-      border-radius: 4px;
-      color: ${palette.white};
-      vertical-align: baseline;
-      padding: 10px 14px;
-      margin: 8px 0;
-      > span {
-        font-size: 14px;
+    display: flex;
+    align-items: flex-start;
+    width: 320px;
+    max-width: 360px;
+    font-size: 14px;
+    color: ${palette.white};
+    background-color: ${palette.black};
+    box-shadow: 0 2px 8px 3px rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin: 10px;
+    transition: all ${`${animationDuration}ms`};
+
+    .svg-span {
+      display: inline-flex;
+      font-size: 18px;
+      margin-right: 8px;
+
+      &.success {
+        color: ${palette.green5};
       }
-      > .svg-span > svg {
-        position: relative;
-        margin-bottom: -5px;
-        font-size: 18px;
-        margin-right: 8px;
-        &.success {
-          color: ${palette.green5};
-        }
-        &.warning {
-          color: ${palette.orange5};
-        }
-        &.error {
-          color: ${palette.red5};
-        }
+      &.warning {
+        color: ${palette.orange5};
+      }
+      &.error {
+        color: ${palette.red5};
       }
     }
   `}
