@@ -1,6 +1,8 @@
+import 'codemirror/lib/codemirror.css';
+
 import styled from 'styled-components/macro';
 
-import { palette } from 'styles';
+import { themes } from 'styles';
 
 export const EditorBlock = styled.div`
   font-family: 'Fira Mono', 'Noto Sans KR', monospace;
@@ -10,11 +12,11 @@ export const EditorBlock = styled.div`
     background-color: inherit;
   }
   .CodeMirror-placeholder {
-    color: #868e96 !important;
+    color: ${themes.TEXT_L2} !important;
   }
   .cm-header {
     line-height: 2.2;
-    color: ${palette.gray8};
+    color: ${themes.TEXT_L1};
   }
   .cm-header-1 {
     font-size: 2em;
@@ -32,7 +34,7 @@ export const EditorBlock = styled.div`
   }
   .cm-strong,
   .cm-em {
-    color: ${palette.gray8};
+    color: ${themes.TEXT_L1};
   }
 `;
 
@@ -48,6 +50,7 @@ export const TitleInput = styled.input`
   background-color: inherit;
   border-style: none;
   outline: none;
+
   &::placeholder {
     color: inherit;
     font-size: inherit;

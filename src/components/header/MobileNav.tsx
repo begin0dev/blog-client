@@ -6,7 +6,7 @@ import { useAppSelector } from 'stores';
 import { palette, themes } from 'styles';
 import { navigations } from './Header';
 import Drawer from '../common/drawer';
-import LoginButton from './LoginButton';
+import AuthButton from './AuthButton';
 
 interface Props {
   toggleSidebar: () => void;
@@ -32,7 +32,7 @@ function MobileNav({ toggleSidebar }: Props) {
             </LinkBtn>
           </li>
         ))}
-        <LoginButton />
+        <AuthButton />
       </SidebarWrapper>
     </Drawer>
   );

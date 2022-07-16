@@ -1,12 +1,10 @@
-import 'codemirror/lib/codemirror.css';
 import 'codemirror/mode/markdown/markdown';
 import 'codemirror/addon/display/placeholder';
 
-import { memo, useRef } from 'react';
+import { memo, useEffect, useRef } from 'react';
 import CodeMirror, { Editor, EditorFromTextArea } from 'codemirror';
 
 import { useMount, useUnMount } from 'hooks';
-import './atom-one-light.css';
 import { EditorBlock, TitleInputWrap, TitleInput } from './MarkdownEditor.styles';
 
 interface Props {
@@ -20,13 +18,13 @@ function MarkdownEditor({ markdown, onChange }: Props) {
 
   useMount(() => {
     if (!textAreaEl.current) return;
+
     const codemirror = CodeMirror.fromTextArea(textAreaEl.current, {
       mode: 'markdown',
-      theme: 'one-light',
-      lineWrapping: true,
+      theme: 'material-darker',
       placeholder: '내용을 작성해 주세요~',
+      lineWrapping: true,
     });
-    if (markdown) codemirror.setValue(markdown);
     codemirror.focus();
     codemirror.on('change', (editor: Editor) => {
       onChange?.(editor.getValue());
@@ -34,8 +32,15 @@ function MarkdownEditor({ markdown, onChange }: Props) {
     codemirrorEl.current = codemirror;
   });
 
+  useEffect(() => {
+    if (!codemirrorEl.current) return;
+    if (codemirrorEl.current.getValue() !== markdown) {
+      codemirrorEl.current?.setValue(markdown);
+    }
+  }, [markdown]);
+
   useUnMount(() => {
-    codemirrorEl.current?.toTextArea?.();
+    codemirrorEl.current?.toTextArea();
   });
 
   return (

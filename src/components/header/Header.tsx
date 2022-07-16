@@ -6,11 +6,11 @@ import { useCheckBreakPoint } from 'hooks';
 import { IcSearch, IcLogo } from 'assets/svgs';
 import { Hamburger } from 'components/common';
 import { baseActions, useAppSelector, useAppDispatch } from 'stores';
-import { breakPoints, sizes, themes, zIndexes } from 'styles';
+import { breakPoints, includeMedia, sizes, themes, zIndexes } from 'styles';
 import DesktopNav from './DesktopNav';
 import SearchInput from '../common/searchInput';
 import MobileNav from './MobileNav';
-import LoginButton from './LoginButton';
+import AuthButton from './AuthButton';
 
 interface Navigation {
   text: string;
@@ -47,7 +47,7 @@ function Header() {
             <DesktopNav />
             <HeaderRight>
               <SearchInput placeholder="검색어를 입력해주세요!" />
-              <LoginButton />
+              <AuthButton />
             </HeaderRight>
           </>
         )}
@@ -75,9 +75,14 @@ const HeaderBlock = styled.nav`
   z-index: ${zIndexes.HEADER};
   position: sticky;
   top: 0;
-  height: ${sizes.HEADER}px;
   width: 100%;
   background-color: ${themes.BACKGROUND_L1};
+  ${includeMedia('<=md')} {
+    height: ${sizes.MOBILE_HEADER}px;
+  }
+  ${includeMedia('>md')} {
+    height: ${sizes.DESKTOP_HEADER}px;
+  }
 `;
 const Wrapper = styled.div`
   display: flex;
@@ -85,7 +90,7 @@ const Wrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   flex-flow: row wrap;
-  max-width: 1400px;
+  max-width: 1600px;
   padding: 0 35px;
   margin: 0 auto;
 `;
@@ -117,7 +122,7 @@ const SearchIconBtn = styled.button`
 const HamburgerBlock = styled.div`
   z-index: ${zIndexes.HAMBURGER};
   position: fixed;
-  top: calc(${sizes.HEADER}px / 2);
+  top: 50%;
   right: 28px;
   transform: translateY(-50%);
   width: ${hamburgerSize};
@@ -127,4 +132,10 @@ const HamburgerBlock = styled.div`
   align-items: center;
   border-radius: 6px;
   background-color: transparent;
+  ${includeMedia('<=md')} {
+    top: calc(${sizes.MOBILE_HEADER}px / 2);
+  }
+  ${includeMedia('>md')} {
+    top: calc(${sizes.DESKTOP_HEADER}px / 2);
+  }
 `;

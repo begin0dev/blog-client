@@ -1,5 +1,3 @@
-import 'react-app-polyfill/ie11';
-
 import { Provider } from 'react-redux';
 import { createRoot } from 'react-dom/client';
 

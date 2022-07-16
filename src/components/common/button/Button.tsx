@@ -1,9 +1,9 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react';
 import styled, { css } from 'styled-components/macro';
+import cx from 'classnames';
 
 import { baseButtonCSS, inputSizes, sizes, themes, InputSizeType } from 'styles';
 import { ValueOf } from 'lib/utils/typescript-utils';
-import { cx } from 'lib/utils/helpers';
 
 export const shapes = {
   PRIMARY: 'primary',
@@ -30,13 +30,16 @@ function Button({
   round,
   icon,
   children,
+  className,
+  ...buttonProps
 }: Props) {
   return (
     <CustomButton
       type={type}
       size={size}
       shape={shape}
-      className={cx(['round', !!round], ['icon', !!icon])}
+      className={cx(className, { round: !!round, icon: !!icon })}
+      {...buttonProps}
     >
       <span>{children}</span>
     </CustomButton>

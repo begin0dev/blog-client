@@ -1,13 +1,13 @@
 import { isFinite } from 'lodash';
 
-import { palette } from './palette';
 import { ValueOf } from 'lib/utils/typescript-utils';
+import { palette } from './palette';
 
 export const breakPoints: Record<string, number> = {
   sm: 530,
   md: 840,
   lg: 1024,
-  hg: 1200,
+  hg: 1400,
 };
 
 export const zIndexes = {
@@ -38,7 +38,8 @@ export const inputSizes = {
 export type InputSizeType = ValueOf<typeof inputSizes>;
 
 export const sizes = {
-  HEADER: 70,
+  DESKTOP_HEADER: 70,
+  MOBILE_HEADER: 64,
   SMALL: 28,
   MIDDLE: 32,
   LARGE: 36,

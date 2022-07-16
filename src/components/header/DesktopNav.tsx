@@ -1,16 +1,16 @@
 import styled from 'styled-components/macro';
 import { NavLink } from 'react-router-dom';
+import cx from 'classnames';
 
 import { navigations } from './Header';
 import { themes } from 'styles';
-import { cx } from 'lib/utils/helpers';
 
 function DesktopNav() {
   return (
     <DesktopNavWrapper>
       {navigations.map((nav) => (
         <li key={nav.text}>
-          <CustomNavLink to={nav.to} className={({ isActive }) => cx(['active', isActive])}>
+          <CustomNavLink to={nav.to} className={({ isActive }) => cx({ active: isActive })}>
             {nav.text}
           </CustomNavLink>
         </li>
