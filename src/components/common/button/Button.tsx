@@ -51,17 +51,17 @@ const sizesCSS = {
   [inputSizes.SMALL]: css`
     font-size: 13px;
     height: ${sizes.SMALL}px;
-    padding: 0 12px;
+    padding: 0 14px;
   `,
   [inputSizes.MIDDLE]: css`
-    font-size: 13px;
+    font-size: 14px;
     height: ${sizes.MIDDLE}px;
-    padding: 0 16px;
+    padding: 0 18px;
   `,
   [inputSizes.LARGE]: css`
     font-size: 15px;
     height: ${sizes.LARGE}px;
-    padding: 0 20px;
+    padding: 0 22px;
   `,
 };
 const shapeCSS = {
@@ -83,11 +83,16 @@ const shapeCSS = {
   `,
   [shapes.GHOST]: css`
     ${baseButtonCSS};
+    height: unset;
     border: unset;
+    padding: unset;
     background-color: transparent;
     color: ${themes.PRIMARY};
   `,
   [shapes.LINK]: css`
+    height: unset;
+    border: unset;
+    padding: unset;
     background-color: transparent;
     color: ${themes.PRIMARY};
     > span {
@@ -103,6 +108,8 @@ const shapeCSS = {
     }
   `,
   [shapes.ICON]: css`
+    color: ${themes.TEXT_L1};
+    ${baseButtonCSS};
     background-color: transparent;
     width: unset;
     height: unset;
