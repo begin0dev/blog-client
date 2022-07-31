@@ -68,7 +68,7 @@ function Toast({ maxCount = 10, position = 'top-center', animationDuration = 250
     <ToastsWrap position={position}>
       {toasts.map((toast) => (
         <CSSTransition key={toast.id} timeout={animationDuration} classNames="toast">
-          <ToastItem animationDuration={animationDuration} key={toast.id}>
+          <ToastItem animationDuration={animationDuration}>
             <span className={`svg-span ${toast.type}`}>
               {toast.type === ToastType.SUCCESS && <IcCheckCircle />}
               {toast.type === ToastType.WARNING && <IcExclamationCircle />}

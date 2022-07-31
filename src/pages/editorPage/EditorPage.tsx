@@ -5,6 +5,7 @@ import styled from 'styled-components/macro';
 import { IcArrowLeft } from '../../assets/svgs';
 import { includeMedia, palette, sizes, themes, zIndexes } from '../../styles';
 import Editor from '../../components/editor';
+import { Button } from 'components/common';
 
 function EditorPage() {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ function EditorPage() {
         <BackButton type="button" onClick={() => navigate(-1)}>
           <IcArrowLeft />
         </BackButton>
-        <SaveBtn>저장하기</SaveBtn>
+        <Button round>저장하기</Button>
       </HeaderBlock>
 
       <Editor markdown={markdown} setMarkdown={setMarkdown} />
@@ -43,7 +44,7 @@ const HeaderBlock = styled.header`
   align-items: center;
   padding: 0 40px;
   background-color: ${themes.BACKGROUND_L1};
-  ${includeMedia('<=md')} {
+  ${includeMedia('<=MD')} {
     padding: 0 30px;
   }
 `;
@@ -62,11 +63,4 @@ const BackButton = styled.button`
       opacity: 0.8;
     }
   }
-`;
-const SaveBtn = styled.button`
-  font-size: 14px;
-  background-color: ${themes.PRIMARY};
-  color: ${palette.white};
-  padding: 8px 16px;
-  border-radius: 28px;
 `;

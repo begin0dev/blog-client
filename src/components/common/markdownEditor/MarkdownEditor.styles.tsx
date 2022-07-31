@@ -5,14 +5,17 @@ import styled from 'styled-components/macro';
 import { themes } from 'styles';
 
 export const EditorBlock = styled.div`
-  font-family: 'Fira Mono', 'Noto Sans KR', monospace;
+  font-family: 'Fira Mono', 'Spoqa Han Sans Neo', monospace;
+  font-size: 13px;
   flex: 1;
 
   .CodeMirror {
     background-color: inherit;
+    color: ${themes.TEXT_L2};
   }
   .CodeMirror-placeholder {
-    color: ${themes.TEXT_L2} !important;
+    color: inherit;
+    opacity: 0.4;
   }
   .cm-header {
     line-height: 2.2;
@@ -40,7 +43,7 @@ export const EditorBlock = styled.div`
 
 export const TitleInputWrap = styled.div`
   position: relative;
-  padding: 10px;
+  padding: 10px 0;
   margin-bottom: 5px;
 `;
 export const TitleInput = styled.input`
@@ -50,6 +53,7 @@ export const TitleInput = styled.input`
   background-color: inherit;
   border-style: none;
   outline: none;
+  color: ${themes.TEXT_L1};
 
   &::placeholder {
     color: inherit;

@@ -3,7 +3,7 @@ import { useCallback, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled, { css } from 'styled-components/macro';
 
-import type { ValueOf } from 'lib/utils/typescript-utils';
+import type { valueOf } from 'lib/utils/typescript-utils';
 import { Modal } from 'components/common';
 import { IcArrowLeft, IcFacebook, IcGithub, IcGoogle, IcKakao, IcLogo } from 'assets/svgs';
 import { palette, pulseKeyframes, breakPoints, themes, includeMedia } from 'styles';
@@ -28,7 +28,7 @@ function Auth() {
   const isShowModal = useAppSelector((state) => state.base.isShowAuthModal);
 
   const { addToast } = useToast();
-  const isFullScreen = useCheckBreakPoint('<=', breakPoints.sm);
+  const isFullScreen = useCheckBreakPoint('<=', breakPoints.SM);
 
   const { message, verify_code }: { message?: string; verify_code?: string } = qs.parse(search, {
     ignoreQueryPrefix: true,
@@ -37,7 +37,7 @@ function Auth() {
   const hideModal = () => dispatch(baseActions.hideAuthModal());
 
   const socialRedirect = useCallback(
-    (provider: ValueOf<typeof SocialProvider>) => {
+    (provider: valueOf<typeof SocialProvider>) => {
       sessionStorage.setItem('referer', pathname);
       window.location.href = `${process.env.REACT_APP_SERVER_URL}${V1_SOCIALS_URL}/${provider}`;
     },
@@ -127,10 +127,10 @@ const AuthBlock = styled.div`
   padding: 75px 35px;
   overflow-x: hidden;
   overflow-y: auto;
-  ${includeMedia('<=sm')} {
+  ${includeMedia('<=SM')} {
     height: 100%;
   }
-  ${includeMedia('>sm')} {
+  ${includeMedia('>SM')} {
     min-height: 640px;
   }
 `;

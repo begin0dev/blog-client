@@ -27,7 +27,7 @@ function Header() {
   const dispatch = useAppDispatch();
 
   const isShowSidebar = useAppSelector((state) => state.base.isShowSidebar);
-  const isMobile = useCheckBreakPoint('<=', breakPoints.md);
+  const isMobile = useCheckBreakPoint('<=', breakPoints.MD);
 
   const toggleSidebar = () => dispatch(baseActions.showSidebar(!isShowSidebar));
 
@@ -77,10 +77,10 @@ const HeaderBlock = styled.nav`
   top: 0;
   width: 100%;
   background-color: ${themes.BACKGROUND_L1};
-  ${includeMedia('<=md')} {
+  ${includeMedia('<=MD')} {
     height: ${sizes.MOBILE_HEADER}px;
   }
-  ${includeMedia('>md')} {
+  ${includeMedia('>MD')} {
     height: ${sizes.DESKTOP_HEADER}px;
   }
 `;
@@ -132,10 +132,10 @@ const HamburgerBlock = styled.div`
   align-items: center;
   border-radius: 6px;
   background-color: transparent;
-  ${includeMedia('<=md')} {
+  ${includeMedia('<=MD')} {
     top: calc(${sizes.MOBILE_HEADER}px / 2);
   }
-  ${includeMedia('>md')} {
+  ${includeMedia('>MD')} {
     top: calc(${sizes.DESKTOP_HEADER}px / 2);
   }
 `;

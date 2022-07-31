@@ -156,12 +156,11 @@ const atomOneDarkTheme = css`
 
 export const MarkdownPreviewBlock = styled.div`
   ${atomOneDarkTheme};
-  font-size: 14px;
+  font-family: 'Fira Mono', 'Spoqa Han Sans Neo', monospace;
+  font-size: 13px;
   flex: 1;
   padding: 10px;
-  pre {
-    font-family: 'Fira Mono', 'Spoqa Han Sans Neo', 'Noto Sans KR', monospace;
-  }
+
   ol,
   ul {
     list-style: unset;

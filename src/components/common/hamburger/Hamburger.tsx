@@ -29,16 +29,16 @@ function Hamburger({
       active={active}
       onClick={toggleHamburger}
     >
-      <span className="box">
-        <span className="line" />
-      </span>
+      <div className="box">
+        <div className="line" />
+      </div>
     </HamburgerWrapper>
   );
 }
 
 export default memo(Hamburger);
 
-const HamburgerWrapper = styled.div<{
+const HamburgerWrapper = styled.button<{
   width: string;
   height: string;
   spacing: string;
@@ -53,19 +53,18 @@ const HamburgerWrapper = styled.div<{
   margin: 0;
   overflow: visible;
   cursor: pointer;
-
   transition-property: opacity, filter;
   transition-duration: 0.15s;
   transition-timing-function: linear;
 
   ${({ width, height, spacing, color, active }) => css`
-    & > span.box {
+    & > .box {
       position: relative;
       display: block;
       width: ${width};
       height: calc(${height} * 3 + ${spacing} * 2);
     }
-    & > span.box > span.line {
+    & > .box > .line {
       display: block;
       top: calc(${height} / 2);
       margin-top: calc(${height} / -2);
@@ -95,7 +94,7 @@ const HamburgerWrapper = styled.div<{
     }
     ${active &&
     css`
-      & > span.box > span.line {
+      & > .box > .line {
         transform: translate3d(0, calc(${spacing} + ${height}), 0) rotate(-45deg);
         &:before {
           transform: rotate(45deg) translate3d(calc(${width} / 7), calc(${spacing} * -1), 0);

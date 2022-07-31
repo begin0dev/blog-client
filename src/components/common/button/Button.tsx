@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components/macro';
 import cx from 'classnames';
 
 import { baseButtonCSS, inputSizes, sizes, themes, InputSizeType } from 'styles';
-import { ValueOf } from 'lib/utils/typescript-utils';
+import { valueOf } from 'lib/utils/typescript-utils';
 
 export const shapes = {
   PRIMARY: 'primary',
@@ -11,16 +11,16 @@ export const shapes = {
   DASHED: 'dashed',
   GHOST: 'ghost',
   LINK: 'link',
+  ICON: 'icon',
 } as const;
 
-type ShapeType = ValueOf<typeof shapes>;
+type ShapeType = valueOf<typeof shapes>;
 
 export interface Props extends ButtonHTMLAttributes<unknown> {
   size?: InputSizeType;
   shape?: ShapeType;
   round?: boolean;
-  icon?: boolean;
-  children?: string | ReactNode;
+  children: string | ReactNode;
 }
 
 function Button({
@@ -28,7 +28,6 @@ function Button({
   size = inputSizes.MIDDLE,
   shape = shapes.PRIMARY,
   round,
-  icon,
   children,
   className,
   ...buttonProps
@@ -38,10 +37,10 @@ function Button({
       type={type}
       size={size}
       shape={shape}
-      className={cx(className, { round: !!round, icon: !!icon })}
+      className={cx(className, { round: !!round })}
       {...buttonProps}
     >
-      <span>{children}</span>
+      {shape === shapes.LINK ? <span>{children}</span> : children}
     </CustomButton>
   );
 }
@@ -52,17 +51,17 @@ const sizesCSS = {
   [inputSizes.SMALL]: css`
     font-size: 13px;
     height: ${sizes.SMALL}px;
-    padding: 0 10px;
+    padding: 0 12px;
   `,
   [inputSizes.MIDDLE]: css`
     font-size: 13px;
     height: ${sizes.MIDDLE}px;
-    padding: 0 12px;
+    padding: 0 16px;
   `,
   [inputSizes.LARGE]: css`
     font-size: 15px;
     height: ${sizes.LARGE}px;
-    padding: 0 18px;
+    padding: 0 20px;
   `,
 };
 const shapeCSS = {
@@ -103,6 +102,13 @@ const shapeCSS = {
       }
     }
   `,
+  [shapes.ICON]: css`
+    background-color: transparent;
+    width: unset;
+    height: unset;
+    padding: 8px;
+    line-height: 0;
+  `,
 };
 
 const CustomButton = styled.button<{ size: InputSizeType; shape: ShapeType; round?: boolean }>`
@@ -116,13 +122,6 @@ const CustomButton = styled.button<{ size: InputSizeType; shape: ShapeType; roun
   cursor: pointer;
   &.round {
     border-radius: 1.2em;
-  }
-  &.icon {
-    width: ${({ size }) => sizes[size.toUpperCase() as keyof typeof inputSizes]}px;
-    padding: 0;
-    > span {
-      line-height: 0;
-    }
   }
   &:hover {
     opacity: 0.9;

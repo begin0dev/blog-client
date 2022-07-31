@@ -71,7 +71,6 @@ const ModalWrapper = styled.aside`
 
 const ModalBlock = styled.section<{ fullScreen?: boolean }>`
   position: relative;
-  margin: 1.5rem;
   border-radius: 10px;
   overflow: hidden;
   transform-origin: center;

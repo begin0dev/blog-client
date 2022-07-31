@@ -17,6 +17,6 @@ TextButton.args = {
 
 export const IconButton = Template.bind({});
 IconButton.args = {
+  shape: 'icon',
   children: <IcSearch />,
-  icon: true,
 };

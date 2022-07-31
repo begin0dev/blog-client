@@ -23,7 +23,7 @@ function MobileNav({ toggleSidebar }: Props) {
   };
 
   return (
-    <Drawer position="right" active={isShowSidebar} hideOverlay>
+    <Drawer position="right" active={isShowSidebar}>
       <SidebarWrapper>
         {navigations.map((nav) => (
           <li key={nav.text}>

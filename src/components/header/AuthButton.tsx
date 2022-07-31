@@ -26,10 +26,10 @@ export default AuthButton;
 const CustomButton = styled(Button)`
   && {
     width: 90px;
-    ${includeMedia('>md')} {
+    ${includeMedia('>MD')} {
       margin-left: 18px;
     }
-    ${includeMedia('<=md')} {
+    ${includeMedia('<=MD')} {
       margin: 26px 0;
     }
   }
