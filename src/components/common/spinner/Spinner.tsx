@@ -10,7 +10,7 @@ interface Props {
   color?: string;
 }
 
-function Spinner({ size = 14, color }: Props) {
+function Spinner({ size = 28, color }: Props) {
   return (
     <SpinnerBlock size={size}>
       {Array.from({ length: SPINNER_COUNT }, (empty, i) => (

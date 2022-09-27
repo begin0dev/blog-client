@@ -8,6 +8,9 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  backgrounds: {
+    default: 'dark',
+  },
 };
 
 const withThemeProvider = (Story, context) => {

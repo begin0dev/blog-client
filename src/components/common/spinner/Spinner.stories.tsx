@@ -10,4 +10,6 @@ export default {
 const Template: ComponentStory<typeof Spinner> = (args) => <Spinner {...args} />;
 
 export const BasicSpinner = Template.bind({});
-BasicSpinner.args = {};
+BasicSpinner.args = {
+  color: 'white',
+};
