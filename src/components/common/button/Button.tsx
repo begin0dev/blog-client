@@ -1,5 +1,5 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react';
-import styled, { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components';
 import cx from 'classnames';
 
 import { baseButtonCSS, inputSizes, sizes, themes, InputSizeType } from 'styles';
@@ -131,6 +131,6 @@ const CustomButton = styled.button<{ size: InputSizeType; shape: ShapeType; roun
     border-radius: 1.2em;
   }
   &:hover {
-    opacity: 0.9;
+    opacity: 0.8;
   }
 `;

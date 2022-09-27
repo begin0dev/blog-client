@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import styled, { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components';
 
 import { zIndexes } from 'styles';
 

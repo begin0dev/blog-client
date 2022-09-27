@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 import { useAppDispatch, useAppSelector, userActions, baseActions } from 'stores';
 import { Button } from '../common';

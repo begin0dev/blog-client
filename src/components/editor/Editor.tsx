@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 import { MarkdownEditor, MarkdownPreview } from 'components/common';
 import { palette } from '../../styles';

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 import { useCheckBreakPoint } from 'hooks';
 import { IcSearch, IcLogo } from 'assets/svgs';

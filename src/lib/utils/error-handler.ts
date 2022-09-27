@@ -10,7 +10,7 @@ function isResponseError(err: Error | HTTPError): err is HTTPError {
 }
 
 export function errorHandler(err: Error | HTTPError): string {
-  if (process.env.NODE_ENV !== 'production') console.error(err);
+  if (import.meta.env.NODE_ENV !== 'production') console.error(err);
 
   if (isResponseError(err)) {
   }

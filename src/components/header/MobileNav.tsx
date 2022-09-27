@@ -1,5 +1,5 @@
 import { MouseEventHandler } from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppSelector } from 'stores';

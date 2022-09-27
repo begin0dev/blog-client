@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import styled, { css, keyframes } from 'styled-components/macro';
+import styled, { css, keyframes } from 'styled-components';
 
 import { palette } from 'styles';
 

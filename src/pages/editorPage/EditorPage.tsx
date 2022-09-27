@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 import { IcArrowLeft } from '../../assets/svgs';
 import { includeMedia, palette, sizes, themes, zIndexes } from '../../styles';

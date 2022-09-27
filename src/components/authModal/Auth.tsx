@@ -1,7 +1,7 @@
 import qs from 'qs';
 import { useCallback, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import styled, { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components';
 
 import type { valueOf } from 'lib/utils/typescript-utils';
 import { Modal } from 'components/common';
@@ -39,7 +39,7 @@ function Auth() {
   const socialRedirect = useCallback(
     (provider: valueOf<typeof SocialProvider>) => {
       sessionStorage.setItem('referer', pathname);
-      window.location.href = `${process.env.REACT_APP_SERVER_URL}${V1_SOCIALS_URL}/${provider}`;
+      window.location.href = `${import.meta.env.VITE_SERVER_URL}${V1_SOCIALS_URL}/${provider}`;
     },
     [pathname],
   );

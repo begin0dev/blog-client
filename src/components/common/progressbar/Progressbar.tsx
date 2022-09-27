@@ -1,5 +1,5 @@
 import { useState, useEffect, memo, useRef } from 'react';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 import { themes, zIndexes } from 'styles';
 

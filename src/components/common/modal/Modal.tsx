@@ -1,7 +1,7 @@
 import { memo, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { CSSTransition } from 'react-transition-group';
-import styled, { css } from 'styled-components/macro';
+import styled, { css } from 'styled-components';
 
 import { zIndexes } from 'styles';
 import Overlay from '../overlay';

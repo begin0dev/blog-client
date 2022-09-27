@@ -1,4 +1,4 @@
-import { css, keyframes } from 'styled-components/macro';
+import { css, keyframes } from 'styled-components';
 
 import { themes } from './utils';
 
