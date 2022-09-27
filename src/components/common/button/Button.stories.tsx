@@ -1,22 +1,17 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import type { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { IcSearch } from 'assets/svgs';
 import Button from './Button';
 
 export default {
-  title: Button.name,
+  title: 'Common Button',
   component: Button,
 } as ComponentMeta<typeof Button>;
 
-const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
+const Template: ComponentStory<typeof Button> = ({ children, ...args }) => (
+  <Button {...args}>{children}</Button>
+);
 
 export const TextButton = Template.bind({});
 TextButton.args = {
-  children: 'Button',
-};
-
-export const IconButton = Template.bind({});
-IconButton.args = {
-  shape: 'icon',
-  children: <IcSearch />,
+  children: 'test',
 };
