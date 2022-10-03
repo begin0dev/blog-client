@@ -16,6 +16,7 @@
   "dependencies": {
     "@loadable/component": "^5.15.2",
     "@reduxjs/toolkit": "^1.8.2",
+    "@stitches/react": "^1.2.8",
     "classnames": "^2.3.1",
     "codemirror": "^5.59.2",
     "immer": "^9.0.12",
