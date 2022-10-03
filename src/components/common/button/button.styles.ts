@@ -10,6 +10,7 @@ export const colors = {
 } as const;
 
 export const shapes = {
+  DEFAULT: 'default',
   DASHED: 'dashed',
   GHOST: 'ghost',
   LINK: 'link',
@@ -20,7 +21,7 @@ export const CommonButton = styled('button', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  borderRadius: '2px',
+  borderRadius: 2,
   userSelect: 'none',
   cursor: 'pointer',
 
@@ -35,17 +36,17 @@ export const CommonButton = styled('button', {
   variants: {
     size: {
       [inputSizes.SMALL]: {
-        fontSize: '12px',
+        fontSize: 12,
         height: `${sizes.SMALL}px`,
         padding: '0 14px',
       },
       [inputSizes.MIDDLE]: {
-        fontSize: '14px',
+        fontSize: 14,
         height: `${sizes.MIDDLE}px`,
         padding: '0 18px',
       },
       [inputSizes.LARGE]: {
-        fontSize: '16px',
+        fontSize: 16,
         height: `${sizes.LARGE}px`,
         padding: '0 22px',
       },
@@ -63,15 +64,20 @@ export const CommonButton = styled('button', {
       },
     },
     shape: {
+      [shapes.DEFAULT]: {},
       [shapes.DASHED]: {
         borderStyle: 'dashed',
       },
-      [`${shapes.GHOST}, ${shapes.LINK}`]: {
+      [shapes.GHOST]: {
         backgroundColor: 'transparent',
         border: 'unset',
-        padding: '2px 4px',
+        padding: 4,
       },
       [shapes.LINK]: {
+        backgroundColor: 'transparent',
+        border: 'unset',
+        padding: 4,
+
         '> span': {
           position: 'relative',
 
@@ -88,7 +94,7 @@ export const CommonButton = styled('button', {
       [shapes.ICON]: {
         width: 'unset',
         height: 'unset',
-        padding: '8px',
+        padding: 4,
         lineHeight: 0,
       },
     },
