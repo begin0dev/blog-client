@@ -37,17 +37,17 @@ export const CommonButton = styled('button', {
     size: {
       [inputSizes.SMALL]: {
         fontSize: 12,
-        height: `${sizes.SMALL}px`,
+        height: sizes.SMALL,
         padding: '0 14px',
       },
       [inputSizes.MIDDLE]: {
         fontSize: 14,
-        height: `${sizes.MIDDLE}px`,
+        height: sizes.MIDDLE,
         padding: '0 18px',
       },
       [inputSizes.LARGE]: {
         fontSize: 16,
-        height: `${sizes.LARGE}px`,
+        height: sizes.LARGE,
         padding: '0 22px',
       },
     },
