@@ -23,7 +23,7 @@ export const styleConfig = createStitches({
       MODAL: 1000,
       SIDEBAR: 1500,
       HAMBURGER: 2000,
-      MESSAGE: 3000,
+      TOAST: 3000,
       PROGRESS: 5000,
     },
   },

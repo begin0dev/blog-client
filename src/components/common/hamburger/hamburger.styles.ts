@@ -3,7 +3,7 @@ import { styleConfig } from 'styles';
 
 const { colors } = styleConfig.theme;
 
-export const CommonHamburger = styled('button', {
+export const HamburgerWrapper = styled('button', {
   $$HAMBURGER_WIDTH: '18px',
   $$HAMBURGER_HEIGHT: '2px',
   $$HAMBURGER_SPACE: '4px',

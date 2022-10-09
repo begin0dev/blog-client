@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
-import { CommonDrawer } from './drawer.styles';
+import { DrawerWrapper } from './drawer.styles';
 
 interface Props {
   active: boolean;
@@ -12,9 +12,9 @@ interface Props {
 function Drawer({ active, position = 'bottom', children }: Props) {
   return (
     <CSSTransition in={active} timeout={300} classNames="drawer" unmountOnExit>
-      <CommonDrawer position={position}>
+      <DrawerWrapper position={position}>
         <div className="drawer">{children}</div>
-      </CommonDrawer>
+      </DrawerWrapper>
     </CSSTransition>
   );
 }

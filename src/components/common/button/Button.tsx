@@ -3,7 +3,7 @@ import cx from 'classnames';
 
 import { inputSizes, InputSizeType } from 'styles';
 import { valueOf } from 'lib/utils/typescript-utils';
-import { colors, CommonButton, shapes } from './button.styles';
+import { ButtonWrapper, colors, shapes } from './button.styles';
 
 type ColorType = valueOf<typeof colors>;
 type ShapeType = valueOf<typeof shapes>;
@@ -27,7 +27,7 @@ function Button({
   ...buttonProps
 }: Props) {
   return (
-    <CommonButton
+    <ButtonWrapper
       type={type}
       size={size}
       color={color}
@@ -36,7 +36,7 @@ function Button({
       {...buttonProps}
     >
       {shape === shapes.LINK ? <span>{children}</span> : children}
-    </CommonButton>
+    </ButtonWrapper>
   );
 }
 

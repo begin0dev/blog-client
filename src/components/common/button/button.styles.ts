@@ -17,7 +17,7 @@ export const shapes = {
   ICON: 'icon',
 } as const;
 
-export const CommonButton = styled('button', {
+export const ButtonWrapper = styled('button', {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',

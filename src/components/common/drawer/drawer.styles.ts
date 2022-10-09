@@ -3,7 +3,7 @@ import { styleConfig } from 'styles/styleConfig';
 
 const { zIndices } = styleConfig.theme;
 
-export const CommonDrawer = styled('div', {
+export const DrawerWrapper = styled('div', {
   zIndex: zIndices.MODAL,
   position: 'fixed',
 
