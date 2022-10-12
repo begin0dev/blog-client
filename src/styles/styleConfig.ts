@@ -14,6 +14,8 @@ export const styleConfig = createStitches({
       BACKGROUND_L0: '$GRAY2',
       BACKGROUND_L1: '$GRAY3',
 
+      BORDER_COLOR: '$TEXT_L0',
+
       TEXT_L0: '$GRAY0',
       TEXT_L1: '$GRAY1',
     },
@@ -26,5 +28,12 @@ export const styleConfig = createStitches({
       TOAST: 3000,
       PROGRESS: 5000,
     },
+  },
+  utils: {
+    posCenterY: (position: 'absolute' | 'fixed') => ({
+      position,
+      top: '50%',
+      transform: 'translateY(-50%)',
+    }),
   },
 });

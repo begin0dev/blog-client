@@ -5,9 +5,9 @@ import { palette } from './palette';
 
 export const breakPoints = {
   SM: 530,
-  MD: 840,
+  MD: 720,
   LG: 1024,
-  HG: 1400,
+  HG: 1440,
 } as const;
 
 export const zIndexes = {
@@ -38,8 +38,8 @@ export const inputSizes = {
 export type InputSizeType = valueOf<typeof inputSizes>;
 
 export const sizes = {
-  DESKTOP_HEADER: 70,
-  MOBILE_HEADER: 64,
+  MOBILE_HEADER: 60,
+  DESKTOP_HEADER: 68,
   SMALL: 28,
   MIDDLE: 32,
   LARGE: 36,
@@ -60,3 +60,5 @@ const changeToCondition = (condition: string): string => {
 
 export const includeMedia = (...conditions: string[]): string =>
   `@media ${conditions.map((condition) => changeToCondition(condition)).join(' and ')}`;
+
+export const joinClass = (classnames: string[]) => classnames.join(', ');

@@ -5,7 +5,7 @@ import { memo, useEffect, useRef, useTransition } from 'react';
 import CodeMirror, { Editor, EditorFromTextArea } from 'codemirror';
 
 import { useMount, useUnMount } from 'hooks';
-import { EditorBlock, TitleInputWrap, TitleInput } from './MarkdownEditor.styles';
+import { EditorWrapper } from './MarkdownEditor.styles';
 
 interface Props {
   markdown: string;
@@ -48,12 +48,12 @@ function MarkdownEditor({ markdown, onChange }: Props) {
   });
 
   return (
-    <EditorBlock>
-      <TitleInputWrap>
-        <TitleInput type="text" placeholder="제목을 입력해주세요~" />
-      </TitleInputWrap>
+    <EditorWrapper>
+      <div className="titleInputWrapper">
+        <input className="input" type="text" placeholder="제목을 입력해주세요~" />
+      </div>
       <textarea ref={textAreaEl} />
-    </EditorBlock>
+    </EditorWrapper>
   );
 }
 

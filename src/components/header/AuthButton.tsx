@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import { styled } from '@stitches/react';
 
 import { useAppDispatch, useAppSelector, userActions, baseActions } from 'stores';
 import { Button } from '../common';
@@ -15,7 +15,7 @@ function AuthButton() {
   };
 
   return (
-    <CustomButton shape="primary" round onClick={onClick}>
+    <CustomButton color="primary" round onClick={onClick}>
       {isLoggedIn ? '로그아웃' : '로그인'}
     </CustomButton>
   );
@@ -23,14 +23,16 @@ function AuthButton() {
 
 export default AuthButton;
 
-const CustomButton = styled(Button)`
-  && {
-    width: 90px;
-    ${includeMedia('>MD')} {
-      margin-left: 18px;
-    }
-    ${includeMedia('<=MD')} {
-      margin: 26px 0;
-    }
-  }
-`;
+const CustomButton = styled(Button, {
+  '&&': {
+    width: 90,
+
+    [includeMedia('>MD')]: {
+      marginLeft: 18,
+    },
+
+    [includeMedia('<=MD')]: {
+      margin: '26px 0',
+    },
+  },
+});

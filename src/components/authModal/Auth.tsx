@@ -6,10 +6,9 @@ import styled, { css } from 'styled-components';
 import type { valueOf } from 'lib/utils/typescript-utils';
 import { Modal } from 'components/common';
 import { IcArrowLeft, IcFacebook, IcGithub, IcGoogle, IcKakao, IcLogo } from 'assets/svgs';
-import { palette, pulseKeyframes, breakPoints, themes, includeMedia } from 'styles';
+import { palette, pulseKeyframes, themes, includeMedia } from 'styles';
 import { baseActions, userActions, useAppSelector, useAppDispatch } from 'stores';
 import { V1_SOCIALS_URL } from 'lib/services/auth';
-import { useCheckBreakPoint } from 'hooks';
 import useToast from '../common/toast/useToast';
 
 const SocialProvider = {
@@ -28,7 +27,6 @@ function Auth() {
   const isShowModal = useAppSelector((state) => state.base.isShowAuthModal);
 
   const { addToast } = useToast();
-  const isFullScreen = useCheckBreakPoint('<=', breakPoints.SM);
 
   const { message, verify_code }: { message?: string; verify_code?: string } = qs.parse(search, {
     ignoreQueryPrefix: true,
@@ -64,13 +62,7 @@ function Auth() {
 
   if (isLoggedIn) return null;
   return (
-    <Modal
-      active={isShowModal}
-      fullScreen={isFullScreen}
-      hideModal={hideModal}
-      size={{ width: '390px' }}
-      hideOverlay={false}
-    >
+    <Modal width="390px" active={isShowModal} onClose={hideModal} showOverlay>
       <AuthBlock>
         <BackButton type="button" onClick={hideModal}>
           <IcArrowLeft />

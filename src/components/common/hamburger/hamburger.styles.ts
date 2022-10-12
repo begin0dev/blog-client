@@ -56,6 +56,7 @@ export const HamburgerWrapper = styled('button', {
       top: 'calc($$HAMBURGER_HEIGHT * 2 + $$HAMBURGER_SPACE * 2)',
     },
   },
+
   variants: {
     active: {
       true: {
