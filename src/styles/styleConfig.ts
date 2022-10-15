@@ -1,5 +1,15 @@
 import { createStitches } from '@stitches/react';
 
+const FLEX_MAPPER = {
+  start: 'flex-start',
+  end: 'flex-end',
+  center: 'center',
+  between: 'space-between',
+  around: 'space-around',
+} as const;
+
+type FlexType = keyof typeof FLEX_MAPPER;
+
 export const styleConfig = createStitches({
   theme: {
     colors: {
@@ -10,6 +20,10 @@ export const styleConfig = createStitches({
 
       PRIMARY: '#19C9DC',
       SECONDARY: '#5D5C5C',
+      SUCCESS: '#51CF66',
+      WARNING: '#ff922b',
+      ERROR: '#ff6b6b',
+      WHITE: '#f8f9fa',
 
       BACKGROUND_L0: '$GRAY2',
       BACKGROUND_L1: '$GRAY3',
