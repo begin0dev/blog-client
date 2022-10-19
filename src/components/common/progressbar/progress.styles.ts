@@ -1,7 +1,6 @@
-import { styled } from '@stitches/react';
-import { styleConfig } from 'styles';
+import { theme, styled } from 'styles';
 
-const { zIndices, colors } = styleConfig.theme;
+const { zIndices, colors } = theme;
 
 export const ProgressbarWrapper = styled('div', {
   $$PROGRESS_COLOR: colors.PRIMARY,

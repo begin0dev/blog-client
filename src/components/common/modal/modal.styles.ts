@@ -1,7 +1,18 @@
-import { styled } from '@stitches/react';
-import { includeMedia, styleConfig } from 'styles';
+import { theme, includeMedia, styled } from 'styles';
 
-const { zIndices } = styleConfig.theme;
+const { zIndices } = theme;
+
+export const ModalContent = styled('div', {
+  position: 'relative',
+  borderRadius: 10,
+  boxShadow: '0 2px 8px 3px rgba(255, 255, 255, 0.03)',
+
+  [includeMedia('<=SM')]: {
+    width: '100% !important',
+    height: '100% !important',
+    borderRadius: 0,
+  },
+});
 
 export const ModalWrapper = styled('div', {
   zIndex: zIndices.MODAL,
@@ -15,41 +26,29 @@ export const ModalWrapper = styled('div', {
   alignItems: 'center',
   backdropFilter: 'blur(2px)',
 
-  '.modal': {
-    position: 'relative',
-    borderRadius: 10,
-    boxShadow: '0 2px 8px 3px rgba(255, 255, 255, 0.03)',
-
-    [includeMedia('<=SM')]: {
-      width: '100%',
-      height: '100%',
-      borderRadius: 0,
-    },
-  },
-
   '&.modal-enter-active, &.modal-exit-active': {
-    '.modal': {
+    [ModalContent.toString()]: {
       transition: 'all 200ms ease-out',
       transformOrigin: 'center',
     },
   },
 
   '&.modal-enter': {
-    '.modal': {
+    [ModalContent.toString()]: {
       opacity: 0,
       transform: 'scale(0.8)',
     },
   },
 
   '&.modal-enter-active, &.modal-exit': {
-    '.modal': {
+    [ModalContent.toString()]: {
       opacity: 1,
       transform: 'scale(1)',
     },
   },
 
   '&.modal-exit-active': {
-    '.modal': {
+    [ModalContent.toString()]: {
       opacity: 0,
       transform: 'scale(0.8)',
     },

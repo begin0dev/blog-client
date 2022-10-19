@@ -1,9 +1,8 @@
 import 'codemirror/lib/codemirror.css';
-import { styled } from '@stitches/react';
 
-import { styleConfig } from 'styles';
+import { theme, styled } from 'styles';
 
-const { colors } = styleConfig.theme;
+const { colors } = theme;
 
 export const EditorWrapper = styled('div', {
   fontFamily: 'Fira Mono, "Spoqa Han Sans Neo", sans-serif',

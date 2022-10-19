@@ -1,20 +1,11 @@
-import { css, keyframes } from 'styled-components';
+import { keyframes } from '@stitches/react';
 
-import { themes } from './utils';
+import { theme } from 'styles/styleConfig';
 
-export const pulseKeyframes = keyframes`
-  0% { box-shadow: 0 0 3px 0 ${themes.PRIMARY}; }
-  50% { box-shadow: 0 0 6px 3px ${themes.PRIMARY}; }
-  100% { box-shadow: 0 0 3px 0 ${themes.PRIMARY}; }
-`;
+const { colors } = theme;
 
-export const baseButtonCSS = css`
-  &:active {
-    animation: ${pulseKeyframes} 0.3s;
-  }
-  &:disabled {
-    cursor: not-allowed;
-    pointer-events: none;
-    opacity: 0.7;
-  }
-`;
+export const pulseKeyframes = keyframes({
+  '0%': { boxShadow: `0 0 3px 0 ${colors.PRIMARY}` },
+  '50%': { boxShadow: `0 0 6px 3px ${colors.PRIMARY}` },
+  '100%': { boxShadow: `0 0 3px 0 ${colors.PRIMARY}` },
+});

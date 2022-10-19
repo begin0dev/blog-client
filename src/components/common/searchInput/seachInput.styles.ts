@@ -1,7 +1,6 @@
-import { styled } from '@stitches/react';
-import { styleConfig } from 'styles';
+import { theme, styled } from 'styles';
 
-const { colors } = styleConfig.theme;
+const { colors } = theme;
 
 export const SearchInputWrapper = styled('div', {
   position: 'relative',

@@ -1,16 +1,14 @@
 import { createStitches } from '@stitches/react';
 
-const FLEX_MAPPER = {
+const FLEX_MAPPER: Record<string, string> = {
   start: 'flex-start',
   end: 'flex-end',
   center: 'center',
   between: 'space-between',
   around: 'space-around',
-} as const;
+};
 
-type FlexType = keyof typeof FLEX_MAPPER;
-
-export const styleConfig = createStitches({
+export const { theme, styled } = createStitches({
   theme: {
     colors: {
       GRAY0: '#F8F9FA',
@@ -44,6 +42,39 @@ export const styleConfig = createStitches({
     },
   },
   utils: {
+    mx: (value: number) => ({
+      marginLeft: value,
+      marginRight: value,
+    }),
+    my: (value: number) => ({
+      marginTop: value,
+      marginBottom: value,
+    }),
+
+    px: (value: number) => ({
+      paddingLeft: value,
+      paddingRight: value,
+    }),
+    py: (value: number) => ({
+      paddingTop: value,
+      paddingBottom: value,
+    }),
+
+    size: (value: number) => ({
+      width: value,
+      height: value,
+    }),
+
+    flexbox: (value: string) => {
+      const [justify, align] = value.split(' ');
+      console.log(justify, align);
+      return {
+        display: 'flex',
+        justifyContent: FLEX_MAPPER[justify || 'center'],
+        alignItems: FLEX_MAPPER[align || 'center'],
+      };
+    },
+
     posCenterY: (position: 'absolute' | 'fixed') => ({
       position,
       top: '50%',

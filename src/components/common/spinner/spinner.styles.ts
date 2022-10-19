@@ -1,4 +1,6 @@
-import { styled, keyframes } from '@stitches/react';
+import { keyframes } from '@stitches/react';
+
+import { styled } from 'styles';
 
 const circleFadeDelayKeyframes = keyframes({
   '0%': { opacity: 1 },

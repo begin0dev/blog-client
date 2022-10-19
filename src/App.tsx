@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import { Progressbar, Toast } from 'components/common';
 import { EditorPage, MainPage, ProfilePage, CategoryPage, NotFoundPage } from 'pages';
@@ -10,7 +10,7 @@ function App() {
   const isLoading = useAppSelector((state) => state.base.isLoading);
 
   return (
-    <Router>
+    <BrowserRouter>
       <Progressbar isLoading={isLoading} />
       <Toast />
       <AuthModal />
@@ -24,7 +24,7 @@ function App() {
         </Route>
         <Route path="editor" element={<EditorPage />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 

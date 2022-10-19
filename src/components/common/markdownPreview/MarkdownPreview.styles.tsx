@@ -1,9 +1,8 @@
-import { styled } from '@stitches/react';
-
-import { styleConfig } from 'styles';
 import './atom-one-dark.css';
 
-const { colors } = styleConfig.theme;
+import { theme, styled } from 'styles';
+
+const { colors } = theme;
 
 export const MarkdownPreviewWrapper = styled('div', {
   fontFamily: 'Fira Mono, "Spoqa Han Sans Neo", sans-serif',

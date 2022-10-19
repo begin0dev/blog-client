@@ -1,29 +1,36 @@
-import { styled } from '@stitches/react';
+import { inputSizes, sizes, theme, styled, pulseKeyframes } from 'styles';
 
-import { inputSizes, sizes, styleConfig } from 'styles';
+const { colors } = theme;
 
-const { colors: themeColors } = styleConfig.theme;
-
-export const colors = {
+export const colorSet = {
   PRIMARY: 'primary',
   SECONDARY: 'secondary',
+  GHOST: 'ghost',
 } as const;
 
 export const shapes = {
   DEFAULT: 'default',
   DASHED: 'dashed',
-  GHOST: 'ghost',
   LINK: 'link',
   ICON: 'icon',
 } as const;
 
 export const ButtonWrapper = styled('button', {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
+  flex: '',
+  color: colors.TEXT_L0,
   borderRadius: 2,
   userSelect: 'none',
   cursor: 'pointer',
+
+  '&:active': {
+    animation: `${pulseKeyframes} 300ms`,
+  },
+
+  '&:disabled': {
+    cursor: 'not-allowed',
+    pointerEvents: 'none',
+    opacity: 0.7,
+  },
 
   '&.round': {
     borderRadius: '1.2em',
@@ -38,40 +45,37 @@ export const ButtonWrapper = styled('button', {
       [inputSizes.SMALL]: {
         fontSize: 12,
         height: sizes.SMALL,
-        padding: '0 14px',
+        padding: '4px 12px',
       },
       [inputSizes.MIDDLE]: {
         fontSize: 14,
         height: sizes.MIDDLE,
-        padding: '0 18px',
+        padding: '4px 16px',
       },
       [inputSizes.LARGE]: {
         fontSize: 16,
         height: sizes.LARGE,
-        padding: '0 22px',
+        padding: '4px 20px',
       },
     },
     color: {
-      [colors.PRIMARY]: {
-        border: `1px solid ${themeColors.PRIMARY}`,
-        backgroundColor: themeColors.PRIMARY,
-        color: themeColors.TEXT_L0,
+      [colorSet.PRIMARY]: {
+        border: `1px solid ${colors.PRIMARY}`,
+        backgroundColor: colors.PRIMARY,
       },
-      [colors.SECONDARY]: {
-        border: `1px solid ${themeColors.SECONDARY}`,
-        backgroundColor: themeColors.SECONDARY,
-        color: themeColors.TEXT_L0,
+      [colorSet.SECONDARY]: {
+        border: `1px solid ${colors.SECONDARY}`,
+        backgroundColor: colors.SECONDARY,
+      },
+      [colorSet.GHOST]: {
+        backgroundColor: 'transparent',
+        border: 'unset',
       },
     },
     shape: {
       [shapes.DEFAULT]: {},
       [shapes.DASHED]: {
         borderStyle: 'dashed',
-      },
-      [shapes.GHOST]: {
-        backgroundColor: 'transparent',
-        border: 'unset',
-        padding: 4,
       },
       [shapes.LINK]: {
         backgroundColor: 'transparent',

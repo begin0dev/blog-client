@@ -1,7 +1,6 @@
-import { styled } from '@stitches/react';
-import { styleConfig } from 'styles/styleConfig';
+import { styled, theme } from 'styles';
 
-const { zIndices } = styleConfig.theme;
+const { zIndices } = theme;
 
 export const DrawerWrapper = styled('div', {
   zIndex: zIndices.MODAL,

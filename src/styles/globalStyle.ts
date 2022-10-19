@@ -1,7 +1,28 @@
 import { globalCss } from '@stitches/react';
-import './styleConfig';
+import { theme } from './styleConfig';
+
+const { colors } = theme;
 
 const GlobalStyle = globalCss({
+  [`html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed,
+    figure, figcaption, footer, header, hgroup,
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video`]: {
+    margin: 0,
+    padding: 0,
+    border: 0,
+    verticalAlign: 'baseline',
+  },
+
   'html, body, #root': {
     height: '100%',
   },
@@ -10,30 +31,11 @@ const GlobalStyle = globalCss({
     fontFamily: 'Nunito, "Spoqa Han Sans Neo", sans-serif',
     fontSize: '14px',
     fontWeight: 400,
-    color: '$TEXT_L0',
+    color: colors.TEXT_L0,
     backgroundColor: '$BACKGROUND_L0',
     overflowX: 'hidden',
     '-webkit-font-smoothing': 'antialiased',
     '-moz-osx-font-smoothing': 'grayscale',
-  },
-
-  'body, header, footer, main, nav, div, article, section, button': {
-    position: 'relative',
-    margin: 0,
-    padding: 0,
-    border: 0,
-    verticalAlign: 'baseline',
-  },
-
-  '*, *:before, *:after': {
-    boxSizing: 'border-box',
-    ' -webkit-tap-highlight-color': 'transparent',
-  },
-
-  a: {
-    color: 'inherit',
-    textDecoration: 'none',
-    '-webkit-tap-highlight-color': 'transparent',
   },
 
   'input, textarea, select, button': {
@@ -43,6 +45,12 @@ const GlobalStyle = globalCss({
     '&:active, &:focus, &:hover': {
       outline: 'none',
     },
+  },
+
+  a: {
+    color: 'inherit',
+    textDecoration: 'none',
+    '-webkit-tap-highlight-color': 'transparent',
   },
 
   button: {
@@ -58,6 +66,11 @@ const GlobalStyle = globalCss({
     margin: 0,
     padding: 0,
     listStyle: 'none',
+  },
+
+  '*, *:before, *:after': {
+    boxSizing: 'border-box',
+    ' -webkit-tap-highlight-color': 'transparent',
   },
 });
 

@@ -3,9 +3,9 @@ import cx from 'classnames';
 
 import { inputSizes, InputSizeType } from 'styles';
 import { valueOf } from 'lib/utils/typescript-utils';
-import { ButtonWrapper, colors, shapes } from './button.styles';
+import { ButtonWrapper, colorSet, shapes } from './button.styles';
 
-type ColorType = valueOf<typeof colors>;
+type ColorType = valueOf<typeof colorSet>;
 type ShapeType = valueOf<typeof shapes>;
 
 export interface Props extends ButtonHTMLAttributes<unknown> {
@@ -19,7 +19,7 @@ export interface Props extends ButtonHTMLAttributes<unknown> {
 function Button({
   type = 'button',
   size = inputSizes.MIDDLE,
-  color = colors.PRIMARY,
+  color = colorSet.PRIMARY,
   shape,
   round,
   children,

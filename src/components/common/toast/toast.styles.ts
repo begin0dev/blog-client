@@ -1,8 +1,8 @@
-import { styled } from '@stitches/react';
-import { styleConfig } from 'styles';
 import { TransitionGroup } from 'react-transition-group';
 
-const { colors } = styleConfig.theme;
+import { theme, styled } from 'styles';
+
+const { colors } = theme;
 
 export const ToastGroupWrapper = styled(TransitionGroup, {
   $$SPACE: '12px',
