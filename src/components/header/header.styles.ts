@@ -68,7 +68,7 @@ export const CustomAuthButton = styled(Button, {
 export const DesktopNavWrapper = styled('ul', {
   flexbox: '',
   flex: 1,
-  margin: '0 12px',
+  mx: 12,
   gap: 40,
 });
 
@@ -78,7 +78,7 @@ export const DesktopCustomLink = styled(NavLink, {
   fontSize: fontSizes.body1,
   fontWeight: fontWeights.semiBold,
   color: colors.TEXT_L1,
-  padding: '6px 0',
+  py: 6,
   userSelect: 'none',
   transition: 'color 200ms',
 

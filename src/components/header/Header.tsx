@@ -58,9 +58,11 @@ function Header() {
             <Button shape="icon" color="ghost" round className="searchIcon">
               <IcSearch />
             </Button>
-            <button className="hamburgerIcon">
-              <Hamburger active={isShowSidebar} toggleHamburger={toggleSidebar} />
-            </button>
+            <Hamburger
+              active={isShowSidebar}
+              toggleHamburger={toggleSidebar}
+              className="hamburgerIcon"
+            />
           </RightWrapper>
         </>
       )}
