@@ -1,6 +1,6 @@
 import { pulseKeyframes, styled, theme } from 'styles';
 
-const { colors } = theme;
+const { colors, fontSizes } = theme;
 
 export const AuthWrapper = styled('div', {
   position: 'relative',
@@ -21,7 +21,7 @@ export const WelcomeWrapper = styled('div', {
   flexFlow: 'column wrap',
   flex: 1,
   gap: 8,
-  fontSize: 20,
+  fontSize: fontSizes.h2,
   color: colors.GRAY0,
   letterSpacing: '-0.02em',
 
@@ -39,13 +39,13 @@ export const ActionWrapper = styled('div', {
   flex: 1,
 
   '> h2': {
-    fontSize: 18,
+    fontSize: fontSizes.h2,
     color: colors.PRIMARY,
     marginBottom: 8,
   },
 
   '> p': {
-    fontSize: 13,
+    fontSize: fontSizes.body2,
     color: colors.GRAY1,
     marginBottom: 12,
   },

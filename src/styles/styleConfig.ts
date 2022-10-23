@@ -1,12 +1,5 @@
 import { createStitches } from '@stitches/react';
-
-const FLEX_MAPPER: Record<string, string> = {
-  start: 'flex-start',
-  end: 'flex-end',
-  center: 'center',
-  between: 'space-between',
-  around: 'space-around',
-};
+import { breakPoints, flexAlignMapper } from './utils';
 
 export const { theme, styled } = createStitches({
   theme: {
@@ -15,7 +8,6 @@ export const { theme, styled } = createStitches({
       GRAY1: '#CED4DA',
       GRAY2: '#141312',
       GRAY3: '#0E0D0D',
-
       PRIMARY: '#19C9DC',
       SECONDARY: '#5D5C5C',
       SUCCESS: '#51CF66',
@@ -25,9 +17,7 @@ export const { theme, styled } = createStitches({
 
       BACKGROUND_L0: '$GRAY2',
       BACKGROUND_L1: '$GRAY3',
-
-      BORDER_COLOR: '$TEXT_L0',
-
+      BORDER_COLOR: '$GRAY0',
       TEXT_L0: '$GRAY0',
       TEXT_L1: '$GRAY1',
     },
@@ -40,6 +30,30 @@ export const { theme, styled } = createStitches({
       TOAST: 3000,
       PROGRESS: 5000,
     },
+    sizes: {
+      MOBILE_HEADER: '60px',
+      DESKTOP_HEADER: '68px',
+    },
+    fontSizes: {
+      h1: '24px',
+      h2: '20px',
+      h3: '18px',
+      large: '16px',
+      body1: '14px',
+      body2: '12px',
+      caption: '11px',
+    },
+    fontWeights: {
+      bold: 700,
+      semiBold: 600,
+      normal: 400,
+    },
+  },
+  media: {
+    maxMobile: `(max-width: ${breakPoints.SM}px)`,
+    minTablet: `(min-width: ${breakPoints.SM + 1}px)`,
+    maxTablet: `(max-width: ${breakPoints.MD}px)`,
+    minDesktop: `(min-width: ${breakPoints.MD + 1}px)`,
   },
   utils: {
     mx: (value: number) => ({
@@ -67,11 +81,10 @@ export const { theme, styled } = createStitches({
 
     flexbox: (value: string) => {
       const [justify, align] = value.split(' ');
-      console.log(justify, align);
       return {
         display: 'flex',
-        justifyContent: FLEX_MAPPER[justify || 'center'],
-        alignItems: FLEX_MAPPER[align || 'center'],
+        justifyContent: flexAlignMapper[justify || 'center'],
+        alignItems: flexAlignMapper[align || 'center'],
       };
     },
 

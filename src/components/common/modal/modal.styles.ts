@@ -1,4 +1,4 @@
-import { theme, includeMedia, styled } from 'styles';
+import { theme, styled } from 'styles';
 
 const { zIndices } = theme;
 
@@ -7,7 +7,7 @@ export const ModalContent = styled('div', {
   borderRadius: 10,
   boxShadow: '0 2px 8px 3px rgba(255, 255, 255, 0.03)',
 
-  [includeMedia('<=SM')]: {
+  '@maxMobile': {
     width: '100% !important',
     height: '100% !important',
     borderRadius: 0,

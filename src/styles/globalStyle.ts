@@ -1,7 +1,7 @@
 import { globalCss } from '@stitches/react';
 import { theme } from './styleConfig';
 
-const { colors } = theme;
+const { colors, fontSizes } = theme;
 
 const GlobalStyle = globalCss({
   [`html, body, div, span, applet, object, iframe,
@@ -29,7 +29,7 @@ const GlobalStyle = globalCss({
 
   body: {
     fontFamily: 'Nunito, "Spoqa Han Sans Neo", sans-serif',
-    fontSize: '14px',
+    fontSize: fontSizes.body1,
     fontWeight: 400,
     color: colors.TEXT_L0,
     backgroundColor: '$BACKGROUND_L0',

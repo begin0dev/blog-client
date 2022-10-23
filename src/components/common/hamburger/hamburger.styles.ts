@@ -1,12 +1,9 @@
-import { theme, styled } from 'styles';
-
-const { colors } = theme;
+import { styled } from 'styles';
 
 export const HamburgerWrapper = styled('button', {
   $$HAMBURGER_WIDTH: '18px',
   $$HAMBURGER_HEIGHT: '2px',
   $$HAMBURGER_SPACE: '4px',
-  $$HAMBURGER_COLOR: colors.PRIMARY,
 
   color: 'inherit',
   textTransform: 'none',

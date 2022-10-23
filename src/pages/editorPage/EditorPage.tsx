@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { IcArrowLeft } from '../../assets/svgs';
-import { includeMedia, palette, sizes, themes, zIndexes } from '../../styles';
-import Editor from '../../components/editor';
+import { IcArrowLeft } from 'assets/svgs';
+import { includeMedia, palette, themes, zIndexes } from 'styles';
 import { Button } from 'components/common';
+import Editor from 'components/editor';
 
 function EditorPage() {
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ const HeaderBlock = styled.header`
   z-index: ${zIndexes.HEADER};
   position: relative;
   width: 100%;
-  height: ${sizes.DESKTOP_HEADER}px;
+  height: 68px;
   display: flex;
   justify-content: space-between;
   align-items: center;

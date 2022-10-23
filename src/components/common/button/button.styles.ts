@@ -1,6 +1,6 @@
 import { inputSizes, sizes, theme, styled, pulseKeyframes } from 'styles';
 
-const { colors } = theme;
+const { colors, fontSizes, fontWeights } = theme;
 
 export const colorSet = {
   PRIMARY: 'primary',
@@ -43,17 +43,17 @@ export const ButtonWrapper = styled('button', {
   variants: {
     size: {
       [inputSizes.SMALL]: {
-        fontSize: 12,
+        fontSize: fontSizes.body2,
         height: sizes.SMALL,
         padding: '4px 12px',
       },
       [inputSizes.MIDDLE]: {
-        fontSize: 14,
+        fontSize: fontSizes.body1,
         height: sizes.MIDDLE,
         padding: '4px 16px',
       },
       [inputSizes.LARGE]: {
-        fontSize: 16,
+        fontSize: fontSizes.large,
         height: sizes.LARGE,
         padding: '4px 20px',
       },
@@ -73,8 +73,11 @@ export const ButtonWrapper = styled('button', {
       },
     },
     shape: {
-      [shapes.DEFAULT]: {},
+      [shapes.DEFAULT]: {
+        fontWeight: fontWeights.semiBold,
+      },
       [shapes.DASHED]: {
+        fontWeight: fontWeights.semiBold,
         borderStyle: 'dashed',
       },
       [shapes.LINK]: {
@@ -100,6 +103,10 @@ export const ButtonWrapper = styled('button', {
         height: 'unset',
         padding: 4,
         lineHeight: 0,
+
+        '> svg': {
+          fontSize: 'inherit',
+        },
       },
     },
   },

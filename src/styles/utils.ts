@@ -4,7 +4,7 @@ import { valueOf } from 'lib/utils/typescript-utils';
 import { palette } from './palette';
 
 export const breakPoints = {
-  SM: 530,
+  SM: 540,
   MD: 720,
   LG: 1024,
   HG: 1440,
@@ -38,12 +38,18 @@ export const inputSizes = {
 export type InputSizeType = valueOf<typeof inputSizes>;
 
 export const sizes = {
-  MOBILE_HEADER: 60,
-  DESKTOP_HEADER: 68,
   SMALL: 28,
   MIDDLE: 32,
   LARGE: 36,
 } as const;
+
+export const flexAlignMapper: Record<string, string> = {
+  start: 'flex-start',
+  end: 'flex-end',
+  center: 'center',
+  between: 'space-between',
+  around: 'space-around',
+};
 
 const changeToCondition = (condition: string): string => {
   const errMessage = '올바르지 않은 미디어 쿼리 형식입니다.';

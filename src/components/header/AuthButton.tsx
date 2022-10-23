@@ -1,8 +1,5 @@
-import { styled } from '@stitches/react';
-
 import { useAppDispatch, useAppSelector, userActions, baseActions } from 'stores';
-import { Button } from '../common';
-import { includeMedia } from '../../styles';
+import { CustomAuthButton } from './header.styles';
 
 function AuthButton() {
   const dispatch = useAppDispatch();
@@ -15,24 +12,10 @@ function AuthButton() {
   };
 
   return (
-    <CustomButton color="primary" round onClick={onClick}>
+    <CustomAuthButton round onClick={onClick}>
       {isLoggedIn ? '로그아웃' : '로그인'}
-    </CustomButton>
+    </CustomAuthButton>
   );
 }
 
 export default AuthButton;
-
-const CustomButton = styled(Button, {
-  '&&': {
-    width: 90,
-
-    [includeMedia('>MD')]: {
-      marginLeft: 18,
-    },
-
-    [includeMedia('<=MD')]: {
-      margin: '26px 0',
-    },
-  },
-});

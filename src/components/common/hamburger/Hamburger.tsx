@@ -1,15 +1,23 @@
 import { memo } from 'react';
 
 import { HamburgerWrapper } from './hamburger.styles';
+import { theme } from 'styles';
+
+const { colors } = theme;
 
 interface Props {
+  color?: string;
   active: boolean;
   toggleHamburger: () => void;
 }
 
-function Hamburger({ active, toggleHamburger }: Props) {
+function Hamburger({ color, active, toggleHamburger }: Props) {
   return (
-    <HamburgerWrapper active={active} onClick={toggleHamburger}>
+    <HamburgerWrapper
+      css={{ $$HAMBURGER_COLOR: color ?? colors.WHITE }}
+      active={active}
+      onClick={toggleHamburger}
+    >
       <div className="box">
         <div className="line" />
       </div>

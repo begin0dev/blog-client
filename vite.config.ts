@@ -9,7 +9,6 @@ dns.setDefaultResultOrder('verbatim');
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
-  const serverUrl = env.VITE_SERVER_URL;
 
   return {
     plugins: [react(), tsconfigPaths(), viteSvgr()],
@@ -17,7 +16,7 @@ export default defineConfig(({ mode }) => {
       port: 3000,
       open: true,
       proxy: {
-        '/api': serverUrl,
+        '/api': env.VITE_SERVER_URL,
       },
     },
   };

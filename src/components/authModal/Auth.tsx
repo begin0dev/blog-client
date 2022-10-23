@@ -79,7 +79,7 @@ function Auth() {
         </WelcomeWrapper>
         <ActionWrapper>
           <h2>시작하기</h2>
-          <p>소셜 미디어를 통해 편하게 로그인 하세요</p>
+          <p>소셜 미디어를 통해 편하게 로그인 하세요.</p>
           <div className="socialButtons">
             <SocialButton
               provider={SOCIAL_PROVIDER.FACEBOOK}

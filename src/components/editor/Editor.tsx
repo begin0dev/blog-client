@@ -1,7 +1,5 @@
-import styled from 'styled-components';
-
 import { MarkdownEditor, MarkdownPreview } from 'components/common';
-import { palette } from '../../styles';
+import { EditorWrapper } from './editor.styles';
 
 interface Props {
   markdown: string;
@@ -10,21 +8,11 @@ interface Props {
 
 function Editor({ markdown, setMarkdown }: Props) {
   return (
-    <EditorBlock>
+    <EditorWrapper>
       <MarkdownEditor markdown={markdown} onChange={setMarkdown} />
       <MarkdownPreview markdown={markdown} />
-    </EditorBlock>
+    </EditorWrapper>
   );
 }
 
 export default Editor;
-
-const EditorBlock = styled.div`
-  display: flex;
-  flex: 1;
-  padding: 10px 30px;
-
-  > div + div {
-    border-left: 1px solid ${palette.gray2};
-  }
-`;
