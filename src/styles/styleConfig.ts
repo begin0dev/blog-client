@@ -1,4 +1,5 @@
 import { createStitches } from '@stitches/react';
+
 import { breakPoints, flexAlignMapper } from './utils';
 
 export const { theme, styled } = createStitches({
@@ -56,13 +57,9 @@ export const { theme, styled } = createStitches({
     minDesktop: `(min-width: ${breakPoints.MD + 1}px)`,
   },
   utils: {
-    mx: (value: number) => ({
-      marginLeft: value,
-      marginRight: value,
-    }),
-    my: (value: number) => ({
-      marginTop: value,
-      marginBottom: value,
+    size: (value: number) => ({
+      width: value,
+      height: value,
     }),
 
     px: (value: number) => ({
@@ -73,10 +70,13 @@ export const { theme, styled } = createStitches({
       paddingTop: value,
       paddingBottom: value,
     }),
-
-    size: (value: number) => ({
-      width: value,
-      height: value,
+    mx: (value: number) => ({
+      marginLeft: value,
+      marginRight: value,
+    }),
+    my: (value: number) => ({
+      marginTop: value,
+      marginBottom: value,
     }),
 
     flexbox: (value: string) => {
@@ -92,6 +92,11 @@ export const { theme, styled } = createStitches({
       position,
       top: '50%',
       transform: 'translateY(-50%)',
+    }),
+    posCenterX: (position: 'absolute' | 'fixed') => ({
+      position,
+      left: '50%',
+      transform: 'translateX(-50%)',
     }),
   },
 });

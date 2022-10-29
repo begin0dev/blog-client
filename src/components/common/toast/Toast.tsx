@@ -12,6 +12,9 @@ import {
 import ToastEventEmitter from './ToastEventEmitter';
 import { IcXCircle, IcCheckCircle, IcExclamationCircle } from 'assets/svgs';
 import { ToastGroupWrapper, ToastItemWrapper } from './toast.styles';
+import { createPortal } from 'react-dom';
+
+const noticeRoot = document.querySelector('#notice') as HTMLDivElement;
 
 interface Props {
   animationDuration?: number;
@@ -63,7 +66,7 @@ function Toast({ maxCount = 10, position = 'top-center' }: Props) {
     });
   });
 
-  return (
+  return createPortal(
     <ToastGroupWrapper className={position}>
       {toasts.map((toast) => (
         <CSSTransition key={toast.id} timeout={300} classNames="toast">
@@ -79,7 +82,8 @@ function Toast({ maxCount = 10, position = 'top-center' }: Props) {
           </ToastItemWrapper>
         </CSSTransition>
       ))}
-    </ToastGroupWrapper>
+    </ToastGroupWrapper>,
+    noticeRoot,
   );
 }
 

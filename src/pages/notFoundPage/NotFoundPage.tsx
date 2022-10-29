@@ -1,7 +1,7 @@
-import { NotFoundPageBlock } from './NotFoundPage.styles';
+import { NotFoundPageWrapper } from './NotFoundPage.styles';
 
 function NotFoundPage() {
-  return <NotFoundPageBlock>404 not found</NotFoundPageBlock>;
+  return <NotFoundPageWrapper>404 not found</NotFoundPageWrapper>;
 }
 
 export default NotFoundPage;
