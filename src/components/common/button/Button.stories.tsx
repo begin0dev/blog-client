@@ -6,6 +6,11 @@ import Button from './Button';
 export default {
   title: 'Common Button',
   component: Button,
+  argTypes: {
+    children: {
+      control: false,
+    },
+  },
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = ({ children, ...args }) => (

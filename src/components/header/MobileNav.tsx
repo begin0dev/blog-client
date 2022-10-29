@@ -1,9 +1,7 @@
 import { MouseEventHandler } from 'react';
-import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppSelector } from 'stores';
-import { palette } from 'styles';
 import { navigations } from './Header';
 import { Drawer } from '../common';
 import AuthButton from './AuthButton';

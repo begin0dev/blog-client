@@ -15,9 +15,9 @@ interface Props {
 function Hamburger({ active, className, color, toggleHamburger }: Props) {
   return (
     <HamburgerWrapper
-      css={{ $$HAMBURGER_COLOR: color ?? colors.WHITE }}
-      className={className}
       active={active}
+      className={className}
+      css={{ $$HAMBURGER_COLOR: color ?? colors.WHITE }}
       onClick={toggleHamburger}
     >
       <div className="box">

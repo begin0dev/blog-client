@@ -100,7 +100,7 @@ export const DesktopCustomLink = styled(NavLink, {
     color: colors.PRIMARY,
 
     '&:after': {
-      width: '90%',
+      width: '94%',
     },
   },
 });
