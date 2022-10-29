@@ -1,12 +1,11 @@
 import { MouseEventHandler } from 'react';
-import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
 import { useAppSelector } from 'stores';
-import { palette, themes } from 'styles';
 import { navigations } from './Header';
-import Drawer from '../common/drawer';
+import { Drawer } from '../common';
 import AuthButton from './AuthButton';
+import { MobileCustomLink, MobileNavWrapper } from './header.styles';
 
 interface Props {
   toggleSidebar: () => void;
@@ -19,42 +18,23 @@ function MobileNav({ toggleSidebar }: Props) {
 
   const onClickLink: MouseEventHandler<HTMLButtonElement> = (e) => {
     toggleSidebar();
-    navigate(e.currentTarget.dataset!.path as string);
+    navigate(e.currentTarget.value);
   };
 
   return (
     <Drawer position="right" active={isShowSidebar}>
-      <SidebarWrapper>
+      <MobileNavWrapper>
         {navigations.map((nav) => (
           <li key={nav.text}>
-            <LinkBtn data-path={nav.to} onClick={onClickLink}>
+            <MobileCustomLink value={nav.to} onClick={onClickLink}>
               {nav.text}
-            </LinkBtn>
+            </MobileCustomLink>
           </li>
         ))}
         <AuthButton />
-      </SidebarWrapper>
+      </MobileNavWrapper>
     </Drawer>
   );
 }
 
 export default MobileNav;
-
-const SidebarWrapper = styled.ul`
-  height: 100%;
-  width: 310px;
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-  align-items: center;
-  background-color: ${themes.BACKGROUND_L1};
-`;
-const LinkBtn = styled.button`
-  width: 100%;
-  height: 50px;
-  display: block;
-  font-size: 16px;
-  font-weight: 600;
-  background-color: transparent;
-  color: ${palette.gray0};
-`;

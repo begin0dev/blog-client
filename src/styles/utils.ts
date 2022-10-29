@@ -4,10 +4,10 @@ import { valueOf } from 'lib/utils/typescript-utils';
 import { palette } from './palette';
 
 export const breakPoints = {
-  SM: 530,
-  MD: 840,
+  SM: 540,
+  MD: 720,
   LG: 1024,
-  HG: 1400,
+  HG: 1440,
 } as const;
 
 export const zIndexes = {
@@ -38,12 +38,18 @@ export const inputSizes = {
 export type InputSizeType = valueOf<typeof inputSizes>;
 
 export const sizes = {
-  DESKTOP_HEADER: 70,
-  MOBILE_HEADER: 64,
   SMALL: 28,
   MIDDLE: 32,
   LARGE: 36,
 } as const;
+
+export const flexAlignMapper: Record<string, string> = {
+  start: 'flex-start',
+  end: 'flex-end',
+  center: 'center',
+  between: 'space-between',
+  around: 'space-around',
+};
 
 const changeToCondition = (condition: string): string => {
   const errMessage = '올바르지 않은 미디어 쿼리 형식입니다.';
@@ -60,3 +66,5 @@ const changeToCondition = (condition: string): string => {
 
 export const includeMedia = (...conditions: string[]): string =>
   `@media ${conditions.map((condition) => changeToCondition(condition)).join(' and ')}`;
+
+export const joinClass = (classnames: string[]) => classnames.join(', ');

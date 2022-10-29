@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import styled, { css } from 'styled-components';
+import { CSSTransition } from 'react-transition-group';
+import { useUnMount } from 'hooks';
 
 import {
   ToastType,
@@ -8,11 +9,12 @@ import {
   ToastCallbackType,
   ToastItemInterface,
 } from './types';
-import { useUnMount } from 'hooks';
-import { IcXCircle, IcCheckCircle, IcExclamationCircle } from 'assets/svgs';
-import { palette } from 'styles';
 import ToastEventEmitter from './ToastEventEmitter';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { IcXCircle, IcCheckCircle, IcExclamationCircle } from 'assets/svgs';
+import { ToastGroupWrapper, ToastItemWrapper } from './toast.styles';
+import { createPortal } from 'react-dom';
+
+const noticeRoot = document.querySelector('#notice') as HTMLDivElement;
 
 interface Props {
   animationDuration?: number;
@@ -20,7 +22,7 @@ interface Props {
   position?: PositionType;
 }
 
-function Toast({ maxCount = 10, position = 'top-center', animationDuration = 250 }: Props) {
+function Toast({ maxCount = 10, position = 'top-center' }: Props) {
   const timers = useRef<Record<string, NodeJS.Timer>>({});
 
   const [toasts, setToasts] = useState<ToastItemInterface[]>([]);
@@ -64,124 +66,25 @@ function Toast({ maxCount = 10, position = 'top-center', animationDuration = 250
     });
   });
 
-  return (
-    <ToastsWrap position={position}>
+  return createPortal(
+    <ToastGroupWrapper className={position}>
       {toasts.map((toast) => (
-        <CSSTransition key={toast.id} timeout={animationDuration} classNames="toast">
-          <ToastItem animationDuration={animationDuration}>
-            <span className={`svg-span ${toast.type}`}>
-              {toast.type === ToastType.SUCCESS && <IcCheckCircle />}
-              {toast.type === ToastType.WARNING && <IcExclamationCircle />}
-              {toast.type === ToastType.ERROR && <IcXCircle />}
-            </span>
-            <span>{toast.message}</span>
-          </ToastItem>
+        <CSSTransition key={toast.id} timeout={300} classNames="toast">
+          <ToastItemWrapper className="toast">
+            <div className="item">
+              <span className={`icon ${toast.type}`}>
+                {toast.type === ToastType.SUCCESS && <IcCheckCircle />}
+                {toast.type === ToastType.WARNING && <IcExclamationCircle />}
+                {toast.type === ToastType.ERROR && <IcXCircle />}
+              </span>
+              <span>{toast.message}</span>
+            </div>
+          </ToastItemWrapper>
         </CSSTransition>
       ))}
-    </ToastsWrap>
+    </ToastGroupWrapper>,
+    noticeRoot,
   );
 }
 
 export default Toast;
-
-const positionsMapper = {
-  'top-left': css`
-    top: 0;
-    left: 0;
-  `,
-  'top-center': css`
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  `,
-  'top-right': css`
-    top: 0;
-    right: 0;
-  `,
-  'bottom-left': css`
-    bottom: 0;
-    left: 0;
-  `,
-  'bottom-center': css`
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  `,
-  'bottom-right': css`
-    bottom: 0;
-    right: 0;
-  `,
-};
-const initPositionCss = (position: PositionType) => {
-  if (position.includes('right'))
-    return css`
-      transform: translateX(150%);
-    `;
-  if (position.includes('lef'))
-    return css`
-      transform: translateX(-50%);
-    `;
-  if (position.includes('top'))
-    return css`
-      max-height: 0;
-      margin: 0 10px;
-      transform: translateY(-50%); ;
-    `;
-  return css`
-    max-height: 0;
-    margin: 0 10px;
-    transform: translateY(150%);
-  `;
-};
-
-const ToastsWrap = styled(TransitionGroup)<{ position: PositionType }>`
-  z-index: 9999;
-  position: fixed;
-  max-height: 100%;
-  ${({ position }) => css`
-    ${positionsMapper[position]};
-
-    .toast-enter-active,
-    .toast-exit {
-      transform: translate(0, 0);
-      opacity: 1;
-    }
-    .toast-enter,
-    .toast-exit-active {
-      ${initPositionCss(position)};
-      opacity: 0;
-    }
-  `}
-`;
-const ToastItem = styled.div<{ animationDuration: number }>`
-  ${({ animationDuration }) => css`
-    display: flex;
-    align-items: flex-start;
-    width: 320px;
-    max-width: 360px;
-    font-size: 14px;
-    color: ${palette.white};
-    background-color: ${palette.black};
-    box-shadow: 0 2px 8px 3px rgba(255, 255, 255, 0.03);
-    border-radius: 4px;
-    padding: 10px 14px;
-    margin: 10px;
-    transition: all ${`${animationDuration}ms`};
-
-    .svg-span {
-      display: inline-flex;
-      font-size: 18px;
-      margin-right: 8px;
-
-      &.success {
-        color: ${palette.green5};
-      }
-      &.warning {
-        color: ${palette.orange5};
-      }
-      &.error {
-        color: ${palette.red5};
-      }
-    }
-  `}
-`;
