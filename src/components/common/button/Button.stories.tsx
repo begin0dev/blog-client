@@ -2,6 +2,7 @@ import type { ComponentMeta, ComponentStory } from '@storybook/react';
 import { IcBell } from 'assets/svgs';
 
 import Button from './Button';
+import StorybookGroup from '../../../styles/storybook';
 
 export default {
   title: 'Common Button',
@@ -15,7 +16,7 @@ export default {
 
 const Template: ComponentStory<typeof Button> = ({ children, ...args }) => (
   <>
-    <div>
+    <StorybookGroup>
       <Button shape="primary">primary</Button>
       <Button shape="secondary">secondary</Button>
       <Button shape="ghost">ghost</Button>
@@ -29,7 +30,7 @@ const Template: ComponentStory<typeof Button> = ({ children, ...args }) => (
       <Button shape="icon3">
         <IcBell />
       </Button>
-    </div>
+    </StorybookGroup>
     <Button {...args}>{children}</Button>
   </>
 );
