@@ -14,16 +14,27 @@ export default {
 } as ComponentMeta<typeof Button>;
 
 const Template: ComponentStory<typeof Button> = ({ children, ...args }) => (
-  <Button {...args}>{children}</Button>
+  <>
+    <div>
+      <Button shape="primary">primary</Button>
+      <Button shape="secondary">secondary</Button>
+      <Button shape="ghost">ghost</Button>
+      <Button shape="link">link</Button>
+      <Button shape="icon1">
+        <IcBell />
+      </Button>
+      <Button shape="icon2">
+        <IcBell />
+      </Button>
+      <Button shape="icon3">
+        <IcBell />
+      </Button>
+    </div>
+    <Button {...args}>{children}</Button>
+  </>
 );
 
 export const TextButton = Template.bind({});
 TextButton.args = {
   children: 'button',
-};
-
-export const IconButton = Template.bind({});
-IconButton.args = {
-  shape: 'icon',
-  children: <IcBell />,
 };

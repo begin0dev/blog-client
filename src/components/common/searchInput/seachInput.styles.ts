@@ -9,7 +9,7 @@ export const SearchInputWrapper = styled('div', {
   padding: '0 12px',
   border: `1px solid ${colors.BORDER_COLOR}`,
   borderRadius: '2em',
-  color: 'inherit',
+  color: colors.TEXT_L1,
   transition: 'opacity 0.2s ease-in-out',
   opacity: 0.8,
 
@@ -32,7 +32,6 @@ export const SearchInputWrapper = styled('div', {
 
     '&::placeholder': {
       fontSize: 'inherit',
-      opacity: 0.6,
     },
   },
 });

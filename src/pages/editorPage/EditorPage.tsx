@@ -14,13 +14,7 @@ function EditorPage() {
   return (
     <>
       <HeaderWrapper>
-        <Button
-          shape="icon"
-          color="ghost"
-          className="backButton"
-          onClick={() => navigate(-1)}
-          round
-        >
+        <Button shape="icon3" className="backButton" onClick={() => navigate(-1)} round>
           <IcArrowLeft />
         </Button>
         <Button round>저장하기</Button>

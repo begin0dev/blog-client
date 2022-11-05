@@ -8,6 +8,6 @@ export const EditorWrapper = styled('div', {
   padding: '10px 30px',
 
   '> div + div': {
-    borderLeft: `1px solid ${colors.GRAY2}`,
+    borderLeft: `1px solid ${colors.BORDER_COLOR}`,
   },
 });

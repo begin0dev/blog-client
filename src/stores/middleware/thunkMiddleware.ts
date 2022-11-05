@@ -1,4 +1,4 @@
-import { AnyAction, Dispatch, MiddlewareAPI } from '@reduxjs/toolkit';
+import type { AnyAction, Dispatch, MiddlewareAPI } from '@reduxjs/toolkit';
 
 import { baseActions } from 'stores/base';
 

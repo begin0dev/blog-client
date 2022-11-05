@@ -66,7 +66,7 @@ function Auth() {
       showOverlay
     >
       <AuthWrapper>
-        <Button shape="icon" color="ghost" onClick={hideModal} round className="backButton">
+        <Button shape="icon3" onClick={hideModal} className="backButton">
           <IcArrowLeft />
         </Button>
         <WelcomeWrapper>

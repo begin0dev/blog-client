@@ -13,6 +13,7 @@ export const AuthWrapper = styled('div', {
 
   '.backButton': {
     fontSize: 20,
+    marginLeft: '-8px',
   },
 });
 
@@ -22,7 +23,7 @@ export const WelcomeWrapper = styled('div', {
   flex: 1,
   gap: 8,
   fontSize: fontSizes.h2,
-  color: colors.GRAY0,
+  color: colors.TEXT_L0,
   letterSpacing: '-0.02em',
 
   '.logo': {
@@ -46,7 +47,7 @@ export const ActionWrapper = styled('div', {
 
   '> p': {
     fontSize: fontSizes.body2,
-    color: colors.GRAY1,
+    color: colors.TEXT_L2,
     marginBottom: 12,
   },
 
