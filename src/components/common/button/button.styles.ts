@@ -13,6 +13,7 @@ export const shapes = {
 } as const;
 
 export const iconCss = {
+  flexbox: '',
   width: 'unset',
   height: 'unset',
   padding: 8,
@@ -72,12 +73,13 @@ export const ButtonWrapper = styled('button', {
         fontWeight: fontWeights.semiBold,
         border: `1px solid ${colors.PRIMARY}`,
         backgroundColor: colors.PRIMARY,
-        color: colors.BLACK,
+        color: colors.GRAY_1,
       },
       [shapes.SECONDARY]: {
         fontWeight: fontWeights.semiBold,
         border: `1px solid ${colors.SECONDARY}`,
         backgroundColor: colors.SECONDARY,
+        color: colors.WHITE,
       },
       [shapes.GHOST]: {
         fontWeight: fontWeights.semiBold,
@@ -105,11 +107,12 @@ export const ButtonWrapper = styled('button', {
       [shapes.ICON1]: {
         ...iconCss,
         backgroundColor: colors.PRIMARY,
-        color: colors.BLACK,
+        color: colors.GRAY_1,
       },
       [shapes.ICON2]: {
         ...iconCss,
         backgroundColor: colors.SECONDARY,
+        color: colors.WHITE,
       },
       [shapes.ICON3]: {
         ...iconCss,

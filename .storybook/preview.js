@@ -1,4 +1,6 @@
-import GlobalStyle from '../src/styles/globalStyle';
+import globalStyle from '../src/styles/globalStyle';
+
+globalStyle();
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -13,13 +15,3 @@ export const parameters = {
     values: [{ name: 'dark', value: '#141312' }],
   },
 };
-
-const withThemeProvider = (Story, context) => {
-  return (
-    <>
-      <GlobalStyle />
-      <Story {...context} />
-    </>
-  );
-};
-export const decorators = [withThemeProvider];

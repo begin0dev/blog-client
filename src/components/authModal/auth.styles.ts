@@ -26,11 +26,9 @@ export const WelcomeWrapper = styled('div', {
   color: colors.TEXT_L0,
   letterSpacing: '-0.02em',
 
-  '.logo': {
-    height: 30,
-    marginTop: -5,
-    marginRight: 6,
-    marginBottom: -3,
+  '.name': {
+    fontWeight: 'bold',
+    color: colors.PRIMARY,
   },
 });
 

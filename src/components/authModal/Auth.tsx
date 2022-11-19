@@ -1,12 +1,12 @@
-import qs from 'qs';
 import { MouseEventHandler, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import useToast from '../common/toast/useToast';
 import { Modal, Button } from 'components/common';
-import { IcArrowLeft, IcFacebook, IcGithub, IcGoogle, IcKakao, IcLogo } from 'assets/svgs';
+import { IcArrowLeft, IcFacebook, IcGithub, IcGoogle, IcKakao } from 'assets/svgs';
 import { baseActions, userActions, useAppSelector, useAppDispatch } from 'stores';
 import { V1_SOCIALS_URL } from 'lib/services/auth';
+import { useQueryString } from 'hooks/useQueryString';
 import { ActionWrapper, AuthWrapper, SocialButton, WelcomeWrapper } from './auth.styles';
 
 const SOCIAL_PROVIDER = {
@@ -17,18 +17,15 @@ const SOCIAL_PROVIDER = {
 } as const;
 
 function Auth() {
-  const { pathname, search } = useLocation();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { pathname } = useLocation();
+  const [{ message, verify_code }] = useQueryString<{ message?: string; verify_code?: string }>();
 
   const isLoggedIn = useAppSelector((state) => state.user.isLoggedIn);
   const isShowModal = useAppSelector((state) => state.base.isShowAuthModal);
 
   const { addToast } = useToast();
-
-  const { message, verify_code }: { message?: string; verify_code?: string } = qs.parse(search, {
-    ignoreQueryPrefix: true,
-  });
 
   const hideModal = () => dispatch(baseActions.hideAuthModal());
 
@@ -55,7 +52,7 @@ function Auth() {
     const referer = sessionStorage.getItem(STORAGE_KEY) || '/';
     sessionStorage.removeItem(STORAGE_KEY);
     navigate(referer, { replace: true });
-  }, [dispatch, search, pathname, navigate, message, verify_code, addToast]);
+  }, [dispatch, pathname, navigate, message, verify_code, addToast]);
 
   if (isLoggedIn) return null;
   return (
@@ -72,8 +69,7 @@ function Auth() {
         <WelcomeWrapper>
           <p>안녕하세요!</p>
           <p>
-            <IcLogo className="logo" />
-            블로그에
+            <span className="name">비기너 </span>블로그에
           </p>
           <p>오신 것을 환영합니다!</p>
         </WelcomeWrapper>

@@ -33,7 +33,7 @@
     ],
     "no-param-reassign": [
       "error",
-      { "props": true, "ignorePropertyModificationsFor": ["draft", "state"] }
+      { "props": true, "ignorePropertyModificationsFor": ["draft", "state", "acc"] }
     ],
     "@typescript-eslint/no-non-null-assertion": "off"
   },

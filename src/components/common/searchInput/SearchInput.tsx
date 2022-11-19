@@ -7,11 +7,13 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   fontSize?: number;
 }
 
-function SearchInput({ fontSize = 12, ...restProps }: Props) {
+function SearchInput({ fontSize = 14, ...restProps }: Props) {
   return (
     <SearchInputWrapper css={{ fontSize }}>
-      <IcSearch />
       <input type="text" {...restProps} />
+      <button type="button">
+        <IcSearch />
+      </button>
     </SearchInputWrapper>
   );
 }
