@@ -11,7 +11,7 @@ interface Props {
 
 function Drawer({ active, position = 'bottom', children }: Props) {
   return (
-    <CSSTransition in={active} timeout={300} classNames="drawer" unmountOnExit>
+    <CSSTransition in={active} timeout={300} classNames="drawer" mountOnEnter unmountOnExit>
       <DrawerWrapper position={position}>
         <div className="drawer">{children}</div>
       </DrawerWrapper>

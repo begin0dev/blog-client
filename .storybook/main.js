@@ -21,6 +21,10 @@ module.exports = {
   viteFinal(config, { configType }) {
     return mergeConfig(config, {
       plugins: [tsconfigPaths(), viteSvgr()],
+      define: {
+        ...config.define,
+        global: 'window',
+      },
     });
   },
 };

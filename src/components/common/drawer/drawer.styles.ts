@@ -11,7 +11,7 @@ export const DrawerWrapper = styled('div', {
     height: '100%',
   },
 
-  '&.drawer-enter .drawer, &.drawer-exit .drawer': {
+  '&.drawer-enter-active .drawer, &.drawer-exit-active .drawer': {
     transition: 'transform 300ms cubic-bezier(0.7, 0.3, 0.1, 1)',
   },
 

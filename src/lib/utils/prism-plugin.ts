@@ -1,5 +1,5 @@
 import Prism from 'prismjs';
-import { Node, Data } from 'unist';
+import type { Node, Data } from 'unist';
 import { visit } from 'unist-util-visit';
 
 import 'prismjs/components/prism-bash.min';
@@ -25,7 +25,7 @@ interface TreeNode extends Node<Data> {
 function prismPlugin() {
   return (tree: TreeNode) =>
     visit(tree, ['code', 'inlineCode'], (node: TreeNode) => {
-      let { type, lang, value } = node;
+      const { type, lang, value } = node;
       const codeLang = Prism.languages[lang] ? lang : 'javascript';
 
       const code = Prism.highlight(value, Prism.languages[codeLang], codeLang);

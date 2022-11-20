@@ -2,23 +2,33 @@ import { inputSizes, sizes, theme, styled, pulseKeyframes } from 'styles';
 
 const { colors, fontSizes, fontWeights } = theme;
 
-export const colorSet = {
+export const shapes = {
   PRIMARY: 'primary',
   SECONDARY: 'secondary',
   GHOST: 'ghost',
+  LINK: 'link',
+  ICON1: 'icon1',
+  ICON2: 'icon2',
+  ICON3: 'icon3',
 } as const;
 
-export const shapes = {
-  DEFAULT: 'default',
-  DASHED: 'dashed',
-  LINK: 'link',
-  ICON: 'icon',
-} as const;
+export const iconCss = {
+  flexbox: '',
+  width: 'unset',
+  height: 'unset',
+  padding: 8,
+  lineHeight: 0,
+  borderRadius: '50%',
+
+  '> svg': {
+    fontSize: 'inherit',
+  },
+};
 
 export const ButtonWrapper = styled('button', {
   flex: '',
   color: colors.TEXT_L0,
-  borderRadius: 2,
+  borderRadius: 4,
   userSelect: 'none',
   cursor: 'pointer',
 
@@ -58,27 +68,23 @@ export const ButtonWrapper = styled('button', {
         padding: '4px 20px',
       },
     },
-    color: {
-      [colorSet.PRIMARY]: {
+    shape: {
+      [shapes.PRIMARY]: {
+        fontWeight: fontWeights.semiBold,
         border: `1px solid ${colors.PRIMARY}`,
         backgroundColor: colors.PRIMARY,
+        color: colors.GRAY_1,
       },
-      [colorSet.SECONDARY]: {
+      [shapes.SECONDARY]: {
+        fontWeight: fontWeights.semiBold,
         border: `1px solid ${colors.SECONDARY}`,
         backgroundColor: colors.SECONDARY,
+        color: colors.WHITE,
       },
-      [colorSet.GHOST]: {
+      [shapes.GHOST]: {
+        fontWeight: fontWeights.semiBold,
         backgroundColor: 'transparent',
         border: 'unset',
-      },
-    },
-    shape: {
-      [shapes.DEFAULT]: {
-        fontWeight: fontWeights.semiBold,
-      },
-      [shapes.DASHED]: {
-        fontWeight: fontWeights.semiBold,
-        borderStyle: 'dashed',
       },
       [shapes.LINK]: {
         backgroundColor: 'transparent',
@@ -98,15 +104,19 @@ export const ButtonWrapper = styled('button', {
           },
         },
       },
-      [shapes.ICON]: {
-        width: 'unset',
-        height: 'unset',
-        padding: 4,
-        lineHeight: 0,
-
-        '> svg': {
-          fontSize: 'inherit',
-        },
+      [shapes.ICON1]: {
+        ...iconCss,
+        backgroundColor: colors.PRIMARY,
+        color: colors.GRAY_1,
+      },
+      [shapes.ICON2]: {
+        ...iconCss,
+        backgroundColor: colors.SECONDARY,
+        color: colors.WHITE,
+      },
+      [shapes.ICON3]: {
+        ...iconCss,
+        backgroundColor: 'transparent',
       },
     },
   },

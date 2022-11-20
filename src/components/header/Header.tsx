@@ -55,7 +55,7 @@ function Header() {
         <>
           <MobileNav toggleSidebar={toggleSidebar} />
           <RightWrapper>
-            <Button shape="icon" color="ghost" round className="searchIcon">
+            <Button shape="icon3" className="searchIcon">
               <IcSearch />
             </Button>
             <Hamburger

@@ -8,7 +8,11 @@ function DesktopNav() {
     <DesktopNavWrapper>
       {navigations.map((nav) => (
         <li key={nav.text}>
-          <DesktopCustomLink to={nav.to} className={({ isActive }) => cx({ active: isActive })}>
+          <DesktopCustomLink
+            to={nav.to}
+            className={({ isActive }) => cx({ active: isActive })}
+            end={nav.to === '/'}
+          >
             {nav.text}
           </DesktopCustomLink>
         </li>

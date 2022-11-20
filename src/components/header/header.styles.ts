@@ -11,15 +11,16 @@ export const HeaderWrapper = styled('nav', {
   top: 0,
   right: 0,
   left: 0,
-  padding: '0 34px',
   backgroundColor: colors.BACKGROUND_L1,
 
   '@maxTablet': {
     height: sizes.MOBILE_HEADER,
+    padding: '0 24px',
   },
 
   '@minDesktop': {
     height: sizes.DESKTOP_HEADER,
+    padding: '0 34px',
   },
 });
 
@@ -54,13 +55,13 @@ export const RightWrapper = styled('div', {
 });
 
 export const CustomAuthButton = styled(Button, {
-  width: 90,
-
   '@maxTablet': {
+    width: 120,
     marginTop: 24,
   },
 
   '@minDesktop': {
+    width: 90,
     marginLeft: 12,
   },
 });
@@ -76,8 +77,8 @@ export const DesktopCustomLink = styled(NavLink, {
   flexbox: '',
   position: 'relative',
   fontSize: fontSizes.body1,
-  fontWeight: fontWeights.semiBold,
-  color: colors.TEXT_L1,
+  fontWeight: fontWeights.bold,
+  color: colors.TEXT_L0,
   py: 6,
   userSelect: 'none',
   transition: 'color 200ms',
@@ -122,6 +123,6 @@ export const MobileCustomLink = styled('button', {
   height: 50,
   fontSize: fontSizes.large,
   fontWeight: fontWeights.semiBold,
-  color: colors.GRAY0,
+  color: colors.TEXT_L0,
   backgroundColor: 'transparent',
 });

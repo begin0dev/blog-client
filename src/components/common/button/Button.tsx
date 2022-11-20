@@ -3,14 +3,12 @@ import cx from 'classnames';
 
 import { inputSizes, InputSizeType } from 'styles';
 import { valueOf } from 'lib/utils/typescript-utils';
-import { ButtonWrapper, colorSet, shapes } from './button.styles';
+import { ButtonWrapper, shapes } from './button.styles';
 
-type ColorType = valueOf<typeof colorSet>;
 type ShapeType = valueOf<typeof shapes>;
 
 export interface Props extends ButtonHTMLAttributes<unknown> {
   size?: InputSizeType;
-  color?: ColorType;
   shape?: ShapeType;
   round?: boolean;
   children: string | ReactNode;
@@ -19,8 +17,7 @@ export interface Props extends ButtonHTMLAttributes<unknown> {
 function Button({
   type = 'button',
   size = inputSizes.MIDDLE,
-  color = colorSet.PRIMARY,
-  shape,
+  shape = shapes.PRIMARY,
   round,
   children,
   className,
@@ -30,7 +27,6 @@ function Button({
     <ButtonWrapper
       type={type}
       size={size}
-      color={color}
       shape={shape}
       className={cx(className, { round: !!round })}
       {...buttonProps}

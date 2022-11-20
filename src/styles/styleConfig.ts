@@ -2,25 +2,28 @@ import { createStitches } from '@stitches/react';
 
 import { breakPoints, flexAlignMapper } from './utils';
 
-export const { theme, styled } = createStitches({
+export const { theme, styled, css } = createStitches({
   theme: {
     colors: {
-      GRAY0: '#F8F9FA',
-      GRAY1: '#CED4DA',
-      GRAY2: '#141312',
-      GRAY3: '#0E0D0D',
-      PRIMARY: '#19C9DC',
+      WHITE: '#ffffff',
+      GRAY_F: '#F8F9FA',
+      GRAY_C: '#CED4DA',
+      GRAY_2: '#2A2F38',
+      GRAY_1: '#1B1E24',
+      BLACK: '#121418',
+
+      PRIMARY: '#00C39A',
       SECONDARY: '#5D5C5C',
       SUCCESS: '#51CF66',
       WARNING: '#ff922b',
       ERROR: '#ff6b6b',
-      WHITE: '#f8f9fa',
 
-      BACKGROUND_L0: '$GRAY2',
-      BACKGROUND_L1: '$GRAY3',
-      BORDER_COLOR: '$GRAY0',
-      TEXT_L0: '$GRAY0',
-      TEXT_L1: '$GRAY1',
+      BACKGROUND_L0: '$GRAY_1',
+      BACKGROUND_L1: '$BLACK',
+      BORDER_COLOR: '$GRAY_F',
+      TEXT_L0: '$WHITE',
+      TEXT_L1: '$GRAY_F',
+      TEXT_L2: '$GRAY_C',
     },
     zIndices: {
       HEADER: 200,
@@ -37,8 +40,9 @@ export const { theme, styled } = createStitches({
     },
     fontSizes: {
       h1: '24px',
-      h2: '20px',
-      h3: '18px',
+      h2: '22px',
+      h3: '20px',
+      h4: '18px',
       large: '16px',
       body1: '14px',
       body2: '12px',
