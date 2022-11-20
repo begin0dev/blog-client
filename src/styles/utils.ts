@@ -1,14 +1,14 @@
 import { isFinite } from 'lodash';
 
+import { valueOf } from 'lib/utils/typescript-utils';
 import { palette } from './palette';
-import { ValueOf } from 'lib/utils/typescript-utils';
 
-export const breakPoints: Record<string, number> = {
-  sm: 530,
-  md: 840,
-  lg: 1024,
-  hg: 1200,
-};
+export const breakPoints = {
+  SM: 540,
+  MD: 720,
+  LG: 1024,
+  HG: 1440,
+} as const;
 
 export const zIndexes = {
   HEADER: 200,
@@ -35,19 +35,26 @@ export const inputSizes = {
   LARGE: 'large',
 } as const;
 
-export type InputSizeType = ValueOf<typeof inputSizes>;
+export type InputSizeType = valueOf<typeof inputSizes>;
 
 export const sizes = {
-  HEADER: 70,
   SMALL: 28,
   MIDDLE: 32,
   LARGE: 36,
 } as const;
 
+export const flexAlignMapper: Record<string, string> = {
+  start: 'flex-start',
+  end: 'flex-end',
+  center: 'center',
+  between: 'space-between',
+  around: 'space-around',
+};
+
 const changeToCondition = (condition: string): string => {
   const errMessage = '올바르지 않은 미디어 쿼리 형식입니다.';
   const breakPoint = condition.replace(/[<=>]/g, '');
-  const width: number = breakPoints[breakPoint] ?? Number(breakPoint);
+  const width: number = breakPoints[breakPoint as keyof typeof breakPoints] ?? Number(breakPoint);
   if (!isFinite(width)) throw new Error(errMessage);
 
   if (condition.startsWith('>=')) return `(min-width: ${width}px)`;
@@ -59,3 +66,5 @@ const changeToCondition = (condition: string): string => {
 
 export const includeMedia = (...conditions: string[]): string =>
   `@media ${conditions.map((condition) => changeToCondition(condition)).join(' and ')}`;
+
+export const joinClass = (classnames: string[]) => classnames.join(', ');

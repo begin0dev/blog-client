@@ -1,7 +1,6 @@
-import { useState, useEffect, memo, useRef } from 'react';
-import styled from 'styled-components/macro';
+import { useState, useEffect, useRef, memo } from 'react';
 
-import { themes, zIndexes } from 'styles';
+import { ProgressbarWrapper } from './progress.styles';
 
 interface Props {
   isLoading: boolean;
@@ -55,18 +54,7 @@ function Progressbar({ isLoading, animationTime = 5 }: Props) {
     rafRef.current = requestAnimationFrame(animate);
   }, [animationTime, isLoading]);
 
-  return <ProgressbarBlock percent={percent} visible={visible} />;
+  return <ProgressbarWrapper style={{ width: `${percent}%` }} visible={visible} />;
 }
 
 export default memo(Progressbar);
-
-const ProgressbarBlock = styled.div<{ percent: number; visible: boolean }>`
-  z-index: ${zIndexes.PROGRESS};
-  position: fixed;
-  top: 0;
-  width: ${({ percent }) => percent}%;
-  height: ${({ visible }) => (visible ? '4px' : 0)};
-  opacity: ${({ visible }) => (visible ? 1 : 0)};
-  transition: width 0.3s ease-in;
-  background-color: ${themes.PRIMARY};
-`;

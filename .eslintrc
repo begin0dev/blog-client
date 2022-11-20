@@ -1,6 +1,15 @@
 {
   "parser": "@typescript-eslint/parser",
-  "extends": ["react-app", "react-app/jest", "prettier"],
+  "extends": [
+    // By extending from a plugin config, we can get recommended rules without having to add them manually.
+    "react-app",
+    "react-app/jest",
+    "plugin:import/recommended",
+    "plugin:@typescript-eslint/recommended",
+    // This disables the formatting rules in ESLint that Prettier is going to be responsible for handling.
+    // Make sure it's always the last config, so it gets the chance to override other configs.
+    "eslint-config-prettier"
+  ],
   "plugins": ["@typescript-eslint"],
   "settings": {
     "import/resolver": {
@@ -12,6 +21,7 @@
   },
   "rules": {
     "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
     "react/prefer-stateless-function": "off",
     "react/jsx-filename-extension": "off",
     "react/jsx-props-no-spreading": "off",
@@ -23,8 +33,9 @@
     ],
     "no-param-reassign": [
       "error",
-      { "props": true, "ignorePropertyModificationsFor": ["draft", "state"] }
-    ]
+      { "props": true, "ignorePropertyModificationsFor": ["draft", "state", "acc"] }
+    ],
+    "@typescript-eslint/no-non-null-assertion": "off"
   },
   "overrides": [
     {

@@ -6,7 +6,7 @@ import remark2rehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
 
 import prismPlugin from 'lib/utils/prism-plugin';
-import { MarkdownPreviewBlock } from './MarkdownPreview.styles';
+import { MarkdownPreviewWrapper } from './MarkdownPreview.styles';
 
 interface Props {
   markdown: string;
@@ -23,7 +23,7 @@ function MarkdownPreview({ markdown }: Props) {
     .processSync(markdown)
     .toString();
 
-  return <MarkdownPreviewBlock dangerouslySetInnerHTML={{ __html: markdownToHtml }} />;
+  return <MarkdownPreviewWrapper dangerouslySetInnerHTML={{ __html: markdownToHtml }} />;
 }
 
 export default MarkdownPreview;

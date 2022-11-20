@@ -1,56 +1,73 @@
-import styled from 'styled-components/macro';
+import 'codemirror/lib/codemirror.css';
 
-import { palette } from 'styles';
+import { theme, styled } from 'styles';
 
-export const EditorBlock = styled.div`
-  font-family: 'Fira Mono', 'Noto Sans KR', monospace;
-  flex: 1;
+const { colors } = theme;
 
-  .CodeMirror {
-    background-color: inherit;
-  }
-  .CodeMirror-placeholder {
-    color: #868e96 !important;
-  }
-  .cm-header {
-    line-height: 2.2;
-    color: ${palette.gray8};
-  }
-  .cm-header-1 {
-    font-size: 2em;
-  }
-  .cm-header-2 {
-    font-size: 1.7em;
-  }
-  .cm-header-3 {
-    font-size: 1.4em;
-  }
-  .cm-header-4,
-  .cm-header-5,
-  .cm-header-6 {
-    font-size: 1.17em;
-  }
-  .cm-strong,
-  .cm-em {
-    color: ${palette.gray8};
-  }
-`;
+export const EditorWrapper = styled('div', {
+  fontFamily: 'Fira Mono, "Spoqa Han Sans Neo", sans-serif',
+  fontSize: 13,
+  flex: 1,
 
-export const TitleInputWrap = styled.div`
-  position: relative;
-  padding: 10px;
-  margin-bottom: 5px;
-`;
-export const TitleInput = styled.input`
-  font-size: 34px;
-  font-weight: 600;
-  width: 100%;
-  background-color: inherit;
-  border-style: none;
-  outline: none;
-  &::placeholder {
-    color: inherit;
-    font-size: inherit;
-    opacity: 0.4;
-  }
-`;
+  '.CodeMirror': {
+    height: '100%',
+    color: colors.TEXT_L1,
+    backgroundColor: 'inherit',
+  },
+
+  '.CodeMirror-placeholder': {
+    color: 'inherit',
+    opacity: 0.4,
+  },
+
+  '.CodeMirror-cursor': {
+    borderColor: colors.TEXT_L1,
+  },
+
+  '.cm-header': {
+    color: colors.TEXT_L0,
+    lineHeight: 2,
+  },
+
+  '.cm-header-1': {
+    fontSize: 28,
+  },
+
+  '.cm-header-2': {
+    fontSize: 24,
+  },
+
+  '.cm-header-3': {
+    fontSize: 20,
+  },
+
+  '.cm-header-4, .cm-header-5, .cm-header-6': {
+    fontSize: 18,
+  },
+
+  '.cm-strong, .cm-em': {
+    color: colors.TEXT_L0,
+  },
+
+  '.titleInputWrapper': {
+    position: 'relative',
+    padding: '10px 0',
+    marginBottom: 8,
+
+    '.input': {
+      fontSize: 30,
+      fontWeight: 600,
+      width: '100%',
+      backgroundColor: 'inherit',
+      borderStyle: 'none',
+      outline: 'none',
+      color: colors.TEXT_L0,
+
+      '&::placeholder': {
+        color: 'inherit',
+        fontSize: 'inherit',
+        opacity: 0.4,
+      },
+    },
+  },
+});

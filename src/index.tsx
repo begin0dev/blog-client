@@ -1,22 +1,15 @@
-import 'react-app-polyfill/ie11';
-
 import { Provider } from 'react-redux';
 import { createRoot } from 'react-dom/client';
 
-import GlobalStyle from 'styles/globalStyle';
 import App from './App';
 import store from './stores';
-import reportWebVitals from './reportWebVitals';
+import globalStyle from 'styles/globalStyle';
+
+globalStyle();
 
 const root = createRoot(document.getElementById('root')!);
 root.render(
   <Provider store={store}>
-    <GlobalStyle />
     <App />
   </Provider>,
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

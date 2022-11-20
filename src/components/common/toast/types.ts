@@ -1,4 +1,4 @@
-import { ValueOf } from 'lib/utils/typescript-utils';
+import { valueOf } from 'lib/utils/typescript-utils';
 
 export type PositionType =
   | 'top-left'
@@ -13,13 +13,13 @@ export const ToastType = {
   WARNING: 'warning',
   ERROR: 'error',
 } as const;
-type ToastValueType = ValueOf<typeof ToastType>;
+type ToastValueType = valueOf<typeof ToastType>;
 
 export const ToastAction = {
   ADD: 'add',
   REMOVE: 'remove',
 } as const;
-type ToastActionType = ValueOf<typeof ToastAction>;
+type ToastActionType = valueOf<typeof ToastAction>;
 
 export interface ToastItemInterface {
   id: string;

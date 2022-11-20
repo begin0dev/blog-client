@@ -5,12 +5,12 @@ import { useRafState } from './useRafState';
 type Comparison = '>=' | '>' | '<=' | '<';
 
 const comparisonCompare = (comparison: Comparison, width: number): boolean => {
-  const windowWidth = window.innerWidth;
-  if (comparison === '>=') return windowWidth >= width;
-  if (comparison === '>') return windowWidth > width;
-  if (comparison === '<=') return windowWidth <= width;
-  if (comparison === '<') return windowWidth < width;
-  return windowWidth === width;
+  const { innerWidth } = window;
+  if (comparison === '>=') return innerWidth >= width;
+  if (comparison === '>') return innerWidth > width;
+  if (comparison === '<=') return innerWidth <= width;
+  if (comparison === '<') return innerWidth < width;
+  return innerWidth === width;
 };
 
 export function useCheckBreakPoint(comparison: Comparison, width: number) {

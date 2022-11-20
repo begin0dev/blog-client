@@ -1,55 +1,22 @@
 import { ReactNode } from 'react';
-import styled, { css } from 'styled-components/macro';
+import { CSSTransition } from 'react-transition-group';
 
-import { zIndexes } from 'styles';
-import { useTransition, TransitionStatusType } from 'hooks';
-import Overlay from '../overlay';
+import { DrawerWrapper } from './drawer.styles';
 
 interface Props {
   active: boolean;
   position: 'top' | 'bottom' | 'left' | 'right';
-  hideOverlay?: boolean;
   children: ReactNode;
 }
 
-function Drawer({ active, hideOverlay, position = 'bottom', children }: Props) {
-  const status = useTransition({ active });
-
+function Drawer({ active, position = 'bottom', children }: Props) {
   return (
-    <DrawerWrapper status={status}>
-      {!hideOverlay && <Overlay />}
-      <DrawerBlock active={active} position={position}>
-        {children}
-      </DrawerBlock>
-    </DrawerWrapper>
+    <CSSTransition in={active} timeout={300} classNames="drawer" mountOnEnter unmountOnExit>
+      <DrawerWrapper position={position}>
+        <div className="drawer">{children}</div>
+      </DrawerWrapper>
+    </CSSTransition>
   );
 }
 
 export default Drawer;
-
-const DrawerWrapper = styled.div<{ status: TransitionStatusType }>`
-  z-index: ${zIndexes.MODAL};
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  ${({ status }) => css`
-    height: ${status === 'exited' ? 0 : '100%'};
-    width: ${status === 'exited' ? 0 : '100%'};
-  `}
-`;
-const DrawerBlock = styled.div<{
-  active: boolean;
-  position: Props['position'];
-}>`
-  position: absolute;
-  ${({ active, position }) => css`
-    width: ${['top', 'bottom'].includes(position) ? '100%' : 'auto'};
-    height: ${['left', 'right'].includes(position) ? '100%' : 'auto'};
-    ${position}: ${active ? 0 : '-100%'};
-    transition: ${position} 0.25s cubic-bezier(0.7, 0.3, 0.1, 1);
-  `}
-`;

@@ -22,5 +22,5 @@ export function useLazyImageObserver(options?: IntersectionObserverInit) {
     };
   }, []);
 
-  return { imageRef };
+  return imageRef;
 }

@@ -1,13 +1,11 @@
-import 'codemirror/lib/codemirror.css';
 import 'codemirror/mode/markdown/markdown';
 import 'codemirror/addon/display/placeholder';
 
-import { memo, useRef } from 'react';
+import { memo, useEffect, useRef, useTransition } from 'react';
 import CodeMirror, { Editor, EditorFromTextArea } from 'codemirror';
 
 import { useMount, useUnMount } from 'hooks';
-import './atom-one-light.css';
-import { EditorBlock, TitleInputWrap, TitleInput } from './MarkdownEditor.styles';
+import { EditorWrapper } from './MarkdownEditor.styles';
 
 interface Props {
   markdown: string;
@@ -18,33 +16,44 @@ function MarkdownEditor({ markdown, onChange }: Props) {
   const textAreaEl = useRef<HTMLTextAreaElement | null>(null);
   const codemirrorEl = useRef<EditorFromTextArea | null>(null);
 
+  const [isPending, startTransition] = useTransition();
+
   useMount(() => {
     if (!textAreaEl.current) return;
+
     const codemirror = CodeMirror.fromTextArea(textAreaEl.current, {
       mode: 'markdown',
-      theme: 'one-light',
-      lineWrapping: true,
+      theme: 'material-darker',
       placeholder: '내용을 작성해 주세요~',
+      lineWrapping: true,
     });
-    if (markdown) codemirror.setValue(markdown);
     codemirror.focus();
     codemirror.on('change', (editor: Editor) => {
-      onChange?.(editor.getValue());
+      startTransition(() => {
+        onChange?.(editor.getValue());
+      });
     });
     codemirrorEl.current = codemirror;
   });
 
+  useEffect(() => {
+    if (!codemirrorEl.current || isPending) return;
+    if (codemirrorEl.current.getValue() !== markdown) {
+      codemirrorEl.current?.setValue(markdown);
+    }
+  }, [isPending, markdown]);
+
   useUnMount(() => {
-    codemirrorEl.current?.toTextArea?.();
+    codemirrorEl.current?.toTextArea();
   });
 
   return (
-    <EditorBlock>
-      <TitleInputWrap>
-        <TitleInput type="text" placeholder="제목을 입력해주세요~" />
-      </TitleInputWrap>
+    <EditorWrapper>
+      <div className="titleInputWrapper">
+        <input className="input" type="text" placeholder="제목을 입력해주세요~" />
+      </div>
       <textarea ref={textAreaEl} />
-    </EditorBlock>
+    </EditorWrapper>
   );
 }
 

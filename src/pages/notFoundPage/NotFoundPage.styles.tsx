@@ -1,7 +1,5 @@
-import styled from 'styled-components/macro';
+import { styled } from 'styles';
 
-export const NotFoundPageBlock = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+export const NotFoundPageWrapper = styled('div', {
+  flexbox: '',
+});
