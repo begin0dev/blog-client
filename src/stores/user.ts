@@ -36,37 +36,38 @@ const userSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {},
-  extraReducers: {
-    [verifyUser.pending.type](state) {
-      state.isLoading = true;
-      state.isLoggedIn = false;
-    },
-    [verifyUser.fulfilled.type](state, { payload }) {
-      state.isLoading = false;
-      state.isLoggedIn = true;
-      state.user = payload;
-    },
-    [verifyUser.rejected.type](state) {
-      state.isLoading = false;
-      state.isLoggedIn = false;
-    },
-    [checkUser.pending.type](state) {
-      state.isLoading = true;
-      state.isLoggedIn = false;
-    },
-    [checkUser.fulfilled.type](state, { payload }) {
-      state.isLoading = false;
-      state.isLoggedIn = true;
-      state.user = payload;
-    },
-    [checkUser.rejected.type](state) {
-      state.isLoading = false;
-      state.isLoggedIn = false;
-    },
-    [logoutUser.pending.type](state) {
-      state.isLoggedIn = false;
-      state.user = null;
-    },
+  extraReducers(builder) {
+    builder
+      .addCase(verifyUser.pending, (state) => {
+        state.isLoading = true;
+        state.isLoggedIn = false;
+      })
+      .addCase(verifyUser.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.isLoggedIn = true;
+        state.user = payload;
+      })
+      .addCase(verifyUser.rejected, (state) => {
+        state.isLoading = false;
+        state.isLoggedIn = false;
+      })
+      .addCase(checkUser.pending, (state) => {
+        state.isLoading = true;
+        state.isLoggedIn = false;
+      })
+      .addCase(checkUser.fulfilled, (state, { payload }) => {
+        state.isLoading = false;
+        state.isLoggedIn = true;
+        state.user = payload;
+      })
+      .addCase(checkUser.rejected, (state) => {
+        state.isLoading = false;
+        state.isLoggedIn = false;
+      })
+      .addCase(logoutUser.pending, (state) => {
+        state.isLoggedIn = false;
+        state.user = null;
+      });
   },
 });
 
