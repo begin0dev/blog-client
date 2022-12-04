@@ -109,7 +109,7 @@ export const ToastItemWrapper = styled('div', {
     width: 320,
     maxWidth: 360,
     fontSize: 14,
-    color: colors.GRAY3,
+    color: colors.TEXT_L2,
     backgroundColor: colors.WHITE,
     boxShadow: '0 2px 8px 3px rgba(255, 255, 255, 0.03)',
     borderRadius: 4,

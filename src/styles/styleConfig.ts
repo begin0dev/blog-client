@@ -92,15 +92,15 @@ export const { theme, styled, css } = createStitches({
       };
     },
 
-    posCenterY: (position: 'absolute' | 'fixed') => ({
-      position,
-      top: '50%',
-      transform: 'translateY(-50%)',
-    }),
     posCenterX: (position: 'absolute' | 'fixed') => ({
       position,
       left: '50%',
       transform: 'translateX(-50%)',
+    }),
+    posCenterY: (position: 'absolute' | 'fixed') => ({
+      position,
+      top: '50%',
+      transform: 'translateY(-50%)',
     }),
   },
 });

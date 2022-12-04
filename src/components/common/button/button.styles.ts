@@ -71,15 +71,15 @@ export const ButtonWrapper = styled('button', {
     shape: {
       [shapes.PRIMARY]: {
         fontWeight: fontWeights.semiBold,
+        color: colors.GRAY_1,
         border: `1px solid ${colors.PRIMARY}`,
         backgroundColor: colors.PRIMARY,
-        color: colors.GRAY_1,
       },
       [shapes.SECONDARY]: {
         fontWeight: fontWeights.semiBold,
+        color: colors.WHITE,
         border: `1px solid ${colors.SECONDARY}`,
         backgroundColor: colors.SECONDARY,
-        color: colors.WHITE,
       },
       [shapes.GHOST]: {
         fontWeight: fontWeights.semiBold,
@@ -87,6 +87,8 @@ export const ButtonWrapper = styled('button', {
         border: 'unset',
       },
       [shapes.LINK]: {
+        fontWeight: fontWeights.semiBold,
+        color: colors.PRIMARY,
         backgroundColor: 'transparent',
         border: 'unset',
         padding: 4,

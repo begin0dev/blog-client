@@ -4,5 +4,6 @@ This project was created react and typescript.
 ### Tech stack
  - typescript
  - react
- - redux-saga
- - styled-component
+ - redux-toolkit
+ - react-query
+ - stitches
