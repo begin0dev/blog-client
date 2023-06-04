@@ -4,13 +4,25 @@ import { Button } from '../common';
 
 const { zIndices, colors, sizes, fontSizes, fontWeights } = theme;
 
+export const HeaderPlaceholder = styled('div', {
+  width: '100%',
+
+  '@maxTablet': {
+    height: sizes.MOBILE_HEADER,
+  },
+
+  '@minDesktop': {
+    height: sizes.DESKTOP_HEADER,
+  },
+});
+
 export const HeaderWrapper = styled('nav', {
-  flexbox: 'start',
   zIndex: zIndices.HEADER,
-  position: 'sticky',
+  position: 'fixed',
   top: 0,
   right: 0,
   left: 0,
+  flexbox: 'start',
   backgroundColor: colors.BACKGROUND_L1,
 
   '@maxTablet': {
